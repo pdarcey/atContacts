@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Input View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="InputViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -61,6 +61,10 @@
                             <constraint firstItem="003-u9-0Xz" firstAttribute="centerX" secondItem="SGP-1n-gtz" secondAttribute="centerX" id="rnD-Db-8iM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="hashtags" destination="SGP-1n-gtz" id="God-Fy-JB7"/>
+                        <outlet property="twitterName" destination="Ib1-pi-m32" id="PdN-4R-M85"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
