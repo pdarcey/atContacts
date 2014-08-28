@@ -11,9 +11,12 @@
 @interface InputViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *twitterName;
-@property (weak, nonatomic) IBOutlet UILabel *hashtags;
+@property (weak, nonatomic) IBOutlet UITextField *hashtag;
 
 - (IBAction)findTwitterName:(id)sender;
+- (IBAction)touchDownOutsideFields:(id)sender;
+- (IBAction)startHashtagEditing:(id)sender;
+- (IBAction)endHashtagEditing:(id)sender;
 
 @end
 

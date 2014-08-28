@@ -36,7 +36,43 @@
 #pragma mark - Actions
 
 - (IBAction)findTwitterName:(id)sender {
+    NSLog(@"findTwitterName called\n");
+}
+
+- (IBAction)touchDownOutsideFields:(id)sender {
+    NSLog(@"touchDownOutsideFields called\n");
+    [self endHashtagEditing:nil];
+}
+
+#pragma mark - Hashtag editing
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSLog(@"textFieldDidEndEditing called\n");
+    if (textField == _twitterName) {
+        [self findTwitterName:nil];
+    } else if (textField == _hashtag) {
+        [self endHashtagEditing:textField];
+    }
     
+    return YES;
+}
+
+- (IBAction)startHashtagEditing:(id)sender {
+    NSLog(@"testHashtagEditing called\n");
+    _hashtag.borderStyle = _twitterName.borderStyle;
+    _hashtag.backgroundColor = _twitterName.backgroundColor;
+
+}
+
+- (IBAction)endHashtagEditing:(id)sender {
+    NSLog(@"finishedTestHashtagEditing called\n");
+    _hashtag.borderStyle = UITextBorderStyleNone;
+    _hashtag.backgroundColor = [UIColor clearColor];
+    NSString *firstCharacter = [_hashtag.text substringToIndex:1];
+    if (![firstCharacter isEqualToString:@"#"]) {
+        _hashtag.text = [@"#" stringByAppendingString:_hashtag.text];
+    }
+    [_twitterName becomeFirstResponder];
 }
 
 @end

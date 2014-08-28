@@ -16,10 +16,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="003-u9-0Xz">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="003-u9-0Xz">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="FEO-WN-GgB" appends="YES" id="Z9N-fB-k3I"/>
+                                </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMZ-zf-l8P">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMZ-zf-l8P">
                                 <rect key="frame" x="202" y="216" width="14" height="19.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="14" id="Ima-fN-SZ4"/>
@@ -28,7 +32,7 @@
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="twittername" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ib1-pi-m32">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="twittername" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ib1-pi-m32">
                                 <rect key="frame" x="218" y="210" width="180" height="30"/>
                                 <color key="backgroundColor" red="0.96862751245498657" green="0.68627452850341797" blue="0.32156863808631897" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,34 +43,56 @@
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="findTwitterName:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="lbs-1z-3Q5"/>
+                                </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#hashtag" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGP-1n-gtz">
-                                <rect key="frame" x="266" y="267" width="67" height="19.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="hashtag" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qfS-g8-B3B">
+                                <rect key="frame" x="202" y="248" width="202" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="202" id="SPl-JI-bEg"/>
+                                </constraints>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="endHashtagEditing:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="Dyn-MU-KUb"/>
+                                    <action selector="endHashtagEditing:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="Frx-y5-IkU"/>
+                                    <action selector="startHashtagEditing:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="V7t-xY-2pb"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="003-u9-0Xz" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="162-eZ-kLm"/>
+                            <constraint firstItem="qfS-g8-B3B" firstAttribute="top" secondItem="Ib1-pi-m32" secondAttribute="bottom" constant="8" id="9f5-pQ-7ky"/>
                             <constraint firstItem="003-u9-0Xz" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="AUq-5I-10r"/>
                             <constraint firstItem="003-u9-0Xz" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Bjb-gQ-EnP"/>
                             <constraint firstItem="mMZ-zf-l8P" firstAttribute="trailing" secondItem="Ib1-pi-m32" secondAttribute="leading" constant="-2" id="Bqd-Sf-SYn"/>
-                            <constraint firstItem="SGP-1n-gtz" firstAttribute="centerY" secondItem="003-u9-0Xz" secondAttribute="centerY" constant="-23.5" id="PLa-bC-4vs"/>
+                            <constraint firstItem="003-u9-0Xz" firstAttribute="centerY" secondItem="qfS-g8-B3B" secondAttribute="centerY" constant="37" id="KIv-nV-pR4"/>
+                            <constraint firstItem="003-u9-0Xz" firstAttribute="centerX" secondItem="qfS-g8-B3B" secondAttribute="centerX" constant="-3" id="LPy-oC-e8Y"/>
                             <constraint firstAttribute="centerY" secondItem="003-u9-0Xz" secondAttribute="centerY" id="Ps1-2m-tWz"/>
+                            <constraint firstItem="mMZ-zf-l8P" firstAttribute="leading" secondItem="qfS-g8-B3B" secondAttribute="leading" id="YuZ-3V-uqA"/>
                             <constraint firstItem="Ib1-pi-m32" firstAttribute="centerX" secondItem="003-u9-0Xz" secondAttribute="centerX" constant="8" id="bLf-hG-ZeD"/>
                             <constraint firstItem="mMZ-zf-l8P" firstAttribute="centerY" secondItem="Ib1-pi-m32" secondAttribute="centerY" constant="0.5" id="jD9-Gs-UY7"/>
-                            <constraint firstItem="SGP-1n-gtz" firstAttribute="top" secondItem="Ib1-pi-m32" secondAttribute="bottom" constant="27" id="p9m-R3-8Hb"/>
-                            <constraint firstItem="003-u9-0Xz" firstAttribute="centerX" secondItem="SGP-1n-gtz" secondAttribute="centerX" id="rnD-Db-8iM"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="hashtags" destination="SGP-1n-gtz" id="God-Fy-JB7"/>
+                        <outlet property="hashtag" destination="qfS-g8-B3B" id="tVq-Q2-PKD"/>
                         <outlet property="twitterName" destination="Ib1-pi-m32" id="PdN-4R-M85"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ous-u3-47o">
+                    <connections>
+                        <action selector="startHashtagEditing:" destination="vXZ-lx-hvc" id="Zzp-XA-vqK"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="FEO-WN-GgB">
+                    <connections>
+                        <action selector="touchDownOutsideFields:" destination="vXZ-lx-hvc" id="C5g-OO-bzd"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>
