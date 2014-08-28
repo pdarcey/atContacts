@@ -7,6 +7,7 @@
 //
 
 #import "InputViewController.h"
+#import "PDXNameFinder.h"
 
 @interface InputViewController ()
 
@@ -37,6 +38,20 @@
 
 - (IBAction)findTwitterName:(id)sender {
     NSLog(@"findTwitterName called\n");
+    
+//    self.activitySpinner.hidden = NO;
+//    [activitySpinner startAnimating];
+    
+    // Ensure that user hasn't included the initial "@" in the user name
+    NSString *name = _twitterName.text;
+    NSString *firstCharacter = [name substringToIndex:1];
+    if (![firstCharacter isEqualToString:@"@"]) {
+        name = [name stringByReplacingOccurrencesOfString:@"@" withString:@""];
+    }
+
+    PDXNameFinder *nameFinder = [PDXNameFinder new];
+    [nameFinder findName:name];
+    
 }
 
 - (IBAction)touchDownOutsideFields:(id)sender {

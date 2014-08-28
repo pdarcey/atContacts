@@ -13,6 +13,8 @@
 		C93E2D4619ADD51200B06809 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93E2D4419ADD51200B06809 /* Main.storyboard */; };
 		C93E2D4819ADD51200B06809 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93E2D4719ADD51200B06809 /* Images.xcassets */; };
 		C93E2D5419ADD51200B06809 /* atContactsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D5319ADD51200B06809 /* atContactsTests.m */; };
+		C971A1BC19AF95FD00F67E75 /* PDXNameFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */; };
+		C971A1BD19AF95FD00F67E75 /* PDXNameFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		C93E2D4D19ADD51200B06809 /* atContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = atContactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93E2D5219ADD51200B06809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C93E2D5319ADD51200B06809 /* atContactsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = atContactsTests.m; sourceTree = "<group>"; };
+		C971A1BA19AF95FD00F67E75 /* PDXNameFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXNameFinder.h; sourceTree = "<group>"; };
+		C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXNameFinder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				C93E2D3F19ADD51200B06809 /* AppDelegate.m */,
 				C93E2D4119ADD51200B06809 /* InputViewController.h */,
 				C93E2D4219ADD51200B06809 /* InputViewController.m */,
+				C971A1BA19AF95FD00F67E75 /* PDXNameFinder.h */,
+				C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */,
 				C93E2D4419ADD51200B06809 /* Main.storyboard */,
 				C93E2D4719ADD51200B06809 /* Images.xcassets */,
 				C93E2D3A19ADD51200B06809 /* Supporting Files */,
@@ -224,6 +230,7 @@
 				C93E2D4319ADD51200B06809 /* InputViewController.m in Sources */,
 				C93E2D4019ADD51200B06809 /* AppDelegate.m in Sources */,
 				C93E2D3D19ADD51200B06809 /* main.m in Sources */,
+				C971A1BC19AF95FD00F67E75 /* PDXNameFinder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C93E2D5419ADD51200B06809 /* atContactsTests.m in Sources */,
+				C971A1BD19AF95FD00F67E75 /* PDXNameFinder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
