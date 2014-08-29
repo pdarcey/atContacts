@@ -16,9 +16,10 @@
 		<string>ZapfDingbatsITC</string>
 		<string>HiraKakuProN-W3</string>
 		<string>LucidaGrande</string>
+		<string>HelveticaNeue-Medium</string>
 	</array>
 	<key>length</key>
-	<integer>715657</integer>
+	<integer>729217</integer>
 	<key>version</key>
 	<integer>37</integer>
 </dict>
