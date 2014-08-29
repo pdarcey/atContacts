@@ -43,15 +43,18 @@
 //    [activitySpinner startAnimating];
     
     // Ensure that user hasn't included the initial "@" in the user name
-    NSString *name = _twitterName.text;
-    NSString *firstCharacter = [name substringToIndex:1];
-    if (![firstCharacter isEqualToString:@"@"]) {
-        name = [name stringByReplacingOccurrencesOfString:@"@" withString:@""];
-    }
+    if (_twitterName.text.length > 0) {
+        NSString *name = _twitterName.text;
+        NSString *firstCharacter = [name substringToIndex:1];
+        if (![firstCharacter isEqualToString:@"@"]) {
+            name = [name stringByReplacingOccurrencesOfString:@"@" withString:@""];
+        }
 
-    PDXNameFinder *nameFinder = [PDXNameFinder new];
-    [nameFinder findName:name];
-    
+        PDXNameFinder *nameFinder = [PDXNameFinder new];
+        [nameFinder findName:name];
+    } else {
+        [_twitterName becomeFirstResponder];
+    }
 }
 
 - (IBAction)touchDownOutsideFields:(id)sender {
@@ -83,9 +86,11 @@
     NSLog(@"finishedTestHashtagEditing called\n");
     _hashtag.borderStyle = UITextBorderStyleNone;
     _hashtag.backgroundColor = [UIColor clearColor];
-    NSString *firstCharacter = [_hashtag.text substringToIndex:1];
-    if (![firstCharacter isEqualToString:@"#"]) {
-        _hashtag.text = [@"#" stringByAppendingString:_hashtag.text];
+    if (_hashtag.text.length > 0) {
+        NSString *firstCharacter = [_hashtag.text substringToIndex:1];
+        if (![firstCharacter isEqualToString:@"#"]) {
+            _hashtag.text = [@"#" stringByAppendingString:_hashtag.text];
+        }
     }
     [_twitterName becomeFirstResponder];
 }
