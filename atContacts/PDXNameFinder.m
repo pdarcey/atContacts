@@ -14,16 +14,49 @@
 
 - (void)findName:(NSString *)name {
     
-    if ([self checkForTwitterAccess]) {
-        [self sendRequest:name];
-    }
+    ACAccountStore *account = [[ACAccountStore alloc] init];
+    ACAccountType *accountType = [account accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    
+    [account requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
+         if (granted == YES) {
+             NSArray *arrayOfAccounts = [account accountsWithAccountType:accountType];
+             
+             if ([arrayOfAccounts count] > 0) {
+                 ACAccount *twitterAccount =
+                 [arrayOfAccounts lastObject];
+                 
+                 NSURL *requestURL = [NSURL URLWithString: @"https://api.twitter.com/1.1/users/lookup.json"];
+                 
+                 NSDictionary *parameters = @{@"screen_name" : name};
+                 
+                 SLRequest *postRequest = [SLRequest
+                                           requestForServiceType:SLServiceTypeTwitter
+                                           requestMethod:SLRequestMethodGET
+                                           URL:requestURL parameters:parameters];
+                 
+                 postRequest.account = twitterAccount;
+                 
+                 [postRequest performRequestWithHandler: ^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                      _twitterData = [NSJSONSerialization
+                                         JSONObjectWithData:responseData
+                                         options:NSJSONReadingMutableLeaves
+                                         error:&error];
+ 
+                      if (_twitterData != nil) {
+                          [self parseResults];
+                      }
+                  }];
+             }
+         } else {
+             // Handle failure to get account access
+         }
+     }];
 }
 
-- (void)sendRequest:(NSString *)name {
-    // Update user defaults
-    
-    NSArray *accounts = [self.accountStore accountsWithAccountType:_twitterType];
-    SLRequest *request = [self createRequest:name];
+- (void)sendRequest {
+    // Set up request
+    NSArray *accounts = [_accountStore accountsWithAccountType:_twitterType];
+    SLRequest *request = [self createRequest];
     [request setAccount:[accounts lastObject]];
     
     SLRequestHandler requestHandler =
@@ -49,6 +82,7 @@
             NSLog(@"[ERROR] An error occurred: %@", [error localizedDescription]);
         }
     };
+    //
     
     [request performRequestWithHandler:requestHandler];
 }
@@ -58,7 +92,7 @@
  *
  *  @since 1.0
  */
-- (BOOL)checkForTwitterAccess {
+- (void)checkForTwitterAccess {
 
     // First, check user defaults
     
@@ -66,24 +100,47 @@
     
     // Request system access to user's Twitter account
     _accountStore = [[ACAccountStore alloc] init];
-
-    BOOL __block accessGranted = NO;
+    ACAccountType *accountType = [_accountStore accountTypeWithAccountTypeIdentifier:
+                                  ACAccountTypeIdentifierTwitter];
     
-    ACAccountStoreRequestAccessCompletionHandler accountStoreHandler =
-    ^(BOOL granted, NSError *error) {
-        if (granted) {
-            // Update user defaults
+    [_accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
+        if (granted == YES) {
             
-            accessGranted = YES;
+            NSArray *arrayOfAccounts = [_accountStore accountsWithAccountType:accountType];
+            
+            if ([arrayOfAccounts count] > 0) {
+                
+                ACAccount *twitterAccount = [arrayOfAccounts lastObject];
+                
+                SLRequest *request = [self createRequest];
+                
+                request.account = twitterAccount;
+                
+                [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                    if (responseData) {
+                        NSInteger statusCode = urlResponse.statusCode;
+                        if (statusCode >= 200 && statusCode < 300) {
+                            NSDictionary *postResponseData =
+                            [NSJSONSerialization JSONObjectWithData:responseData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:NULL];
+                            
+                            NSLog(@"[SUCCESS!] Received data: %@", postResponseData[@"id_str"]);
+                            _twitterData = postResponseData;
+                            [self parseResults];
+                        }
+                        else {
+                            NSLog(@"[ERROR] Server responded: status code %ld %@", (long)statusCode,
+                                  [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
+                        }
+                    }
+                    else {
+                        NSLog(@"[ERROR] An error occurred: %@", [error localizedDescription]);
+                    }
+                 }];
+            }
         }
-        else {
-            // Update user defaults
-            NSLog(@"[ERROR] An error occurred while asking for user authorization: %@",
-                  [error localizedDescription]);
-            accessGranted = NO;
-        }
-    };
-    return accessGranted;
+    }];
 }
 
 /**
@@ -95,10 +152,10 @@
  *
  *  @since 1.0
  */
-- (SLRequest *)createRequest:(NSString *)name {
+- (SLRequest *)createRequest {
     // We are using version 1.1 of the Twitter API. This may need to be changed to whichever version is currently appropriate.
     
-    NSString *urlString = [NSString stringWithFormat:@"https://api.twitter.com/1.1/users/lookup.json?screen_name=%@", name];
+    NSString *urlString = [NSString stringWithFormat:@"https://api.twitter.com/1.1/users/lookup.json?screen_name=%@", _name];
     NSURL *url = [NSURL URLWithString:urlString];
     
     SLRequest *getRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:url parameters:nil];
@@ -132,6 +189,8 @@
 
     NSString *output = [NSString stringWithFormat:@"\nTwitter Name = %@\nName = %@\nFirst Name = %@\nLast Name = %@\nFinal Name = %@\nDescription = %@\nURL = %@\nPicture URL = %@", retrievedTwitterName, retrievedName, retrievedFirstName, retrievedLastName, retrievedFinalName, retrievedDescription, retrievedPersonalURL, retrievedPhotoURLString];
     NSLog(@"%@",output);
+    
+    // Present results
 }
 
 @end

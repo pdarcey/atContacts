@@ -15,6 +15,7 @@
 @property (nonatomic, strong) ACAccountStore *accountStore;
 @property (nonatomic, strong) ACAccountType *twitterType;
 @property (nonatomic, strong) NSDictionary *twitterData;
+@property (nonatomic, strong) NSString *name;
 
 - (void)findName:(NSString *)name;
 
