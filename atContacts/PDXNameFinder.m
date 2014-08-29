@@ -11,12 +11,22 @@
 
 @implementation PDXNameFinder
 
-
+/**
+ *  Checks if the user has authorised access to their Twitter account
+ *  then gets info for name, if authorisation is ok
+ *
+ *  @param name Twitter user's name (not including the initial "@")
+ *
+ *  @since 1.0
+ */
 - (void)findName:(NSString *)name {
     
     ACAccountStore *account = [[ACAccountStore alloc] init];
     ACAccountType *accountType = [account accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    // Check if permission has previously been asked for
     
+    
+    // Actually access user's Twitter account to get info
     [account requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
          if (granted == YES) {
              NSArray *arrayOfAccounts = [account accountsWithAccountType:accountType];
@@ -29,138 +39,53 @@
                  
                  NSDictionary *parameters = @{@"screen_name" : name};
                  
-                 SLRequest *postRequest = [SLRequest
-                                           requestForServiceType:SLServiceTypeTwitter
-                                           requestMethod:SLRequestMethodGET
-                                           URL:requestURL parameters:parameters];
+                 SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:requestURL parameters:parameters];
                  
                  postRequest.account = twitterAccount;
                  
                  [postRequest performRequestWithHandler: ^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                      _twitterData = [NSJSONSerialization
-                                         JSONObjectWithData:responseData
-                                         options:NSJSONReadingMutableLeaves
-                                         error:&error];
- 
-                      if (_twitterData != nil) {
-                          [self parseResults];
-                      }
+                     if (responseData) {
+                         NSInteger statusCode = urlResponse.statusCode;
+                         if (statusCode >= 200 && statusCode < 300) {
+                             _twitterData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
+                             
+                             if (_twitterData != nil) {
+                                 [self parseResults];
+                             }
+                         } else {
+                             NSLog(@"[ERROR] Server responded: status code %ld %@", (long)statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
+                         }
+                     } else {
+                         NSLog(@"[ERROR] An error occurred: %@", [error localizedDescription]);
+                     }
+
                   }];
              }
          } else {
-             // Handle failure to get account access
+             // User has previously said they would give us permission to access their Twitter account
+             // Check for error conditions
+             NSLog(@"Error accessing user's Twitter account. Error: %@", error);
+            //             typedef enum ACErrorCode {
+            //                 ACErrorUnknown = 1,
+            //                 ACErrorAccountMissingRequiredProperty,
+            //                 ACErrorAccountAuthenticationFailed,
+            //                 ACErrorAccountTypeInvalid,
+            //                 ACErrorAccountAlreadyExists,
+            //                 ACErrorAccountNotFound,
+            //                 ACErrorPermissionDenied,
+            //                 ACErrorAccessInfoInvalid,
+            //                 ACErrorClientPermissionDenied
+            //                 ACErrorAccessDeniedByProtectionPolicy
+            //                 ACErrorCredentialNotFound
+            //                 ACErrorFetchCredentialFailed,
+            //                 ACErrorStoreCredentialFailed,
+            //                 ACErrorRemoveCredentialFailed,
+            //                 ACErrorUpdatingNonexistentAccount
+            //                 ACErrorInvalidClientBundleID,
+            //             } ACErrorCode;
+             
          }
      }];
-}
-
-- (void)sendRequest {
-    // Set up request
-    NSArray *accounts = [_accountStore accountsWithAccountType:_twitterType];
-    SLRequest *request = [self createRequest];
-    [request setAccount:[accounts lastObject]];
-    
-    SLRequestHandler requestHandler =
-    ^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-        if (responseData) {
-            NSInteger statusCode = urlResponse.statusCode;
-            if (statusCode >= 200 && statusCode < 300) {
-                NSDictionary *postResponseData =
-                [NSJSONSerialization JSONObjectWithData:responseData
-                                                options:NSJSONReadingMutableContainers
-                                                  error:NULL];
-                
-                NSLog(@"[SUCCESS!] Received data: %@", postResponseData[@"id_str"]);
-                _twitterData = postResponseData;
-                [self parseResults];
-            }
-            else {
-                NSLog(@"[ERROR] Server responded: status code %ld %@", (long)statusCode,
-                      [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
-            }
-        }
-        else {
-            NSLog(@"[ERROR] An error occurred: %@", [error localizedDescription]);
-        }
-    };
-    //
-    
-    [request performRequestWithHandler:requestHandler];
-}
-
-/**
- *  Checks if the user has authorised access to their Twitter account
- *
- *  @since 1.0
- */
-- (void)checkForTwitterAccess {
-
-    // First, check user defaults
-    
-    // If necessary, show pre-access dialog, to prepare user for access request
-    
-    // Request system access to user's Twitter account
-    _accountStore = [[ACAccountStore alloc] init];
-    ACAccountType *accountType = [_accountStore accountTypeWithAccountTypeIdentifier:
-                                  ACAccountTypeIdentifierTwitter];
-    
-    [_accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
-        if (granted == YES) {
-            
-            NSArray *arrayOfAccounts = [_accountStore accountsWithAccountType:accountType];
-            
-            if ([arrayOfAccounts count] > 0) {
-                
-                ACAccount *twitterAccount = [arrayOfAccounts lastObject];
-                
-                SLRequest *request = [self createRequest];
-                
-                request.account = twitterAccount;
-                
-                [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                    if (responseData) {
-                        NSInteger statusCode = urlResponse.statusCode;
-                        if (statusCode >= 200 && statusCode < 300) {
-                            NSDictionary *postResponseData =
-                            [NSJSONSerialization JSONObjectWithData:responseData
-                                                            options:NSJSONReadingMutableContainers
-                                                              error:NULL];
-                            
-                            NSLog(@"[SUCCESS!] Received data: %@", postResponseData[@"id_str"]);
-                            _twitterData = postResponseData;
-                            [self parseResults];
-                        }
-                        else {
-                            NSLog(@"[ERROR] Server responded: status code %ld %@", (long)statusCode,
-                                  [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
-                        }
-                    }
-                    else {
-                        NSLog(@"[ERROR] An error occurred: %@", [error localizedDescription]);
-                    }
-                 }];
-            }
-        }
-    }];
-}
-
-/**
- *  Creates an SLRequest for Twitter's API v1.1 to search for a user given their user name (e.g. @twitter)
- *
- *  @param name The user's Twitter name, without the leading "@"
- *
- *  @return Returns a properly formatted SLRequest
- *
- *  @since 1.0
- */
-- (SLRequest *)createRequest {
-    // We are using version 1.1 of the Twitter API. This may need to be changed to whichever version is currently appropriate.
-    
-    NSString *urlString = [NSString stringWithFormat:@"https://api.twitter.com/1.1/users/lookup.json?screen_name=%@", _name];
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    SLRequest *getRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:url parameters:nil];
-
-    return getRequest;
 }
 
 - (void)parseResults {
