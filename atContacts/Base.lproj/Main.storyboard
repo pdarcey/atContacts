@@ -98,7 +98,7 @@
         <!--PreTwitterAccessRequest-->
         <scene sceneID="ybO-TG-XRA">
             <objects>
-                <viewController storyboardIdentifier="PreApproval" title="PreTwitterAccessRequest" modalPresentationStyle="overFullScreen" id="dK4-aa-SdS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreApproval" title="PreTwitterAccessRequest" modalPresentationStyle="overFullScreen" id="dK4-aa-SdS" customClass="PreApprovalViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iq7-Hf-eHq"/>
                         <viewControllerLayoutGuide type="bottom" id="scH-iS-9pe"/>
@@ -108,60 +108,70 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApprovalDialog" translatesAutoresizingMaskIntoConstraints="NO" id="d5j-Q4-SNw">
-                                <rect key="frame" x="140" y="16" width="320" height="568"/>
+                                <rect key="frame" x="143" y="57" width="320" height="485"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="M2X-eR-kgi"/>
+                                    <constraint firstAttribute="height" constant="485" id="IDG-8r-yZp"/>
+                                    <constraint firstAttribute="width" constant="320" id="xOJ-1b-9FU"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KOu-50-9yc">
+                                <rect key="frame" x="143" y="386" width="320" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <state key="normal" title="Use the Twitter account">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="permissionGranted:" destination="dK4-aa-SdS" eventType="touchUpInside" id="ya0-YP-ZtH"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT8-N9-OBw">
-                                <rect key="frame" x="140" y="444" width="320" height="29"/>
+                                <rect key="frame" x="143" y="443" width="320" height="29"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <state key="normal" title="I don't have a Twitter account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="noTwitterAccount:" destination="dK4-aa-SdS" eventType="touchUpInside" id="Q0K-lG-PDA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDY-Rw-2hp">
-                                <rect key="frame" x="140" y="487" width="320" height="29"/>
+                                <rect key="frame" x="143" y="486" width="320" height="29"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <state key="normal" title="Do NOT use my Twitter account">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="permissionDenied:" destination="dK4-aa-SdS" eventType="touchUpInside" id="Gn0-Bn-CNC"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have entered in Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jab-wt-d5v">
-                                <rect key="frame" x="140" y="398" width="320" height="19.5"/>
+                                <rect key="frame" x="143" y="410" width="320" height="19.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" red="0.21176472306251526" green="0.56862747669219971" blue="0.96078437566757202" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KOu-50-9yc">
-                                <rect key="frame" x="140" y="375" width="320" height="32"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <state key="normal" title="Use the Twitter account">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="uDY-Rw-2hp" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="80" id="1cZ-H5-aVe"/>
+                            <constraint firstItem="KOu-50-9yc" firstAttribute="centerX" secondItem="d5j-Q4-SNw" secondAttribute="centerX" id="6pa-Gp-MWz"/>
                             <constraint firstItem="KOu-50-9yc" firstAttribute="top" secondItem="d5j-Q4-SNw" secondAttribute="bottom" constant="-226" id="7R7-eH-m3B"/>
-                            <constraint firstItem="uDY-Rw-2hp" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" id="BgD-lP-sWP"/>
                             <constraint firstItem="uDY-Rw-2hp" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="68" id="CV9-cz-NBE"/>
-                            <constraint firstItem="KOu-50-9yc" firstAttribute="centerX" secondItem="d5j-Q4-SNw" secondAttribute="centerX" id="GQW-6v-lEJ"/>
-                            <constraint firstItem="d5j-Q4-SNw" firstAttribute="centerX" secondItem="IdZ-Su-ySG" secondAttribute="centerX" id="HAe-qz-5cJ"/>
-                            <constraint firstAttribute="centerY" secondItem="d5j-Q4-SNw" secondAttribute="centerY" id="NGE-cj-idE"/>
-                            <constraint firstItem="Jab-wt-d5v" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="Pgn-FF-S8k"/>
+                            <constraint firstItem="Jab-wt-d5v" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" id="Ipd-iC-Mpr"/>
                             <constraint firstItem="AT8-N9-OBw" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="23" id="R2n-w1-4X9"/>
-                            <constraint firstItem="uDY-Rw-2hp" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="Tcl-Re-pjP"/>
-                            <constraint firstItem="KOu-50-9yc" firstAttribute="width" secondItem="d5j-Q4-SNw" secondAttribute="width" id="YNd-aL-Gxz"/>
-                            <constraint firstItem="Jab-wt-d5v" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" id="a4t-jx-1aY"/>
-                            <constraint firstItem="AT8-N9-OBw" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="biF-jB-31P"/>
-                            <constraint firstItem="Jab-wt-d5v" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="-9" id="cGY-Ss-kLK"/>
-                            <constraint firstItem="AT8-N9-OBw" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="37" id="mVt-9C-hs9"/>
+                            <constraint firstAttribute="centerY" secondItem="d5j-Q4-SNw" secondAttribute="centerY" constant="0.5" id="U8N-ID-Y5I"/>
+                            <constraint firstItem="AT8-N9-OBw" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="UFh-kJ-2fi"/>
+                            <constraint firstItem="KOu-50-9yc" firstAttribute="top" secondItem="d5j-Q4-SNw" secondAttribute="bottom" constant="-156" id="Uvi-Fz-xQf"/>
+                            <constraint firstItem="KOu-50-9yc" firstAttribute="width" secondItem="d5j-Q4-SNw" secondAttribute="width" id="YQd-vu-X9H"/>
+                            <constraint firstItem="uDY-Rw-2hp" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" id="gue-eb-Qv6"/>
+                            <constraint firstItem="Jab-wt-d5v" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="-8" id="jQq-1g-dwW"/>
+                            <constraint firstAttribute="centerX" secondItem="d5j-Q4-SNw" secondAttribute="centerX" constant="-3" id="lL8-0y-D3b"/>
+                            <constraint firstItem="AT8-N9-OBw" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="25" id="lqj-0U-4ny"/>
                             <constraint firstItem="Jab-wt-d5v" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="-22" id="mWx-RH-VL5"/>
-                            <constraint firstItem="KOu-50-9yc" firstAttribute="top" secondItem="d5j-Q4-SNw" secondAttribute="bottom" constant="-209" id="ojX-9r-vY9"/>
-                            <constraint firstItem="AT8-N9-OBw" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" constant="0.5" id="uq6-ke-giD"/>
+                            <constraint firstItem="uDY-Rw-2hp" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="68" id="meG-Vd-j62"/>
+                            <constraint firstItem="Jab-wt-d5v" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="sb9-Rd-Fhj"/>
+                            <constraint firstItem="AT8-N9-OBw" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" id="yfP-vu-AqV"/>
+                            <constraint firstItem="uDY-Rw-2hp" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="zlT-Ec-9wJ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -172,14 +182,19 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="noTwitterAccount" destination="AT8-N9-OBw" id="Dry-D1-aJx"/>
+                        <outlet property="permissionDenied" destination="uDY-Rw-2hp" id="Q7o-YW-rg0"/>
+                        <outlet property="permissionGranted" destination="KOu-50-9yc" id="bj8-3R-SaE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fZ-Qi-ewn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="794" y="-276"/>
+            <point key="canvasLocation" x="1381" y="-276"/>
         </scene>
     </scenes>
     <resources>
-        <image name="ApprovalDialog" width="320" height="568"/>
+        <image name="ApprovalDialog" width="290" height="485"/>
         <image name="Background" width="1200" height="1200"/>
     </resources>
 </document>
