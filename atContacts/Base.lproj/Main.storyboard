@@ -23,8 +23,8 @@
                                     <outletCollection property="gestureRecognizers" destination="FEO-WN-GgB" appends="YES" id="Z9N-fB-k3I"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMZ-zf-l8P">
-                                <rect key="frame" x="202" y="216" width="14" height="19.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMZ-zf-l8P">
+                                <rect key="frame" x="202" y="221" width="14" height="19.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="14" id="Ima-fN-SZ4"/>
                                 </constraints>
@@ -32,8 +32,8 @@
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="twittername" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ib1-pi-m32">
-                                <rect key="frame" x="218" y="210" width="180" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="twittername" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ib1-pi-m32">
+                                <rect key="frame" x="218" y="215" width="180" height="30"/>
                                 <color key="backgroundColor" red="0.96862751245498657" green="0.68627452850341797" blue="0.32156863808631897" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -47,8 +47,8 @@
                                     <action selector="findTwitterName:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="lbs-1z-3Q5"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="hashtag" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qfS-g8-B3B">
-                                <rect key="frame" x="202" y="248" width="202" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="hashtag" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qfS-g8-B3B">
+                                <rect key="frame" x="202" y="253" width="202" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="202" id="SPl-JI-bEg"/>
                                 </constraints>
@@ -80,7 +80,6 @@
                     <connections>
                         <outlet property="hashtag" destination="qfS-g8-B3B" id="tVq-Q2-PKD"/>
                         <outlet property="twitterName" destination="Ib1-pi-m32" id="PdN-4R-M85"/>
-                        <segue destination="dK4-aa-SdS" kind="presentation" id="xgT-md-HLD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -99,76 +98,79 @@
         <!--PreTwitterAccessRequest-->
         <scene sceneID="ybO-TG-XRA">
             <objects>
-                <viewController title="PreTwitterAccessRequest" modalPresentationStyle="overFullScreen" id="dK4-aa-SdS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreApproval" title="PreTwitterAccessRequest" modalPresentationStyle="overFullScreen" id="dK4-aa-SdS" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iq7-Hf-eHq"/>
                         <viewControllerLayoutGuide type="bottom" id="scH-iS-9pe"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IdZ-Su-ySG">
+                    <view key="view" opaque="NO" alpha="0.5" contentMode="scaleToFill" id="IdZ-Su-ySG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.49999999999999961" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nme-dq-WoF">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="ApprovalDialog" translatesAutoresizingMaskIntoConstraints="NO" id="d5j-Q4-SNw">
-                                        <rect key="frame" x="140" y="16" width="320" height="568"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="320" id="M2X-eR-kgi"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KOu-50-9yc">
-                                        <rect key="frame" x="154" y="357" width="289" height="58"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <state key="normal" title="Use the Twitter account">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDY-Rw-2hp">
-                                        <rect key="frame" x="151" y="484" width="292" height="30"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <state key="normal" title="Do NOT use my Twitter account">
-                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="I have entered in Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jab-wt-d5v">
-                                        <rect key="frame" x="154" y="394" width="289" height="21"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <color key="textColor" red="0.21176472306251526" green="0.56862747669219971" blue="0.96078437566757202" alpha="1" colorSpace="deviceRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT8-N9-OBw">
-                                        <rect key="frame" x="151" y="438" width="292" height="30"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <state key="normal" title="I don't have a Twitter account">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.12941177189350128" green="0.12941177189350128" blue="0.12941177189350128" alpha="1" colorSpace="deviceRGB"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
-                                </accessibility>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApprovalDialog" translatesAutoresizingMaskIntoConstraints="NO" id="d5j-Q4-SNw">
+                                <rect key="frame" x="140" y="16" width="320" height="568"/>
                                 <constraints>
-                                    <constraint firstItem="Jab-wt-d5v" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="C1e-MR-iGW"/>
-                                    <constraint firstAttribute="centerX" secondItem="d5j-Q4-SNw" secondAttribute="centerX" id="CW9-tL-45o"/>
-                                    <constraint firstItem="uDY-Rw-2hp" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="69" id="Efo-Fl-9Kc"/>
-                                    <constraint firstItem="AT8-N9-OBw" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="H25-ma-fQK"/>
-                                    <constraint firstItem="AT8-N9-OBw" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="23" id="Kiq-QX-epq"/>
-                                    <constraint firstItem="Jab-wt-d5v" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" id="Qcb-QB-hcw"/>
-                                    <constraint firstItem="uDY-Rw-2hp" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="R2V-EA-NUt"/>
-                                    <constraint firstItem="KOu-50-9yc" firstAttribute="width" secondItem="d5j-Q4-SNw" secondAttribute="width" id="THR-0k-wFd"/>
-                                    <constraint firstAttribute="centerY" secondItem="d5j-Q4-SNw" secondAttribute="centerY" id="TNf-Jf-wuF"/>
-                                    <constraint firstItem="AT8-N9-OBw" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" constant="-1.5" id="fOg-ev-Vu7"/>
-                                    <constraint firstItem="Jab-wt-d5v" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="-21" id="oID-e2-8xn"/>
-                                    <constraint firstItem="KOu-50-9yc" firstAttribute="centerX" secondItem="d5j-Q4-SNw" secondAttribute="centerX" constant="-1.5" id="qKf-6U-AaF"/>
-                                    <constraint firstItem="KOu-50-9yc" firstAttribute="top" secondItem="d5j-Q4-SNw" secondAttribute="bottom" constant="-227" id="t6b-Tl-R36"/>
-                                    <constraint firstItem="uDY-Rw-2hp" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" constant="-1.5" id="xsk-vc-XoF"/>
+                                    <constraint firstAttribute="width" constant="320" id="M2X-eR-kgi"/>
                                 </constraints>
-                            </view>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT8-N9-OBw">
+                                <rect key="frame" x="140" y="444" width="320" height="29"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <state key="normal" title="I don't have a Twitter account">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDY-Rw-2hp">
+                                <rect key="frame" x="140" y="487" width="320" height="29"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <state key="normal" title="Do NOT use my Twitter account">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have entered in Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jab-wt-d5v">
+                                <rect key="frame" x="140" y="398" width="320" height="19.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.21176472306251526" green="0.56862747669219971" blue="0.96078437566757202" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KOu-50-9yc">
+                                <rect key="frame" x="140" y="375" width="320" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <state key="normal" title="Use the Twitter account">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="uDY-Rw-2hp" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="80" id="1cZ-H5-aVe"/>
+                            <constraint firstItem="KOu-50-9yc" firstAttribute="top" secondItem="d5j-Q4-SNw" secondAttribute="bottom" constant="-226" id="7R7-eH-m3B"/>
+                            <constraint firstItem="uDY-Rw-2hp" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" id="BgD-lP-sWP"/>
+                            <constraint firstItem="uDY-Rw-2hp" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="68" id="CV9-cz-NBE"/>
+                            <constraint firstItem="KOu-50-9yc" firstAttribute="centerX" secondItem="d5j-Q4-SNw" secondAttribute="centerX" id="GQW-6v-lEJ"/>
+                            <constraint firstItem="d5j-Q4-SNw" firstAttribute="centerX" secondItem="IdZ-Su-ySG" secondAttribute="centerX" id="HAe-qz-5cJ"/>
+                            <constraint firstAttribute="centerY" secondItem="d5j-Q4-SNw" secondAttribute="centerY" id="NGE-cj-idE"/>
+                            <constraint firstItem="Jab-wt-d5v" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="Pgn-FF-S8k"/>
+                            <constraint firstItem="AT8-N9-OBw" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="23" id="R2n-w1-4X9"/>
+                            <constraint firstItem="uDY-Rw-2hp" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="Tcl-Re-pjP"/>
+                            <constraint firstItem="KOu-50-9yc" firstAttribute="width" secondItem="d5j-Q4-SNw" secondAttribute="width" id="YNd-aL-Gxz"/>
+                            <constraint firstItem="Jab-wt-d5v" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" id="a4t-jx-1aY"/>
+                            <constraint firstItem="AT8-N9-OBw" firstAttribute="width" secondItem="KOu-50-9yc" secondAttribute="width" id="biF-jB-31P"/>
+                            <constraint firstItem="Jab-wt-d5v" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="-9" id="cGY-Ss-kLK"/>
+                            <constraint firstItem="AT8-N9-OBw" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="37" id="mVt-9C-hs9"/>
+                            <constraint firstItem="Jab-wt-d5v" firstAttribute="top" secondItem="KOu-50-9yc" secondAttribute="bottom" constant="-22" id="mWx-RH-VL5"/>
+                            <constraint firstItem="KOu-50-9yc" firstAttribute="top" secondItem="d5j-Q4-SNw" secondAttribute="bottom" constant="-209" id="ojX-9r-vY9"/>
+                            <constraint firstItem="AT8-N9-OBw" firstAttribute="centerX" secondItem="KOu-50-9yc" secondAttribute="centerX" constant="0.5" id="uq6-ke-giD"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="7R7-eH-m3B"/>
+                                <exclude reference="mWx-RH-VL5"/>
+                                <exclude reference="R2n-w1-4X9"/>
+                                <exclude reference="CV9-cz-NBE"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fZ-Qi-ewn" userLabel="First Responder" sceneMemberID="firstResponder"/>
