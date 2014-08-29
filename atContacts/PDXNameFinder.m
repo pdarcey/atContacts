@@ -7,6 +7,7 @@
 //
 
 #import "PDXNameFinder.h"
+#import "PreApprovalViewController.h"
 @import Social;
 
 @implementation PDXNameFinder
@@ -27,9 +28,13 @@
     
     // Check if permission has previously been asked for
     if (![self dialogHasBeenPresented]) {
-        // TODO Present dialog
-        
-    } else if (![self userDeniedPermission] && ![self userHasNoAccount]) {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"PreApproval"];
+        UIViewController *currentViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
+        [currentViewController presentViewController:preApprovalViewController animated:YES completion:nil ];
+    }
+    
+    if (![self userDeniedPermission] && ![self userHasNoAccount]) {
         
         [self retrieveInformation];
         
