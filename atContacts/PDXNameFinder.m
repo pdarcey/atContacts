@@ -21,8 +21,8 @@
  */
 - (void)findName:(NSString *)name {
     
-    ACAccountStore *account = [self accountStore];
-    ACAccountType *accountType = [self accountType];
+    [self accountStore];
+    [self accountType];
     _name = name;
     
     // Check if permission has previously been asked for
@@ -31,11 +31,11 @@
         
     } else if (![self userDeniedPermission] && ![self userHasNoAccount]) {
         
-        [self retrieveInformation:_name accountType:accountType account:account];
+        [self retrieveInformation];
+        
     } else {
         // TODO Present a dialog saying we can't do anything without their permission
     }
-    
 }
 
 /**
@@ -44,11 +44,11 @@
  *
  *  @since 1.0
  */
-- (void)retrieveInformation:(NSString *)name accountType:(ACAccountType *)accountType account:(ACAccountStore *)account {
+- (void)retrieveInformation {
     // Actually access user's Twitter account to get info
-    [account requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
+    [_accountStore requestAccessToAccountsWithType:_twitterType options:nil completion:^(BOOL granted, NSError *error) {
         if (granted == YES) {
-            NSArray *arrayOfAccounts = [account accountsWithAccountType:accountType];
+            NSArray *arrayOfAccounts = [_accountStore accountsWithAccountType:_twitterType];
             
             if ([arrayOfAccounts count] > 0) {
                 ACAccount *twitterAccount =
@@ -56,7 +56,7 @@
                 
                 NSURL *requestURL = [NSURL URLWithString: @"https://api.twitter.com/1.1/users/lookup.json"];
                 
-                NSDictionary *parameters = @{@"screen_name" : name};
+                NSDictionary *parameters = @{@"screen_name" : _name};
                 
                 SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:requestURL parameters:parameters];
                 
