@@ -160,16 +160,27 @@
     ResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"Results"];
     
     // Set values
-    // TODO: Split name into firstName / lastName
-    resultsViewController.firstName.text = [results valueForKey:@"firstName"];
-    resultsViewController.lastName.text = [results valueForKey:@"lastName"];
+    // Split name into firstName / lastName
+    NSString *name = [results valueForKey:@"name"];
+    if (![name isEqualToString:@""]) {
+        NSArray *nameArray = [name componentsSeparatedByString:@" "];
+        NSString *firstWord = nameArray[0];
+        if ([name isEqualToString:firstWord]) {
+            // Name is just one word
+            resultsViewController.firstName.text = name;
+            resultsViewController.lastName.text = @"";
+        } else {
+            // Name is multi-word
+            resultsViewController.firstName.text = firstWord;
+            resultsViewController.lastName.text = [name substringFromIndex:[firstWord length]];
+        }
+    }
     [self getPhoto:[results valueForKey:@""] forViewController:resultsViewController];
     resultsViewController.twitterHandle.text = [results valueForKey:@"twitterHandle"];
-    resultsViewController.hashtag.text = [results valueForKey:@"hashtag"];
     resultsViewController.email.text = [results valueForKey:@"email"];
     resultsViewController.phone.text = [results valueForKey:@"phone"];
     resultsViewController.webAddress.text = [results valueForKey:@"webAddress"];
-    resultsViewController.twitterDescription.text = [results valueForKey:@"twitterDescription"];
+    resultsViewController.twitterDescription.text = [NSString stringWithFormat:@"%@\n%@", [results valueForKey:@"twitterHandle"], [results valueForKey:@"twitterDescription"]];
     resultsViewController.indicator.hidden = YES;
     
     // Display view
