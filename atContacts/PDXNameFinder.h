@@ -18,5 +18,6 @@
 @property (nonatomic, strong) NSString *name;
 
 - (void)findName:(NSString *)name;
+- (void)retrieveInformation;
 
 @end
