@@ -210,22 +210,26 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OrangeFade" translatesAutoresizingMaskIntoConstraints="NO" id="Yvn-J6-16N">
                                 <rect key="frame" x="1" y="494" width="600" height="106"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="firstName" text="Paul" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95n-fe-rtH">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="firstName" text="Paul" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95n-fe-rtH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="80.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="70"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="lastName" text="Darcey" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AU-64-liZ">
-                                <rect key="frame" x="1" y="59" width="600" height="80"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="lastName" text="Darcey" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AU-64-liZ">
+                                <rect key="frame" x="0.0" y="59" width="600" height="80.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="70"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Vgz-1v-uts">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Vgz-1v-uts">
                                 <rect key="frame" x="201" y="147" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="q6e-6m-ZVY"/>
+                                    <constraint firstAttribute="height" constant="200" id="xyD-hu-KeP"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="✉︎" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLV-6H-FHy">
                                 <rect key="frame" x="199" y="358" width="16" height="21"/>
@@ -305,10 +309,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Vgz-1v-uts" firstAttribute="top" secondItem="0AU-64-liZ" secondAttribute="bottom" constant="7.5" id="19t-Wa-r6B"/>
+                            <constraint firstItem="95n-fe-rtH" firstAttribute="centerX" secondItem="0AU-64-liZ" secondAttribute="centerX" id="5D1-hx-tNx"/>
                             <constraint firstAttribute="centerY" secondItem="ZrQ-4A-fAU" secondAttribute="centerY" id="A6S-W4-NxN"/>
+                            <constraint firstAttribute="centerX" secondItem="95n-fe-rtH" secondAttribute="centerX" id="BXc-f9-HtE"/>
+                            <constraint firstItem="0AU-64-liZ" firstAttribute="top" secondItem="95n-fe-rtH" secondAttribute="bottom" constant="-21.5" id="Djl-q3-Jwh"/>
                             <constraint firstAttribute="centerX" secondItem="ZrQ-4A-fAU" secondAttribute="centerX" id="HgH-AT-SIs"/>
+                            <constraint firstAttribute="centerX" secondItem="Vgz-1v-uts" secondAttribute="centerX" constant="-1" id="Hx6-IE-Tt4"/>
                             <constraint firstAttribute="height" secondItem="ZrQ-4A-fAU" secondAttribute="height" id="V42-0a-6Wm"/>
                             <constraint firstAttribute="width" secondItem="ZrQ-4A-fAU" secondAttribute="width" id="ffs-cZ-yE1"/>
+                            <constraint firstItem="95n-fe-rtH" firstAttribute="width" secondItem="dWp-am-uRh" secondAttribute="width" id="idC-su-Ent"/>
+                            <constraint firstItem="95n-fe-rtH" firstAttribute="width" secondItem="0AU-64-liZ" secondAttribute="width" id="lka-HN-FpV"/>
+                            <constraint firstItem="95n-fe-rtH" firstAttribute="top" secondItem="PmI-Np-wXE" secondAttribute="bottom" constant="-20" id="of6-gG-lGy"/>
                         </constraints>
                     </view>
                     <connections>
