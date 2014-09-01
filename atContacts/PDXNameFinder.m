@@ -172,6 +172,7 @@
     resultsViewController.twitterDescription.text = [results valueForKey:@"twitterDescription"];
     resultsViewController.indicator.hidden = YES;
     
+    // Display view
     UIViewController *currentViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
     [currentViewController presentViewController:resultsViewController animated:YES completion:nil];
 }
