@@ -51,6 +51,7 @@
 }
 
 - (void)dismissViewController {
+    [self.nameFinder retrieveInformation];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
