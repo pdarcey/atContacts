@@ -17,6 +17,8 @@
 		C971A1BD19AF95FD00F67E75 /* PDXNameFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */; };
 		C971A1C019B0E65300F67E75 /* PreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BF19B0E65300F67E75 /* PreApprovalViewController.m */; };
 		C971A1C119B0E65300F67E75 /* PreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BF19B0E65300F67E75 /* PreApprovalViewController.m */; };
+		C971A1C419B4A42100F67E75 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C319B4A42100F67E75 /* ResultsViewController.m */; };
+		C971A1C519B4A42100F67E75 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C319B4A42100F67E75 /* ResultsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXNameFinder.m; sourceTree = "<group>"; };
 		C971A1BE19B0E65300F67E75 /* PreApprovalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreApprovalViewController.h; sourceTree = "<group>"; };
 		C971A1BF19B0E65300F67E75 /* PreApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreApprovalViewController.m; sourceTree = "<group>"; };
+		C971A1C219B4A42100F67E75 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		C971A1C319B4A42100F67E75 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,12 +93,8 @@
 			children = (
 				C93E2D3E19ADD51200B06809 /* AppDelegate.h */,
 				C93E2D3F19ADD51200B06809 /* AppDelegate.m */,
-				C93E2D4119ADD51200B06809 /* InputViewController.h */,
-				C93E2D4219ADD51200B06809 /* InputViewController.m */,
-				C971A1BA19AF95FD00F67E75 /* PDXNameFinder.h */,
-				C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */,
-				C971A1BE19B0E65300F67E75 /* PreApprovalViewController.h */,
-				C971A1BF19B0E65300F67E75 /* PreApprovalViewController.m */,
+				C971A1C619B4A43E00F67E75 /* View Controllers */,
+				C971A1C719B4A44C00F67E75 /* Workers */,
 				C93E2D4419ADD51200B06809 /* Main.storyboard */,
 				C93E2D4719ADD51200B06809 /* Images.xcassets */,
 				C93E2D3A19ADD51200B06809 /* Supporting Files */,
@@ -126,6 +126,28 @@
 				C93E2D5219ADD51200B06809 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C971A1C619B4A43E00F67E75 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C93E2D4119ADD51200B06809 /* InputViewController.h */,
+				C93E2D4219ADD51200B06809 /* InputViewController.m */,
+				C971A1C219B4A42100F67E75 /* ResultsViewController.h */,
+				C971A1C319B4A42100F67E75 /* ResultsViewController.m */,
+				C971A1BE19B0E65300F67E75 /* PreApprovalViewController.h */,
+				C971A1BF19B0E65300F67E75 /* PreApprovalViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C971A1C719B4A44C00F67E75 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				C971A1BA19AF95FD00F67E75 /* PDXNameFinder.h */,
+				C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */,
+			);
+			name = Workers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +258,7 @@
 				C971A1C019B0E65300F67E75 /* PreApprovalViewController.m in Sources */,
 				C93E2D4319ADD51200B06809 /* InputViewController.m in Sources */,
 				C93E2D4019ADD51200B06809 /* AppDelegate.m in Sources */,
+				C971A1C419B4A42100F67E75 /* ResultsViewController.m in Sources */,
 				C93E2D3D19ADD51200B06809 /* main.m in Sources */,
 				C971A1BC19AF95FD00F67E75 /* PDXNameFinder.m in Sources */,
 			);
@@ -248,6 +271,7 @@
 				C971A1C119B0E65300F67E75 /* PreApprovalViewController.m in Sources */,
 				C93E2D5419ADD51200B06809 /* atContactsTests.m in Sources */,
 				C971A1BD19AF95FD00F67E75 /* PDXNameFinder.m in Sources */,
+				C971A1C519B4A42100F67E75 /* ResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
