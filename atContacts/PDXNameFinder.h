@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
+#import "AppDelegate.h"
+// TODO: #import vs @import?
 
 @interface PDXNameFinder : NSObject
 

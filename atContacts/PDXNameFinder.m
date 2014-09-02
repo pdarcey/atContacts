@@ -142,14 +142,15 @@
 - (void)parseResults {
     NSLog(@"Retrieved data:\n%@\n", _twitterData);
     // Extract the fields we want
-    NSString *name = [_twitterData valueForKey:@"name"];
-    NSString *photoURLString = [_twitterData valueForKey:@"profile_image_url"];
-    NSString *personalURL = [_twitterData valueForKey:@"url"];
-    NSString *description = [_twitterData valueForKey:@"description"];
+    NSArray *name = [_twitterData valueForKey:@"name"];
+    NSArray *photoURLString = [_twitterData valueForKey:@"profile_image_url"];
+    NSArray *personalURL = [_twitterData valueForKey:@"url"];
+    NSArray *description = [_twitterData valueForKey:@"description"];
     NSString *twitterName = [NSString stringWithFormat:@"@%@", [_twitterData valueForKey:@"screen_name"]];
 
-    NSDictionary *results = @{ @"name" : name, @"photoURLString" : photoURLString, @"personalURL" : personalURL, @"description" : description, @"twitterName" : twitterName};
+    NSDictionary *results = @{ @"name" : name[0], @"photoURLString" : photoURLString[0], @"personalURL" : personalURL[0], @"description" : description[0], @"twitterName" : twitterName };
     
+    [self saveResultsValues:results];
     // Present results
     [self presentResults:results];
 }
@@ -159,7 +160,13 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"Results"];
     
-    // Set values
+    // Display view
+    UIViewController *currentViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
+    [currentViewController presentViewController:resultsViewController animated:YES completion:nil];
+}
+
+- (void)saveResultsValues:(NSDictionary *)results {
+    PDXDataModel *resultsData = [self data];
     // Split name into firstName / lastName
     NSString *name = [results valueForKey:@"name"];
     if (![name isEqualToString:@""]) {
@@ -167,28 +174,23 @@
         NSString *firstWord = nameArray[0];
         if ([name isEqualToString:firstWord]) {
             // Name is just one word
-            resultsViewController.firstName.text = name;
-            resultsViewController.lastName.text = @"";
+            resultsData.firstName = name;
+            resultsData.lastName = @"";
         } else {
             // Name is multi-word
-            resultsViewController.firstName.text = firstWord;
-            resultsViewController.lastName.text = [name substringFromIndex:[firstWord length]];
+            resultsData.firstName = firstWord;
+            resultsData.lastName = [name substringFromIndex:[firstWord length]];
         }
     }
-    [self getPhoto:[results valueForKey:@""] forViewController:resultsViewController];
-    resultsViewController.twitterHandle.text = [results valueForKey:@"twitterHandle"];
-    resultsViewController.email.text = [results valueForKey:@"email"];
-    resultsViewController.phone.text = [results valueForKey:@"phone"];
-    resultsViewController.webAddress.text = [results valueForKey:@"webAddress"];
-    resultsViewController.twitterDescription.text = [NSString stringWithFormat:@"%@\n%@", [results valueForKey:@"twitterHandle"], [results valueForKey:@"twitterDescription"]];
-    resultsViewController.indicator.hidden = YES;
-    
-    // Display view
-    UIViewController *currentViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
-    [currentViewController presentViewController:resultsViewController animated:YES completion:nil];
+    [self getPhoto:[results valueForKey:@"photoURLString"]];
+    resultsData.twitterHandle = [results valueForKey:@"twitterName"];
+    resultsData.emailAddress = [results valueForKey:@"email"];
+    resultsData.phoneNumber = [results valueForKey:@"phone"];
+    resultsData.wwwAddress = [results valueForKey:@"personalURL"];
+    resultsData.twitterDescription = [NSString stringWithFormat:@"%@\n%@", @"#hashtag goes here", [results valueForKey:@"description"]];
 }
 
-- (void)getPhoto:(NSString *)photoURL forViewController:(ResultsViewController *)resultsViewController {
+- (void)getPhoto:(NSString *)photoURL  {
     if (![photoURL isEqualToString:@""]) {
     
     NSURLSession *session = [NSURLSession sharedSession];
@@ -198,25 +200,16 @@
                                 NSError *error) {
                 // TODO: Check NSURLResponse to ensure we received a valid response
                 UIImage *image = [UIImage imageWithData:data];
-                [self setPhotoImage:image forViewController:resultsViewController];
+                [self setPhotoImage:image];
                 
             }] resume];
     }
 }
 
-- (void)setPhotoImage:(UIImage *)image forViewController:(ResultsViewController *)resultsViewController {
-    resultsViewController.photo.image = image;
+- (void)setPhotoData:(NSData *)photoData {
+    PDXDataModel *resultsData = [self data];
+    resultsData.photoData = photoData;
 }
-
-- (void)presentResultsScreen {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"Results"];
-    preApprovalViewController.nameFinder = self;
-    
-    UIViewController *currentViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
-    [currentViewController presentViewController:preApprovalViewController animated:YES completion:nil];
-}
-
 
 #pragma mark - Convenience methods for setting Account Store, etc
 
@@ -298,5 +291,13 @@
     
     return userHasNoAccount;
 }
+
+- (PDXDataModel *)data {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    PDXDataModel *data = [appDelegate data];
+    
+    return data;
+}
+
 
 @end
