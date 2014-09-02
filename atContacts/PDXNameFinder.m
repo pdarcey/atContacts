@@ -185,7 +185,7 @@
         } else {
             // Name is multi-word
             resultsData.firstName = firstWord;
-            resultsData.lastName = [name substringFromIndex:[firstWord length]];
+            resultsData.lastName = [name substringFromIndex:[firstWord length]+1]; // The +1 is to remove the leading space (" ")
         }
     }
     [self getPhoto:[results valueForKey:@"photoURLString"]];
@@ -193,7 +193,7 @@
     resultsData.emailAddress = [self fixNilValues:[results valueForKey:@"email"]];
     resultsData.phoneNumber = [self fixNilValues:[results valueForKey:@"phone"]];
     resultsData.wwwAddress = [self fixNilValues:[results valueForKey:@"personalURL"]];
-    resultsData.twitterDescription = [NSString stringWithFormat:@"%@\n\n%@", [self fixNilValues:resultsData.hashtag], [self fixNilValues:[results valueForKey:@"description"]]];
+    resultsData.twitterDescription = [self fixNilValues:[results valueForKey:@"description"]];
 }
 
 - (void)getPhoto:(NSString *)photoURL  {

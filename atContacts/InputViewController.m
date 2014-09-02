@@ -90,6 +90,7 @@
     _hashtag.borderStyle = UITextBorderStyleNone;
     _hashtag.backgroundColor = [UIColor clearColor];
     if (_hashtag.text.length > 0) {
+        [self saveHashtag:_hashtag.text];
         NSString *firstCharacter = [_hashtag.text substringToIndex:1];
         if (![firstCharacter isEqualToString:@"#"]) {
             _hashtag.text = [@"#" stringByAppendingString:_hashtag.text];
