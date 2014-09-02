@@ -12,6 +12,9 @@
 
 @end
 
+//                 UIImage *image = [UIImage imageWithData:data];
+
+
 @implementation ResultsViewController
 
 - (void)viewDidLoad {
@@ -24,6 +27,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // Set values from data
+    PDXDataModel *data = [self data];
+    _hashtag.text = data.hashtag;
+    _firstName.text = data.firstName;
+    _lastName.text = data.lastName;
+    _photo.image = [UIImage imageWithData:data.photoData];
+    _twitterHandle.text = data.twitterName;
+    _email.text = data.emailAddress;
+    _phone.text = data.phoneNumber;
+    _webAddress.text = data.wwwAddress;
+    _twitterDescription.text = [NSString stringWithFormat:@"%@\n\n%@", data.hashtag, data.twitterDescription];
+    _indicator.hidden = YES;
+
+}
+
 /*
 #pragma mark - Navigation
 
@@ -33,5 +54,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Convenience methods
+
+- (PDXDataModel *)data {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    PDXDataModel *data = [appDelegate data];
+    
+    return data;
+}
 
 @end
