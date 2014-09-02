@@ -19,6 +19,8 @@
 		C971A1C119B0E65300F67E75 /* PreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BF19B0E65300F67E75 /* PreApprovalViewController.m */; };
 		C971A1C419B4A42100F67E75 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C319B4A42100F67E75 /* ResultsViewController.m */; };
 		C971A1C519B4A42100F67E75 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C319B4A42100F67E75 /* ResultsViewController.m */; };
+		C971A1CA19B5CCE100F67E75 /* PDXDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C919B5CCE100F67E75 /* PDXDataModel.m */; };
+		C971A1CB19B5CCE100F67E75 /* PDXDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C919B5CCE100F67E75 /* PDXDataModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		C971A1BF19B0E65300F67E75 /* PreApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreApprovalViewController.m; sourceTree = "<group>"; };
 		C971A1C219B4A42100F67E75 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
 		C971A1C319B4A42100F67E75 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
+		C971A1C819B5CCE100F67E75 /* PDXDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXDataModel.h; sourceTree = "<group>"; };
+		C971A1C919B5CCE100F67E75 /* PDXDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXDataModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,8 @@
 			children = (
 				C971A1BA19AF95FD00F67E75 /* PDXNameFinder.h */,
 				C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */,
+				C971A1C819B5CCE100F67E75 /* PDXDataModel.h */,
+				C971A1C919B5CCE100F67E75 /* PDXDataModel.m */,
 			);
 			name = Workers;
 			sourceTree = "<group>";
@@ -261,6 +267,7 @@
 				C971A1C419B4A42100F67E75 /* ResultsViewController.m in Sources */,
 				C93E2D3D19ADD51200B06809 /* main.m in Sources */,
 				C971A1BC19AF95FD00F67E75 /* PDXNameFinder.m in Sources */,
+				C971A1CA19B5CCE100F67E75 /* PDXDataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C971A1CB19B5CCE100F67E75 /* PDXDataModel.m in Sources */,
 				C971A1C119B0E65300F67E75 /* PreApprovalViewController.m in Sources */,
 				C93E2D5419ADD51200B06809 /* atContactsTests.m in Sources */,
 				C971A1BD19AF95FD00F67E75 /* PDXNameFinder.m in Sources */,
