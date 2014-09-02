@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Input View Controller-->
@@ -206,6 +207,10 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="ZrQ-4A-fAU">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="uub-QE-pCZ" appends="YES" id="kWA-dl-RB8"/>
+                                </connections>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="86e-dG-L1q">
                                 <rect key="frame" x="173" y="451" width="240" height="136"/>
@@ -279,9 +284,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="58a-DN-NVP">
-                                <rect key="frame" x="0.0" y="0.0" width="6" height="92"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctm-pf-gHA">
                                 <rect key="frame" x="173" y="517" width="69" height="62"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -322,6 +324,12 @@
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="58a-DN-NVP">
+                                <rect key="frame" x="578" y="196" width="6" height="92"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="Kfb-gG-9DL"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -367,6 +375,8 @@
                             <constraint firstAttribute="centerX" secondItem="86e-dG-L1q" secondAttribute="centerX" constant="7" id="paV-Z8-3uG"/>
                             <constraint firstItem="yci-qZ-zSI" firstAttribute="trailing" secondItem="Vgz-1v-uts" secondAttribute="trailing" constant="-185" id="pbO-xc-kso"/>
                             <constraint firstItem="X7X-fj-m0i" firstAttribute="leading" secondItem="tLV-6H-FHy" secondAttribute="trailing" constant="8" id="qUE-Pg-xWG"/>
+                            <constraint firstItem="58a-DN-NVP" firstAttribute="trailing" secondItem="dWp-am-uRh" secondAttribute="trailingMargin" id="qkZ-hs-rHY"/>
+                            <constraint firstItem="58a-DN-NVP" firstAttribute="centerY" secondItem="Vgz-1v-uts" secondAttribute="centerY" constant="-5" id="raQ-Mx-FA0"/>
                             <constraint firstItem="Ctm-pf-gHA" firstAttribute="centerY" secondItem="LFf-PF-jaK" secondAttribute="centerY" constant="2.5" id="rx0-D3-aNv"/>
                             <constraint firstItem="Ctm-pf-gHA" firstAttribute="height" secondItem="LFf-PF-jaK" secondAttribute="height" id="s3i-Cd-GIn"/>
                             <constraint firstItem="yci-qZ-zSI" firstAttribute="baseline" secondItem="OWX-u5-Leo" secondAttribute="baseline" constant="0.5" id="wf0-La-V6d"/>
@@ -386,6 +396,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BbH-Hz-PIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="uub-QE-pCZ"/>
             </objects>
             <point key="canvasLocation" x="1383" y="377"/>
         </scene>
