@@ -183,7 +183,7 @@
         }
     }
     [self getPhoto:[results valueForKey:@"photoURLString"]];
-    resultsData.twitterHandle = [results valueForKey:@"twitterName"];
+    resultsData.twitterName = [results valueForKey:@"twitterName"];
     resultsData.emailAddress = [results valueForKey:@"email"];
     resultsData.phoneNumber = [results valueForKey:@"phone"];
     resultsData.wwwAddress = [results valueForKey:@"personalURL"];
@@ -199,8 +199,7 @@
                                 NSURLResponse *response,
                                 NSError *error) {
                 // TODO: Check NSURLResponse to ensure we received a valid response
-                UIImage *image = [UIImage imageWithData:data];
-                [self setPhotoImage:image];
+                [self setPhotoData:data];
                 
             }] resume];
     }

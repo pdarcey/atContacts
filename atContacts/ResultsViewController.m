@@ -12,9 +12,6 @@
 
 @end
 
-//                 UIImage *image = [UIImage imageWithData:data];
-
-
 @implementation ResultsViewController
 
 - (void)viewDidLoad {
