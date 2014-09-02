@@ -173,7 +173,7 @@
 - (void)saveResultsValues:(NSDictionary *)results {
     PDXDataModel *resultsData = [self data];
     // Split name into firstName / lastName
-    NSString *name = [results valueForKey:@"name"];
+    NSString *name = [self fixNilValues:[results valueForKey:@"name"]];
     if (![name isEqualToString:@""]) {
         NSArray *nameArray = [name componentsSeparatedByString:@" "];
         NSString *firstWord = nameArray[0];
@@ -188,11 +188,11 @@
         }
     }
     [self getPhoto:[results valueForKey:@"photoURLString"]];
-    resultsData.twitterName = [results valueForKey:@"twitterName"];
-    resultsData.emailAddress = [results valueForKey:@"email"];
-    resultsData.phoneNumber = [results valueForKey:@"phone"];
-    resultsData.wwwAddress = [results valueForKey:@"personalURL"];
-    resultsData.twitterDescription = [NSString stringWithFormat:@"%@\n\n%@", resultsData.hashtag, [results valueForKey:@"description"]];
+    resultsData.twitterName = [self fixNilValues:[results valueForKey:@"twitterName"]];
+    resultsData.emailAddress = [self fixNilValues:[results valueForKey:@"email"]];
+    resultsData.phoneNumber = [self fixNilValues:[results valueForKey:@"phone"]];
+    resultsData.wwwAddress = [self fixNilValues:[results valueForKey:@"personalURL"]];
+    resultsData.twitterDescription = [NSString stringWithFormat:@"%@\n\n%@", [self fixNilValues:resultsData.hashtag], [self fixNilValues:[results valueForKey:@"description"]]];
 }
 
 - (void)getPhoto:(NSString *)photoURL  {
@@ -213,6 +213,14 @@
 - (void)setPhotoData:(NSData *)photoData {
     PDXDataModel *resultsData = [self data];
     resultsData.photoData = photoData;
+}
+
+- (NSString *)fixNilValues:(NSString *)string {
+    if (string) {
+        return string;
+    } else {
+        return @"";
+    }
 }
 
 #pragma mark - Convenience methods for setting Account Store, etc
