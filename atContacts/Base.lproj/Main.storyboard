@@ -296,7 +296,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju2-0W-kr1">
-                                <rect key="frame" x="272" y="510" width="42" height="62"/>
+                                <rect key="frame" x="279" y="517" width="42" height="62"/>
                                 <accessibility key="accessibilityConfiguration" hint="Follows on Twitter and adds to contacts" label="Both button"/>
                                 <state key="normal" image="Plus">
                                     <color key="titleColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
@@ -368,7 +368,7 @@
                             <constraint firstItem="Yvn-J6-16N" firstAttribute="top" secondItem="86e-dG-L1q" secondAttribute="bottom" constant="-92" id="LOZ-AI-u2s"/>
                             <constraint firstAttribute="centerX" secondItem="86e-dG-L1q" secondAttribute="centerX" constant="7" id="Ph1-WV-Ahk"/>
                             <constraint firstItem="i1l-eD-iST" firstAttribute="top" secondItem="OWX-u5-Leo" secondAttribute="bottom" constant="7" id="THZ-A1-2rp"/>
-                            <constraint firstItem="Ctm-pf-gHA" firstAttribute="centerY" secondItem="Ju2-0W-kr1" secondAttribute="centerY" constant="6.5" id="TKb-cM-JI1"/>
+                            <constraint firstItem="Ctm-pf-gHA" firstAttribute="centerY" secondItem="Ju2-0W-kr1" secondAttribute="centerY" id="TKb-cM-JI1"/>
                             <constraint firstItem="86e-dG-L1q" firstAttribute="top" secondItem="i1l-eD-iST" secondAttribute="bottom" constant="7" id="TPk-Yx-e5p"/>
                             <constraint firstAttribute="height" secondItem="ZrQ-4A-fAU" secondAttribute="height" id="V42-0a-6Wm"/>
                             <constraint firstItem="X7X-fj-m0i" firstAttribute="top" secondItem="Vgz-1v-uts" secondAttribute="bottom" constant="7" id="WuR-2C-uE5"/>
@@ -381,7 +381,7 @@
                             <constraint firstItem="i1l-eD-iST" firstAttribute="leading" secondItem="PrX-as-Dkg" secondAttribute="trailing" constant="8" id="iFj-7b-0Sh"/>
                             <constraint firstItem="X7X-fj-m0i" firstAttribute="trailing" secondItem="Vgz-1v-uts" secondAttribute="trailing" id="iOJ-9W-BSY"/>
                             <constraint firstItem="95n-fe-rtH" firstAttribute="width" secondItem="dWp-am-uRh" secondAttribute="width" id="idC-su-Ent"/>
-                            <constraint firstAttribute="centerX" secondItem="Ju2-0W-kr1" secondAttribute="centerX" constant="6.5" id="l10-ZJ-GgN"/>
+                            <constraint firstAttribute="centerX" secondItem="Ju2-0W-kr1" secondAttribute="centerX" id="l10-ZJ-GgN"/>
                             <constraint firstItem="PrX-as-Dkg" firstAttribute="top" secondItem="yci-qZ-zSI" secondAttribute="bottom" constant="11.5" id="l5k-6y-vt1"/>
                             <constraint firstItem="95n-fe-rtH" firstAttribute="width" secondItem="0AU-64-liZ" secondAttribute="width" id="lka-HN-FpV"/>
                             <constraint firstItem="OWX-u5-Leo" firstAttribute="leading" secondItem="yci-qZ-zSI" secondAttribute="trailing" constant="8" id="n7g-xL-dPm"/>
