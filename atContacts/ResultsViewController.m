@@ -29,7 +29,6 @@
     
     // Set values from data
     PDXDataModel *data = [self data];
-    _hashtag.text = data.hashtag;
     _firstName.text = data.firstName;
     _lastName.text = data.lastName;
     _photo.image = [UIImage imageWithData:data.photoData];
@@ -59,6 +58,23 @@
     PDXDataModel *data = [appDelegate data];
     
     return data;
+}
+
+
+#pragma mark - Button actions
+
+- (IBAction)followOnTwitter:(UIButton *)sender {
+    NSLog(@"followOnTwitter button selected");
+}
+
+- (IBAction)addToContacts:(UIButton *)sender {
+    NSLog(@"followOnTwitter button selected");
+}
+
+- (IBAction)followAndAdd:(UIButton *)sender {
+    NSLog(@"followAndAdd button selected");
+    [self followOnTwitter:sender];
+    [self addToContacts:sender];
 }
 
 @end

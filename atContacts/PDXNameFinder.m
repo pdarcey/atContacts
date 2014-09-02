@@ -55,7 +55,10 @@
     preApprovalViewController.nameFinder = self;
     
     UIViewController *currentViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
-    [currentViewController presentViewController:preApprovalViewController animated:YES completion:nil];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [currentViewController presentViewController:preApprovalViewController animated:YES completion:nil];
+    });
 }
 
 /**
@@ -162,7 +165,9 @@
     
     // Display view
     UIViewController *currentViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
-    [currentViewController presentViewController:resultsViewController animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [currentViewController presentViewController:resultsViewController animated:YES completion:nil];
+    });
 }
 
 - (void)saveResultsValues:(NSDictionary *)results {

@@ -285,24 +285,36 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctm-pf-gHA">
                                 <rect key="frame" x="173" y="517" width="69" height="62"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" hint="Will follow this person on Twitter" label="Follow on Twitter button"/>
                                 <state key="normal" image="Bird">
                                     <color key="titleColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="followOnTwitter:" destination="a2f-bI-RVU" eventType="touchUpInside" id="VYu-pB-RPP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju2-0W-kr1">
                                 <rect key="frame" x="272.5" y="510.5" width="42" height="62"/>
+                                <accessibility key="accessibilityConfiguration" hint="Follows on Twitter and adds to contacts" label="Both button"/>
                                 <state key="normal" image="Plus">
                                     <color key="titleColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="followAndAdd:" destination="a2f-bI-RVU" eventType="touchUpInside" id="Y2z-ff-0Nq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-PF-jaK">
                                 <rect key="frame" x="350" y="514.5" width="63" height="62"/>
+                                <accessibility key="accessibilityConfiguration" hint="Will add this person to contacts" label="Add to contacts button"/>
                                 <state key="normal" image="AddressBookIcon">
                                     <color key="titleColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addToContacts:" destination="a2f-bI-RVU" eventType="touchUpInside" id="TDo-cd-nCU"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="twitterName" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-zq-T26">
                                 <rect key="frame" x="200" y="324" width="200" height="20.5"/>
@@ -362,15 +374,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bothButton" destination="Ju2-0W-kr1" id="cCH-Lg-qv8"/>
-                        <outlet property="contactsButton" destination="LFf-PF-jaK" id="ySX-jG-siG"/>
                         <outlet property="email" destination="X7X-fj-m0i" id="Ek1-oy-ap7"/>
                         <outlet property="firstName" destination="95n-fe-rtH" id="2TF-wN-bRF"/>
                         <outlet property="indicator" destination="58a-DN-NVP" id="bVf-vI-Chj"/>
                         <outlet property="lastName" destination="0AU-64-liZ" id="qme-br-dgz"/>
                         <outlet property="phone" destination="OWX-u5-Leo" id="CbG-jo-3te"/>
                         <outlet property="photo" destination="Vgz-1v-uts" id="7qO-Us-WZN"/>
-                        <outlet property="twitterButton" destination="Ctm-pf-gHA" id="EZL-Z9-9yy"/>
                         <outlet property="twitterDescription" destination="86e-dG-L1q" id="uJN-bU-eOF"/>
                         <outlet property="twitterHandle" destination="wIu-zq-T26" id="qh4-NA-SyM"/>
                         <outlet property="webAddress" destination="i1l-eD-iST" id="IIq-ry-hNV"/>
