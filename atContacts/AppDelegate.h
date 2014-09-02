@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PDXDataModel.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) PDXDataModel *data;
 
+- (PDXDataModel *)data;
 
 @end
 

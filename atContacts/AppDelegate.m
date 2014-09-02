@@ -42,4 +42,16 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (PDXDataModel *)data {
+    
+    if (_data != nil) {
+        return _data;
+    }
+    PDXDataModel *dataModel = [PDXDataModel new];
+    _data = dataModel;
+    
+    return _data;
+}
+
+
 @end
