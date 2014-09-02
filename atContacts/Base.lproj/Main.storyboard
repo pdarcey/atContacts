@@ -208,11 +208,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="ZrQ-4A-fAU">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="uub-QE-pCZ" appends="YES" id="kWA-dl-RB8"/>
-                                </connections>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86e-dG-L1q">
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" keyboardDismissMode="onDrag" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86e-dG-L1q">
                                 <rect key="frame" x="180" y="402" width="240" height="198"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -222,7 +219,7 @@
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="jYN-TY-YiJ"/>
@@ -230,7 +227,7 @@
                                 </variation>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrangeFade" translatesAutoresizingMaskIntoConstraints="NO" id="Yvn-J6-16N">
-                                <rect key="frame" x="1" y="465" width="600" height="135"/>
+                                <rect key="frame" x="1" y="507" width="600" height="135"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="firstName" text="Paul" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95n-fe-rtH">
                                 <rect key="frame" x="0.0" y="5" width="600" height="54.5"/>
@@ -377,6 +374,7 @@
                             <constraint firstItem="yci-qZ-zSI" firstAttribute="trailing" secondItem="PrX-as-Dkg" secondAttribute="trailing" id="cON-4T-YtI"/>
                             <constraint firstItem="Vgz-1v-uts" firstAttribute="trailing" secondItem="i1l-eD-iST" secondAttribute="trailing" id="eEt-97-Zfe"/>
                             <constraint firstAttribute="width" secondItem="ZrQ-4A-fAU" secondAttribute="width" id="ffs-cZ-yE1"/>
+                            <constraint firstItem="Ctm-pf-gHA" firstAttribute="top" secondItem="Yvn-J6-16N" secondAttribute="top" constant="10" id="hlI-rN-ZDv"/>
                             <constraint firstItem="yci-qZ-zSI" firstAttribute="top" secondItem="Vgz-1v-uts" secondAttribute="bottom" constant="43" id="hoT-18-e4I"/>
                             <constraint firstItem="i1l-eD-iST" firstAttribute="leading" secondItem="PrX-as-Dkg" secondAttribute="trailing" constant="8" id="iFj-7b-0Sh"/>
                             <constraint firstItem="X7X-fj-m0i" firstAttribute="trailing" secondItem="Vgz-1v-uts" secondAttribute="trailing" id="iOJ-9W-BSY"/>
@@ -411,6 +409,7 @@
                                 <exclude reference="Ph1-WV-Ahk"/>
                                 <exclude reference="zMB-x2-q8J"/>
                                 <exclude reference="LOZ-AI-u2s"/>
+                                <exclude reference="KGx-MH-ltE"/>
                             </mask>
                         </variation>
                     </view>
@@ -428,11 +427,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BbH-Hz-PIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer cancelsTouchesInView="NO" direction="right" id="uub-QE-pCZ">
-                    <connections>
-                        <action selector="swipeToDismiss" destination="a2f-bI-RVU" id="9WJ-X4-AOk"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1383" y="377.5"/>
         </scene>

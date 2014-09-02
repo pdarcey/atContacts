@@ -38,7 +38,16 @@
     _email.text = data.emailAddress;
     _phone.text = data.phoneNumber;
     _webAddress.text = data.wwwAddress;
-    _twitterDescription.text = [NSString stringWithFormat:@"%@\n\n%@", data.hashtag, data.twitterDescription];
+    NSString *combinedHashtagAndDescription = @"";
+    if (data.hashtag && ![data.hashtag isEqualToString:@""]) {
+        combinedHashtagAndDescription = data.hashtag;
+        if (data.twitterDescription && ![data.twitterDescription isEqualToString:@""]) {
+            [combinedHashtagAndDescription stringByAppendingString:[NSString stringWithFormat:@"\n\n%@", data.twitterDescription]];
+        }
+    } else if (data.twitterDescription && ![data.twitterDescription isEqualToString:@""]) {
+            combinedHashtagAndDescription = data.twitterDescription;
+    }
+    _twitterDescription.text = combinedHashtagAndDescription;
     _indicator.hidden = YES;
 
 }

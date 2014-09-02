@@ -147,7 +147,23 @@
     // Extract the fields we want
     NSArray *name = [_twitterData valueForKey:@"name"];
     NSArray *photoURLString = [_twitterData valueForKey:@"profile_image_url"];
-    NSArray *personalURL = [[[[_twitterData valueForKey:@"entities"] valueForKey:@"url"] valueForKey:@"urls"] valueForKey:@"expanded_url"];
+    // TODO check that all the following paths exist, otherwise it will crash
+    NSArray *entityArray = [_twitterData valueForKey:@"entities"];
+    NSArray *urlArray;
+    NSArray *urlsArray;
+    NSArray *personalURL;
+   if (entityArray[0]) {
+        urlArray = [entityArray valueForKey:@"url"];
+    }
+    if (!urlArray[0]) {
+        urlsArray = [urlArray valueForKey:@"urls"];
+    }
+    if (!urlsArray[0]) {
+        personalURL = [urlsArray valueForKey:@"expanded_url"];
+    }
+    if (!personalURL[0]) {
+        personalURL = @[ @[@""] ];
+    }
     NSArray *description = [_twitterData valueForKey:@"description"];
     NSArray *shortTwitterName = [_twitterData valueForKey:@"screen_name"];
     NSString *twitterName = [NSString stringWithFormat:@"@%@", shortTwitterName[0]];
