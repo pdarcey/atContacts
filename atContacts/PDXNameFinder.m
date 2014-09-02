@@ -192,7 +192,7 @@
     resultsData.emailAddress = [results valueForKey:@"email"];
     resultsData.phoneNumber = [results valueForKey:@"phone"];
     resultsData.wwwAddress = [results valueForKey:@"personalURL"];
-    resultsData.twitterDescription = [NSString stringWithFormat:@"%@\n%@", @"#hashtag goes here", [results valueForKey:@"description"]];
+    resultsData.twitterDescription = [NSString stringWithFormat:@"%@\n\n%@", resultsData.hashtag, [results valueForKey:@"description"]];
 }
 
 - (void)getPhoto:(NSString *)photoURL  {
