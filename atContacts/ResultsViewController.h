@@ -25,4 +25,6 @@
 - (IBAction)addToContacts:(UIButton *)sender;
 - (IBAction)followAndAdd:(UIButton *)sender;
 
+- (IBAction)swipeToDismiss;
+
 @end

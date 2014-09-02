@@ -396,7 +396,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BbH-Hz-PIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="uub-QE-pCZ"/>
+                <swipeGestureRecognizer direction="right" id="uub-QE-pCZ">
+                    <connections>
+                        <action selector="swipeToDismiss" destination="a2f-bI-RVU" id="9WJ-X4-AOk"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1383" y="377"/>
         </scene>

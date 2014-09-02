@@ -77,4 +77,10 @@
     [self addToContacts:sender];
 }
 
+#pragma mark - Swipe actions
+
+- (IBAction)swipeToDismiss {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end
