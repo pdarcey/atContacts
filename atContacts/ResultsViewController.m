@@ -29,9 +29,11 @@
     
     // Set values from data
     PDXDataModel *data = [self data];
+    
     _firstName.text = data.firstName;
     _lastName.text = data.lastName;
-    _photo.image = [UIImage imageWithData:data.photoData];
+    NSString *photoURL = data.photoURL;
+    [self getPhoto:photoURL];
     _twitterHandle.text = data.twitterName;
     _email.text = data.emailAddress;
     _phone.text = data.phoneNumber;
@@ -39,6 +41,27 @@
     _twitterDescription.text = [NSString stringWithFormat:@"%@\n\n%@", data.hashtag, data.twitterDescription];
     _indicator.hidden = YES;
 
+}
+
+#pragma mark - Download Photo
+
+- (void)getPhoto:(NSString *)photoURL  {
+    if (![photoURL isEqualToString:@""]) {
+        
+        // Twitter by default returns a photo URL that gives a low-rez version of the person's image
+        // We bypass this by removing the "_normal" part of the URL; this should return the full-sized version of the image
+        NSString *largePhotoURL = [photoURL stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+        
+        NSURLSession *session = [NSURLSession sharedSession];
+        [[session dataTaskWithURL:[NSURL URLWithString:largePhotoURL]
+                completionHandler:^(NSData *data,
+                                    NSURLResponse *response,
+                                    NSError *error) {
+                    // TODO: Check NSURLResponse to ensure we received a valid response
+                    _photo.image = [UIImage imageWithData:data];
+                    
+                }] resume];
+    }
 }
 
 /*

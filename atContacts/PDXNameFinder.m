@@ -188,36 +188,12 @@
             resultsData.lastName = [name substringFromIndex:[firstWord length]+1]; // The +1 is to remove the leading space (" ")
         }
     }
-    [self getPhoto:[results valueForKey:@"photoURLString"]];
+    resultsData.photoURL = [self fixNilValues:[results valueForKey:@"photoURLString"]];
     resultsData.twitterName = [self fixNilValues:[results valueForKey:@"twitterName"]];
     resultsData.emailAddress = [self fixNilValues:[results valueForKey:@"email"]];
     resultsData.phoneNumber = [self fixNilValues:[results valueForKey:@"phone"]];
     resultsData.wwwAddress = [self fixNilValues:[results valueForKey:@"personalURL"]];
     resultsData.twitterDescription = [self fixNilValues:[results valueForKey:@"description"]];
-}
-
-- (void)getPhoto:(NSString *)photoURL  {
-    if (![photoURL isEqualToString:@""]) {
-        
-        // Twitter by default returns a photo URL that gives a low-rez version of the person's image
-        // We bypass this by removing the "_normal" part of the URL; this should return the full-sized version of the image
-        NSString *largePhotoURL = [photoURL stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-        
-        NSURLSession *session = [NSURLSession sharedSession];
-        [[session dataTaskWithURL:[NSURL URLWithString:largePhotoURL]
-                completionHandler:^(NSData *data,
-                                    NSURLResponse *response,
-                                    NSError *error) {
-                // TODO: Check NSURLResponse to ensure we received a valid response
-                [self setPhotoData:data];
-                
-            }] resume];
-    }
-}
-
-- (void)setPhotoData:(NSData *)photoData {
-    PDXDataModel *resultsData = [self data];
-    resultsData.photoData = photoData;
 }
 
 - (NSString *)fixNilValues:(NSString *)string {

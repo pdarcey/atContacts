@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSString *phoneNumber;
 @property (strong, nonatomic) NSString *wwwAddress;
 @property (strong, nonatomic) NSString *twitterDescription;
+@property (strong, nonatomic) NSString *photoURL;
 @property (strong, nonatomic) NSData *photoData;
 
 @end
