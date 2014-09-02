@@ -149,7 +149,8 @@
     NSArray *photoURLString = [_twitterData valueForKey:@"profile_image_url"];
     NSArray *personalURL = [_twitterData valueForKey:@"url"];
     NSArray *description = [_twitterData valueForKey:@"description"];
-    NSString *twitterName = [NSString stringWithFormat:@"@%@", [_twitterData valueForKey:@"screen_name"]];
+    NSArray *shortTwitterName = [_twitterData valueForKey:@"screen_name"];
+    NSString *twitterName = [NSString stringWithFormat:@"@%@", shortTwitterName[0]];
 
     NSDictionary *results = @{ @"name" : name[0], @"photoURLString" : photoURLString[0], @"personalURL" : personalURL[0], @"description" : description[0], @"twitterName" : twitterName };
     
