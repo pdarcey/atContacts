@@ -8,6 +8,7 @@
 
 #import "InputViewController.h"
 #import "PDXNameFinder.h"
+#import "AppDelegate.h"
 
 @interface InputViewController ()
 
@@ -22,9 +23,12 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    PDXDataModel *data = [self data];
+    NSString *lastHashtagUsed = data.hashtag;
+    _hashtag.text = lastHashtagUsed;
     [_twitterName setText:@""];
     [_twitterName becomeFirstResponder];
 }
@@ -93,6 +97,33 @@
         }
     }
     [_twitterName becomeFirstResponder];
+    
+}
+
+#pragma mark - Convenience methods
+
+- (PDXDataModel *)data {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    PDXDataModel *data = [appDelegate data];
+
+    return data;
+}
+
+- (void)saveHashtag:(NSString *)hashtag {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    PDXDataModel *data = [appDelegate data];
+    
+    data.hashtag = [self removeHash:hashtag];
+
+}
+
+- (NSString *)removeHash:(NSString *)hashtag {
+    NSString *firstCharacter = [hashtag substringToIndex:1];
+    if (![firstCharacter isEqualToString:@"#"]) {
+        hashtag = [hashtag stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    }
+    
+    return hashtag;
 }
 
 @end
