@@ -27,8 +27,7 @@
     [super viewDidAppear:animated];
     
     PDXDataModel *data = [self data];
-    NSString *lastHashtagUsed = data.hashtag;
-    _hashtag.text = lastHashtagUsed;
+    _hashtag.text = data.hashtag;
     [_twitterName setText:@""];
     [_twitterName becomeFirstResponder];
 }
