@@ -147,12 +147,12 @@
     // Extract the fields we want
     NSArray *name = [_twitterData valueForKey:@"name"];
     NSArray *photoURLString = [_twitterData valueForKey:@"profile_image_url"];
-    NSArray *personalURL = [_twitterData valueForKey:@"url"];
+    NSArray *personalURL = [[[[_twitterData valueForKey:@"entities"] valueForKey:@"url"] valueForKey:@"urls"] valueForKey:@"expanded_url"];
     NSArray *description = [_twitterData valueForKey:@"description"];
     NSArray *shortTwitterName = [_twitterData valueForKey:@"screen_name"];
     NSString *twitterName = [NSString stringWithFormat:@"@%@", shortTwitterName[0]];
 
-    NSDictionary *results = @{ @"name" : name[0], @"photoURLString" : photoURLString[0], @"personalURL" : personalURL[0], @"description" : description[0], @"twitterName" : twitterName };
+    NSDictionary *results = @{ @"name" : name[0], @"photoURLString" : photoURLString[0], @"personalURL" : personalURL[0][0], @"description" : description[0], @"twitterName" : twitterName };
     
     [self saveResultsValues:results];
     // Present results
@@ -198,12 +198,16 @@
 
 - (void)getPhoto:(NSString *)photoURL  {
     if (![photoURL isEqualToString:@""]) {
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    [[session dataTaskWithURL:[NSURL URLWithString:photoURL]
-            completionHandler:^(NSData *data,
-                                NSURLResponse *response,
-                                NSError *error) {
+        
+        // Twitter by default returns a photo URL that gives a low-rez version of the person's image
+        // We bypass this by removing the "_normal" part of the URL; this should return the full-sized version of the image
+        NSString *largePhotoURL = [photoURL stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+        
+        NSURLSession *session = [NSURLSession sharedSession];
+        [[session dataTaskWithURL:[NSURL URLWithString:largePhotoURL]
+                completionHandler:^(NSData *data,
+                                    NSURLResponse *response,
+                                    NSError *error) {
                 // TODO: Check NSURLResponse to ensure we received a valid response
                 [self setPhotoData:data];
                 
