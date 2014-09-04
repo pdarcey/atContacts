@@ -42,13 +42,16 @@
     if (data.hashtag && ![data.hashtag isEqualToString:@""]) {
         combinedHashtagAndDescription = data.hashtag;
         if (data.twitterDescription && ![data.twitterDescription isEqualToString:@""]) {
-            [combinedHashtagAndDescription stringByAppendingString:[NSString stringWithFormat:@"\n\n%@", data.twitterDescription]];
+            [combinedHashtagAndDescription stringByAppendingString:[NSString stringWithFormat:@"\n%@", data.twitterDescription]];
+            NSLog(@"Combined hashtag + description: %@", combinedHashtagAndDescription);
         }
     } else if (data.twitterDescription && ![data.twitterDescription isEqualToString:@""]) {
             combinedHashtagAndDescription = data.twitterDescription;
     }
     _twitterDescription.text = combinedHashtagAndDescription;
     _indicator.hidden = YES;
+    _blurOverlay = [self blurEffect];
+    _blurOverlay.hidden = YES;
 
 }
 
@@ -92,6 +95,25 @@
     return data;
 }
 
+- (UIVisualEffectView *)blurEffect {
+    NSArray *subviews = self.view.subviews;
+    for (UIView *subview in subviews) {
+        if ([subview.restorationIdentifier isEqualToString:@"blurEffect"]) {
+            return (UIVisualEffectView *)subview;
+        }
+    }
+    return nil;
+}
+
+- (UITextField *)currentTextField {
+    NSArray *subviews = self.view.subviews;
+    for (UIView *subview in subviews) {
+        if ((subview.class == [UITextField class]) && [subview isFirstResponder]) {
+            return (UITextField *)subview;
+        }
+    }
+    return nil;
+}
 
 #pragma mark - Button actions
 
@@ -109,29 +131,33 @@
     [self addToContacts:sender];
 }
 
-#pragma mark - Swipe actions
+#pragma mark - Swipe & Tap actions
 
 - (IBAction)swipeToDismiss {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)tapToEndEditing {
+    UITextField *textField = [self currentTextField];
+    [textField resignFirstResponder];
+    [self textFieldDidEndEditing:textField];
+}
+
 #pragma mark - Text view editing
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    // Change background (and size?)
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.backgroundColor = [UIColor orangeColor]; // TODO: Set this to application-specific orange tint
     [self popAnimation:textField];
-    if (!_blurOverlay) {
-        [self addBlurOverlay];
+    
+    if (_blurOverlay.hidden) {
+        [self showBlurOverlay];
         [self moveTextFieldToOverlay:textField];
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (_blurOverlay) {
+    if (!_blurOverlay.hidden) {
         [self moveTextFieldFromOverlay:textField];
-        [self removeBlurOverlay];
+        [self hideBlurOverlay];
     }
 }
 
@@ -142,6 +168,9 @@
 }
 
 - (void)popAnimation:(UITextField *)textField {
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    textField.backgroundColor = [UIColor orangeColor]; // TODO: Set this to application-specific orange tint
+
     CGFloat percent = 0.2; // Try 20%
     CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0f + percent, 1.0f + percent);
     CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0 + percent), 1.0f / (1.0 + percent));
@@ -159,51 +188,44 @@
      ];
 }
 
-- (void)addBlurOverlay {
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    CGRect blurFrame = self.view.frame;
-    [blurEffectView setFrame:blurFrame];
-    _blurOverlay = blurEffectView;
-    [self.view addSubview:_blurOverlay];
-    
-//    [UIView animateWithDuration:3.0 animations:^{
-//        [self.view addSubview:_blurOverlay];
-//    }];
+- (void)showBlurOverlay {
+    [UIView animateWithDuration:0.8 animations:^{
+        _blurOverlay.hidden = NO;
+    }];
 }
 
-- (void)removeBlurOverlay {
-    [UIView animateWithDuration:3.0 animations:^{
-        [_blurOverlay removeFromSuperview];
+- (void)hideBlurOverlay {
+    [UIView animateWithDuration:0.8 animations:^{
+        _blurOverlay.hidden = YES;
     }];
-    _blurOverlay = nil;
 }
 
 - (void)moveTextFieldToOverlay:(UITextField *)textField {
     // Change views
     [self.view insertSubview:textField aboveSubview:_blurOverlay];
+    CGPoint newCenter = CGPointMake(textField.center.x, textField.center.y - 200);
     
+     [UIView animateWithDuration:0.7 animations:^{
+        // Move
+        textField.center = newCenter;
+         NSLog(@"Moving to new centre");
+    }];
 }
 
 - (void)moveTextFieldFromOverlay:(UITextField *)textField {
     // Change views
-    [_blurOverlay removeFromSuperview];
+    [self.view insertSubview:textField belowSubview:_blurOverlay];
+    CGPoint newCenter = CGPointMake(textField.center.x, textField.center.y + 200);
+    
+    [UIView animateWithDuration:0.7 animations:^{
+        // Move
+        textField.center = newCenter;
+        NSLog(@"Moving to new centre");
+    }];
     
     // Reset colours
     textField.borderStyle = UITextBorderStyleNone;
     textField.backgroundColor = [UIColor clearColor];
-    
-    // Reset constraints
-    NSArray *allConstraints = textField.constraints;
-    [textField removeConstraints:allConstraints];
-    [textField addConstraints:_originalConstraints];
-    _originalConstraints = nil;
-    [textField setNeedsUpdateConstraints];
-    
-    [UIView animateWithDuration:5.0 animations:^{
-        // Move
-        [textField updateConstraints];
-    }];
 }
 
 @end
