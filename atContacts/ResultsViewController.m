@@ -52,7 +52,6 @@
     _indicator.hidden = YES;
     _blurOverlay = [self blurEffect];
     _blurOverlay.hidden = YES;
-
 }
 
 #pragma mark - Download Photo
@@ -115,6 +114,44 @@
     return nil;
 }
 
+- (NSArray *)newConstraints:(UITextField *)textField {
+    NSLayoutConstraint *constraint1 = [NSLayoutConstraint constraintWithItem:textField
+                                                                   attribute:NSLayoutAttributeWidth
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:nil
+                                                                   attribute:NSLayoutAttributeNotAnAttribute
+                                                                  multiplier:0
+                                                                    constant:textField.frame.size.width];
+    
+    NSLayoutConstraint *constraint2 = [NSLayoutConstraint constraintWithItem:textField
+                                                                   attribute:NSLayoutAttributeHeight
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:nil
+                                                                   attribute:NSLayoutAttributeNotAnAttribute
+                                                                  multiplier:0
+                                                                    constant:textField.frame.size.height];
+    
+    NSLayoutConstraint *constraint3 = [NSLayoutConstraint constraintWithItem:textField
+                                                                   attribute:NSLayoutAttributeCenterX
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:self.view
+                                                                   attribute:NSLayoutAttributeCenterX
+                                                                  multiplier:1
+                                                                    constant:0];
+    
+    NSLayoutConstraint *constraint4 = [NSLayoutConstraint constraintWithItem:textField
+                                                                   attribute:NSLayoutAttributeCenterY
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:self.view
+                                                                   attribute:NSLayoutAttributeCenterY
+                                                                  multiplier:1
+                                                                    constant:-50];
+
+    NSArray *newConstraints = @[constraint1, constraint2, constraint3, constraint4];
+    
+    return newConstraints;
+}
+
 #pragma mark - Button actions
 
 - (IBAction)followOnTwitter:(UIButton *)sender {
@@ -146,16 +183,14 @@
 #pragma mark - Text view editing
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [self popAnimation:textField];
-    
     if (_blurOverlay.hidden) {
         [self showBlurOverlay];
-        [self moveTextFieldToOverlay:textField];
+        [self makeFakeTextField:textField];
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (!_blurOverlay.hidden) {
+    if ([textField.restorationIdentifier isEqualToString:@"fakeTextField"]) {
         [self moveTextFieldFromOverlay:textField];
         [self hideBlurOverlay];
     }
@@ -165,6 +200,39 @@
     // Remove keyboard & send message textFieldDidEndEditing
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)makeFakeTextField:(UITextField *)realTextField {
+    // Save the original caller
+    _realTextField = realTextField;
+    
+    // Make the fake
+    UITextField *fakeTextField = [UITextField new];
+    fakeTextField.restorationIdentifier = @"fakeTextField";
+    
+    // Set it to the same frame as the caller
+    fakeTextField.frame = realTextField.frame;
+    fakeTextField.borderStyle = UITextBorderStyleRoundedRect;
+    fakeTextField.backgroundColor = [UIColor orangeColor]; // TODO: Set this to application-specific orange tint
+    fakeTextField.textColor = realTextField.textColor;
+    fakeTextField.font = realTextField.font;
+    fakeTextField.autocapitalizationType = realTextField.autocapitalizationType;
+    fakeTextField.autocorrectionType = realTextField.autocorrectionType;
+    fakeTextField.spellCheckingType = realTextField.spellCheckingType;
+    fakeTextField.enablesReturnKeyAutomatically = realTextField.enablesReturnKeyAutomatically;
+    fakeTextField.keyboardAppearance = realTextField.keyboardAppearance;
+    fakeTextField.keyboardType = realTextField.keyboardType;
+    fakeTextField.returnKeyType = realTextField.returnKeyType;
+    fakeTextField.placeholder = realTextField.placeholder;
+    fakeTextField.text = realTextField.text;
+    fakeTextField.enablesReturnKeyAutomatically = realTextField.enablesReturnKeyAutomatically;
+    
+    // Add to view
+    [self.view addSubview:fakeTextField];
+
+    // Move it into position
+    [self moveTextFieldToOverlay:fakeTextField];
+    
 }
 
 - (void)popAnimation:(UITextField *)textField {
@@ -203,29 +271,36 @@
 - (void)moveTextFieldToOverlay:(UITextField *)textField {
     // Change views
     [self.view insertSubview:textField aboveSubview:_blurOverlay];
-    CGPoint newCenter = CGPointMake(textField.center.x, textField.center.y - 200);
     
-     [UIView animateWithDuration:0.7 animations:^{
-        // Move
-        textField.center = newCenter;
-         NSLog(@"Moving to new centre");
-    }];
-}
-
-- (void)moveTextFieldFromOverlay:(UITextField *)textField {
-    // Change views
-    [self.view insertSubview:textField belowSubview:_blurOverlay];
-    CGPoint newCenter = CGPointMake(textField.center.x, textField.center.y + 200);
+    CGPoint newCenter = CGPointMake(textField.center.x, self.view.center.y - 100);
     
     [UIView animateWithDuration:0.7 animations:^{
         // Move
         textField.center = newCenter;
         NSLog(@"Moving to new centre");
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [textField becomeFirstResponder];
+        }
     }];
+}
+
+- (void)moveTextFieldFromOverlay:(UITextField *)textField {
+    CGPoint newCenter = CGPointMake(_realTextField.center.x, _realTextField.center.y);
     
-    // Reset colours
-    textField.borderStyle = UITextBorderStyleNone;
-    textField.backgroundColor = [UIColor clearColor];
+    [UIView animateWithDuration:0.7 animations:^{
+        // Move
+        textField.center = newCenter;
+        NSLog(@"Moving to new centre");
+    } completion:^(BOOL finished) {
+        if (finished) {
+            _realTextField.text = textField.text;
+            // Reset colours
+            textField.borderStyle = UITextBorderStyleNone;
+            textField.backgroundColor = [UIColor clearColor];
+            [textField removeFromSuperview];
+        }
+    }];
 }
 
 @end

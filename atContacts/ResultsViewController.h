@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *indicator;
 @property (weak, nonatomic) UIVisualEffectView *blurOverlay;
 @property (weak, nonatomic) NSArray *originalConstraints;
+@property (weak, nonatomic) UITextField *realTextField;
+
 
 - (IBAction)followOnTwitter:(UIButton *)sender;
 - (IBAction)addToContacts:(UIButton *)sender;
