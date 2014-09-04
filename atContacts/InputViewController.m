@@ -79,10 +79,7 @@
 }
 
 - (IBAction)startHashtagEditing:(id)sender {
-    NSLog(@"testHashtagEditing called\n");
-    _hashtag.borderStyle = _twitterName.borderStyle;
-    _hashtag.backgroundColor = _twitterName.backgroundColor;
-
+    [self popAnimation:sender];
 }
 
 - (IBAction)endHashtagEditing:(id)sender {
@@ -98,6 +95,27 @@
     }
     [_twitterName becomeFirstResponder];
     
+}
+
+- (void)popAnimation:(UITextField *)textField {
+    textField.borderStyle = _twitterName.borderStyle;
+    textField.backgroundColor = _twitterName.backgroundColor;
+    
+    CGFloat percent = 0.2; // Try 20%
+    CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0f + percent, 1.0f + percent);
+    CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0 + percent), 1.0f / (1.0 + percent));
+    [UIView animateWithDuration:0.1f animations:^{
+        textField.transform = embiggen;
+        NSLog(@"popAnimation\nEmbiggen: animated to frame: ( %f %f; %f %f)", textField.frame.origin.x, textField.frame.origin.y, textField.frame.size.width, textField.frame.size.height);
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [UIView animateWithDuration:0.1f animations:^{
+                textField.transform = shrink;
+                NSLog(@"popAnimation\nShrink: animated to frame: ( %f %f; %f %f)", textField.frame.origin.x, textField.frame.origin.y, textField.frame.size.width, textField.frame.size.height);
+            }];
+        }
+    }
+     ];
 }
 
 #pragma mark - Convenience methods
