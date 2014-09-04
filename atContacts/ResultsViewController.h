@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *webAddress;
 @property (weak, nonatomic) IBOutlet UITextView *twitterDescription;
 @property (weak, nonatomic) IBOutlet UIImageView *indicator;
+@property (weak, nonatomic) UIVisualEffectView *blurOverlay;
+@property (weak, nonatomic) NSArray *originalConstraints;
 
 - (IBAction)followOnTwitter:(UIButton *)sender;
 - (IBAction)addToContacts:(UIButton *)sender;
