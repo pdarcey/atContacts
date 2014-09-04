@@ -117,22 +117,20 @@
 
 #pragma mark - Text view editing
 
-- (void)textFieldShouldBeginEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    // Change background (and size?)
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    textField.backgroundColor = [UIColor orangeColor]; // TODO: Set this to application-specific orange tint
     [self popAnimation:textField];
     if (!_blurOverlay) {
         [self addBlurOverlay];
         [self moveTextFieldToOverlay:textField];
-        // Change background (and size?)
-        textField.borderStyle = UITextBorderStyleRoundedRect;
-        textField.backgroundColor = [UIColor orangeColor]; // TODO: Set this to application-specific orange tint
-        //[textField becomeFirstResponder];
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (_blurOverlay) {
         [self moveTextFieldFromOverlay:textField];
-        // Change background (and size?)
         [self removeBlurOverlay];
     }
 }
@@ -145,27 +143,33 @@
 
 - (void)popAnimation:(UITextField *)textField {
     CGFloat percent = 0.2; // Try 20%
-    CGRect originalFrame = textField.frame;
-    CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0 + percent, 1.0 + percent);
-    [UIView animateWithDuration:5.0 animations:^{
-        NSLog(@"\n\nAnimating...");
+    CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0f + percent, 1.0f + percent);
+    CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0 + percent), 1.0f / (1.0 + percent));
+    [UIView animateWithDuration:0.1f animations:^{
         textField.transform = embiggen;
         NSLog(@"popAnimation\nEmbiggen: animated to frame: ( %f %f; %f %f)", textField.frame.origin.x, textField.frame.origin.y, textField.frame.size.width, textField.frame.size.height);
-    }];
-    [UIView animateWithDuration:5.0 animations:^{
-        NSLog(@"popAnimation\nReturn to normal: animating to frame: ( %f %f; %f %f)", originalFrame.origin.x, originalFrame.origin.y, originalFrame.size.width, originalFrame.size.height);
-        [textField setFrame:originalFrame];
-    }];
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [UIView animateWithDuration:0.1f animations:^{
+                textField.transform = shrink;
+                NSLog(@"popAnimation\nShrink: animated to frame: ( %f %f; %f %f)", textField.frame.origin.x, textField.frame.origin.y, textField.frame.size.width, textField.frame.size.height);
+            }];
+        }
+    }
+     ];
 }
 
 - (void)addBlurOverlay {
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    CGRect blurFrame = CGRectMake(0, 0, 350, 500); // TODO: Change to self.view.frame
+    CGRect blurFrame = self.view.frame;
     [blurEffectView setFrame:blurFrame];
-    [UIView animateWithDuration:3.0 animations:^{
-        [self.view addSubview:_blurOverlay];
-    }];
+    _blurOverlay = blurEffectView;
+    [self.view addSubview:_blurOverlay];
+    
+//    [UIView animateWithDuration:3.0 animations:^{
+//        [self.view addSubview:_blurOverlay];
+//    }];
 }
 
 - (void)removeBlurOverlay {
@@ -176,34 +180,15 @@
 }
 
 - (void)moveTextFieldToOverlay:(UITextField *)textField {
-    // Change colours
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.backgroundColor = [UIColor orangeColor]; // TODO: Change to app-specific colour
+    // Change views
+    [self.view insertSubview:textField aboveSubview:_blurOverlay];
     
-    // Change constraints
-    _originalConstraints = [NSArray arrayWithArray:textField.constraints];
- 
-    NSLog(@"\n\nOriginal constraints = %@\n\n", _originalConstraints);
-    
-//    NSLayoutConstraint *constraint1 = [NSLayoutConstraint constraintWithItem:textField.inputView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:nil multiplier:1 constant:textField.inputView.frame.size.width];
-//    NSLayoutConstraint *constraint2 = [NSLayoutConstraint constraintWithItem:textField.inputView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:nil multiplier:1 constant:textField.inputView.frame.size.width];
-//    NSLayoutConstraint *constraint3 = [NSLayoutConstraint constraintWithItem:textField.inputView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:nil multiplier:1 constant:textField.inputView.frame.size.width];
-//    NSLayoutConstraint *constraint4 = [NSLayoutConstraint constraintWithItem:textField.inputView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:nil multiplier:1 constant:textField.inputView.frame.size.width];
-//    
-//    NSArray *newConstraints = @[constraint1, constraint2, constraint3, constraint4];
-    NSArray *newConstraints = _originalConstraints;
-    
-    [textField removeConstraints:_originalConstraints];
-    [textField addConstraints:newConstraints];
-    [textField setNeedsUpdateConstraints];
-    
-    [UIView animateWithDuration:5.0 animations:^{
-        // Move
-        [textField updateConstraints];
-    }];
 }
 
 - (void)moveTextFieldFromOverlay:(UITextField *)textField {
+    // Change views
+    [_blurOverlay removeFromSuperview];
+    
     // Reset colours
     textField.borderStyle = UITextBorderStyleNone;
     textField.backgroundColor = [UIColor clearColor];
