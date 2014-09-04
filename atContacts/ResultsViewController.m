@@ -43,7 +43,6 @@
         combinedHashtagAndDescription = data.hashtag;
         if (data.twitterDescription && ![data.twitterDescription isEqualToString:@""]) {
             [combinedHashtagAndDescription stringByAppendingString:[NSString stringWithFormat:@"\n%@", data.twitterDescription]];
-            NSLog(@"Combined hashtag + description: %@", combinedHashtagAndDescription);
         }
     } else if (data.twitterDescription && ![data.twitterDescription isEqualToString:@""]) {
             combinedHashtagAndDescription = data.twitterDescription;
@@ -244,12 +243,10 @@
     CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0 + percent), 1.0f / (1.0 + percent));
     [UIView animateWithDuration:0.1f animations:^{
         textField.transform = embiggen;
-        NSLog(@"popAnimation\nEmbiggen: animated to frame: ( %f %f; %f %f)", textField.frame.origin.x, textField.frame.origin.y, textField.frame.size.width, textField.frame.size.height);
     } completion:^(BOOL finished) {
         if (finished) {
             [UIView animateWithDuration:0.1f animations:^{
                 textField.transform = shrink;
-                NSLog(@"popAnimation\nShrink: animated to frame: ( %f %f; %f %f)", textField.frame.origin.x, textField.frame.origin.y, textField.frame.size.width, textField.frame.size.height);
             }];
         }
     }
@@ -277,7 +274,6 @@
     [UIView animateWithDuration:0.7 animations:^{
         // Move
         textField.center = newCenter;
-        NSLog(@"Moving to new centre");
     } completion:^(BOOL finished) {
         if (finished) {
             [textField becomeFirstResponder];
@@ -291,7 +287,6 @@
     [UIView animateWithDuration:0.7 animations:^{
         // Move
         textField.center = newCenter;
-        NSLog(@"Moving to new centre");
     } completion:^(BOOL finished) {
         if (finished) {
             _realTextField.text = textField.text;

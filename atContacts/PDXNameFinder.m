@@ -143,7 +143,6 @@
  *  @since 1.0
  */
 - (void)parseResults {
-    NSLog(@"Retrieved data:\n%@\n", _twitterData);
     // Extract the fields we want
     NSArray *name = [_twitterData valueForKey:@"name"];
     NSArray *photoURLString = [_twitterData valueForKey:@"profile_image_url"];

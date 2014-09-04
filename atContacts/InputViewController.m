@@ -39,9 +39,7 @@
 
 #pragma mark - Actions
 
-- (IBAction)findTwitterName:(id)sender {
-    NSLog(@"findTwitterName called\n");
-    
+- (IBAction)findTwitterName:(id)sender {    
 //    self.activitySpinner.hidden = NO;
 //    [activitySpinner startAnimating];
     
@@ -61,14 +59,12 @@
 }
 
 - (IBAction)touchDownOutsideFields:(id)sender {
-    NSLog(@"touchDownOutsideFields called\n");
     [self endHashtagEditing:nil];
 }
 
 #pragma mark - Hashtag editing
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSLog(@"textFieldDidEndEditing called\n");
     if (textField == _twitterName) {
         [self findTwitterName:nil];
     } else if (textField == _hashtag) {
@@ -83,7 +79,6 @@
 }
 
 - (IBAction)endHashtagEditing:(id)sender {
-    NSLog(@"finishedTestHashtagEditing called\n");
     _hashtag.borderStyle = UITextBorderStyleNone;
     _hashtag.backgroundColor = [UIColor clearColor];
     if (_hashtag.text.length > 0) {
@@ -106,12 +101,10 @@
     CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0 + percent), 1.0f / (1.0 + percent));
     [UIView animateWithDuration:0.1f animations:^{
         textField.transform = embiggen;
-        NSLog(@"popAnimation\nEmbiggen: animated to frame: ( %f %f; %f %f)", textField.frame.origin.x, textField.frame.origin.y, textField.frame.size.width, textField.frame.size.height);
     } completion:^(BOOL finished) {
         if (finished) {
             [UIView animateWithDuration:0.1f animations:^{
                 textField.transform = shrink;
-                NSLog(@"popAnimation\nShrink: animated to frame: ( %f %f; %f %f)", textField.frame.origin.x, textField.frame.origin.y, textField.frame.size.width, textField.frame.size.height);
             }];
         }
     }
