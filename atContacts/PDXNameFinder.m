@@ -25,7 +25,6 @@
     
     [self accountStore];
     [self accountType];
-    _name = name;
     
     // Check if permission has previously been asked for
     if (![self dialogHasBeenPresented]) {
@@ -33,8 +32,7 @@
 
     } else {
         
-        [self retrieveInformation];
-        
+        [self retrieveInformation:name];
     }
 }
 
@@ -61,13 +59,18 @@
     });
 }
 
+
+- (void)retrieveInformation {
+    [self retrieveInformation:_name];
+}
+
 /**
  *  Retrieves the information from Twitter and sends it to the parser
  *
  *
  *  @since 1.0
  */
-- (void)retrieveInformation {
+- (void)retrieveInformation:(NSString *)name {
     if (![self userDeniedPermission] && ![self userHasNoAccount]) {
         
         // Actually access user's Twitter account to get info
@@ -81,21 +84,21 @@
                     
                     NSURL *requestURL = [NSURL URLWithString: @"https://api.twitter.com/1.1/users/lookup.json"];
                     
-                    NSDictionary *parameters = @{@"screen_name" : _name};
+                    NSDictionary *parameters = @{@"screen_name" : name};
                     
-                    SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:requestURL parameters:parameters];
+                    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:requestURL parameters:parameters];
                     
-                    postRequest.account = twitterAccount;
+                    request.account = twitterAccount;
                     
-                    [postRequest performRequestWithHandler: ^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                    [request performRequestWithHandler: ^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
                         if (responseData) {
                             NSInteger statusCode = urlResponse.statusCode;
                             if (statusCode >= 200 && statusCode < 300) {
-                                _twitterData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
+                                NSDictionary *twitterData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
                                 
-                                if (_twitterData != nil) {
+                                if (twitterData != nil) {
                                     // TODO Present dialog to user if results == nil
-                                    [self parseResults];
+                                    [self parseLookupResults:twitterData];
                                 }
                             } else {
                                 NSLog(@"[ERROR] Server responded: status code %ld %@", (long)statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
@@ -142,32 +145,34 @@
  *
  *  @since 1.0
  */
-- (void)parseResults {
+- (void)parseLookupResults:(NSDictionary *)twitterData {
     // Extract the fields we want
-    NSArray *name = [_twitterData valueForKey:@"name"];
-    NSArray *photoURLString = [_twitterData valueForKey:@"profile_image_url"];
+    NSString *name = [self extractString:@"name" from:twitterData];
+    NSString *idString = [self extractString:@"id_str" from:twitterData];
+    NSString *photoURLString = [self extractString:@"profile_image_url" from:twitterData];
+    NSString *description = [self extractString:@"description" from:twitterData];
+    NSString *shortTwitterName = [self extractString:@"screen_name" from:twitterData];
+    NSString *twitterName = [NSString stringWithFormat:@"@%@", shortTwitterName];
+    NSString *personalURL = [self parsePersonalURL:twitterData];
     // TODO check that all the following paths exist, otherwise it will crash
-    NSArray *entityArray = [_twitterData valueForKey:@"entities"];
-    NSArray *urlArray;
-    NSArray *urlsArray;
-    NSArray *personalURL;
-   if (entityArray[0]) {
-        urlArray = [entityArray valueForKey:@"url"];
-    }
-    if (!urlArray[0]) {
-        urlsArray = [urlArray valueForKey:@"urls"];
-    }
-    if (!urlsArray[0]) {
-        personalURL = [urlsArray valueForKey:@"expanded_url"];
-    }
-    if (!personalURL[0]) {
-        personalURL = @[ @[@""] ];
-    }
-    NSArray *description = [_twitterData valueForKey:@"description"];
-    NSArray *shortTwitterName = [_twitterData valueForKey:@"screen_name"];
-    NSString *twitterName = [NSString stringWithFormat:@"@%@", shortTwitterName[0]];
+//    NSArray *entityArray = [twitterData valueForKey:@"entities"];
+//    NSArray *urlArray;
+//    NSArray *urlsArray;
+//    NSArray *personalURL;
+//   if (entityArray[0]) {
+//        urlArray = [entityArray valueForKey:@"url"];
+//    }
+//    if (!urlArray[0]) {
+//        urlsArray = [urlArray valueForKey:@"urls"];
+//    }
+//    if (!urlsArray[0]) {
+//        personalURL = [urlsArray valueForKey:@"expanded_url"];
+//    }
+//    if (!personalURL[0]) {
+//        personalURL = @[ @[@""] ];
+//    }
 
-    NSDictionary *results = @{ @"name" : name[0], @"photoURLString" : photoURLString[0], @"personalURL" : personalURL[0][0], @"description" : description[0], @"twitterName" : twitterName };
+    NSDictionary *results = @{ @"name" : name, @"idString" :idString, @"photoURLString" : photoURLString, @"personalURL" : personalURL, @"description" : description, @"twitterName" : twitterName };
     
     [self saveResultsValues:results];
     // Present results
@@ -310,6 +315,7 @@
             resultsData.lastName = [name substringFromIndex:[firstWord length]+1]; // The +1 is to remove the leading space (" ")
         }
     }
+    resultsData.idString = [self fixNilValues:[results valueForKey:@"idString"]];
     resultsData.photoURL = [self fixNilValues:[results valueForKey:@"photoURLString"]];
     resultsData.twitterName = [self fixNilValues:[results valueForKey:@"twitterName"]];
     resultsData.emailAddress = [self fixNilValues:[results valueForKey:@"email"]];
