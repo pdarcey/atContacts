@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *twitterName;
+@property (strong, nonatomic) NSString *idString;
 @property (strong, nonatomic) NSString *hashtag;
 @property (strong, nonatomic) NSString *emailAddress;
 @property (strong, nonatomic) NSString *phoneNumber;
@@ -20,5 +21,6 @@
 @property (strong, nonatomic) NSString *twitterDescription;
 @property (strong, nonatomic) NSString *photoURL;
 @property (strong, nonatomic) NSData *photoData;
+@property BOOL alreadyFollow;
 
 @end
