@@ -26,6 +26,13 @@
 
 #pragma mark - Actions
 
+/**
+ *  User has chosen to allow us to use their Twitter identity. We can proceed as normal
+ *
+ *  @param sender Will always be permissionGranted button
+ *
+ *  @since 1.0
+ */
 - (IBAction)permissionGranted:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"dialogHasBeenPresented"];
@@ -34,6 +41,14 @@
     [self dismissViewController];
 }
 
+/**
+ *  User has chosen to deny us the use of their Twitter identity. We cannot proceed and will not trigger
+ *     Apple's dialog box
+ *
+ *  @param sender Will always be permissionDenied button
+ *
+ *  @since 1.0
+ */
 - (IBAction)permissionDenied:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"dialogHasBeenPresented"];
@@ -42,6 +57,14 @@
     [self dismissViewController];
 }
 
+/**
+ *  User has said they do not have a Twitter identity. We cannot proceed and will not trigger
+ *     Apple's dialog box
+ *
+ *  @param sender Will always be noTwitterAccount button
+ *
+ *  @since 1.0
+ */
 - (IBAction)noTwitterAccount:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"dialogHasBeenPresented"];
@@ -50,6 +73,11 @@
     [self dismissViewController];
 }
 
+/**
+ *  Dismisses this view and returns to the Input view
+ *
+ *  @since 1.0
+ */
 - (void)dismissViewController {
     [self.nameFinder retrieveInformation];
     [self dismissViewControllerAnimated:YES completion:nil];
