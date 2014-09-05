@@ -12,7 +12,7 @@
 
 @implementation PDXNameFinder
 
-
+#pragma mark - External interfaces
 /**
  *  Checks if the user has authorised access to their Twitter account
  *  then gets info for name, if authorisation is ok
@@ -37,6 +37,17 @@
 }
 
 /**
+ *  Allows pre-approval screens to call back saying to retrieve information, without needing to know the name of the person we're looking up
+ *
+ *  @since 1.0
+ */
+- (void)retrieveInformation {
+    [self retrieveInformation:_name];
+}
+
+#pragma mark - Twitter pre-approval
+
+/**
  *  Presents the pre-approval scene from the Main.storyboard
  *  User will select one of three options, which will determine what happens next:
  *  1. Use Twitter account - continues to retrieve information from Twitter
@@ -59,14 +70,12 @@
     });
 }
 
-
-- (void)retrieveInformation {
-    [self retrieveInformation:_name];
-}
+#pragma mark - Get Twitter information
 
 /**
- *  Retrieves the information from Twitter and sends it to the parser
+ *  Retrieves information from Twitter for the user whose name is given
  *
+ *  @param name A Twitter user name (i.e. @someone, without the leading "@")
  *
  *  @since 1.0
  */
@@ -140,8 +149,9 @@
 }
 
 /**
- *  Parses the results we get back from Twitter to extract Name, Photo, URL, Description
- *  Then calls presentResults to present the extracted information
+ *  Parses the results of a Twitter user lookup
+ *
+ *  @param twitterData A dictionary containing the results sent back from Twitter after being deserialized by NSJSONSerialization
  *
  *  @since 1.0
  */
@@ -179,6 +189,15 @@
     [self presentResults:results];
 }
 
+/**
+ *  The personal URL of a user (if it exists) is several layers within the dictionary. This method digs in and retrieves it (if it exists)
+ *
+ *  @param data  A dictionary containing the results sent back from Twitter after being deserialized by NSJSONSerialization
+ *
+ *  @return Non-shortened URL (i.e. http(s)://www.company.com, not http(s)://t.co/1uG4mhaB), or "" if it doesn't exist
+ *
+ *  @since 1.0
+ */
 - (NSString *)parsePersonalURL:(NSDictionary *)data {
     NSArray *urls = [data valueForKey:@"url"];
     for (NSArray *item in urls) {
@@ -191,6 +210,16 @@
     return @"";
 }
 
+/**
+ *  Normally, extracting Twitter data from a dictionary of its returned data gives us an array. We want the actual string value
+ *
+ *  @param key  The key for the data we're looking for
+ *  @param data Twitter data as a dictionary
+ *
+ *  @return String for the key
+ *
+ *  @since 1.0
+ */
 - (NSString *)extractString:(NSString *)key from:(NSDictionary *)data {
     NSArray *array = [data valueForKey:key];
     NSString *string = array[0];
@@ -198,9 +227,13 @@
     return string;
 }
 
+#pragma mark - Get follow status
+
 /**
- *  Retrieves the information from Twitter and sends it to the parser
+ *  Gets the follow status from Twitter. If User already follows the person, it saves YES to alreadyFollow in the data model
  *
+ *  @param idString Twitter ID string (e.g. "1401881") of the person we want to check. This number comes from
+ *                  the data we retrieved from Twitter earlier
  *
  *  @since 1.0
  */
@@ -273,6 +306,15 @@
     }
 }
 
+/**
+ *  Looks through Twitter data for connections to see if user is currently "following" the person
+ *
+ *  @param followData Twitter data in response to a "GET friendships/lookup" request
+ *
+ *  @return YES if user currently follows the person, NO if not (NO is default)
+ *
+ *  @since 1.0
+ */
 - (BOOL)parseFollowResults:(NSDictionary *)followData {
     NSArray *connections = [followData valueForKey:@"connections"];
     for (NSArray *item in connections) {
@@ -286,6 +328,15 @@
     return NO;
 }
 
+#pragma mark - Results
+
+/**
+ *  Displays results
+ *
+ *  @param results Dictionary of results to display
+ *
+ *  @since 1.0
+ */
 - (void)presentResults:(NSDictionary *)results {
     // Initialise Results screen
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -298,6 +349,14 @@
     });
 }
 
+/**
+ *  Saves results to data model. 
+ *  NOTE: Does not save the data model to disk!
+ *
+ *  @param results The information about the person that we are interested in (not all information Twitter has on the person)
+ *
+ *  @since 1.0
+ */
 - (void)saveResultsValues:(NSDictionary *)results {
     PDXDataModel *resultsData = [self data];
     // Split name into firstName / lastName
@@ -324,6 +383,15 @@
     resultsData.twitterDescription = [self fixNilValues:[results valueForKey:@"description"]];
 }
 
+/**
+ *  Changes string values of nil to @""
+ *
+ *  @param string Any string value
+ *
+ *  @return Either the original string (if it is not nil) or @""
+ *
+ *  @since 1.0
+ */
 - (NSString *)fixNilValues:(NSString *)string {
     if (string) {
         return string;
@@ -363,8 +431,6 @@
     
     return _twitterType;
 }
-
-
 
 #pragma mark - Convenience methods for User Defaults
 
@@ -413,6 +479,13 @@
     return userHasNoAccount;
 }
 
+/**
+ *  Convenience method to retrieve data model from User Defaults
+ *
+ *  @return Data model stored in User Defaults
+ *
+ *  @since 1.0
+ */
 - (PDXDataModel *)data {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     PDXDataModel *data = [appDelegate data];
