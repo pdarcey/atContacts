@@ -20,7 +20,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *webAddress;
 @property (weak, nonatomic) IBOutlet UITextView *twitterDescription;
 @property (weak, nonatomic) IBOutlet UIImageView *indicator;
-@property (weak, nonatomic) UIVisualEffectView *blurOverlay;
+@property (weak, nonatomic) IBOutlet UIButton *twitterButton;
+@property (weak, nonatomic) IBOutlet UIButton *contactsButton;
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *blurOverlay;
 @property (weak, nonatomic) NSArray *originalConstraints;
 @property (weak, nonatomic) UITextField *realTextField;
 

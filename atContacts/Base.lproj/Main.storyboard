@@ -457,12 +457,16 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="blurOverlay" destination="iSE-R8-M22" id="ypD-Od-21f"/>
+                        <outlet property="blurOverlayNew" destination="iSE-R8-M22" id="9Pa-BW-gch"/>
+                        <outlet property="contactsButton" destination="LFf-PF-jaK" id="4FB-PE-5Id"/>
                         <outlet property="email" destination="X7X-fj-m0i" id="Ek1-oy-ap7"/>
                         <outlet property="firstName" destination="95n-fe-rtH" id="2TF-wN-bRF"/>
                         <outlet property="indicator" destination="58a-DN-NVP" id="bVf-vI-Chj"/>
                         <outlet property="lastName" destination="0AU-64-liZ" id="qme-br-dgz"/>
                         <outlet property="phone" destination="OWX-u5-Leo" id="CbG-jo-3te"/>
                         <outlet property="photo" destination="Vgz-1v-uts" id="7qO-Us-WZN"/>
+                        <outlet property="twitterButton" destination="Ctm-pf-gHA" id="RSE-is-ZWo"/>
                         <outlet property="twitterDescription" destination="86e-dG-L1q" id="uJN-bU-eOF"/>
                         <outlet property="twitterHandle" destination="wIu-zq-T26" id="qh4-NA-SyM"/>
                         <outlet property="webAddress" destination="i1l-eD-iST" id="IIq-ry-hNV"/>
@@ -480,7 +484,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2143" y="361"/>
+            <point key="canvasLocation" x="2653" y="406"/>
         </scene>
     </scenes>
     <resources>

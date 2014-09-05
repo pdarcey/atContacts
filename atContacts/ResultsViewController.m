@@ -48,8 +48,10 @@
             combinedHashtagAndDescription = data.twitterDescription;
     }
     _twitterDescription.text = combinedHashtagAndDescription;
+    if (data.alreadyFollow) {
+        <#statements#>
+    }
     _indicator.hidden = YES;
-    _blurOverlay = [self blurEffect];
     _blurOverlay.hidden = YES;
 }
 
@@ -91,16 +93,6 @@
     PDXDataModel *data = [appDelegate data];
     
     return data;
-}
-
-- (UIVisualEffectView *)blurEffect {
-    NSArray *subviews = self.view.subviews;
-    for (UIView *subview in subviews) {
-        if ([subview.restorationIdentifier isEqualToString:@"blurEffect"]) {
-            return (UIVisualEffectView *)subview;
-        }
-    }
-    return nil;
 }
 
 - (UITextField *)currentTextField {
