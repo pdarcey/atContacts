@@ -48,9 +48,7 @@
             combinedHashtagAndDescription = data.twitterDescription;
     }
     _twitterDescription.text = combinedHashtagAndDescription;
-    if (data.alreadyFollow) {
-        <#statements#>
-    }
+    _twitterButton.selected = data.alreadyFollow;
     _indicator.hidden = YES;
     _blurOverlay.hidden = YES;
 }
