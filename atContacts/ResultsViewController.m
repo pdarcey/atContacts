@@ -24,6 +24,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ *  Sets up initial values to display for all fields, based on retrieved data stored in User Defaults
+ *
+ *  @since 1.0
+ */
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -55,6 +60,13 @@
 
 #pragma mark - Download Photo
 
+/**
+ *  Download the person's photo in the background, and display it when it becomes available
+ *
+ *  @param photoURL URL of photo to display. Comes from retrieved Twitter data
+ *
+ *  @since 1.0
+ */
 - (void)getPhoto:(NSString *)photoURL  {
     if (![photoURL isEqualToString:@""]) {
         
@@ -86,6 +98,13 @@
 
 #pragma mark - Convenience methods
 
+/**
+ *  Convenience method to retrieve data model from User Defaults
+ *
+ *  @return Data model stored in User Defaults
+ *
+ *  @since 1.0
+ */
 - (PDXDataModel *)data {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     PDXDataModel *data = [appDelegate data];
@@ -93,6 +112,13 @@
     return data;
 }
 
+/**
+ *  Works out which of the UITextFields is being edited
+ *
+ *  @return Pointer to the relevant UITextField
+ *
+ *  @since 1.0
+ */
 - (UITextField *)currentTextField {
     NSArray *subviews = self.view.subviews;
     for (UIView *subview in subviews) {
@@ -103,6 +129,15 @@
     return nil;
 }
 
+/**
+ *  A set of constraints used to display a UITextField for editing
+ *
+ *  @param textField The UITextField to use for editing
+ *
+ *  @return Array of contstraints to add to the relevant UITextField
+ *
+ *  @since 1.0
+ */
 - (NSArray *)newConstraints:(UITextField *)textField {
     NSLayoutConstraint *constraint1 = [NSLayoutConstraint constraintWithItem:textField
                                                                    attribute:NSLayoutAttributeWidth
@@ -143,14 +178,35 @@
 
 #pragma mark - Button actions
 
+/**
+ *  When user taps on the Twitter button, follow the person on Twitter
+ *
+ *  @param sender Will always be twitterButton
+ *
+ *  @since 1.0
+ */
 - (IBAction)followOnTwitter:(UIButton *)sender {
     NSLog(@"followOnTwitter button selected");
 }
 
+/**
+ *  When user taps on the Contacts button, add the person's details to the user's Contacts
+ *
+ *  @param sender Will always be the contactButton
+ *
+ *  @since 1.0
+ */
 - (IBAction)addToContacts:(UIButton *)sender {
     NSLog(@"followOnTwitter button selected");
 }
 
+/**
+ *  Equivalent of pressing both the twitterButton and the contactButton
+ *
+ *  @param sender Will always be the bothButton
+ *
+ *  @since 1.0
+ */
 - (IBAction)followAndAdd:(UIButton *)sender {
     NSLog(@"followAndAdd button selected");
     [self followOnTwitter:sender];
@@ -159,10 +215,21 @@
 
 #pragma mark - Swipe & Tap actions
 
+/**
+ *  Dismiss this view and return to the Input View
+ *
+ *  @since 1.0
+ */
 - (IBAction)swipeToDismiss {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+/**
+ *  A tap outside the UITextField while editing is considered the equivalent of hitting the Return button
+ *  This is *necessary* for the phone number keyboard, which lacks a Return button
+ *
+ *  @since 1.0
+ */
 - (IBAction)tapToEndEditing {
     UITextField *textField = [self currentTextField];
     [textField resignFirstResponder];
@@ -171,6 +238,15 @@
 
 #pragma mark - Text view editing
 
+/**
+ *  UITextField delegate method, called when user taps inside a UITextField
+ *  Because the textFields in this view controller would be under the keyboard, we blur the background and move
+ *    the textField into a better position to edit it. (Actually, we create a fake copy, which gets edited.)
+ *
+ *  @param textField The UITextField the user tapped
+ *
+ *  @since 1.0
+ */
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if (_blurOverlay.hidden) {
         [self showBlurOverlay];
@@ -178,6 +254,16 @@
     }
 }
 
+/**
+ *  UITextField delegate method, called when user finishes editing a UITextField
+ *  Because the textFields in this view controller would be under the keyboard for editing, and we blur the background and move
+ *    the textField into a better position to edit it, this method moves everything back to their original positions.
+ *    (Actually, we create a fake copy, which gets edited, and move it back to the original position before dismissing it.)
+ *
+ *  @param textField The fake text field, which is being editied
+ *
+ *  @since 1.0
+ */
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if ([textField.restorationIdentifier isEqualToString:@"fakeTextField"]) {
         [self moveTextFieldFromOverlay:textField];
@@ -185,12 +271,30 @@
     }
 }
 
+/**
+ *  UITextField delegate method, called when user hits Return in a UITextField
+ *  We always make this resign First Responder, which removes the keyboard from display, and calls textFieldDidEndEditing
+ *
+ *  @param textField The UITextField being edited
+ *
+ *  @return Always returns YES
+ *
+ *  @since 1.0
+ */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     // Remove keyboard & send message textFieldDidEndEditing
     [textField resignFirstResponder];
     return YES;
 }
 
+/**
+ *  Instead of moving a selected UITextField for editing, we create a fake copy of it, and move it into place over the blur effect
+ *  This saves us from having to screw around with the original textField's constraints.
+ *
+ *  @param realTextField <#realTextField description#>
+ *
+ *  @since <#version number#>
+ */
 - (void)makeFakeTextField:(UITextField *)realTextField {
     // Save the original caller
     _realTextField = realTextField;
@@ -224,6 +328,13 @@
     
 }
 
+/**
+ *  Makes the selected UITextField "pop" - i.e. momentarily get larger, then revert to its original size
+ *
+ *  @param textField UITextField selected by the user by tapping on it
+ *
+ *  @since 1.0
+ */
 - (void)popAnimation:(UITextField *)textField {
     textField.borderStyle = UITextBorderStyleRoundedRect;
     textField.backgroundColor = [UIColor orangeColor]; // TODO: Set this to application-specific orange tint
@@ -243,18 +354,37 @@
      ];
 }
 
+/**
+ *  Instead of moving a selected UITextField for editing, we create a fake copy of it, and move it into place over a blur effect
+ *  Displays a blur effect over the whole screen, upon which we will edit the selected field
+ *
+ *  @since 1.0
+ */
 - (void)showBlurOverlay {
     [UIView animateWithDuration:0.8 animations:^{
         _blurOverlay.hidden = NO;
     }];
 }
 
+/**
+ *  Hides the blur effect when we are done with editing
+ *
+ *  @since 1.0
+ */
 - (void)hideBlurOverlay {
     [UIView animateWithDuration:0.8 animations:^{
         _blurOverlay.hidden = YES;
     }];
 }
 
+/**
+ *  Instead of moving a selected UITextField for editing, we create a fake copy of it, and move it into place over a blur effect
+ *  This is the animation for the move
+ *
+ *  @param textField The UITextField to move (i.e. the fake one we just created)
+ *
+ *  @since 1.0
+ */
 - (void)moveTextFieldToOverlay:(UITextField *)textField {
     // Change views
     [self.view insertSubview:textField aboveSubview:_blurOverlay];
@@ -271,6 +401,14 @@
     }];
 }
 
+/**
+ *  Instead of moving a selected UITextField for editing, we create a fake copy of it, and move it into place over a blur effect
+ *  This is the animation for the move back to its original position when we are finished with it
+ *
+ *  @param textField The UITextField to move (i.e. the fake one we just created)
+ *
+ *  @since 1.0
+ */
 - (void)moveTextFieldFromOverlay:(UITextField *)textField {
     CGPoint newCenter = CGPointMake(_realTextField.center.x, _realTextField.center.y);
     
