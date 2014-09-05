@@ -174,6 +174,113 @@
     [self presentResults:results];
 }
 
+- (NSString *)parsePersonalURL:(NSDictionary *)data {
+    NSArray *urls = [data valueForKey:@"url"];
+    for (NSArray *item in urls) {
+        NSArray *url = [item valueForKey:@"expanded_url"];
+        if (url) {
+            return url[0];
+        }
+    }
+    
+    return @"";
+}
+
+- (NSString *)extractString:(NSString *)key from:(NSDictionary *)data {
+    NSArray *array = [data valueForKey:key];
+    NSString *string = array[0];
+    
+    return string;
+}
+
+/**
+ *  Retrieves the information from Twitter and sends it to the parser
+ *
+ *
+ *  @since 1.0
+ */
+- (void)getFollowStatus:(NSString *)idString {
+    if (![self userDeniedPermission] && ![self userHasNoAccount]) {
+        PDXDataModel __block *resultsData = [self data];
+        // Actually access user's Twitter account to get info
+        [_accountStore requestAccessToAccountsWithType:_twitterType options:nil completion:^(BOOL granted, NSError *error) {
+            if (granted == YES) {
+                NSArray *arrayOfAccounts = [_accountStore accountsWithAccountType:_twitterType];
+                
+                if ([arrayOfAccounts count] > 0) {
+                    ACAccount *twitterAccount =
+                    [arrayOfAccounts lastObject];
+                    
+                    NSURL *requestURL = [NSURL URLWithString: @"https://api.twitter.com/1.1/friendships/lookup.json?"];
+                    
+                    NSDictionary *parameters = @{@"user_id" : idString};
+                    
+                    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:requestURL parameters:parameters];
+                    
+                    request.account = twitterAccount;
+                    
+                    [request performRequestWithHandler: ^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                        if (responseData) {
+                            NSInteger statusCode = urlResponse.statusCode;
+                            if (statusCode >= 200 && statusCode < 300) {
+                                NSDictionary *followData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
+                                
+                                if (followData != nil) {
+                                    // TODO Present dialog to user if results == nil
+                                   resultsData.alreadyFollow = [self parseFollowResults:followData];
+                                }
+                            } else {
+                                NSLog(@"[ERROR] Server responded: status code %ld %@", (long)statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
+                            }
+                        } else {
+                            NSLog(@"[ERROR] An error occurred: %@", [error localizedDescription]);
+                        }
+                        
+                    }];
+                }
+            } else {
+                // User has previously said they would give us permission to access their Twitter account
+                // Check for error conditions
+                NSLog(@"Error accessing user's Twitter account. Error: %@", error);
+                //             typedef enum ACErrorCode {
+                //                 ACErrorUnknown = 1,
+                //                 ACErrorAccountMissingRequiredProperty,
+                //                 ACErrorAccountAuthenticationFailed,
+                //                 ACErrorAccountTypeInvalid,
+                //                 ACErrorAccountAlreadyExists,
+                //                 ACErrorAccountNotFound,
+                //                 ACErrorPermissionDenied,
+                //                 ACErrorAccessInfoInvalid,
+                //                 ACErrorClientPermissionDenied
+                //                 ACErrorAccessDeniedByProtectionPolicy
+                //                 ACErrorCredentialNotFound
+                //                 ACErrorFetchCredentialFailed,
+                //                 ACErrorStoreCredentialFailed,
+                //                 ACErrorRemoveCredentialFailed,
+                //                 ACErrorUpdatingNonexistentAccount
+                //                 ACErrorInvalidClientBundleID,
+                //             } ACErrorCode;
+                
+            }
+        }];
+    } else {
+        // TODO Present a dialog saying we can't do anything without their permission
+    }
+}
+
+- (BOOL)parseFollowResults:(NSDictionary *)followData {
+    NSArray *connections = [followData valueForKey:@"connections"];
+    for (NSArray *item in connections) {
+        for (NSString *connection in item) {
+            if ([connection isEqualToString:@"following"]) {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
 - (void)presentResults:(NSDictionary *)results {
     // Initialise Results screen
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
