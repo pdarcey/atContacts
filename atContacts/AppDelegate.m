@@ -42,6 +42,14 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+/**
+ *  Convenience method to make a data model if one doesn't exist, and to return it when it does
+ *
+ *  @return Data model
+ *
+ *  @since 1.0
+ */
 - (PDXDataModel *)data {
     
     if (_data != nil) {
