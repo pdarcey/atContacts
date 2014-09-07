@@ -61,5 +61,23 @@
     return _data;
 }
 
+/**
+ *  Convenience method to make a Twitter communicator if one doesn't exist, and to return it when it does
+ *
+ *  @return twitterCommunicator
+ *
+ *  @since 1.0
+ */
+- (PDXTwitterCommunicator *)twitter {
+    
+    if (_twitter != nil) {
+        return _twitter;
+    }
+    PDXTwitterCommunicator *twitterCommunicator = [PDXTwitterCommunicator new];
+    _twitter = twitterCommunicator;
+    
+    return _twitter;
+}
+
 
 @end

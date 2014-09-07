@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "PDXDataModel.h"
+#import "PDXTwitterCommunicator.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) PDXDataModel *data;
+@property (strong, nonatomic) PDXTwitterCommunicator *twitter;
+
 
 - (PDXDataModel *)data;
+- (PDXTwitterCommunicator *)twitter;
 
 @end
 
