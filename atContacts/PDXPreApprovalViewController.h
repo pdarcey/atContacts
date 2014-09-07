@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PDXNameFinder.h"
+#import "PDXViewController.h"
 
-@interface PDXPreApprovalViewController : UIViewController
+@interface PDXPreApprovalViewController : PDXViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *permissionGranted;
 @property (weak, nonatomic) IBOutlet UIButton *permissionDenied;

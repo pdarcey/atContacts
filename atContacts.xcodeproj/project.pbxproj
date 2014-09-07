@@ -23,6 +23,8 @@
 		C971A1CB19B5CCE100F67E75 /* PDXDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C919B5CCE100F67E75 /* PDXDataModel.m */; };
 		C9A010F819BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */; };
 		C9A010F919BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */; };
+		C9A010FC19BCBD0E0024BFC6 /* PDXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010FB19BCBD0E0024BFC6 /* PDXViewController.m */; };
+		C9A010FD19BCBD0E0024BFC6 /* PDXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010FB19BCBD0E0024BFC6 /* PDXViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		C971A1C919B5CCE100F67E75 /* PDXDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXDataModel.m; sourceTree = "<group>"; };
 		C9A010F619BCA6470024BFC6 /* PDXTwitterCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXTwitterCommunicator.h; sourceTree = "<group>"; };
 		C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterCommunicator.m; sourceTree = "<group>"; };
+		C9A010FA19BCBD0E0024BFC6 /* PDXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXViewController.h; sourceTree = "<group>"; };
+		C9A010FB19BCBD0E0024BFC6 /* PDXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 		C971A1C619B4A43E00F67E75 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C9A010FA19BCBD0E0024BFC6 /* PDXViewController.h */,
+				C9A010FB19BCBD0E0024BFC6 /* PDXViewController.m */,
 				C93E2D4119ADD51200B06809 /* PDXInputViewController.h */,
 				C93E2D4219ADD51200B06809 /* PDXInputViewController.m */,
 				C971A1C219B4A42100F67E75 /* PDXResultsViewController.h */,
@@ -274,6 +280,7 @@
 				C971A1C419B4A42100F67E75 /* PDXResultsViewController.m in Sources */,
 				C93E2D3D19ADD51200B06809 /* main.m in Sources */,
 				C971A1BC19AF95FD00F67E75 /* PDXNameFinder.m in Sources */,
+				C9A010FC19BCBD0E0024BFC6 /* PDXViewController.m in Sources */,
 				C971A1CA19B5CCE100F67E75 /* PDXDataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +295,7 @@
 				C93E2D5419ADD51200B06809 /* atContactsTests.m in Sources */,
 				C971A1BD19AF95FD00F67E75 /* PDXNameFinder.m in Sources */,
 				C971A1C519B4A42100F67E75 /* PDXResultsViewController.m in Sources */,
+				C9A010FD19BCBD0E0024BFC6 /* PDXViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
