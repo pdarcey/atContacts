@@ -68,6 +68,7 @@
  *  @since 1.0
  */
 - (void)getPhoto:(NSString *)photoURL  {
+    // By default, _photo.image shows the image pre-set in the storyboard, so no need to set a default image
     if (![photoURL isEqualToString:@""]) {
         
         // Twitter by default returns a photo URL that gives a low-rez version of the person's image
