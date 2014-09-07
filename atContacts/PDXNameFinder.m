@@ -49,10 +49,14 @@
 
 /**
  *  Presents the pre-approval scene from the Main.storyboard
+ *
  *  User will select one of three options, which will determine what happens next:
+ *
  *  1. Use Twitter account - continues to retrieve information from Twitter
+ *
  *  2. I don't have a Twitter account - presents a dialog saying we need a Twitter account to
  *     use this app
+ *
  *  3. Do NOT use my Twitter account - presents a dialog saying we need a Twitter account to
  *     use this app
  *
@@ -199,13 +203,23 @@
  *  @since 1.0
  */
 - (NSString *)parsePersonalURL:(NSDictionary *)data {
-    NSArray *urls = [data valueForKey:@"url"];
-    for (NSArray *item in urls) {
-        NSArray *url = [item valueForKey:@"expanded_url"];
-        if (url) {
-            return url[0];
+        NSArray *entityArray = [data valueForKey:@"entities"];
+        NSArray *urlArray;
+        NSArray *urlsArray;
+        NSArray *personalURL;
+       if (entityArray[0]) {
+            urlArray = [entityArray valueForKey:@"url"];
         }
-    }
+        if (!urlArray[0]) {
+            urlsArray = [urlArray valueForKey:@"urls"];
+        }
+        if (!urlsArray[0]) {
+            personalURL = [urlsArray valueForKey:@"expanded_url"];
+        }
+        if (personalURL[0]) {
+            NSString *url = personalURL[0];
+            return url;
+        }
     
     return @"";
 }
@@ -351,6 +365,7 @@
 
 /**
  *  Saves results to data model. 
+ *
  *  NOTE: Does not save the data model to disk!
  *
  *  @param results The information about the person that we are interested in (not all information Twitter has on the person)
@@ -436,6 +451,7 @@
 
 /**
  *  Convenience method to retrieve dialogHasBeenPresented from User Defaults
+ *
  *  Used to decide whether user has already been presented with pre-approval dialog
  *
  *  @return YES if the dialog has already been presented; NO if not
@@ -451,6 +467,7 @@
 
 /**
  *  Convenience method to retrieve userDeniedPermission from User Defaults
+ *
  *  User has already been presented with pre-approval dialog
  *
  *  @return YES if the user has denied permission to use their stored Twitter credentials; NO if not
@@ -466,6 +483,7 @@
 
 /**
  *  Convenience method to retrieve userHasNoAccount from User Defaults
+ *
  *  User has already been presented with pre-approval dialog
  *
  *  @return YES if the user has told us that they do not have a Twitter account; NO if not

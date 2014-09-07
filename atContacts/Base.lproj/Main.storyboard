@@ -458,7 +458,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="blurOverlay" destination="iSE-R8-M22" id="ypD-Od-21f"/>
-                        <outlet property="blurOverlayNew" destination="iSE-R8-M22" id="9Pa-BW-gch"/>
                         <outlet property="contactsButton" destination="LFf-PF-jaK" id="4FB-PE-5Id"/>
                         <outlet property="email" destination="X7X-fj-m0i" id="Ek1-oy-ap7"/>
                         <outlet property="firstName" destination="95n-fe-rtH" id="2TF-wN-bRF"/>

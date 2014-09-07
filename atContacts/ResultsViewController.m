@@ -240,6 +240,7 @@
 
 /**
  *  UITextField delegate method, called when user taps inside a UITextField
+ *
  *  Because the textFields in this view controller would be under the keyboard, we blur the background and move
  *    the textField into a better position to edit it. (Actually, we create a fake copy, which gets edited.)
  *
@@ -256,9 +257,10 @@
 
 /**
  *  UITextField delegate method, called when user finishes editing a UITextField
+ *
  *  Because the textFields in this view controller would be under the keyboard for editing, and we blur the background and move
- *    the textField into a better position to edit it, this method moves everything back to their original positions.
- *    (Actually, we create a fake copy, which gets edited, and move it back to the original position before dismissing it.)
+ *  the textField into a better position to edit it, this method moves everything back to their original positions.
+ *  (Actually, we create a fake copy, which gets edited, and move it back to the original position before dismissing it.)
  *
  *  @param textField The fake text field, which is being editied
  *
@@ -273,6 +275,7 @@
 
 /**
  *  UITextField delegate method, called when user hits Return in a UITextField
+ *
  *  We always make this resign First Responder, which removes the keyboard from display, and calls textFieldDidEndEditing
  *
  *  @param textField The UITextField being edited
@@ -289,11 +292,12 @@
 
 /**
  *  Instead of moving a selected UITextField for editing, we create a fake copy of it, and move it into place over the blur effect
+ *
  *  This saves us from having to screw around with the original textField's constraints.
  *
- *  @param realTextField <#realTextField description#>
+ *  @param realTextField The original textField selected by the user
  *
- *  @since <#version number#>
+ *  @since 1.0
  */
 - (void)makeFakeTextField:(UITextField *)realTextField {
     // Save the original caller
@@ -319,6 +323,7 @@
     fakeTextField.placeholder = realTextField.placeholder;
     fakeTextField.text = realTextField.text;
     fakeTextField.enablesReturnKeyAutomatically = realTextField.enablesReturnKeyAutomatically;
+    fakeTextField.delegate = self;
     
     // Add to view
     [self.view addSubview:fakeTextField];
@@ -356,6 +361,7 @@
 
 /**
  *  Instead of moving a selected UITextField for editing, we create a fake copy of it, and move it into place over a blur effect
+ *
  *  Displays a blur effect over the whole screen, upon which we will edit the selected field
  *
  *  @since 1.0
@@ -379,6 +385,7 @@
 
 /**
  *  Instead of moving a selected UITextField for editing, we create a fake copy of it, and move it into place over a blur effect
+ *
  *  This is the animation for the move
  *
  *  @param textField The UITextField to move (i.e. the fake one we just created)
@@ -403,6 +410,7 @@
 
 /**
  *  Instead of moving a selected UITextField for editing, we create a fake copy of it, and move it into place over a blur effect
+ *
  *  This is the animation for the move back to its original position when we are finished with it
  *
  *  @param textField The UITextField to move (i.e. the fake one we just created)

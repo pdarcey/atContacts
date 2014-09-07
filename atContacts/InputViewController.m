@@ -85,7 +85,9 @@
 
 /**
  *  Delegate method for UITextFields, called when user hits Return while in UITextField
+ *
  *  If user is in twitterName, finds the twitterName;
+ *
  *  if user in in hastag field, ends hashtag editing and activates twitterName
  *
  *  @param textField Identifies which UITextField initiated the call
