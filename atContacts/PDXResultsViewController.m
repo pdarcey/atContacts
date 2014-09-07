@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
 
-#import "ResultsViewController.h"
+#import "PDXResultsViewController.h"
 
-@interface ResultsViewController ()
+@interface PDXResultsViewController ()
 
 @end
 
-@implementation ResultsViewController
+@implementation PDXResultsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

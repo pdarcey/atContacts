@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InputViewController : UIViewController
+@interface PDXInputViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *twitterName;
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;

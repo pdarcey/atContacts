@@ -7,8 +7,8 @@
 //
 
 #import "PDXNameFinder.h"
-#import "PreApprovalViewController.h"
-#import "ResultsViewController.h"
+#import "PDXPreApprovalViewController.h"
+#import "PDXResultsViewController.h"
 
 @implementation PDXNameFinder
 
@@ -64,7 +64,7 @@
  */
 - (void)presentPreApprovalDialog {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"PreApproval"];
+    PDXPreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"PreApproval"];
     preApprovalViewController.nameFinder = self;
     
     UIViewController *currentViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
@@ -354,7 +354,7 @@
 - (void)presentResults:(NSDictionary *)results {
     // Initialise Results screen
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"Results"];
+    PDXResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"Results"];
     
     // Display view
     UIViewController *currentViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;

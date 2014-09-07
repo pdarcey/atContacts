@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
 
-#import "PreApprovalViewController.h"
+#import "PDXPreApprovalViewController.h"
 
-@interface PreApprovalViewController ()
+@interface PDXPreApprovalViewController ()
 
 @end
 
-@implementation PreApprovalViewController
+@implementation PDXPreApprovalViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

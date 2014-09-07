@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface ResultsViewController : UIViewController <UITextFieldDelegate>
+@interface PDXResultsViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UILabel *lastName;

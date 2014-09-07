@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
 
-#import "InputViewController.h"
+#import "PDXInputViewController.h"
 #import "PDXNameFinder.h"
 #import "AppDelegate.h"
 
-@interface InputViewController ()
+@interface PDXInputViewController ()
 
 @end
 
-@implementation InputViewController
+@implementation PDXInputViewController
 
 #pragma mark - View lifecycle
 

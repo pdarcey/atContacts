@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PDXNameFinder.h"
 
-@interface PreApprovalViewController : UIViewController
+@interface PDXPreApprovalViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UIButton *permissionGranted;
 @property (weak, nonatomic) IBOutlet UIButton *permissionDenied;
 @property (weak, nonatomic) IBOutlet UIButton *noTwitterAccount;
