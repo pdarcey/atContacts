@@ -22,18 +22,8 @@
  *  @since 1.0
  */
 - (void)findName:(NSString *)name {
-    
-    [self accountStore];
-    [self accountType];
-    
-    // Check if permission has previously been asked for
-    if (![self dialogHasBeenPresented]) {
-        [self presentPreApprovalDialog];
-
-    } else {
-        
-        [self retrieveInformation:name];
-    }
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    [twitter getUserInfo:_name];
 }
 
 /**
@@ -42,7 +32,8 @@
  *  @since 1.0
  */
 - (void)retrieveInformation {
-    [self retrieveInformation:_name];
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    [twitter getUserInfo:_name];
 }
 
 #pragma mark - Twitter pre-approval

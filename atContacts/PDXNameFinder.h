@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <Accounts/Accounts.h>
-#import <Social/Social.h>
+@import Foundation;
+@import Accounts;
+@import Social;
 #import "AppDelegate.h"
-// TODO: #import vs @import?
+#import "PDXTwitterCommunicator.h"
 
 @interface PDXNameFinder : NSObject
 
