@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PDXTwitterCommunicator.h"
+#import "AppDelegate.h"
 
 @interface PDXViewController : UIViewController <PDXTwitterCommunicatorDelegate>
+
+- (PDXDataModel *)data;
+- (PDXTwitterCommunicator *)twitter;
 
 @end

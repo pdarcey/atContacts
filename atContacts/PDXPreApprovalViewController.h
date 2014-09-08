@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PDXNameFinder.h"
 #import "PDXViewController.h"
+#import "AppDelegate.h"
+#import "PDXTwitterCommunicator.h"
 
 @interface PDXPreApprovalViewController : PDXViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *permissionGranted;
 @property (weak, nonatomic) IBOutlet UIButton *permissionDenied;
 @property (weak, nonatomic) IBOutlet UIButton *noTwitterAccount;
-@property (weak, nonatomic) PDXNameFinder *nameFinder;
 
 - (IBAction)permissionGranted:(id)sender;
 - (IBAction)permissionDenied:(id)sender;

@@ -13,6 +13,16 @@
 
 #pragma mark - Generic request
 
+/**
+ *  Sends a request to Twitter's APIs using the user's Twitter credentials stored in Settings
+ *
+ *  @param url         Twitter API URL
+ *  @param getOrPost   GET or POST type API
+ *  @param parameters  Dictionary of additional parameters for the API (e.g. {@"screen_name" : @"twittername"})
+ *  @param requestType PDXRequestType (see specific requests below)
+ *
+ *  @since 1.0
+ */
 - (void)sendTwitterRequestTo:(NSURL *)url getOrPost:(SLRequestMethod)getOrPost parameters:(NSDictionary *)parameters requestType:(PDXRequestType)requestType {
     if (![self userDeniedPermission] && ![self userHasNoAccount]) {
         // Actually access user's Twitter account to get info
@@ -60,7 +70,13 @@
 }
 
 #pragma mark - Specific requests
-
+/**
+ *  Get user infor for twitterName
+ *
+ *  @param twitterName Twitter name to look up. Does NOT include the leading "@" symbol
+ *
+ *  @since 1.0
+ */
 - (void)getUserInfo:(NSString *)twitterName {
     NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/users/lookup.json"];
     NSDictionary *parameters = @{@"screen_name" : twitterName};
@@ -70,6 +86,13 @@
 
 }
 
+/**
+ *  Does the user currently follow the Twitter user with the ID idString?
+ *
+ *  @param idString Twitter's unique ID string for users. Obtained from the getUserInfo query
+ *
+ *  @since 1.0
+ */
 - (void)getFollowStatus:(NSString *)idString {
     NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/friendships/lookup.json?"];
     NSDictionary *parameters = @{@"user_id" : idString};
@@ -79,6 +102,13 @@
     
 }
 
+/**
+ *  Sets the user's Twitter account to follow the Twitter user with the ID idString
+ *
+ *  @param idString Twitter's unique ID string for users. Obtained from the getUserInfo query
+ *
+ *  @since 1.0
+ */
 - (void)follow:(NSString *)idString {
     NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/friendships/create.json"];
     NSDictionary *parameters = @{@"user_id" : idString, @"follow" : @"true"};
@@ -88,6 +118,13 @@
     
 }
 
+/**
+ *  Sets the user's Twitter account to NOT follow the Twitter user with the ID idString
+ *
+ *  @param idString Twitter's unique ID string for users. Obtained from the getUserInfo query
+ *
+ *  @since 1.0
+ */
 - (void)unfollow:(NSString *)idString {
     NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/friendships/create.json"];
     NSDictionary *parameters = @{@"user_id" : idString, @"follow" : @"false"};
@@ -99,6 +136,14 @@
 
 #pragma mark - Handle Responses
 
+/**
+ *  Chooses how to handle the response from a Twitter request
+ *
+ *  @param data        Data returned from Twitter request
+ *  @param requestType PDXRequestType
+ *
+ *  @since 1.0
+ */
 - (void)handleResponse:(NSDictionary *)data requestType:(PDXRequestType)requestType {
     switch (requestType) {
         case PDXRequestTypeGetUserInfo:
@@ -122,22 +167,49 @@
     }
 }
 
+/**
+ *  Handles results from a getUserInfo request
+ *
+ *  @param data Data returned from Twitter request
+ *
+ *  @since 1.0
+ */
 - (void)handleGetUserInfo:(NSDictionary *)data {
-
     NSDictionary *results = [self parseUsersLookup:data];
     [self displayInfo:results];
 }
 
+/**
+ *  Handles results from a getFollowStatus request
+ *
+ *  @param data Data returned from Twitter request
+ *
+ *  @since 1.0
+ */
 - (void)handleGetFollowStatus:(NSDictionary *)data {
     BOOL result = [self parseFriendshipsLookup:data];
     [self toggleTwitter:result];
 }
 
+/**
+ *  Handles results from a Follow request
+ *
+ *  @param data Data returned from Twitter request
+ *
+ *  @since 1.0
+ */
 - (void)handleFollow:(NSDictionary *)data {
     BOOL result = [self parseFriendshipsCreate:data];
     [self toggleTwitter:result];
 }
 
+/**
+ *  Handles results from an Unfollow request
+ *
+ *  @param data Data returned from Twitter request
+ *
+ *  @since 1.0
+ */
 - (void)handleUnfollow:(NSDictionary *)data {
     BOOL result = [self parseFriendshipsCreate:data];
     [self toggleTwitter:result];
@@ -146,6 +218,15 @@
 #pragma mark - Parse Data
 // The names of the methods here are based on Twitter's API scheme
 
+/**
+ *  Parses results from a getUserInfo request
+ *
+ *  @param data Twitter data returned by the request
+ *
+ *  @return Dictionary containing: name, idString, photoURLString, description, and twitterName
+ *
+ *  @since 1.0
+ */
 - (NSDictionary *)parseUsersLookup:(NSDictionary *)data {
     // Extract the fields we want
     NSString *name = [self extractString:@"name" from:data];
@@ -162,6 +243,20 @@
    
 }
 
+/*  The following two methods differ because Twitter returns a different data dictionary from a getFollowStatus request
+    and a request to follow/unfollow an ID
+*/
+
+
+/**
+ *  Checks if a request to follow/unfollow a user has been successful
+ *
+ *  @param data Data returned from the Twitter request
+ *
+ *  @return YES if user is now following the Twitter ID; NO if they are not
+ *
+ *  @since 1.0
+ */
 - (BOOL)parseFriendshipsCreate:(NSDictionary *)data {
     NSString *following = [data valueForKey:@"following"];
     if ([following isEqualToString:@"true"]) {
@@ -172,6 +267,15 @@
     return NO;
 }
 
+/**
+ *  Checks if the user is currently following a Twitter ID
+ *
+ *  @param data Data returned from the Twitter request
+ *
+ *  @return YES if they user currently follows the Twitter ID; NO if they are not
+ *
+ *  @since 1.0
+ */
 - (BOOL)parseFriendshipsLookup:(NSDictionary *)data {
     NSArray *connections = [data valueForKey:@"connections"];
     for (NSArray *item in connections) {
@@ -236,27 +340,67 @@
 
 #pragma mark - Protocols
 
+/**
+ *  Toggles the Twitter follow status on/off
+ *
+ *  Is used by views that conform to PDXTwitterCommunicatorDelegate, so it is not implemented here
+ *
+ *  @param onOff YES if user follows the Twitter ID; NO if they don't
+ *
+ *  @since 1.0
+ */
 - (void)toggleTwitter:(BOOL)onOff {
     
 }
 
+/**
+ *  Display info returned by a getUserInfo request
+ *
+ *  Is used by views that conform to PDXTwitterCommunicatorDelegate, so it is not implemented here
+ *
+ *  @param data Data dictionary producted by parsing a getUserInfo request
+ *
+ *  @since 1.0
+ */
 - (void)displayInfo:(NSDictionary *)data {
     
 }
 
 #pragma mark - Error Conditions
 
+/**
+ *  Present dialog if a data request returns nil instead of a data dictionary
+ *
+ *  @param error The error returned by the request
+ *
+ *  @since 1.0
+ */
 - (void)resultsDataEqualsNil:(NSError *)error {
     // TODO Present dialog to user if results == nil
     NSLog(@"[ERROR] An error occurred: %@", [error localizedDescription]);
 }
 
+/**
+ *  Present dialog and log information if we get a non-expected HTTP response (i.e. a non-2xx response)
+ *
+ *  @param urlResponse The HTTP URL response we received
+ *
+ *  @since 1.0
+ */
 - (void)performRequestWithHandlerError:(NSHTTPURLResponse *)urlResponse {
     NSInteger statusCode = urlResponse.statusCode;
     NSLog(@"[ERROR] Server responded: status code %ld %@", (long)statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
     
 }
 
+/**
+ *  We have tried to access the user's Twitter account (after they have said they would give us 
+ *  permission), but we have not been able to do so as expected
+ *
+ *  @param error Error returned when we tried to access the account
+ *
+ *  @since 1.0
+ */
 - (void)requestAccessToAccountsError:(NSError *)error {
     // User has previously said they would give us permission to access their Twitter account
     // Check for error conditions

@@ -13,8 +13,6 @@
 		C93E2D4619ADD51200B06809 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93E2D4419ADD51200B06809 /* Main.storyboard */; };
 		C93E2D4819ADD51200B06809 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93E2D4719ADD51200B06809 /* Images.xcassets */; };
 		C93E2D5419ADD51200B06809 /* atContactsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D5319ADD51200B06809 /* atContactsTests.m */; };
-		C971A1BC19AF95FD00F67E75 /* PDXNameFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */; };
-		C971A1BD19AF95FD00F67E75 /* PDXNameFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */; };
 		C971A1C019B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */; };
 		C971A1C119B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */; };
 		C971A1C419B4A42100F67E75 /* PDXResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C319B4A42100F67E75 /* PDXResultsViewController.m */; };
@@ -50,8 +48,6 @@
 		C93E2D4D19ADD51200B06809 /* atContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = atContactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93E2D5219ADD51200B06809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C93E2D5319ADD51200B06809 /* atContactsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = atContactsTests.m; sourceTree = "<group>"; };
-		C971A1BA19AF95FD00F67E75 /* PDXNameFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXNameFinder.h; sourceTree = "<group>"; };
-		C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXNameFinder.m; sourceTree = "<group>"; };
 		C971A1BE19B0E65300F67E75 /* PDXPreApprovalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXPreApprovalViewController.h; sourceTree = "<group>"; };
 		C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXPreApprovalViewController.m; sourceTree = "<group>"; };
 		C971A1C219B4A42100F67E75 /* PDXResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXResultsViewController.h; sourceTree = "<group>"; };
@@ -160,8 +156,6 @@
 			children = (
 				C9A010F619BCA6470024BFC6 /* PDXTwitterCommunicator.h */,
 				C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */,
-				C971A1BA19AF95FD00F67E75 /* PDXNameFinder.h */,
-				C971A1BB19AF95FD00F67E75 /* PDXNameFinder.m */,
 				C971A1C819B5CCE100F67E75 /* PDXDataModel.h */,
 				C971A1C919B5CCE100F67E75 /* PDXDataModel.m */,
 			);
@@ -279,7 +273,6 @@
 				C9A010F819BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */,
 				C971A1C419B4A42100F67E75 /* PDXResultsViewController.m in Sources */,
 				C93E2D3D19ADD51200B06809 /* main.m in Sources */,
-				C971A1BC19AF95FD00F67E75 /* PDXNameFinder.m in Sources */,
 				C9A010FC19BCBD0E0024BFC6 /* PDXViewController.m in Sources */,
 				C971A1CA19B5CCE100F67E75 /* PDXDataModel.m in Sources */,
 			);
@@ -293,7 +286,6 @@
 				C9A010F919BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */,
 				C971A1C119B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */,
 				C93E2D5419ADD51200B06809 /* atContactsTests.m in Sources */,
-				C971A1BD19AF95FD00F67E75 /* PDXNameFinder.m in Sources */,
 				C971A1C519B4A42100F67E75 /* PDXResultsViewController.m in Sources */,
 				C9A010FD19BCBD0E0024BFC6 /* PDXViewController.m in Sources */,
 			);

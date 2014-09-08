@@ -34,4 +34,35 @@
 }
 */
 
+#pragma mark - Convenience methods
+
+/**
+ *  Convenience method to retrieve data model from App Delegate
+ *
+ *  @return Data model stored in User Defaults
+ *
+ *  @since 1.0
+ */
+- (PDXDataModel *)data {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    PDXDataModel *data = [appDelegate data];
+    
+    return data;
+}
+
+/**
+ *  Convenience method to retrieve Twitter Communicator from App Delegate
+ *
+ *  @return App's PDXTwitterCommunicator
+ *
+ *  @since 1.0
+ */
+- (PDXTwitterCommunicator *)twitter {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    PDXTwitterCommunicator *twitter = [appDelegate twitter];
+    
+    return twitter;
+}
+
+
 @end

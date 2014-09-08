@@ -7,6 +7,7 @@
 //
 
 #import "PDXPreApprovalViewController.h"
+#import "PDXInputViewController.h"
 
 @interface PDXPreApprovalViewController ()
 
@@ -79,7 +80,9 @@
  *  @since 1.0
  */
 - (void)dismissViewController {
-    [self.nameFinder retrieveInformation];
+    PDXInputViewController *superview = (PDXInputViewController *)[self parentViewController];
+    NSString *name = superview.twitterName.text;
+    [[self twitter] getUserInfo:name];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
