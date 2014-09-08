@@ -110,7 +110,7 @@
  */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == _twitterName) {
-        [self findTwitterName];
+        // [self findTwitterName]; // Not necessary as it will be called from 
     } else if (textField == _hashtag) {
         [self endHashtagEditing];
     }

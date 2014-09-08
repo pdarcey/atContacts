@@ -11,7 +11,7 @@
 @import Accounts;
 @import Social;
 
-@protocol PDXTwitterCommunicatorDelegate
+@protocol PDXTwitterCommunicatorDelegate <NSObject>
 #pragma mark - Protocol
 
 @optional

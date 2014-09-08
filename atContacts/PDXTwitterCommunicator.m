@@ -24,11 +24,13 @@
  *  @since 1.0
  */
 - (void)sendTwitterRequestTo:(NSURL *)url getOrPost:(SLRequestMethod)getOrPost parameters:(NSDictionary *)parameters requestType:(PDXRequestType)requestType {
+    ACAccountStore *store = [self accountStore];
+    ACAccountType *accountType = [self accountType];
     if (![self userDeniedPermission] && ![self userHasNoAccount]) {
         // Actually access user's Twitter account to get info
-        [_accountStore requestAccessToAccountsWithType:_twitterType options:nil completion:^(BOOL granted, NSError *error) {
+        [store requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
             if (granted == YES) {
-                NSArray *arrayOfAccounts = [_accountStore accountsWithAccountType:_twitterType];
+                NSArray *arrayOfAccounts = [store accountsWithAccountType:accountType];
                 
                 if ([arrayOfAccounts count] > 0) {
                     ACAccount *twitterAccount = [arrayOfAccounts lastObject];
@@ -176,7 +178,7 @@
  */
 - (void)handleGetUserInfo:(NSDictionary *)data {
     NSDictionary *results = [self parseUsersLookup:data];
-    [self displayInfo:results];
+    [_delegate displayInfo:results];
 }
 
 /**
@@ -188,7 +190,7 @@
  */
 - (void)handleGetFollowStatus:(NSDictionary *)data {
     BOOL result = [self parseFriendshipsLookup:data];
-    [self toggleTwitter:result];
+    [_delegate toggleTwitter:result];
 }
 
 /**
@@ -200,7 +202,7 @@
  */
 - (void)handleFollow:(NSDictionary *)data {
     BOOL result = [self parseFriendshipsCreate:data];
-    [self toggleTwitter:result];
+    [_delegate toggleTwitter:result];
 }
 
 /**
@@ -212,7 +214,7 @@
  */
 - (void)handleUnfollow:(NSDictionary *)data {
     BOOL result = [self parseFriendshipsCreate:data];
-    [self toggleTwitter:result];
+    [_delegate toggleTwitter:result];
 }
 
 #pragma mark - Parse Data
@@ -363,7 +365,7 @@
  *  @since 1.0
  */
 - (void)displayInfo:(NSDictionary *)data {
-    
+
 }
 
 #pragma mark - Error Conditions

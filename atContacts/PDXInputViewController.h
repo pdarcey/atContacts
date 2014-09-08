@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PDXViewController.h"
 
-@interface PDXInputViewController : PDXViewController
+@interface PDXInputViewController : PDXViewController <PDXTwitterCommunicatorDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *twitterName;
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;
