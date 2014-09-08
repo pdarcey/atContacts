@@ -7,8 +7,9 @@
 //
 
 #import "PDXInputViewController.h"
-#import "PDXNameFinder.h"
-#import "AppDelegate.h"
+#import "PDXTwitterCommunicator.h"
+#import "PDXResultsViewController.h"
+#import "PDXPreApprovalViewController.h"
 
 @interface PDXInputViewController ()
 
@@ -51,7 +52,7 @@
  *
  *  @since 1.0
  */
-- (IBAction)findTwitterName:(id)sender {    
+- (IBAction)findTwitterName {    
 //    self.activitySpinner.hidden = NO;
 //    [activitySpinner startAnimating];
     
@@ -63,8 +64,19 @@
             name = [name stringByReplacingOccurrencesOfString:@"@" withString:@""];
         }
 
-        PDXNameFinder *nameFinder = [PDXNameFinder new];
-        [nameFinder findName:name];
+        // Check if permission has previously been asked for
+        if (![self dialogHasBeenPresented]) {
+            [self presentPreApprovalDialog];
+            
+        } else {
+            
+            PDXTwitterCommunicator *twitter = [self twitter];
+            twitter.delegate = self;
+            [twitter getUserInfo:name];
+
+        }
+
+        
     } else {
         [_twitterName becomeFirstResponder];
     }
@@ -77,8 +89,8 @@
  *
  *  @since 1.0
  */
-- (IBAction)touchDownOutsideFields:(id)sender {
-    [self endHashtagEditing:nil];
+- (IBAction)touchDownOutsideFields {
+    [self endHashtagEditing];
 }
 
 #pragma mark - Hashtag editing
@@ -98,9 +110,9 @@
  */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == _twitterName) {
-        [self findTwitterName:nil];
+        [self findTwitterName];
     } else if (textField == _hashtag) {
-        [self endHashtagEditing:textField];
+        [self endHashtagEditing];
     }
     
     return YES;
@@ -124,7 +136,7 @@
  *
  *  @since 1.0
  */
-- (IBAction)endHashtagEditing:(id)sender {
+- (IBAction)endHashtagEditing {
     _hashtag.borderStyle = UITextBorderStyleNone;
     _hashtag.backgroundColor = [UIColor clearColor];
     if (_hashtag.text.length > 0) {
@@ -164,22 +176,6 @@
      ];
 }
 
-#pragma mark - Convenience methods
-
-/**
- *  Convenience method to retrieve data model from User Defaults
- *
- *  @return Data model stored in User Defaults
- *
- *  @since 1.0
- */
-- (PDXDataModel *)data {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    PDXDataModel *data = [appDelegate data];
-
-    return data;
-}
-
 /**
  *  Stores the entered hashtag in the data model, so it can be used later by ResultsViewController
  *
@@ -211,6 +207,86 @@
     }
     
     return hashtag;
+}
+
+#pragma mark - Convenience methods for User Defaults
+
+/**
+ *  Convenience method to retrieve dialogHasBeenPresented from User Defaults
+ *  Used to decide whether user has already been presented with pre-approval dialog
+ *
+ *  @return YES if the dialog has already been presented; NO if not
+ *
+ *  @since 1.0
+ */
+- (BOOL)dialogHasBeenPresented {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL dialogHasBeenPresented = [defaults boolForKey:@"dialogHasBeenPresented"];
+    
+    return dialogHasBeenPresented;
+}
+
+/**
+ *  Convenience method to retrieve userDeniedPermission from User Defaults
+ *  User has already been presented with pre-approval dialog
+ *
+ *  @return YES if the user has denied permission to use their stored Twitter credentials; NO if not
+ *
+ *  @since 1.0
+ */
+- (BOOL)userDeniedPermission {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL userDeniedPermission = [defaults boolForKey:@"userDeniedPermission"];
+    
+    return userDeniedPermission;
+}
+
+/**
+ *  Convenience method to retrieve userHasNoAccount from User Defaults
+ *  User has already been presented with pre-approval dialog
+ *
+ *  @return YES if the user has told us that they do not have a Twitter account; NO if not
+ *
+ *  @since 1.0
+ */
+- (BOOL)userHasNoAccount {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL userHasNoAccount = [defaults boolForKey:@"userHasNoAccount"];
+    
+    return userHasNoAccount;
+}
+
+#pragma mark - Protocol methods
+
+- (void)displayInfo:(NSDictionary *)data {
+    // Initialise Results screen
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PDXResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"Results"];
+    
+    // Display view
+    [self presentViewController:resultsViewController animated:YES completion:nil];
+}
+
+/**
+ *  Presents the pre-approval scene from the Main.storyboard
+ *
+ *  User will select one of three options, which will determine what happens next:
+ *
+ *  1. Use Twitter account - continues to retrieve information from Twitter
+ *
+ *  2. I don't have a Twitter account - presents a dialog saying we need a Twitter account to
+ *     use this app
+ *
+ *  3. Do NOT use my Twitter account - presents a dialog saying we need a Twitter account to
+ *     use this app
+ *
+ *  @since 1.0
+ */
+- (void)presentPreApprovalDialog {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PDXPreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"PreApproval"];
+    
+    [self presentViewController:preApprovalViewController animated:YES completion:nil];
 }
 
 @end

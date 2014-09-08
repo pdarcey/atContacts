@@ -14,10 +14,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *twitterName;
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;
 
-- (IBAction)findTwitterName:(id)sender;
-- (IBAction)touchDownOutsideFields:(id)sender;
+- (IBAction)findTwitterName;
+- (IBAction)touchDownOutsideFields;
 - (IBAction)startHashtagEditing:(id)sender;
-- (IBAction)endHashtagEditing:(id)sender;
+- (IBAction)endHashtagEditing;
 
 @end
 

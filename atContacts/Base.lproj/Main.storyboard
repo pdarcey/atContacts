@@ -45,7 +45,8 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="findTwitterName:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="lbs-1z-3Q5"/>
+                                    <action selector="findTwitterName" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="2cU-di-Uzx"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="cBB-yA-qHv"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="hashtag" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qfS-g8-B3B">
@@ -57,8 +58,8 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="endHashtagEditing:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="Dyn-MU-KUb"/>
-                                    <action selector="endHashtagEditing:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="Frx-y5-IkU"/>
+                                    <action selector="endHashtagEditing" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="E3D-34-ePw"/>
+                                    <action selector="endHashtagEditing" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="W8H-ht-tb7"/>
                                     <action selector="startHashtagEditing:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="V7t-xY-2pb"/>
                                 </connections>
                             </textField>
@@ -84,14 +85,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ous-u3-47o">
-                    <connections>
-                        <action selector="startHashtagEditing:" destination="vXZ-lx-hvc" id="Zzp-XA-vqK"/>
-                    </connections>
-                </pongPressGestureRecognizer>
                 <tapGestureRecognizer cancelsTouchesInView="NO" id="FEO-WN-GgB">
                     <connections>
-                        <action selector="touchDownOutsideFields:" destination="vXZ-lx-hvc" id="C5g-OO-bzd"/>
+                        <action selector="endHashtagEditing" destination="vXZ-lx-hvc" id="zJh-8f-QoF"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
