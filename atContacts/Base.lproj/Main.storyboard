@@ -62,7 +62,7 @@
                                 <connections>
                                     <action selector="endHashtagEditing" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="E3D-34-ePw"/>
                                     <action selector="endHashtagEditing" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="W8H-ht-tb7"/>
-                                    <action selector="startHashtagEditing:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="V7t-xY-2pb"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="9MX-cG-8fq"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -191,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fZ-Qi-ewn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="935" y="-516"/>
+            <point key="canvasLocation" x="1219" y="-512"/>
         </scene>
         <!--Results-->
         <scene sceneID="ZPo-XO-9Ls">
@@ -259,7 +259,7 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrangeFade" translatesAutoresizingMaskIntoConstraints="NO" id="Yvn-J6-16N">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="OrangeFade" translatesAutoresizingMaskIntoConstraints="NO" id="Yvn-J6-16N">
                                 <rect key="frame" x="0.0" y="507" width="600" height="135"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Opm-xg-hbP" appends="YES" id="90s-fR-Yjw"/>
@@ -311,35 +311,44 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctm-pf-gHA" userLabel="twitter">
-                                <rect key="frame" x="75" y="517" width="69" height="62"/>
+                                <rect key="frame" x="75" y="539" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" hint="Will follow this person on Twitter" label="Follow on Twitter button"/>
-                                <state key="normal" image="Bird">
+                                <state key="normal" image="Twitter Selected">
                                     <color key="titleColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled" image="Twitter Disabled"/>
+                                <state key="selected" image="Twitter Selected"/>
+                                <state key="highlighted" image="Twitter Highlighted"/>
                                 <connections>
                                     <action selector="followOnTwitter:" destination="a2f-bI-RVU" eventType="touchUpInside" id="VYu-pB-RPP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju2-0W-kr1" userLabel="both">
-                                <rect key="frame" x="279" y="517" width="42" height="62"/>
+                                <rect key="frame" x="280" y="539" width="40" height="40"/>
                                 <accessibility key="accessibilityConfiguration" hint="Follows on Twitter and adds to contacts" label="Both button"/>
-                                <state key="normal" image="Plus">
+                                <state key="normal" image="Both Selected">
                                     <color key="titleColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled" image="Both Disabled"/>
+                                <state key="selected" image="Both Selected"/>
+                                <state key="highlighted" image="Both Highlighted"/>
                                 <connections>
                                     <action selector="followAndAdd:" destination="a2f-bI-RVU" eventType="touchUpInside" id="Y2z-ff-0Nq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-PF-jaK" userLabel="contacts">
-                                <rect key="frame" x="462" y="517" width="63" height="62"/>
+                                <rect key="frame" x="485" y="539" width="40" height="40"/>
                                 <accessibility key="accessibilityConfiguration" hint="Will add this person to contacts" label="Add to contacts button"/>
-                                <state key="normal" image="AddressBookIcon">
+                                <state key="normal" image="Contacts Selected">
                                     <color key="titleColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled" image="Contacts Disabled"/>
+                                <state key="selected" image="Contacts Selected"/>
+                                <state key="highlighted" image="Contacts Highlighted"/>
                                 <connections>
                                     <action selector="addToContacts:" destination="a2f-bI-RVU" eventType="touchUpInside" id="TDo-cd-nCU"/>
                                 </connections>
@@ -374,26 +383,27 @@
                             <constraint firstItem="95n-fe-rtH" firstAttribute="centerX" secondItem="0AU-64-liZ" secondAttribute="centerX" id="5D1-hx-tNx"/>
                             <constraint firstAttribute="centerX" secondItem="iSE-R8-M22" secondAttribute="centerX" id="7cg-7D-eYc"/>
                             <constraint firstItem="wIu-zq-T26" firstAttribute="bottom" secondItem="Vgz-1v-uts" secondAttribute="bottom" constant="-5" id="8dd-Hc-qL4"/>
-                            <constraint firstItem="7db-G0-5GQ" firstAttribute="top" secondItem="86e-dG-L1q" secondAttribute="bottom" id="90T-iq-yJE"/>
+                            <constraint firstItem="7db-G0-5GQ" firstAttribute="top" secondItem="86e-dG-L1q" secondAttribute="bottom" id="9F2-XK-w1P"/>
                             <constraint firstAttribute="centerY" secondItem="ZrQ-4A-fAU" secondAttribute="centerY" id="A6S-W4-NxN"/>
                             <constraint firstAttribute="centerX" secondItem="95n-fe-rtH" secondAttribute="centerX" id="BXc-f9-HtE"/>
+                            <constraint firstAttribute="centerX" secondItem="86e-dG-L1q" secondAttribute="centerX" id="CLF-Ax-6Fp"/>
                             <constraint firstItem="wIu-zq-T26" firstAttribute="centerX" secondItem="Vgz-1v-uts" secondAttribute="centerX" id="D9w-EN-OUf"/>
                             <constraint firstAttribute="width" secondItem="lxn-3I-Z47" secondAttribute="width" id="DUu-Rn-C8T"/>
                             <constraint firstItem="0AU-64-liZ" firstAttribute="top" secondItem="95n-fe-rtH" secondAttribute="bottom" id="Djl-q3-Jwh"/>
                             <constraint firstItem="OWX-u5-Leo" firstAttribute="trailing" secondItem="Vgz-1v-uts" secondAttribute="trailing" id="Dld-05-Gxx"/>
+                            <constraint firstItem="86e-dG-L1q" firstAttribute="width" secondItem="dWp-am-uRh" secondAttribute="width" multiplier="0.75" id="ETr-J8-HyZ"/>
                             <constraint firstItem="wIu-zq-T26" firstAttribute="width" secondItem="Vgz-1v-uts" secondAttribute="width" id="GUR-M5-nd6"/>
                             <constraint firstAttribute="centerX" secondItem="ZrQ-4A-fAU" secondAttribute="centerX" id="HgH-AT-SIs"/>
                             <constraint firstAttribute="centerX" secondItem="Vgz-1v-uts" secondAttribute="centerX" id="Hx6-IE-Tt4"/>
                             <constraint firstItem="Ctm-pf-gHA" firstAttribute="height" secondItem="Ju2-0W-kr1" secondAttribute="height" id="Ij8-L2-14B"/>
                             <constraint firstItem="7db-G0-5GQ" firstAttribute="top" secondItem="Ctm-pf-gHA" secondAttribute="bottom" constant="21" id="Jyu-Q9-q9d"/>
-                            <constraint firstItem="86e-dG-L1q" firstAttribute="width" secondItem="dWp-am-uRh" secondAttribute="width" multiplier="0.75" id="Ooc-gk-XQw"/>
+                            <constraint firstItem="86e-dG-L1q" firstAttribute="trailing" secondItem="LFf-PF-jaK" secondAttribute="trailing" id="Qe9-wm-JDr"/>
                             <constraint firstAttribute="centerY" secondItem="iSE-R8-M22" secondAttribute="centerY" id="S9S-Re-pqH"/>
+                            <constraint firstItem="86e-dG-L1q" firstAttribute="top" secondItem="i1l-eD-iST" secondAttribute="bottom" constant="7" id="SxG-oQ-Lx8"/>
                             <constraint firstItem="i1l-eD-iST" firstAttribute="top" secondItem="OWX-u5-Leo" secondAttribute="bottom" constant="7" id="THZ-A1-2rp"/>
                             <constraint firstItem="Ctm-pf-gHA" firstAttribute="centerY" secondItem="Ju2-0W-kr1" secondAttribute="centerY" id="TKb-cM-JI1"/>
-                            <constraint firstItem="86e-dG-L1q" firstAttribute="top" secondItem="i1l-eD-iST" secondAttribute="bottom" constant="7" id="TPk-Yx-e5p"/>
                             <constraint firstAttribute="height" secondItem="ZrQ-4A-fAU" secondAttribute="height" id="V42-0a-6Wm"/>
                             <constraint firstItem="X7X-fj-m0i" firstAttribute="top" secondItem="Vgz-1v-uts" secondAttribute="bottom" constant="7" id="WuR-2C-uE5"/>
-                            <constraint firstItem="Ctm-pf-gHA" firstAttribute="leading" secondItem="86e-dG-L1q" secondAttribute="leading" id="aws-b1-bSx"/>
                             <constraint firstAttribute="height" secondItem="lxn-3I-Z47" secondAttribute="height" id="bUO-S9-V26"/>
                             <constraint firstItem="yci-qZ-zSI" firstAttribute="trailing" secondItem="PrX-as-Dkg" secondAttribute="trailing" id="cON-4T-YtI"/>
                             <constraint firstItem="Vgz-1v-uts" firstAttribute="trailing" secondItem="i1l-eD-iST" secondAttribute="trailing" id="eEt-97-Zfe"/>
@@ -409,7 +419,6 @@
                             <constraint firstItem="OWX-u5-Leo" firstAttribute="top" secondItem="X7X-fj-m0i" secondAttribute="bottom" constant="7" id="nds-Jj-XEH"/>
                             <constraint firstItem="tLV-6H-FHy" firstAttribute="leading" secondItem="Vgz-1v-uts" secondAttribute="leading" id="oLN-s1-tT0"/>
                             <constraint firstItem="95n-fe-rtH" firstAttribute="top" secondItem="PmI-Np-wXE" secondAttribute="bottom" constant="5" id="of6-gG-lGy"/>
-                            <constraint firstAttribute="centerX" secondItem="86e-dG-L1q" secondAttribute="centerX" id="paV-Z8-3uG"/>
                             <constraint firstItem="yci-qZ-zSI" firstAttribute="leading" secondItem="Vgz-1v-uts" secondAttribute="leading" id="pbO-xc-kso"/>
                             <constraint firstItem="X7X-fj-m0i" firstAttribute="leading" secondItem="tLV-6H-FHy" secondAttribute="trailing" constant="8" id="qUE-Pg-xWG"/>
                             <constraint firstItem="58a-DN-NVP" firstAttribute="trailing" secondItem="dWp-am-uRh" secondAttribute="trailingMargin" id="qkZ-hs-rHY"/>
@@ -418,8 +427,8 @@
                             <constraint firstItem="Ctm-pf-gHA" firstAttribute="height" secondItem="LFf-PF-jaK" secondAttribute="height" id="s3i-Cd-GIn"/>
                             <constraint firstAttribute="width" secondItem="iSE-R8-M22" secondAttribute="width" id="udq-sZ-4Na"/>
                             <constraint firstItem="yci-qZ-zSI" firstAttribute="baseline" secondItem="OWX-u5-Leo" secondAttribute="baseline" id="wf0-La-V6d"/>
+                            <constraint firstItem="86e-dG-L1q" firstAttribute="leading" secondItem="Ctm-pf-gHA" secondAttribute="leading" id="yfw-nr-odl"/>
                             <constraint firstAttribute="centerX" secondItem="lxn-3I-Z47" secondAttribute="centerX" id="ywD-2O-avD"/>
-                            <constraint firstItem="86e-dG-L1q" firstAttribute="trailing" secondItem="LFf-PF-jaK" secondAttribute="trailing" id="yyW-14-5E4"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -452,17 +461,23 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="941" y="366"/>
+            <point key="canvasLocation" x="1170" y="539"/>
         </scene>
     </scenes>
     <resources>
-        <image name="AddressBookIcon" width="63" height="62"/>
         <image name="ApprovalDialog" width="290" height="485"/>
         <image name="Background" width="1200" height="1200"/>
-        <image name="Bird" width="69" height="55"/>
+        <image name="Both Disabled" width="40" height="40"/>
+        <image name="Both Highlighted" width="40" height="40"/>
+        <image name="Both Selected" width="40" height="40"/>
+        <image name="Contacts Disabled" width="40" height="40"/>
+        <image name="Contacts Highlighted" width="40" height="40"/>
+        <image name="Contacts Selected" width="40" height="40"/>
         <image name="Indicator" width="6" height="92"/>
         <image name="OrangeFade" width="320" height="135"/>
-        <image name="Plus" width="42" height="42"/>
+        <image name="Twitter Disabled" width="40" height="40"/>
+        <image name="Twitter Highlighted" width="40" height="40"/>
+        <image name="Twitter Selected" width="40" height="40"/>
         <image name="defaultPhoto" width="400" height="400"/>
     </resources>
 </document>
