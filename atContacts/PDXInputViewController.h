@@ -13,11 +13,13 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *twitterName;
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;
+@property (weak, nonatomic) PDXTwitterCommunicator *twitter;
 
 - (IBAction)findTwitterName;
-- (IBAction)touchDownOutsideFields;
 - (IBAction)startHashtagEditing:(id)sender;
 - (IBAction)endHashtagEditing;
+
+- (void)reset;
 
 @end
 

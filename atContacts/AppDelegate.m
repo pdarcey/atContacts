@@ -42,41 +42,25 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - Interface methods
 
 /**
- *  Convenience method to make a data model if one doesn't exist, and to return it when it does
+ *  Convenience method to make an empty dataArray if one doesn't exist, and to return an array of data model objects when it does
  *
- *  @return Data model
+ *  @return An array of data model objects (or an empty array)
  *
  *  @since 1.0
  */
-- (PDXDataModel *)data {
-    
-    if (_data != nil) {
-        return _data;
+- (NSArray *)dataArray {
+ 
+    if (_dataArray != nil) {
+        return _dataArray;
     }
-    PDXDataModel *dataModel = [PDXDataModel new];
-    _data = dataModel;
+    NSArray *dataArray = @[];
+    _dataArray = dataArray;
     
-    return _data;
-}
+    return _dataArray;
 
-/**
- *  Convenience method to make a Twitter communicator if one doesn't exist, and to return it when it does
- *
- *  @return twitterCommunicator
- *
- *  @since 1.0
- */
-- (PDXTwitterCommunicator *)twitter {
-    
-    if (_twitter != nil) {
-        return _twitter;
-    }
-    PDXTwitterCommunicator *twitterCommunicator = [PDXTwitterCommunicator new];
-    _twitter = twitterCommunicator;
-    
-    return _twitter;
 }
 
 

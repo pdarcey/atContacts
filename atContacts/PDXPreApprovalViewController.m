@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    PDXTwitterCommunicator *twitter = [self twitter];
+    twitter.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,12 +82,31 @@
  *  @since 1.0
  */
 - (void)dismissViewController {
-    PDXInputViewController *superview = (PDXInputViewController *)[self parentViewController];
+    PDXInputViewController *superview = (PDXInputViewController *)_parent;
     NSString *name = superview.twitterName.text;
+    PDXTwitterCommunicator *twitter = [self twitter];
+    twitter.delegate = _parent;
     [[self twitter] getUserInfo:name];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - Convenience methods
+
+/**
+ *  Convenience method to retrieve Twitter Communicator
+ *
+ *  @return Twitter Communicator
+ *
+ *  @since 1.0
+ */
+- (PDXTwitterCommunicator *)twitter {
+    if (_twitter != nil) {
+        return _twitter;
+    }
+    PDXTwitterCommunicator *twitterCommunicator = [PDXTwitterCommunicator new];
+    _twitter = twitterCommunicator;
+    return _twitter;
+}
 
 #pragma mark - Navigation
 

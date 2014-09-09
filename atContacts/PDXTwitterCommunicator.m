@@ -232,6 +232,9 @@
 - (NSDictionary *)parseUsersLookup:(NSDictionary *)data {
     // Extract the fields we want
     NSString *name = [self extractString:@"name" from:data];
+    NSDictionary *splitNames = [self splitName:name];
+    NSString *firstName = [splitNames valueForKey:@"firstName"];
+    NSString *lastName = [splitNames valueForKey:@"lastName"];
     NSString *idString = [self extractString:@"id_str" from:data];
     NSString *photoURLString = [self extractString:@"profile_image_url" from:data];
     NSString *description = [self extractString:@"description" from:data];
@@ -239,10 +242,36 @@
     NSString *twitterName = [NSString stringWithFormat:@"@%@", shortTwitterName];
     NSString *personalURL = [self parsePersonalURL:data];
     
-    NSDictionary *results = @{ @"name" : name, @"idString" :idString, @"photoURLString" : photoURLString, @"personalURL" : personalURL, @"description" : description, @"twitterName" : twitterName };
+    NSDictionary *results = @{ @"firstName" : firstName,
+                               @"lastName" : lastName,
+                               @"twitterName" : twitterName,
+                               @"idString" : idString,
+                               @"emailAddress" : @"",
+                               @"phoneNumber" : @"",
+                               @"wwwAddress" : personalURL,
+                               @"twitterDescription" : description,
+                               @"photoURL" : photoURLString,
+                               };
     
     return results;
-   
+}
+
+- (NSDictionary *)splitName:(NSString *)name {
+    // Split name into firstName / lastName
+    NSDictionary *splitNames;
+    if (![name isEqualToString:@""]) {
+        NSArray *nameArray = [name componentsSeparatedByString:@" "];
+        NSString *firstWord = nameArray[0];
+        if ([name isEqualToString:firstWord]) {
+            // Name is just one word
+            splitNames = @{ @"firstName" : name, @"lastName" : @"" };
+         } else {
+            // Name is multi-word
+             splitNames = @{ @"firstName" : firstWord, @"lastName" : [name substringFromIndex:[firstWord length]] };
+        }
+    }
+    
+    return splitNames;
 }
 
 /*  The following two methods differ because Twitter returns a different data dictionary from a getFollowStatus request
@@ -572,20 +601,6 @@
     BOOL userHasNoAccount = [defaults boolForKey:@"userHasNoAccount"];
     
     return userHasNoAccount;
-}
-
-/**
- *  Convenience method to retrieve data model from User Defaults
- *
- *  @return Data model stored in User Defaults
- *
- *  @since 1.0
- */
-- (PDXDataModel *)data {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    PDXDataModel *data = [appDelegate data];
-    
-    return data;
 }
 
 

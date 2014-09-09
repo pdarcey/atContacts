@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "PDXViewController.h"
+#import "PDXTwitterCommunicator.h"
 
-@interface PDXResultsViewController : PDXViewController <UITextFieldDelegate>
+@interface PDXResultsViewController : PDXViewController <UITextFieldDelegate, PDXTwitterCommunicatorDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UILabel *lastName;
@@ -24,14 +25,20 @@
 @property (weak, nonatomic) IBOutlet UIButton *twitterButton;
 @property (weak, nonatomic) IBOutlet UIButton *contactsButton;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *blurOverlay;
+
+@property (weak, nonatomic) NSDictionary *data;
+@property (weak, nonatomic) UIViewController *parent;
+@property (weak, nonatomic) PDXTwitterCommunicator *twitter;
+@property (weak, nonatomic) NSString *hashtag;
+
 @property (weak, nonatomic) NSArray *originalConstraints;
 @property (weak, nonatomic) UITextField *realTextField;
-
 
 - (IBAction)followOnTwitter:(UIButton *)sender;
 - (IBAction)addToContacts:(UIButton *)sender;
 - (IBAction)followAndAdd:(UIButton *)sender;
-
 - (IBAction)swipeToDismiss;
+
+- (void)initialiseData:(NSDictionary *)data;
 
 @end

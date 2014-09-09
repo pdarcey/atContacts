@@ -24,41 +24,50 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[self twitter] setDelegate:self];
+    [self initialiseData:_data];
+}
+
+#pragma mark - Initialise data fields
+
 /**
- *  Sets up initial values to display for all fields, based on retrieved data stored in User Defaults
+ *  Sets up initial values to display for all fields, based on data dictionary passed in by the parent when the view is created
  *
  *  @since 1.0
  */
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)initialiseData:(NSDictionary *)data {
     
-    // Set values from data
-    PDXDataModel *data = [self data];
+    _firstName.text = [data valueForKey:@"firstName"];
+    _lastName.text = [data valueForKey:@"lastName"];
+    NSString *photoURL = [data valueForKey:@"photoURL"];
+    _twitterHandle.text = [data valueForKey:@"twitterName"];
+    _email.text = [data valueForKey:@"emailAddress"];
+    _phone.text = [data valueForKey:@"phoneNumber"];
+    _webAddress.text = [data valueForKey:@"wwwAddress"];
+    NSString *dataDescription = [data valueForKey:@"twitterDescription"];
     
-    _firstName.text = data.firstName;
-    _lastName.text = data.lastName;
-    NSString *photoURL = data.photoURL;
     [self getPhoto:photoURL];
-    _twitterHandle.text = data.twitterName;
-    _email.text = data.emailAddress;
-    _phone.text = data.phoneNumber;
-    _webAddress.text = data.wwwAddress;
     NSString *combinedHashtagAndDescription = @"";
-    if (data.hashtag && ![data.hashtag isEqualToString:@""]) {
-        combinedHashtagAndDescription = data.hashtag;
-        if (data.twitterDescription && ![data.twitterDescription isEqualToString:@""]) {
-            [combinedHashtagAndDescription stringByAppendingString:[NSString stringWithFormat:@"\n%@", data.twitterDescription]];
+    if (_hashtag && ![_hashtag isEqualToString:@""]) {
+        combinedHashtagAndDescription = _hashtag;
+        if (dataDescription && ![dataDescription isEqualToString:@""]) {
+            combinedHashtagAndDescription = [combinedHashtagAndDescription stringByAppendingString:[NSString stringWithFormat:@"\n%@", dataDescription]];
         }
-    } else if (data.twitterDescription && ![data.twitterDescription isEqualToString:@""]) {
-            combinedHashtagAndDescription = data.twitterDescription;
+    } else if (dataDescription && ![dataDescription isEqualToString:@""]) {
+        combinedHashtagAndDescription = dataDescription;
     }
     _twitterDescription.text = combinedHashtagAndDescription;
-    _twitterButton.selected = data.alreadyFollow;
+    _twitterButton.selected = NO;
+    
+    PDXTwitterCommunicator *twitter = [self twitter];
+    twitter.delegate = self;
+    [twitter getFollowStatus:[data valueForKey:@"idString"]];
     _indicator.hidden = YES;
     _blurOverlay.hidden = YES;
+    
 }
-
-#pragma mark - Download Photo
 
 /**
  *  Download the person's photo in the background, and display it when it becomes available
@@ -100,17 +109,19 @@
 #pragma mark - Convenience methods
 
 /**
- *  Convenience method to retrieve data model from User Defaults
+ *  Convenience method to retrieve Twitter Communicator
  *
- *  @return Data model stored in User Defaults
+ *  @return Twitter Communicator
  *
  *  @since 1.0
  */
-- (PDXDataModel *)data {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    PDXDataModel *data = [appDelegate data];
-    
-    return data;
+- (PDXTwitterCommunicator *)twitter {
+    if (_twitter != nil) {
+        return _twitter;
+    }
+    PDXTwitterCommunicator *twitterCommunicator = [PDXTwitterCommunicator new];
+    _twitter = twitterCommunicator;
+    return _twitter;
 }
 
 /**
@@ -177,6 +188,12 @@
     return newConstraints;
 }
 
+#pragma mark - Protocol methods
+
+- (void)toggleTwitter:(BOOL)onOff {
+    _twitterButton.selected = !onOff;
+}
+
 #pragma mark - Button actions
 
 /**
@@ -187,7 +204,15 @@
  *  @since 1.0
  */
 - (IBAction)followOnTwitter:(UIButton *)sender {
-    NSLog(@"followOnTwitter button selected");
+    if (sender.selected) {
+        // Follow on Twitter
+        PDXTwitterCommunicator *twitter = [self twitter];
+        [twitter follow:[_data valueForKey:@"idString"]];
+    } else {
+        // Unfollow
+        PDXTwitterCommunicator *twitter = [self twitter];
+        [twitter unfollow:[_data valueForKey:@"idString"]];
+    }
 }
 
 /**

@@ -32,10 +32,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    PDXDataModel *data = [self data];
-    _hashtag.text = data.hashtag;
-    [_twitterName setText:@""];
-    [_twitterName becomeFirstResponder];
+    [self reset];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,6 +41,17 @@
 }
 
 #pragma mark - Actions
+
+/**
+ *  Sets twitterName to @"", the hashtag to the last used hashtag, and prepares to receive input in twitterName
+ *
+ *  @since 1.0
+ */
+- (void)reset {
+    [_twitterName setText:@""];
+    [_twitterName becomeFirstResponder];
+    _hashtag.text = [self retrieveHashtag];
+}
 
 /**
  *  Takes name from twitterName field and tries to find information from Twitter for that user
@@ -75,22 +83,10 @@
             [twitter getUserInfo:name];
 
         }
-
         
     } else {
         [_twitterName becomeFirstResponder];
     }
-}
-
-/**
- *  If user taps outside the editable fields, end editing in all fields and set twitterName to be the first responder
- *
- *  @param sender Not used; irrelevant
- *
- *  @since 1.0
- */
-- (IBAction)touchDownOutsideFields {
-    [self endHashtagEditing];
 }
 
 #pragma mark - Hashtag editing
@@ -110,7 +106,7 @@
  */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == _twitterName) {
-        // [self findTwitterName]; // Not necessary as it will be called from 
+        [self findTwitterName];  
     } else if (textField == _hashtag) {
         [self endHashtagEditing];
     }
@@ -131,6 +127,7 @@
 
 /**
  *  Resets hashtag to look like a label, rather than an input field, and adds the leading "#" if necessary
+ *  Called by tap outside the UITextFields, or when editing in the hashtag field ends
  *
  *  @param sender Not used; irrelevent
  *
@@ -177,21 +174,6 @@
 }
 
 /**
- *  Stores the entered hashtag in the data model, so it can be used later by ResultsViewController
- *
- *  @param hashtag Text from the hashtag field
- *
- *  @since 1.0
- */
-- (void)saveHashtag:(NSString *)hashtag {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    PDXDataModel *data = [appDelegate data];
-    
-    data.hashtag = [self removeHash:hashtag];
-
-}
-
-/**
  *  Removes the leading "#" from a string
  *
  *  @param hashtag String which may/may not have a leading "#"
@@ -207,6 +189,24 @@
     }
     
     return hashtag;
+}
+
+#pragma mark - Convenience methods
+
+/**
+ *  Convenience method to retrieve Twitter Communicator
+ *
+ *  @return Twitter Communicator
+ *
+ *  @since 1.0
+ */
+- (PDXTwitterCommunicator *)twitter {
+    if (_twitter != nil) {
+        return _twitter;
+    }
+    PDXTwitterCommunicator *twitterCommunicator = [PDXTwitterCommunicator new];
+    _twitter = twitterCommunicator;
+    return _twitter;
 }
 
 #pragma mark - Convenience methods for User Defaults
@@ -256,12 +256,48 @@
     return userHasNoAccount;
 }
 
+/**
+ *  Stores the entered hashtag (without the leading #) in user defaults, so it can be used later
+ *
+ *  @param hashtag Text from the hashtag field
+ *
+ *  @since 1.0
+ */
+- (void)saveHashtag:(NSString *)hashtag {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:[self removeHash:hashtag] forKey:@"lastUsedHashtag"];
+    [defaults synchronize];
+}
+
+/**
+ *  Retrieves the last used hashtag from user defaults
+ *
+ *  @return The last used hashtag (without the leading #), or @""
+ *
+ *  @since 1.0
+ */
+- (NSString *)retrieveHashtag {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *hashtag = [defaults valueForKey:@"lastUsedHashtag"];
+    if (hashtag) {
+        return hashtag;
+    }
+    hashtag = @"";
+    
+    return hashtag;
+}
+
 #pragma mark - Protocol methods
 
-- (void)displayInfo:(NSDictionary *)data {
+- (void)displayInfo:(NSDictionary *)data {    
     // Initialise Results screen
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     PDXResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"Results"];
+    
+    resultsViewController.data = data;
+    resultsViewController.parent = self;
+    resultsViewController.hashtag = _hashtag.text;
+    resultsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
     // Display view
     [self presentViewController:resultsViewController animated:YES completion:nil];
@@ -286,6 +322,7 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     PDXPreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"PreApproval"];
     
+    preApprovalViewController.parent = self;
     [self presentViewController:preApprovalViewController animated:YES completion:nil];
 }
 

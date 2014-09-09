@@ -12,7 +12,5 @@
 
 @interface PDXViewController : UIViewController <PDXTwitterCommunicatorDelegate>
 
-- (PDXDataModel *)data;
-- (PDXTwitterCommunicator *)twitter;
 
 @end

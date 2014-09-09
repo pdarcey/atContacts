@@ -13,12 +13,9 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) PDXDataModel *data;
-@property (strong, nonatomic) PDXTwitterCommunicator *twitter;
+@property (strong, nonatomic) NSArray *dataArray;
 
-
-- (PDXDataModel *)data;
-- (PDXTwitterCommunicator *)twitter;
+- (NSArray *)dataArray;
 
 @end
 
