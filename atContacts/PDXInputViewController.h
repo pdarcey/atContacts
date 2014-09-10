@@ -16,7 +16,6 @@
 @property (weak, nonatomic) PDXTwitterCommunicator *twitter;
 
 - (IBAction)findTwitterName;
-- (IBAction)startHashtagEditing:(id)sender;
 - (IBAction)endHashtagEditing;
 
 - (void)reset;

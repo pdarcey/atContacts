@@ -26,10 +26,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *contactsButton;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *blurOverlay;
 
-@property (weak, nonatomic) NSDictionary *data;
-@property (weak, nonatomic) UIViewController *parent;
-@property (weak, nonatomic) PDXTwitterCommunicator *twitter;
-@property (weak, nonatomic) NSString *hashtag;
+@property (strong, nonatomic) NSDictionary *data;
+@property (strong, nonatomic) UIViewController *parent;
+@property (strong, nonatomic) PDXTwitterCommunicator *twitter;
+@property (strong, nonatomic) NSString *hashtag;
 
 @property (weak, nonatomic) NSArray *originalConstraints;
 @property (weak, nonatomic) UITextField *realTextField;

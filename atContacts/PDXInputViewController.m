@@ -92,6 +92,22 @@
 #pragma mark - Hashtag editing
 
 /**
+ *  Does a little "pop" and changes the textField from looking like a label to looking like an input field
+ *
+ *  @param textField Which textField has begun editing?
+ *
+ *  @since 1.0
+ */
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField == _hashtag) {
+        [self popAnimation:textField];
+        [_hashtag becomeFirstResponder];
+    }
+    
+    return YES;
+}
+
+/**
  *  Delegate method for UITextFields, called when user hits Return while in UITextField
  *
  *  If user is in twitterName, finds the twitterName;
@@ -112,17 +128,6 @@
     }
     
     return YES;
-}
-
-/**
- *  Does a little "pop" and changes the textField from looking like a label to looking like an input field
- *
- *  @param sender Not used; irrelevent
- *
- *  @since 1.0
- */
-- (IBAction)startHashtagEditing:(id)sender {
-    [self popAnimation:sender];
 }
 
 /**
@@ -150,7 +155,7 @@
 /**
  *  Does a little "pop" and changes the textField from looking like a label to looking like an input field
  *
- *  @param textField The UITextField to "pop". The only one wired up to this is hashtag
+ *  @param textField The UITextField to "pop". Should only ever be called for the field hashtag
  *
  *  @since 1.0
  */
@@ -294,13 +299,15 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     PDXResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"Results"];
     
-    resultsViewController.data = data;
-    resultsViewController.parent = self;
-    resultsViewController.hashtag = _hashtag.text;
-    resultsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    
+    __block NSDictionary *dictionary = data;
     // Display view
-    [self presentViewController:resultsViewController animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        resultsViewController.data = dictionary;
+        resultsViewController.parent = self;
+        resultsViewController.hashtag = _hashtag.text;
+        resultsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:resultsViewController animated:YES completion:nil];
+    });
 }
 
 /**
@@ -323,7 +330,9 @@
     PDXPreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"PreApproval"];
     
     preApprovalViewController.parent = self;
-    [self presentViewController:preApprovalViewController animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:preApprovalViewController animated:YES completion:nil];
+    });
 }
 
 @end
