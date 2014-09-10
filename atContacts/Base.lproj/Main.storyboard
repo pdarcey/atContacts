@@ -259,8 +259,8 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="OrangeFade" translatesAutoresizingMaskIntoConstraints="NO" id="Yvn-J6-16N">
-                                <rect key="frame" x="0.0" y="507" width="600" height="135"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrangeFade" translatesAutoresizingMaskIntoConstraints="NO" id="Yvn-J6-16N">
+                                <rect key="frame" x="0.0" y="529" width="600" height="135"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Opm-xg-hbP" appends="YES" id="90s-fR-Yjw"/>
                                 </connections>
