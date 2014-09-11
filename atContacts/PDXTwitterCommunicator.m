@@ -249,7 +249,10 @@
     NSString *description = [self extractString:@"description" from:data];
     NSString *shortTwitterName = [self extractString:@"screen_name" from:data];
     NSString *twitterName = [NSString stringWithFormat:@"@%@", shortTwitterName];
-    NSString *personalURL = [self parsePersonalURL:data];
+    NSString *personalURL = [self extractString:@"url" from:data];
+    if (!personalURL) {
+        personalURL = [self parsePersonalURL:data];
+    }
     
     NSDictionary *results = @{ @"firstName" : firstName,
                                @"lastName" : lastName,
@@ -276,7 +279,7 @@
             splitNames = @{ @"firstName" : name, @"lastName" : @"" };
          } else {
             // Name is multi-word
-             splitNames = @{ @"firstName" : firstWord, @"lastName" : [name substringFromIndex:[firstWord length]] };
+             splitNames = @{ @"firstName" : firstWord, @"lastName" : [name substringFromIndex:[firstWord length] + 1] };
         }
     }
     
