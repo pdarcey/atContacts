@@ -98,10 +98,12 @@
  *
  *  @since 1.0
  */
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+- (BOOL)textFieldDidBeginEditing:(UITextField *)textField {
+    NSLog(@"textFieldDidBeginEditing");
     if (textField == _hashtag) {
         [self popAnimation:textField];
-        [_hashtag becomeFirstResponder];
+        NSLog(@"textFieldDidBeginEditing; textField = _hashtag");
+        // [_hashtag becomeFirstResponder];
     }
     
     return YES;
@@ -121,9 +123,12 @@
  *  @since 1.0
  */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSLog(@"textFieldShouldReturn");
     if (textField == _twitterName) {
-        [self findTwitterName];  
+        NSLog(@"textFieldShouldReturn; textField = _twitterName");
+        [self findTwitterName];
     } else if (textField == _hashtag) {
+        NSLog(@"textFieldShouldReturn; textField = _hashtag");
         [self endHashtagEditing];
     }
     
@@ -164,13 +169,13 @@
     textField.backgroundColor = _twitterName.backgroundColor;
     
     CGFloat percent = 0.2; // Try 20%
-    CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0f + percent, 1.0f + percent);
-    CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0 + percent), 1.0f / (1.0 + percent));
     [UIView animateWithDuration:0.1f animations:^{
+        CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0f + percent, 1.0f + percent);
         textField.transform = embiggen;
     } completion:^(BOOL finished) {
         if (finished) {
             [UIView animateWithDuration:0.1f animations:^{
+                CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0f + percent) , 1.0f / (1.0f + percent) );
                 textField.transform = shrink;
             }];
         }
@@ -293,19 +298,27 @@
 }
 
 #pragma mark - Protocol methods
-
+/**
+ *  Protocol method optional for PDXTwitterCommunicatorDelegate
+ *
+ *  Creates a new instance of the Results scene from the Main storyboard, and passes it a dictionary of results data to display
+ *
+ *  @param data A dictionary of results data
+ *
+ *  @since 1.0
+ */
 - (void)displayInfo:(NSDictionary *)data {    
     // Initialise Results screen
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     PDXResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"Results"];
-    
-    __block NSDictionary *dictionary = data;
+
+    resultsViewController.data = data;
+    resultsViewController.parent = self;
+    resultsViewController.hashtag = _hashtag.text;
+    resultsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+
     // Display view
     dispatch_async(dispatch_get_main_queue(), ^{
-        resultsViewController.data = dictionary;
-        resultsViewController.parent = self;
-        resultsViewController.hashtag = _hashtag.text;
-        resultsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [self presentViewController:resultsViewController animated:YES completion:nil];
     });
 }
