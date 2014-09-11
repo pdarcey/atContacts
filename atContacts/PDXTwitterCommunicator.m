@@ -625,6 +625,84 @@
     return identifier;
 }
 
+/*
+ *  Returns the account store.
+ *  If the account doesn't already exist, it is created.
+ */
+- (void)setDefaultTwitterAccount:(NSString *)identifier {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:identifier forKey:@"defaultTwitterAccount"];
+    
+}
+
+/*
+ *  Returns the default Twitter account to use (or nil if no Twitter account is set up)
+ *
+ */
+- (ACAccount *)defaultTwitterAccount {
+    ACAccountStore *store = [self accountStore];
+    NSString *identifier = [self identifier];
+    ACAccountType *accountType = [self accountType];
+    ACAccount *account = [self twitterAccountWithIdentifier:identifier];
+    
+    if (account) {
+        return account;
+    } else {
+        NSArray *arrayOfAccounts = [store accountsWithAccountType:accountType];
+        ACAccount *account;
+        if ([arrayOfAccounts count] == 1) {
+            // Only one Twitter account is set up in Settings; make it the default
+            account = (ACAccount *)arrayOfAccounts[0];
+            NSString *identifier = [account identifier];
+            [self setDefaultTwitterAccount:identifier];
+            
+            return account;
+        }
+        
+        if ([arrayOfAccounts count] > 0) {
+            account = [arrayOfAccounts lastObject];
+            NSArray *accountIdentifiers = [self arrayOfAccountIdentifiers:arrayOfAccounts];
+            account = [self askForDefaultTwitterAccount:accountIdentifiers];
+            NSString *identifier = [account identifier];
+            [self setDefaultTwitterAccount:identifier];
+            
+            return account;
+        }
+    }
+    return nil;
+
+}
+
+- (ACAccount *)twitterAccountWithIdentifier:(NSString *)identifier {
+    ACAccountStore *store = [self accountStore];
+    ACAccount *account = [store accountWithIdentifier:identifier];
+    
+    return account;
+}
+
+- (NSArray *)arrayOfAccountIdentifiers:(NSArray *)arrayOfAccounts {
+    NSMutableArray *identifierArray = [NSMutableArray new];
+    for (ACAccount *account in arrayOfAccounts) {
+        NSString *identifier = [account identifier];
+        [identifierArray addObject:identifier];
+    }
+    NSArray *arrayOfAccountIdentifiers = [NSArray arrayWithArray:identifierArray];
+    return arrayOfAccountIdentifiers;
+}
+
+- (ACAccount *)askForDefaultTwitterAccount:(NSArray *)arrayOfAccountIdentifiers {
+    // TODO Present account identifiers and allow user to select one. Return it as the default
+    
+    // *** Replace this block with actual code ***
+    NSString *defaultIdentifier = (NSString *)[arrayOfAccountIdentifiers lastObject];
+    ACAccount *defaultAccount = [self twitterAccountWithIdentifier:defaultIdentifier];
+    
+    // *** End of replacement block ***
+    
+    return defaultAccount; // placeholder
+}
+
 @end
 
 
