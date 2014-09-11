@@ -30,45 +30,54 @@
         // Actually access user's Twitter account to get info
         [store requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
             if (granted == YES) {
-                NSArray *arrayOfAccounts = [store accountsWithAccountType:accountType];
                 
-                if ([arrayOfAccounts count] > 0) {
-                    ACAccount *twitterAccount = [arrayOfAccounts lastObject];
+                NSString *identifier = [self identifier];
+                ACAccount *account = [store accountWithIdentifier:identifier];
+                
+                if (account) {
+                    [self twitterRequest:account url:url getOrPost:getOrPost parameters:parameters requestType:requestType];
+                } else {
+                    NSArray *arrayOfAccounts = [store accountsWithAccountType:accountType];
                     
-                    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:getOrPost URL:url parameters:parameters];
-                    
-                    request.account = twitterAccount;
-                    
-                    NSDictionary __block *dataDictionary;
-                    [request performRequestWithHandler: ^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                        if (responseData) {
-                            NSInteger statusCode = urlResponse.statusCode;
-                            if (statusCode >= 200 && statusCode < 300) {
-                                dataDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
-                                
-                                if (dataDictionary != nil) {
-                                    [self handleResponse:dataDictionary requestType:requestType];
-                                    
-                                } else {
-                                    [self resultsDataEqualsNil:error];
-                                }
-                            } else {
-                                [self performRequestWithHandlerError:urlResponse];
-                            }
-                        } else {
-                            [self resultsDataEqualsNil:error];
-                        }
-                        
-                    }];
+                    if ([arrayOfAccounts count] > 0) {
+                        account = [arrayOfAccounts lastObject];
+                        [self twitterRequest:account url:url getOrPost:getOrPost parameters:parameters requestType:requestType];
+                    }
                 }
-            } else {
-                [self requestAccessToAccountsError:error];
-                
             }
         }];
     } else {
         // TODO Present a dialog saying we can't do anything without their permission
     }
+}
+
+- (void)twitterRequest:(ACAccount *)account url:(NSURL *)url getOrPost:(SLRequestMethod)getOrPost parameters:(NSDictionary *)parameters requestType:(PDXRequestType)requestType {
+    
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:getOrPost URL:url parameters:parameters];
+    
+    request.account = account;
+    
+    NSDictionary __block *dataDictionary;
+    [request performRequestWithHandler: ^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+        if (responseData) {
+            NSInteger statusCode = urlResponse.statusCode;
+            if (statusCode >= 200 && statusCode < 300) {
+                dataDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
+                
+                if (dataDictionary != nil) {
+                    [self handleResponse:dataDictionary requestType:requestType];
+                    
+                } else {
+                    [self resultsDataEqualsNil:error];
+                }
+            } else {
+                [self performRequestWithHandlerError:urlResponse];
+            }
+        } else {
+            [self resultsDataEqualsNil:error];
+        }
+        
+    }];
 }
 
 #pragma mark - Specific requests
@@ -553,6 +562,7 @@
     return _twitterType;
 }
 
+
 #pragma mark - Convenience methods for User Defaults
 
 /**
@@ -603,6 +613,17 @@
     return userHasNoAccount;
 }
 
+/*
+ *  Returns the account store.
+ *  If the account doesn't already exist, it is created.
+ */
+- (NSString *)identifier {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *identifier = [defaults valueForKey:@"defaultTwitterAccount"];
+    
+    return identifier;
+}
 
 @end
 
