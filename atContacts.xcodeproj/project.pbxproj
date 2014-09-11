@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C92D0DB019C1E940000BA63B /* testJSONData.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DAF19C1E940000BA63B /* testJSONData.json */; };
-		C92D0DB119C1E940000BA63B /* testJSONData.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DAF19C1E940000BA63B /* testJSONData.json */; };
+		C92D0DB619C1FA05000BA63B /* testFriendshipsCreateNO.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB219C1FA05000BA63B /* testFriendshipsCreateNO.json */; };
+		C92D0DB719C1FA05000BA63B /* testFriendshipsCreateNO.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB219C1FA05000BA63B /* testFriendshipsCreateNO.json */; };
+		C92D0DB819C1FA05000BA63B /* testFriendshipsCreateYES.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB319C1FA05000BA63B /* testFriendshipsCreateYES.json */; };
+		C92D0DB919C1FA05000BA63B /* testFriendshipsCreateYES.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB319C1FA05000BA63B /* testFriendshipsCreateYES.json */; };
+		C92D0DBA19C1FA05000BA63B /* testUsersLookup.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB419C1FA05000BA63B /* testUsersLookup.json */; };
+		C92D0DBB19C1FA05000BA63B /* testUsersLookup.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB419C1FA05000BA63B /* testUsersLookup.json */; };
+		C92D0DBC19C1FA05000BA63B /* testUsersSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB519C1FA05000BA63B /* testUsersSearch.json */; };
+		C92D0DBD19C1FA05000BA63B /* testUsersSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB519C1FA05000BA63B /* testUsersSearch.json */; };
+		C92D0DBF19C2015A000BA63B /* testFriendshipsLookupFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DBE19C2015A000BA63B /* testFriendshipsLookupFollowing.json */; };
+		C92D0DC019C2015A000BA63B /* testFriendshipsLookupFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DBE19C2015A000BA63B /* testFriendshipsLookupFollowing.json */; };
+		C92D0DC219C201CC000BA63B /* testFriendshipsLookupNotFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DC119C201CC000BA63B /* testFriendshipsLookupNotFollowing.json */; };
+		C92D0DC319C201CC000BA63B /* testFriendshipsLookupNotFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DC119C201CC000BA63B /* testFriendshipsLookupNotFollowing.json */; };
 		C93E2D3D19ADD51200B06809 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D3C19ADD51200B06809 /* main.m */; };
 		C93E2D4019ADD51200B06809 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D3F19ADD51200B06809 /* AppDelegate.m */; };
 		C93E2D4319ADD51200B06809 /* PDXInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D4219ADD51200B06809 /* PDXInputViewController.m */; };
@@ -39,7 +49,12 @@
 
 /* Begin PBXFileReference section */
 		C92D0DAC19C1CEA4000BA63B /* PDXTwitterCommunicator+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXTwitterCommunicator+TestExtensions.h"; sourceTree = "<group>"; };
-		C92D0DAF19C1E940000BA63B /* testJSONData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testJSONData.json; path = ../testJSONData.json; sourceTree = "<group>"; };
+		C92D0DB219C1FA05000BA63B /* testFriendshipsCreateNO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testFriendshipsCreateNO.json; path = ../testFriendshipsCreateNO.json; sourceTree = "<group>"; };
+		C92D0DB319C1FA05000BA63B /* testFriendshipsCreateYES.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testFriendshipsCreateYES.json; path = ../testFriendshipsCreateYES.json; sourceTree = "<group>"; };
+		C92D0DB419C1FA05000BA63B /* testUsersLookup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testUsersLookup.json; path = ../testUsersLookup.json; sourceTree = "<group>"; };
+		C92D0DB519C1FA05000BA63B /* testUsersSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testUsersSearch.json; path = ../testUsersSearch.json; sourceTree = "<group>"; };
+		C92D0DBE19C2015A000BA63B /* testFriendshipsLookupFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsLookupFollowing.json; sourceTree = "<group>"; };
+		C92D0DC119C201CC000BA63B /* testFriendshipsLookupNotFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsLookupNotFollowing.json; sourceTree = "<group>"; };
 		C93E2D3719ADD51200B06809 /* atContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = atContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93E2D3B19ADD51200B06809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C93E2D3C19ADD51200B06809 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -117,7 +132,12 @@
 		C93E2D3A19ADD51200B06809 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C92D0DAF19C1E940000BA63B /* testJSONData.json */,
+				C92D0DC119C201CC000BA63B /* testFriendshipsLookupNotFollowing.json */,
+				C92D0DBE19C2015A000BA63B /* testFriendshipsLookupFollowing.json */,
+				C92D0DB219C1FA05000BA63B /* testFriendshipsCreateNO.json */,
+				C92D0DB319C1FA05000BA63B /* testFriendshipsCreateYES.json */,
+				C92D0DB419C1FA05000BA63B /* testUsersLookup.json */,
+				C92D0DB519C1FA05000BA63B /* testUsersSearch.json */,
 				C93E2D3B19ADD51200B06809 /* Info.plist */,
 				C93E2D3C19ADD51200B06809 /* main.m */,
 			);
@@ -254,8 +274,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C92D0DBA19C1FA05000BA63B /* testUsersLookup.json in Resources */,
+				C92D0DC219C201CC000BA63B /* testFriendshipsLookupNotFollowing.json in Resources */,
+				C92D0DB619C1FA05000BA63B /* testFriendshipsCreateNO.json in Resources */,
+				C92D0DBC19C1FA05000BA63B /* testUsersSearch.json in Resources */,
+				C92D0DB819C1FA05000BA63B /* testFriendshipsCreateYES.json in Resources */,
+				C92D0DBF19C2015A000BA63B /* testFriendshipsLookupFollowing.json in Resources */,
 				C93E2D4619ADD51200B06809 /* Main.storyboard in Resources */,
-				C92D0DB019C1E940000BA63B /* testJSONData.json in Resources */,
 				C93E2D4819ADD51200B06809 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +289,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C92D0DB119C1E940000BA63B /* testJSONData.json in Resources */,
+				C92D0DBD19C1FA05000BA63B /* testUsersSearch.json in Resources */,
+				C92D0DC319C201CC000BA63B /* testFriendshipsLookupNotFollowing.json in Resources */,
+				C92D0DB719C1FA05000BA63B /* testFriendshipsCreateNO.json in Resources */,
+				C92D0DC019C2015A000BA63B /* testFriendshipsLookupFollowing.json in Resources */,
+				C92D0DBB19C1FA05000BA63B /* testUsersLookup.json in Resources */,
+				C92D0DB919C1FA05000BA63B /* testFriendshipsCreateYES.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

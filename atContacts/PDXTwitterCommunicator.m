@@ -301,8 +301,8 @@
  *  @since 1.0
  */
 - (BOOL)parseFriendshipsCreate:(NSDictionary *)data {
-    NSString *following = [data valueForKey:@"following"];
-    if ([following isEqualToString:@"true"]) {
+    BOOL following = [(NSNumber *)[data valueForKey:@"following"] boolValue];
+    if (following) {
                 
         return YES;
     }
@@ -551,7 +551,7 @@
 }
 
 /*
- *  Returns the account store.
+ *  Returns the account type.
  *  If the account doesn't already exist, it is created.
  */
 - (ACAccountType *)accountType {

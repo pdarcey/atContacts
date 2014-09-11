@@ -22,15 +22,7 @@
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"testJSONData" ofType:@"json"];
-    NSData *jsonData = [[NSData alloc] initWithContentsOfFile:filePath];
-    
-    NSError *error = nil;
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-    
-    _data = jsonDict;
-    
+
 }
 
 - (void)tearDown {
@@ -38,9 +30,19 @@
     [super tearDown];
 }
 
+- (NSDictionary *)getTestData:(NSString *)fileName {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"json"];
+    NSData *jsonData = [[NSData alloc] initWithContentsOfFile:filePath];
+    
+    NSError *error = nil;
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    
+    return jsonDict;
+}
+
 - (void)testParseUsersLookup {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
-    NSDictionary *data = _data;
+    NSDictionary *data = [self getTestData:@"testUsersLookup"];
     NSDictionary *expectedResults = @{ @"firstName" : @"Twitter",
                                        @"lastName" : @"API",
                                        @"twitterName" : @"@twitterapi",
@@ -80,28 +82,103 @@
     XCTAssertEqualObjects(result, expectedResult, @"Dictionary not correctly parsed");
 }
 
-- (void)testParseFriendshipsCreate {
+- (void)testParseFriendshipsCreateYES {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    NSDictionary *data = [self getTestData:@"testFriendshipsCreateYES"];
+    
+    BOOL result = [twitter parseFriendshipsCreate:data];
+    
+    XCTAssertTrue(result, @"Not parsing results from Friendship Create correctly");
+
+}
+
+- (void)testParseFriendshipsCreateNO {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    NSDictionary *data = [self getTestData:@"testFriendshipsCreateNO"];
+    
+    BOOL result = [twitter parseFriendshipsCreate:data];
+    
+    XCTAssertFalse(result, @"Not parsing results from Friendship Create correctly");
     
 }
 
-- (void)testParseFriendshipsLookup {
+- (void)testParseFriendshipsLookupYES {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    NSDictionary *data = [self getTestData:@"testFriendshipsLookupFollowing"];
+    
+    BOOL result = [twitter parseFriendshipsLookup:data];
+    
+    XCTAssertTrue(result, @"Not parsing results from Users Create correctly");
+    
+}
+
+- (void)testParseFriendshipsLookupNO {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    NSDictionary *data = [self getTestData:@"testFriendshipsLookupNotFollowing"];
+    
+    BOOL result = [twitter parseFriendshipsLookup:data];
+    
+    XCTAssertFalse(result, @"Not parsing results from Friendship Create correctly");
     
 }
 
 - (void)testParsePersonalURL {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    NSDictionary *data = [self getTestData:@"testUsersSearch"];
     
+    NSString *result = [twitter parsePersonalURL:data];
+    NSString *expectedResult = @"";
+    
+    XCTAssertEqualObjects(result, expectedResult, @"Expected \"%@\" but got \"%@\"", expectedResult, result);
 }
 
 - (void)testExtractString {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    NSDictionary *data = [self getTestData:@"testUsersLookup"];
+
+    NSString *result = [twitter extractString:@"id_str" from:data];
+    NSString *expectedResult = @"6253282";
     
+    XCTAssertEqualObjects(result, expectedResult, @"Expected \"%@\" but got \"%@\"", expectedResult, result);
+
 }
 
-- (void)testAccountStore {
+- (void)testAccountStoreWasNil {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    twitter.accountStore = nil;
     
+    ACAccountStore *result = [twitter accountStore];
+    
+    XCTAssertNotNil(result, "Should *always* return an ACAccountStore object");
 }
 
-- (void)testAccountType {
+- (void)testAccountStoreExists {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    ACAccountStore *account = [[ACAccountStore alloc] init];
+    twitter.accountStore = account;
     
+    ACAccountStore *result = [twitter accountStore];
+    
+    XCTAssertEqualObjects(result, account, @"Should return existing ACAccountStore if one exists");
+}
+
+- (void)testAccountTypeWasNil {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    twitter.twitterType = nil;
+    
+    ACAccountType *result = [twitter accountType];
+    
+    XCTAssertNotNil(result, "Should *always* return an ACAccountType object");
+}
+
+- (void)testAccountTypeExists {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    ACAccountType *accountType = [[twitter accountStore] accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    twitter.twitterType = accountType;
+    
+    ACAccountType *result = [twitter accountType];
+    
+    XCTAssertEqualObjects(result, accountType, @"Should return existing ACAccountType if one exists");
 }
 
 - (void)testDialogHasBeenPresented {
