@@ -181,7 +181,7 @@
  */
 - (NSString *)removeHash:(NSString *)hashtag {
     NSString *firstCharacter = [hashtag substringToIndex:1];
-    if (![firstCharacter isEqualToString:@"#"]) {
+    if ([firstCharacter isEqualToString:@"#"]) {
         hashtag = [hashtag stringByReplacingOccurrencesOfString:@"#" withString:@""];
     }
     
