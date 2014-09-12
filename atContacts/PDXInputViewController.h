@@ -17,6 +17,7 @@
 
 - (IBAction)findTwitterName;
 - (IBAction)endHashtagEditing;
+- (IBAction)popTextField:(UITextField *)textField;
 
 - (void)reset;
 

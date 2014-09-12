@@ -98,30 +98,15 @@
  *
  *  @since 1.0
  */
-- (BOOL)textFieldDidBeginEditing:(UITextField *)textField {
-    NSLog(@"textFieldDidBeginEditing");
+- (IBAction)popTextField:(UITextField *)textField {
     if (textField == _hashtag) {
+        [_twitterName resignFirstResponder];
         [self popAnimation:textField];
-        NSLog(@"textFieldDidBeginEditing; textField = _hashtag");
-        // [_hashtag becomeFirstResponder];
+        NSLog(@"popTextField fired");
+        [_hashtag becomeFirstResponder];
     }
-    
-    return YES;
 }
 
-/**
- *  Delegate method for UITextFields, called when user hits Return while in UITextField
- *
- *  If user is in twitterName, finds the twitterName;
- *
- *  if user in in hastag field, ends hashtag editing and activates twitterName
- *
- *  @param textField Identifies which UITextField initiated the call
- *
- *  @return Always returns YES
- *
- *  @since 1.0
- */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     NSLog(@"textFieldShouldReturn");
     if (textField == _twitterName) {
@@ -144,8 +129,10 @@
  *  @since 1.0
  */
 - (IBAction)endHashtagEditing {
-    _hashtag.borderStyle = UITextBorderStyleNone;
-    _hashtag.backgroundColor = [UIColor clearColor];
+    [UIView animateWithDuration:0.1f animations:^{
+        _hashtag.borderStyle = UITextBorderStyleNone;
+        _hashtag.backgroundColor = [UIColor clearColor];
+    }];
     if (_hashtag.text.length > 0) {
         [self saveHashtag:_hashtag.text];
         NSString *firstCharacter = [_hashtag.text substringToIndex:1];

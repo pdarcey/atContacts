@@ -13,8 +13,6 @@
 
 @interface PDXTwitterCommunicatorTests : XCTestCase
 
-@property (strong, nonatomic) NSDictionary *data;
-
 @end
 
 @implementation PDXTwitterCommunicatorTests
