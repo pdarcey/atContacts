@@ -162,15 +162,15 @@
             break;
             
         case PDXRequestTypeGetFollowStatus:
-            [self handleGetUserInfo:data];
+            [self handleGetFollowStatus:data];
             break;
             
         case PDXRequestTypeFollow:
-            [self handleGetUserInfo:data];
+            [self handleFollow:data];
             break;
             
         case PDXRequestTypeUnfollow:
-            [self handleGetUserInfo:data];
+            [self handleUnfollow:data];
             break;
             
         default:

@@ -26,7 +26,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[self twitter] setDelegate:self];
+    [[self twitter] setDelegate:self.parent];
     [self initialiseData:_data];
 }
 
@@ -204,6 +204,7 @@
  *  @since 1.0
  */
 - (IBAction)followOnTwitter:(UIButton *)sender {
+    NSLog(@"Twitter follow status = %hhd", sender.selected);
     if (sender.selected) {
         // Follow on Twitter
         PDXTwitterCommunicator *twitter = [self twitter];

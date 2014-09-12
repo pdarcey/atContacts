@@ -63,6 +63,7 @@
 - (IBAction)findTwitterName {    
 //    self.activitySpinner.hidden = NO;
 //    [activitySpinner startAnimating];
+    NSLog(@"findTwitterName called");
     
     // Ensure that user hasn't included the initial "@" in the user name
     if (_twitterName.text.length > 0) {
@@ -100,7 +101,6 @@
  */
 - (IBAction)popTextField:(UITextField *)textField {
     if (textField == _hashtag) {
-        [_twitterName resignFirstResponder];
         [self popAnimation:textField];
         NSLog(@"popTextField fired");
         [_hashtag becomeFirstResponder];

@@ -46,8 +46,6 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="findTwitterName" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="2cU-di-Uzx"/>
-                                    <action selector="findTwitterName" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="MfU-e6-Yjf"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="cBB-yA-qHv"/>
                                 </connections>
                             </textField>

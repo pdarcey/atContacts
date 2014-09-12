@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "PDXInputViewController.h"
 #import "PDXViewController.h"
 #import "PDXTwitterCommunicator.h"
 
@@ -27,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *blurOverlay;
 
 @property (strong, nonatomic) NSDictionary *data;
-@property (strong, nonatomic) UIViewController *parent;
+@property (strong, nonatomic) PDXInputViewController *parent;
 @property (strong, nonatomic) PDXTwitterCommunicator *twitter;
 @property (strong, nonatomic) NSString *hashtag;
 
