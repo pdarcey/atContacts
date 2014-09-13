@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "PDXTwitterCommunicator.h"
 #import "AppDelegate.h"
 
