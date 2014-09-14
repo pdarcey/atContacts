@@ -27,6 +27,7 @@
 		C971A1CB19B5CCE100F67E75 /* PDXDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C919B5CCE100F67E75 /* PDXDataModel.m */; };
 		C99D295619C4FBEE00E42D86 /* PDXContactMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D295519C4FBEE00E42D86 /* PDXContactMaker.m */; };
 		C99D295819C518C500E42D86 /* PDXContactMakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D295719C518C500E42D86 /* PDXContactMakerTests.m */; };
+		C99D295D19C5E3E100E42D86 /* File.strings in Resources */ = {isa = PBXBuildFile; fileRef = C99D295C19C5E3E100E42D86 /* File.strings */; };
 		C9A010F819BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */; };
 		C9A010F919BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */; };
 		C9A010FC19BCBD0E0024BFC6 /* PDXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010FB19BCBD0E0024BFC6 /* PDXViewController.m */; };
@@ -74,6 +75,7 @@
 		C99D295519C4FBEE00E42D86 /* PDXContactMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXContactMaker.m; sourceTree = "<group>"; };
 		C99D295719C518C500E42D86 /* PDXContactMakerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDXContactMakerTests.m; path = ../atContacts/PDXContactMakerTests.m; sourceTree = "<group>"; };
 		C99D295919C5192900E42D86 /* PDXContactMaker+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXContactMaker+TestExtensions.h"; sourceTree = "<group>"; };
+		C99D295C19C5E3E100E42D86 /* File.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = File.strings; sourceTree = "<group>"; };
 		C9A010F619BCA6470024BFC6 /* PDXTwitterCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXTwitterCommunicator.h; sourceTree = "<group>"; };
 		C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterCommunicator.m; sourceTree = "<group>"; };
 		C9A010FA19BCBD0E0024BFC6 /* PDXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXViewController.h; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		C93E2D3A19ADD51200B06809 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C99D295C19C5E3E100E42D86 /* File.strings */,
 				C93E2D3B19ADD51200B06809 /* Info.plist */,
 				C93E2D3C19ADD51200B06809 /* main.m */,
 			);
@@ -295,6 +298,7 @@
 			files = (
 				C93E2D4619ADD51200B06809 /* Main.storyboard in Resources */,
 				C93E2D4819ADD51200B06809 /* Images.xcassets in Resources */,
+				C99D295D19C5E3E100E42D86 /* File.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

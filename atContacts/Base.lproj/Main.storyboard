@@ -324,6 +324,12 @@
                                     <action selector="followOnTwitter:" destination="a2f-bI-RVU" eventType="touchUpInside" id="VYu-pB-RPP"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5L3-Nu-dkf">
+                                <rect key="frame" x="75" y="517.5" width="28.5" height="13.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju2-0W-kr1" userLabel="both">
                                 <rect key="frame" x="280" y="539" width="40" height="40"/>
                                 <accessibility key="accessibilityConfiguration" hint="Follows on Twitter and adds to contacts" label="Both button"/>
@@ -338,6 +344,12 @@
                                     <action selector="followAndAdd:" destination="a2f-bI-RVU" eventType="touchUpInside" id="Y2z-ff-0Nq"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOK-mD-mXs">
+                                <rect key="frame" x="496.5" y="517.5" width="28.5" height="13.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-PF-jaK" userLabel="contacts">
                                 <rect key="frame" x="485" y="539" width="40" height="40"/>
                                 <accessibility key="accessibilityConfiguration" hint="Will add this person to contacts" label="Add to contacts button"/>
@@ -378,8 +390,11 @@
                             <constraint firstAttribute="width" secondItem="Yvn-J6-16N" secondAttribute="width" id="1L9-oz-2ao"/>
                             <constraint firstItem="PrX-as-Dkg" firstAttribute="baseline" secondItem="i1l-eD-iST" secondAttribute="baseline" id="3Kh-59-lya"/>
                             <constraint firstAttribute="centerY" secondItem="lxn-3I-Z47" secondAttribute="centerY" id="4MM-aW-hEV"/>
+                            <constraint firstItem="LFf-PF-jaK" firstAttribute="top" secondItem="EOK-mD-mXs" secondAttribute="bottom" constant="8" id="4Ze-Pv-IQk"/>
+                            <constraint firstItem="5L3-Nu-dkf" firstAttribute="leading" secondItem="Ctm-pf-gHA" secondAttribute="leading" id="4a0-0x-dL4"/>
                             <constraint firstAttribute="centerX" secondItem="Yvn-J6-16N" secondAttribute="centerX" id="4x5-sX-blR"/>
                             <constraint firstItem="95n-fe-rtH" firstAttribute="centerX" secondItem="0AU-64-liZ" secondAttribute="centerX" id="5D1-hx-tNx"/>
+                            <constraint firstItem="Ctm-pf-gHA" firstAttribute="top" secondItem="5L3-Nu-dkf" secondAttribute="bottom" constant="8" id="6ZN-Jb-aqm"/>
                             <constraint firstAttribute="centerX" secondItem="iSE-R8-M22" secondAttribute="centerX" id="7cg-7D-eYc"/>
                             <constraint firstItem="wIu-zq-T26" firstAttribute="bottom" secondItem="Vgz-1v-uts" secondAttribute="bottom" constant="-5" id="8dd-Hc-qL4"/>
                             <constraint firstItem="7db-G0-5GQ" firstAttribute="top" secondItem="86e-dG-L1q" secondAttribute="bottom" id="9F2-XK-w1P"/>
@@ -413,6 +428,7 @@
                             <constraint firstItem="X7X-fj-m0i" firstAttribute="trailing" secondItem="Vgz-1v-uts" secondAttribute="trailing" id="iOJ-9W-BSY"/>
                             <constraint firstItem="95n-fe-rtH" firstAttribute="width" secondItem="dWp-am-uRh" secondAttribute="width" id="idC-su-Ent"/>
                             <constraint firstAttribute="centerX" secondItem="Ju2-0W-kr1" secondAttribute="centerX" id="l10-ZJ-GgN"/>
+                            <constraint firstItem="EOK-mD-mXs" firstAttribute="trailing" secondItem="LFf-PF-jaK" secondAttribute="trailing" id="lBZ-sS-3cS"/>
                             <constraint firstItem="95n-fe-rtH" firstAttribute="width" secondItem="0AU-64-liZ" secondAttribute="width" id="lka-HN-FpV"/>
                             <constraint firstItem="OWX-u5-Leo" firstAttribute="leading" secondItem="yci-qZ-zSI" secondAttribute="trailing" constant="8" id="n7g-xL-dPm"/>
                             <constraint firstItem="OWX-u5-Leo" firstAttribute="top" secondItem="X7X-fj-m0i" secondAttribute="bottom" constant="7" id="nds-Jj-XEH"/>
@@ -434,10 +450,12 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="addedToContacts" destination="EOK-mD-mXs" id="jha-11-JCu"/>
                         <outlet property="blurOverlay" destination="iSE-R8-M22" id="ypD-Od-21f"/>
                         <outlet property="contactsButton" destination="LFf-PF-jaK" id="4FB-PE-5Id"/>
                         <outlet property="email" destination="X7X-fj-m0i" id="Ek1-oy-ap7"/>
                         <outlet property="firstName" destination="95n-fe-rtH" id="2TF-wN-bRF"/>
+                        <outlet property="followedOnTwitter" destination="5L3-Nu-dkf" id="gIW-AK-yq6"/>
                         <outlet property="indicator" destination="58a-DN-NVP" id="bVf-vI-Chj"/>
                         <outlet property="lastName" destination="0AU-64-liZ" id="qme-br-dgz"/>
                         <outlet property="phone" destination="OWX-u5-Leo" id="CbG-jo-3te"/>

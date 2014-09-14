@@ -209,10 +209,12 @@
         // Follow on Twitter
         PDXTwitterCommunicator *twitter = [self twitter];
         [twitter follow:[_data valueForKey:@"idString"]];
+        [self showTwitterButtonResults:[NSLocalizedString(@"Followed on Twitter", @"Display result of hitting Twitter key")]];
     } else {
         // Unfollow
         PDXTwitterCommunicator *twitter = [self twitter];
         [twitter unfollow:[_data valueForKey:@"idString"]];
+        [self showTwitterButtonResults:[NSLocalizedString(@"Unfollowed on Twitter", @"Display result of hitting Twitter key")]];
     }
 }
 
@@ -396,6 +398,31 @@
         }
     }
      ];
+}
+
+- (void)showTwitterButtonResults:(NSString *)text {
+    _followedOnTwitter.text = text;
+    [self animateResultsButton:_followedOnTwitter];
+}
+
+- (void)showContactButtonResults:(NSString *)text {
+    _addedToContacts.text = text;
+    [self animateResultsButton:_addedToContacts];
+}
+
+- (void)animateResultsButton:(UILabel *)label {
+    CGFloat duration = 0.1f;
+    
+    [UIView animateWithDuration:duration animations:^{
+        label.hidden = false;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [UIView animateWithDuration:duration animations:^{
+                label.hidden = true;
+            }];
+        }
+    }
+
 }
 
 /**
