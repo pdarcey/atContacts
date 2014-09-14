@@ -209,12 +209,12 @@
         // Follow on Twitter
         PDXTwitterCommunicator *twitter = [self twitter];
         [twitter follow:[_data valueForKey:@"idString"]];
-        [self showTwitterButtonResults:[NSLocalizedString(@"Followed on Twitter", @"Display result of hitting Twitter key")]];
+        [self showTwitterButtonResults:NSLocalizedString(@"Followed on Twitter", @"Display result of hitting Twitter button")];
     } else {
         // Unfollow
         PDXTwitterCommunicator *twitter = [self twitter];
         [twitter unfollow:[_data valueForKey:@"idString"]];
-        [self showTwitterButtonResults:[NSLocalizedString(@"Unfollowed on Twitter", @"Display result of hitting Twitter key")]];
+        [self showTwitterButtonResults:NSLocalizedString(@"Unfollowed on Twitter", @"Display result of hitting Twitter button")];
     }
 }
 
@@ -239,6 +239,7 @@
         
     [contactMaker addToContacts:personData];
     NSLog(@"addToContacts button selected");
+    [self showContactButtonResults:NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button")];
 }
 
 /**
@@ -421,8 +422,7 @@
                 label.hidden = true;
             }];
         }
-    }
-
+    }];
 }
 
 /**
