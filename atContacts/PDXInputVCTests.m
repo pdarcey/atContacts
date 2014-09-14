@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <XCTest/XCTest.h>
+@import UIKit;
+@import XCTest;
 #import "PDXInputViewController.h"
 #import "PDXInputViewController+TestExtensions.h"
 

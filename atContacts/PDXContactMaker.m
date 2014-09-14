@@ -80,8 +80,9 @@
     ABRecordSetValue(person, kABPersonNoteProperty, (__bridge CFStringRef)twitterDescription, nil);
     
     ABMutableMultiValueRef twitterID = ABMultiValueCreateMutable(kABMultiStringPropertyType);
-    ABMultiValueAddValueAndLabel(twitterID, (__bridge CFStringRef)twitterName, kABPersonSocialProfileServiceTwitter, NULL);
-    ABRecordSetValue(person, kABPersonSocialProfileProperty, twitterID, nil);
+    ABMultiValueAddValueAndLabel(twitterID, (__bridge CFTypeRef)(@{ (NSString *)kABPersonSocialProfileServiceKey : (NSString *)kABPersonSocialProfileServiceTwitter, (NSString *)kABPersonSocialProfileUsernameKey : twitterName}), kABPersonSocialProfileServiceTwitter, NULL);
+    ABRecordSetValue(person, kABPersonSocialProfileProperty, twitterID, NULL);
+    CFRelease(twitterID);
     
     ABMutableMultiValueRef email = ABMultiValueCreateMutable(kABMultiStringPropertyType);
     ABMultiValueAddValueAndLabel(email, (__bridge CFStringRef)emailAddress, (__bridge CFStringRef)@"email", NULL);
