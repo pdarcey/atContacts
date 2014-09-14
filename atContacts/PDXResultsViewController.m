@@ -223,8 +223,20 @@
  *
  *  @since 1.0
  */
-- (IBAction)addToContacts:(UIButton *)sender {
-    NSLog(@"followOnTwitter button selected");
+- (IBAction)addToContacts {
+    PDXContactMaker *contactMaker = [PDXContactMaker new];
+    NSDictionary *personData = @{ @"firstName"    : _firstName.text,
+                                  @"lastName"     : _lastName.text,
+                                  @"twitterName"  : _twitterHandle.text,
+                                  @"emailAddress" : _email.text,
+                                  @"phoneNumber"  : _phone.text,
+                                  @"wwwAddress"   : _webAddress.text,
+                                  @"twitterDescription" : _twitterDescription.text,
+                                  @"photoData"    : UIImageJPEGRepresentation(_photo.image, 1.0f)
+                                 };
+        
+    [contactMaker addToContacts:personData];
+    NSLog(@"addToContacts button selected");
 }
 
 /**
@@ -237,7 +249,7 @@
 - (IBAction)followAndAdd:(UIButton *)sender {
     NSLog(@"followAndAdd button selected");
     [self followOnTwitter:sender];
-    [self addToContacts:sender];
+    [self addToContacts];
 }
 
 #pragma mark - Swipe & Tap actions

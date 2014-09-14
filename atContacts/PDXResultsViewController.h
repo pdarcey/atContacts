@@ -11,6 +11,7 @@
 #import "PDXInputViewController.h"
 #import "PDXViewController.h"
 #import "PDXTwitterCommunicator.h"
+#import "PDXContactMaker.h"
 
 @interface PDXResultsViewController : PDXViewController <UITextFieldDelegate, PDXTwitterCommunicatorDelegate>
 
@@ -36,7 +37,7 @@
 @property (weak, nonatomic) UITextField *realTextField;
 
 - (IBAction)followOnTwitter:(UIButton *)sender;
-- (IBAction)addToContacts:(UIButton *)sender;
+- (IBAction)addToContacts;
 - (IBAction)followAndAdd:(UIButton *)sender;
 - (IBAction)swipeToDismiss;
 

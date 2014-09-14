@@ -11,4 +11,6 @@
 
 @interface PDXContactMaker : NSObject
 
+- (void)addToContacts:(NSDictionary *)personData;
+
 @end

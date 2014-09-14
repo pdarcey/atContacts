@@ -349,7 +349,7 @@
                                 <state key="selected" image="Contacts Selected"/>
                                 <state key="highlighted" image="Contacts Highlighted"/>
                                 <connections>
-                                    <action selector="addToContacts:" destination="a2f-bI-RVU" eventType="touchUpInside" id="TDo-cd-nCU"/>
+                                    <action selector="addToContacts" destination="a2f-bI-RVU" eventType="touchUpInside" id="x4x-IX-gOa"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="58a-DN-NVP">
