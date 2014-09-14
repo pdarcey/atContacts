@@ -254,15 +254,15 @@
         personalURL = [self parsePersonalURL:data];
     }
     
-    NSDictionary *results = @{ @"firstName" : firstName,
-                               @"lastName" : lastName,
-                               @"twitterName" : twitterName,
-                               @"idString" : idString,
-                               @"emailAddress" : @"",
-                               @"phoneNumber" : @"",
-                               @"wwwAddress" : personalURL,
+    NSDictionary *results = @{ @"firstName"          : firstName,
+                               @"lastName"           : lastName,
+                               @"twitterName"        : twitterName,
+                               @"idString"           : idString,
+                               @"emailAddress"       : @"",
+                               @"phoneNumber"        : @"",
+                               @"wwwAddress"         : personalURL,
                                @"twitterDescription" : description,
-                               @"photoURL" : photoURLString,
+                               @"photoURL"           : photoURLString
                                };
     
     return results;
@@ -358,7 +358,11 @@
     }
     if (personalURL[0]) {
         NSString *url = personalURL[0];
-        return url;
+        if ([url class] == [NSNull class]) {
+            return @"";
+        } else {
+            return url;
+        }
     }
     
     return @"";
@@ -376,7 +380,15 @@
  */
 - (NSString *)extractString:(NSString *)key from:(NSDictionary *)data {
     NSArray *array = [data valueForKey:key];
-    NSString *string = array[0];
+    NSString *string = @"";
+    if ([array count] > 0) {
+        NSString *nullCheck = array[0];
+        if ([nullCheck class] == [NSNull class]) {
+            string = @"";
+        } else {
+            string = nullCheck;
+        }
+    }
     
     return string;
 }

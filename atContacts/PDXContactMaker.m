@@ -80,23 +80,28 @@
     ABRecordSetValue(person, kABPersonNoteProperty, (__bridge CFStringRef)twitterDescription, nil);
     
     ABMutableMultiValueRef twitterID = ABMultiValueCreateMutable(kABMultiStringPropertyType);
-    ABMultiValueAddValueAndLabel(twitterID, (__bridge CFTypeRef)(@{ (NSString *)kABPersonSocialProfileServiceKey : (NSString *)kABPersonSocialProfileServiceTwitter, (NSString *)kABPersonSocialProfileUsernameKey : twitterName}), kABPersonSocialProfileServiceTwitter, NULL);
+    ABMultiValueAddValueAndLabel(twitterID, (__bridge CFTypeRef)
+                            (@{ (NSString *)kABPersonSocialProfileServiceKey  : (NSString *)kABPersonSocialProfileServiceTwitter,
+                                (NSString *)kABPersonSocialProfileUsernameKey : twitterName
+                            }), kABPersonSocialProfileServiceTwitter, NULL);
     ABRecordSetValue(person, kABPersonSocialProfileProperty, twitterID, NULL);
     CFRelease(twitterID);
     
     ABMutableMultiValueRef email = ABMultiValueCreateMutable(kABMultiStringPropertyType);
     ABMultiValueAddValueAndLabel(email, (__bridge CFStringRef)emailAddress, (__bridge CFStringRef)@"email", NULL);
     ABRecordSetValue(person, kABPersonEmailProperty, email, nil);
+    CFRelease(email);
 
     ABMutableMultiValueRef phone = ABMultiValueCreateMutable(kABMultiStringPropertyType);
     ABMultiValueAddValueAndLabel(phone, (__bridge CFStringRef)phoneNumber, kABPersonPhoneIPhoneLabel, NULL);
     ABRecordSetValue(person, kABPersonPhoneProperty, phone, nil);
+    CFRelease(phone);
 
     ABMutableMultiValueRef web = ABMultiValueCreateMutable(kABMultiStringPropertyType);
     ABMultiValueAddValueAndLabel(web, (__bridge CFStringRef)wwwAddress, kABPersonHomePageLabel, NULL);
     ABRecordSetValue(person, kABPersonURLProperty, web, nil);
+    CFRelease(web);
 
-    
     ABPersonSetImageData(person, (__bridge CFDataRef)photoData, nil);
     ABAddressBookAddRecord(addressBookRef, person, nil);
     

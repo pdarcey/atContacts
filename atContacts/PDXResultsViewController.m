@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[self twitter] setDelegate:self.parent];
+    [self initialiseData:_data];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,8 +28,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[self twitter] setDelegate:self.parent];
-    [self initialiseData:_data];
 }
 
 #pragma mark - Initialise data fields
