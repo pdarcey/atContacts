@@ -7,9 +7,9 @@
 //
 
 @import UIKit;
-#import "PDXViewController.h"
 #import "AppDelegate.h"
 #import "PDXTwitterCommunicator.h"
+#import "PDXInputViewController.h"
 
 @interface PDXPreApprovalViewController : UIViewController <PDXTwitterCommunicatorDelegate>
 
@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *permissionDenied;
 @property (weak, nonatomic) IBOutlet UIButton *noTwitterAccount;
 @property (weak, nonatomic) PDXTwitterCommunicator *twitter;
-@property (weak, nonatomic) PDXViewController *parent;
+@property (weak, nonatomic) PDXInputViewController *parent;
 
 - (IBAction)permissionGranted:(id)sender;
 - (IBAction)permissionDenied:(id)sender;

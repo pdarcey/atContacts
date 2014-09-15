@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PDXDataModel.h"
 #import "PDXTwitterCommunicator.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

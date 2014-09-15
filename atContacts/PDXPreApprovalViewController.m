@@ -90,6 +90,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)displayErrorMessage:(NSString *)message {
+    
+}
+
 #pragma mark - Convenience methods
 
 /**

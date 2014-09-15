@@ -7,7 +7,7 @@
 //
 
 @import UIKit;
-#import "PDXViewController.h"
+#import "PDXTwitterCommunicator.h"
 
 @interface PDXInputViewController : UIViewController <PDXTwitterCommunicatorDelegate>
 

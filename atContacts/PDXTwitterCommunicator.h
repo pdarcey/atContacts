@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PDXDataModel.h"
 @import Accounts;
 @import Social;
 
-@protocol PDXTwitterCommunicatorDelegate <NSObject>
 #pragma mark - Protocol
+@protocol PDXTwitterCommunicatorDelegate <NSObject>
 
 @required
 - (void)displayErrorMessage:(NSString *)message;

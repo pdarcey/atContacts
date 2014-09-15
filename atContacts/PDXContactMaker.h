@@ -14,6 +14,7 @@
 
 @required
 - (void)newContactMade:(BOOL)success;
+- (void)displayErrorMessage:(NSString *)message;
 
 @end
 

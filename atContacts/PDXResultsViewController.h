@@ -9,7 +9,6 @@
 @import UIKit;
 #import "AppDelegate.h"
 #import "PDXInputViewController.h"
-#import "PDXViewController.h"
 #import "PDXTwitterCommunicator.h"
 #import "PDXContactMaker.h"
 
