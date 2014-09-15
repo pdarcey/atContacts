@@ -335,4 +335,10 @@
     });
 }
 
+- (void)displayErrorMessage:(NSString *)message {
+    UIAlertView *displayErrorMessage = [[UIAlertView alloc]initWithTitle:@"Problem" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [displayErrorMessage show];
+    
+}
+
 @end

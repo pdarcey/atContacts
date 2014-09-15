@@ -13,7 +13,7 @@
 #import "PDXTwitterCommunicator.h"
 #import "PDXContactMaker.h"
 
-@interface PDXResultsViewController : PDXViewController <UITextFieldDelegate, PDXTwitterCommunicatorDelegate, PDXContactMakerDelegate>
+@interface PDXResultsViewController : UIViewController <UITextFieldDelegate, PDXTwitterCommunicatorDelegate, PDXContactMakerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UILabel *lastName;

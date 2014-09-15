@@ -471,6 +471,10 @@ id removeNull(id rootObject) {
 
 }
 
+- (void)displayErrorMessage:(NSString *)message {
+    
+}
+
 #pragma mark - Error Conditions
 
 /**

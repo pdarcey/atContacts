@@ -14,6 +14,9 @@
 @protocol PDXTwitterCommunicatorDelegate <NSObject>
 #pragma mark - Protocol
 
+@required
+- (void)displayErrorMessage:(NSString *)message;
+
 @optional
 - (void)toggleTwitter:(BOOL)onOff;
 - (void)displayInfo:(NSDictionary *)data;

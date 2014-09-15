@@ -107,11 +107,9 @@
     if (![self checkForExistingContact:addressBookRef firstName:firstName person:person]) {
         ABAddressBookSave(addressBookRef, nil);
         [self newContactMade:YES];
+        NSLog(@"Display alert view: Contact added");
     };
     
-    NSLog(@"Display alert view: Contact added");
-//    UIAlertView *contactAddedAlert = [[UIAlertView alloc]initWithTitle:@"Contact Added" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//    [contactAddedAlert show];
 }
 
 // Required for protocol

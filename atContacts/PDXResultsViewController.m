@@ -196,10 +196,18 @@
 }
 
 - (void)newContactMade:(BOOL)success {
+    NSLog(@"NewContactMade protocol message received");
     if (success) {
+        NSLog(@"New contact added");
         [self showContactButtonResults:NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button")];
         _contactsButton.highlighted = YES;
     }
+}
+
+- (void)displayErrorMessage:(NSString *)message {
+    UIAlertView *displayErrorMessage = [[UIAlertView alloc]initWithTitle:@"Problem" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [displayErrorMessage show];
+
 }
 
 #pragma mark - Button actions
