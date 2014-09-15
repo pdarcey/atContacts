@@ -9,7 +9,17 @@
 #import <Foundation/Foundation.h>
 @import AddressBook;
 
+@protocol PDXContactMakerDelegate <NSObject>
+#pragma mark - Protocol
+
+@required
+- (void)newContactMade:(BOOL)success;
+
+@end
+
 @interface PDXContactMaker : NSObject
+
+@property (nonatomic, assign) id < PDXContactMakerDelegate > delegate;
 
 - (void)addToContacts:(NSDictionary *)personData;
 

@@ -48,7 +48,7 @@
     });
 }
 
-- (void)checkForExistingContact:(ABAddressBookRef)addressBookRef firstName:(NSString *)firstName person:(ABRecordRef)person {
+- (BOOL)checkForExistingContact:(ABAddressBookRef)addressBookRef firstName:(NSString *)firstName person:(ABRecordRef)person {
     NSArray *allContacts = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
     for (id record in allContacts){
         ABRecordRef thisContact = (__bridge ABRecordRef)record;
@@ -56,11 +56,10 @@
                             ABRecordCopyCompositeName(person), 0) == kCFCompareEqualTo){
             //The contact already exists!
             NSLog(@"Person already exists!");
-//            UIAlertView *contactExistsAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"There can only be one %@", petFirstName] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//            [contactExistsAlert show];
-            return;
+            return YES;
         }
     }
+    return NO;
 }
 
 - (void)makeContact:(NSDictionary *)personData {
@@ -105,13 +104,19 @@
     ABPersonSetImageData(person, (__bridge CFDataRef)photoData, nil);
     ABAddressBookAddRecord(addressBookRef, person, nil);
     
-    [self checkForExistingContact:addressBookRef firstName:firstName person:person];
+    if (![self checkForExistingContact:addressBookRef firstName:firstName person:person]) {
+        ABAddressBookSave(addressBookRef, nil);
+        [self newContactMade:YES];
+    };
     
-    ABAddressBookSave(addressBookRef, nil);
     NSLog(@"Display alert view: Contact added");
 //    UIAlertView *contactAddedAlert = [[UIAlertView alloc]initWithTitle:@"Contact Added" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 //    [contactAddedAlert show];
 }
 
+// Required for protocol
+- (void)newContactMade:(BOOL)success {
+    
+}
 
 @end

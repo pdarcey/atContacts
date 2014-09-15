@@ -47,6 +47,8 @@
     _phone.text = [data valueForKey:@"phoneNumber"];
     _webAddress.text = [data valueForKey:@"wwwAddress"];
     NSString *dataDescription = [data valueForKey:@"twitterDescription"];
+    NSNumber *following= [data valueForKey:@"following"];
+    [self toggleTwitter:[following boolValue]];
     
     [self getPhoto:photoURL];
     NSString *combinedHashtagAndDescription = @"";
@@ -59,11 +61,10 @@
         combinedHashtagAndDescription = dataDescription;
     }
     _twitterDescription.text = combinedHashtagAndDescription;
-    _twitterButton.selected = NO;
+    _contactsButton.highlighted = NO;
     
     PDXTwitterCommunicator *twitter = [self twitter];
     twitter.delegate = self;
-    [twitter getFollowStatus:[data valueForKey:@"idString"]];
     _indicator.hidden = YES;
     _blurOverlay.hidden = YES;
     
@@ -191,7 +192,14 @@
 #pragma mark - Protocol methods
 
 - (void)toggleTwitter:(BOOL)onOff {
-    _twitterButton.selected = !onOff;
+    _twitterButton.highlighted = onOff;
+}
+
+- (void)newContactMade:(BOOL)success {
+    if (success) {
+        [self showContactButtonResults:NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button")];
+        _contactsButton.highlighted = YES;
+    }
 }
 
 #pragma mark - Button actions
@@ -210,11 +218,13 @@
         PDXTwitterCommunicator *twitter = [self twitter];
         [twitter follow:[_data valueForKey:@"idString"]];
         [self showTwitterButtonResults:NSLocalizedString(@"Followed on Twitter", @"Display result of hitting Twitter button")];
+        _twitterButton.highlighted = YES;
     } else {
         // Unfollow
         PDXTwitterCommunicator *twitter = [self twitter];
         [twitter unfollow:[_data valueForKey:@"idString"]];
         [self showTwitterButtonResults:NSLocalizedString(@"Unfollowed on Twitter", @"Display result of hitting Twitter button")];
+        _twitterButton.highlighted = NO;
     }
 }
 
@@ -226,6 +236,7 @@
  *  @since 1.0
  */
 - (IBAction)addToContacts {
+    NSLog(@"addToContacts button selected");
     PDXContactMaker *contactMaker = [PDXContactMaker new];
     NSDictionary *personData = @{ @"firstName"    : _firstName.text,
                                   @"lastName"     : _lastName.text,
@@ -236,10 +247,9 @@
                                   @"twitterDescription" : _twitterDescription.text,
                                   @"photoData"    : UIImageJPEGRepresentation(_photo.image, 1.0f)
                                  };
-        
+    
+    contactMaker.delegate = self;
     [contactMaker addToContacts:personData];
-    NSLog(@"addToContacts button selected");
-    [self showContactButtonResults:NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button")];
 }
 
 /**
@@ -412,17 +422,24 @@
 }
 
 - (void)animateResultsButton:(UILabel *)label {
-    CGFloat duration = 0.1f;
+    label.alpha = 0;
+    label.hidden = NO;
+    CGFloat duration = 3.1f;
     
-    [UIView animateWithDuration:duration animations:^{
-        label.hidden = false;
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [UIView animateWithDuration:duration animations:^{
-                label.hidden = true;
-            }];
-        }
-    }];
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{label.alpha = 1;}
+                     completion:^(BOOL finished) {
+                         [UIView animateWithDuration:duration
+                                               delay:0.0
+                                             options: UIViewAnimationOptionCurveEaseOut
+                                          animations:^{label.alpha = 0;}
+                                          completion:^(BOOL finished) {
+                                              label.hidden = YES;
+                                          }
+                          ];
+                     }];
 }
 
 /**

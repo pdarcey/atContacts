@@ -147,6 +147,41 @@
 
 #pragma mark - Handle Responses
 
+id removeNull(id rootObject) {
+    if ([rootObject isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary *sanitizedDictionary = [NSMutableDictionary dictionaryWithDictionary:rootObject];
+        [rootObject enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            id sanitized = removeNull(obj);
+            if (!sanitized) {
+                [sanitizedDictionary setObject:@"" forKey:key];
+            } else {
+                [sanitizedDictionary setObject:sanitized forKey:key];
+            }
+        }];
+        return [NSMutableDictionary dictionaryWithDictionary:sanitizedDictionary];
+    }
+    
+    if ([rootObject isKindOfClass:[NSArray class]]) {
+        NSMutableArray *sanitizedArray = [NSMutableArray arrayWithArray:rootObject];
+        [rootObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            id sanitized = removeNull(obj);
+            if (!sanitized) {
+                [sanitizedArray replaceObjectAtIndex:[sanitizedArray indexOfObject:obj] withObject:@""];
+            } else {
+                [sanitizedArray replaceObjectAtIndex:[sanitizedArray indexOfObject:obj] withObject:sanitized];
+            }
+        }];
+        return [NSMutableArray arrayWithArray:sanitizedArray];
+    }
+    
+    if ([rootObject isKindOfClass:[NSNull class]]) {
+        return (id)nil;
+    } else {
+        return rootObject;
+    }
+}
+
+
 /**
  *  Chooses how to handle the response from a Twitter request
  *
@@ -156,21 +191,23 @@
  *  @since 1.0
  */
 - (void)handleResponse:(NSDictionary *)data requestType:(PDXRequestType)requestType {
+    NSDictionary *sanitisedData = removeNull(data);
+    
     switch (requestType) {
         case PDXRequestTypeGetUserInfo:
-            [self handleGetUserInfo:data];
+            [self handleGetUserInfo:sanitisedData];
             break;
             
         case PDXRequestTypeGetFollowStatus:
-            [self handleGetFollowStatus:data];
+            [self handleGetFollowStatus:sanitisedData];
             break;
             
         case PDXRequestTypeFollow:
-            [self handleFollow:data];
+            [self handleFollow:sanitisedData];
             break;
             
         case PDXRequestTypeUnfollow:
-            [self handleUnfollow:data];
+            [self handleUnfollow:sanitisedData];
             break;
             
         default:
@@ -240,19 +277,21 @@
  */
 - (NSDictionary *)parseUsersLookup:(NSDictionary *)data {
     // Extract the fields we want
-    NSString *name = [self extractString:@"name" from:data];
+    NSString *name = [self parseJSON:data forKey:@"name"];
     NSDictionary *splitNames = [self splitName:name];
     NSString *firstName = [splitNames valueForKey:@"firstName"];
     NSString *lastName = [splitNames valueForKey:@"lastName"];
-    NSString *idString = [self extractString:@"id_str" from:data];
-    NSString *photoURLString = [self extractString:@"profile_image_url" from:data];
-    NSString *description = [self extractString:@"description" from:data];
-    NSString *shortTwitterName = [self extractString:@"screen_name" from:data];
+    NSString *idString = [self parseJSON:data forKey:@"id_str"];
+    NSString *photoURLString = [self parseJSON:data forKey:@"profile_image_url"];
+    NSString *description = [self parseJSON:data forKey:@"description"];
+    NSString *shortTwitterName = [self parseJSON:data forKey:@"screen_name"];
     NSString *twitterName = [NSString stringWithFormat:@"@%@", shortTwitterName];
-    NSString *personalURL = [self extractString:@"url" from:data];
+    NSString *personalURL = [self parsePersonalURL:data];
+    //    NSString *personalURL = [self parseJSON:data forKey:@"expanded_url"];
     if (!personalURL) {
-        personalURL = [self parsePersonalURL:data];
+        personalURL = [self parseJSON:data forKey:@"url"];
     }
+    NSNumber *followingNumber = [self parseJSON:data forKey:@"following"];
     
     NSDictionary *results = @{ @"firstName"          : firstName,
                                @"lastName"           : lastName,
@@ -262,11 +301,34 @@
                                @"phoneNumber"        : @"",
                                @"wwwAddress"         : personalURL,
                                @"twitterDescription" : description,
-                               @"photoURL"           : photoURLString
+                               @"photoURL"           : photoURLString,
+                               @"following"          : followingNumber
                                };
     
     return results;
 }
+
+- (id)parseJSON:(NSDictionary *)data forKey:(NSString *)key {
+    id result;
+    for (id object in data) {
+        result = nil;
+        if ([object isKindOfClass:[NSArray class]]) {
+            for (NSDictionary *dict in object) {
+                result = [dict objectForKey:key];
+                if (result) {
+                    return result;
+                }
+            }
+        } else if ([object isKindOfClass:[NSDictionary class]]) {
+            result = [(NSDictionary *)object objectForKey:key];
+            if (result) {
+                return result;
+            } 
+        }
+    }
+    return nil;
+}
+
 
 - (NSDictionary *)splitName:(NSString *)name {
     // Split name into firstName / lastName
@@ -343,28 +405,16 @@
  *  @since 1.0
  */
 - (NSString *)parsePersonalURL:(NSDictionary *)data {
-    NSArray *entityArray = [data valueForKey:@"entities"];
-    NSArray *urlArray;
-    NSArray *urlsArray;
-    NSArray *personalURL;
-    if (entityArray[0]) {
-        urlArray = [entityArray valueForKey:@"url"];
+    NSDictionary *entityDict = [self parseJSON:data forKey:@"entities"];
+    NSString *personalURL;
+    if (entityDict) {
+        NSDictionary *url = [entityDict valueForKey:@"url"];
+        NSArray *urls = [url valueForKey:@"urls"];
+        personalURL = [[urls valueForKey:@"expanded_url"] firstObject];
     }
-    if (!urlArray[0]) {
-        urlsArray = [urlArray valueForKey:@"urls"];
+    if (personalURL) {
+        return personalURL;
     }
-    if (!urlsArray[0]) {
-        personalURL = [urlsArray valueForKey:@"expanded_url"];
-    }
-    if (personalURL[0]) {
-        NSString *url = personalURL[0];
-        if ([url class] == [NSNull class]) {
-            return @"";
-        } else {
-            return url;
-        }
-    }
-    
     return @"";
 }
 
