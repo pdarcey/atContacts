@@ -26,6 +26,7 @@
 		C99D295619C4FBEE00E42D86 /* PDXContactMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D295519C4FBEE00E42D86 /* PDXContactMaker.m */; };
 		C99D295819C518C500E42D86 /* PDXContactMakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D295719C518C500E42D86 /* PDXContactMakerTests.m */; };
 		C99D295D19C5E3E100E42D86 /* File.strings in Resources */ = {isa = PBXBuildFile; fileRef = C99D295C19C5E3E100E42D86 /* File.strings */; };
+		C99D296419C8AC2B00E42D86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C99D296319C8AC2B00E42D86 /* LaunchScreen.storyboard */; };
 		C9A010F819BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */; };
 		C9A010F919BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */; };
 		C9FA6DAD19C31D940086FDAB /* PDXInputVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FA6DAC19C31D940086FDAB /* PDXInputVCTests.m */; };
@@ -70,6 +71,7 @@
 		C99D295719C518C500E42D86 /* PDXContactMakerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDXContactMakerTests.m; path = ../atContacts/PDXContactMakerTests.m; sourceTree = "<group>"; };
 		C99D295919C5192900E42D86 /* PDXContactMaker+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXContactMaker+TestExtensions.h"; sourceTree = "<group>"; };
 		C99D295C19C5E3E100E42D86 /* File.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = File.strings; sourceTree = "<group>"; };
+		C99D296319C8AC2B00E42D86 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9A010F619BCA6470024BFC6 /* PDXTwitterCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXTwitterCommunicator.h; sourceTree = "<group>"; };
 		C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterCommunicator.m; sourceTree = "<group>"; };
 		C9FA6DAC19C31D940086FDAB /* PDXInputVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDXInputVCTests.m; path = ../atContacts/PDXInputVCTests.m; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				C971A1C619B4A43E00F67E75 /* View Controllers */,
 				C971A1C719B4A44C00F67E75 /* Workers */,
 				C93E2D4419ADD51200B06809 /* Main.storyboard */,
+				C99D296319C8AC2B00E42D86 /* LaunchScreen.storyboard */,
 				C93E2D4719ADD51200B06809 /* Images.xcassets */,
 				C93E2D3A19ADD51200B06809 /* Supporting Files */,
 			);
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C93E2D4619ADD51200B06809 /* Main.storyboard in Resources */,
+				C99D296419C8AC2B00E42D86 /* LaunchScreen.storyboard in Resources */,
 				C93E2D4819ADD51200B06809 /* Images.xcassets in Resources */,
 				C99D295D19C5E3E100E42D86 /* File.strings in Resources */,
 			);

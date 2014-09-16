@@ -114,13 +114,18 @@
     NSLog(@"textFieldShouldReturn");
     if (textField == _twitterName) {
         [self findTwitterName];
-        return NO;
     } else if (textField == _hashtag) {
         NSLog(@"textFieldShouldReturn; textField = _hashtag");
         [self endHashtagEditing];
     }
     
     return YES;
+}
+
+- (void)disableReturnKey:(UITextField *)textField {
+    // Set label exactly over the textField and populate it with the same text
+    // then empty the text field; this should grey out the Return key
+    // 
 }
 
 /**

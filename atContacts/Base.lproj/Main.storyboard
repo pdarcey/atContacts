@@ -26,7 +26,7 @@
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMZ-zf-l8P">
-                                <rect key="frame" x="202" y="221" width="14" height="19.5"/>
+                                <rect key="frame" x="203" y="219.5" width="14" height="19.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="14" id="Ima-fN-SZ4"/>
                                 </constraints>
@@ -35,13 +35,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="twittername" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ib1-pi-m32">
-                                <rect key="frame" x="218" y="215" width="180" height="30"/>
+                                <rect key="frame" x="217" y="214" width="180" height="30"/>
                                 <color key="backgroundColor" red="0.96862751245498657" green="0.68627452850341797" blue="0.32156863808631897" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="r6G-2W-12J"/>
-                                    <constraint firstAttribute="height" constant="30" id="tDc-pj-RFd"/>
-                                </constraints>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
@@ -50,9 +46,9 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="hashtag" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qfS-g8-B3B">
-                                <rect key="frame" x="202" y="253" width="202" height="20"/>
+                                <rect key="frame" x="203" y="252" width="194" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="202" id="SPl-JI-bEg"/>
+                                    <constraint firstAttribute="width" constant="194" id="SPl-JI-bEg"/>
                                 </constraints>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -68,16 +64,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="003-u9-0Xz" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="162-eZ-kLm"/>
-                            <constraint firstItem="qfS-g8-B3B" firstAttribute="top" secondItem="Ib1-pi-m32" secondAttribute="bottom" constant="8" id="9f5-pQ-7ky"/>
+                            <constraint firstItem="Ib1-pi-m32" firstAttribute="baseline" secondItem="mMZ-zf-l8P" secondAttribute="baseline" id="8xc-gQ-piL"/>
                             <constraint firstItem="003-u9-0Xz" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="AUq-5I-10r"/>
                             <constraint firstItem="003-u9-0Xz" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Bjb-gQ-EnP"/>
-                            <constraint firstItem="mMZ-zf-l8P" firstAttribute="trailing" secondItem="Ib1-pi-m32" secondAttribute="leading" constant="-2" id="Bqd-Sf-SYn"/>
-                            <constraint firstItem="003-u9-0Xz" firstAttribute="centerY" secondItem="qfS-g8-B3B" secondAttribute="centerY" constant="37" id="KIv-nV-pR4"/>
-                            <constraint firstItem="003-u9-0Xz" firstAttribute="centerX" secondItem="qfS-g8-B3B" secondAttribute="centerX" constant="-3" id="LPy-oC-e8Y"/>
+                            <constraint firstItem="qfS-g8-B3B" firstAttribute="top" secondItem="Ib1-pi-m32" secondAttribute="bottom" constant="8" id="GaX-YO-8ZV"/>
+                            <constraint firstItem="003-u9-0Xz" firstAttribute="centerY" secondItem="qfS-g8-B3B" secondAttribute="centerY" constant="38" id="KIv-nV-pR4"/>
+                            <constraint firstItem="003-u9-0Xz" firstAttribute="centerX" secondItem="qfS-g8-B3B" secondAttribute="centerX" id="LPy-oC-e8Y"/>
                             <constraint firstAttribute="centerY" secondItem="003-u9-0Xz" secondAttribute="centerY" id="Ps1-2m-tWz"/>
                             <constraint firstItem="mMZ-zf-l8P" firstAttribute="leading" secondItem="qfS-g8-B3B" secondAttribute="leading" id="YuZ-3V-uqA"/>
-                            <constraint firstItem="Ib1-pi-m32" firstAttribute="centerX" secondItem="003-u9-0Xz" secondAttribute="centerX" constant="8" id="bLf-hG-ZeD"/>
-                            <constraint firstItem="mMZ-zf-l8P" firstAttribute="centerY" secondItem="Ib1-pi-m32" secondAttribute="centerY" constant="0.5" id="jD9-Gs-UY7"/>
+                            <constraint firstItem="Ib1-pi-m32" firstAttribute="leading" secondItem="mMZ-zf-l8P" secondAttribute="trailing" id="gj8-bo-EeX"/>
+                            <constraint firstItem="Ib1-pi-m32" firstAttribute="trailing" secondItem="qfS-g8-B3B" secondAttribute="trailing" id="nuk-Gf-SCM"/>
                         </constraints>
                     </view>
                     <connections>
@@ -500,4 +496,5 @@
         <image name="Twitter Selected" width="40" height="40"/>
         <image name="defaultPhoto" width="400" height="400"/>
     </resources>
+    <color key="tintColor" red="1" green="0.70001500000000005" blue="0.14064499999999999" alpha="1" colorSpace="calibratedRGB"/>
 </document>
