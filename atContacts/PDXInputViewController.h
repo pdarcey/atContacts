@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *twitterName;
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;
 @property (weak, nonatomic) PDXTwitterCommunicator *twitter;
+@property BOOL searching;
 
 - (IBAction)findTwitterName;
 - (IBAction)endHashtagEditing;

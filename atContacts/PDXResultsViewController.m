@@ -91,7 +91,7 @@
                                     NSURLResponse *response,
                                     NSError *error) {
                     // TODO: Check NSURLResponse to ensure we received a valid response
-                    _photo.image = [UIImage imageWithData:data];
+                    [self animateAddPhoto:[UIImage imageWithData:data]];
                     
                 }] resume];
     }
@@ -393,6 +393,8 @@
     
 }
 
+#pragma mark - Animations
+
 /**
  *  Makes the selected UITextField "pop" - i.e. momentarily get larger, then revert to its original size
  *
@@ -432,7 +434,7 @@
 - (void)animateResultsButton:(UILabel *)label {
     label.alpha = 0;
     label.hidden = NO;
-    CGFloat duration = 3.1f;
+    CGFloat duration = 0.8f;
     
     [UIView animateWithDuration:duration
                           delay:0.0
@@ -448,6 +450,17 @@
                                           }
                           ];
                      }];
+}
+
+- (void)animateAddPhoto:(UIImage *)image {
+    CGFloat duration = 0.8f;
+    
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options: UIViewAnimationOptionTransitionCrossDissolve
+                     animations:^{_photo.image = image;}
+                     completion:nil
+                     ];
 }
 
 /**

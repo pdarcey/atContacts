@@ -106,7 +106,7 @@
     
     if (![self checkForExistingContact:addressBookRef firstName:firstName person:person]) {
         ABAddressBookSave(addressBookRef, nil);
-        [self newContactMade:YES];
+        [_delegate newContactMade:YES];
         NSLog(@"Display alert view: Contact added");
     };
     

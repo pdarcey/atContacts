@@ -325,9 +325,9 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5L3-Nu-dkf">
-                                <rect key="frame" x="75" y="517.5" width="28.5" height="13.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="75" y="513.5" width="225" height="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju2-0W-kr1" userLabel="both">
@@ -345,13 +345,14 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOK-mD-mXs">
-                                <rect key="frame" x="496.5" y="517.5" width="28.5" height="13.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="300" y="514" width="225" height="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-PF-jaK" userLabel="contacts">
                                 <rect key="frame" x="485" y="539" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" hint="Will add this person to contacts" label="Add to contacts button"/>
                                 <state key="normal" image="Contacts Selected">
                                     <color key="titleColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
@@ -396,6 +397,7 @@
                             <constraint firstItem="95n-fe-rtH" firstAttribute="centerX" secondItem="0AU-64-liZ" secondAttribute="centerX" id="5D1-hx-tNx"/>
                             <constraint firstItem="Ctm-pf-gHA" firstAttribute="top" secondItem="5L3-Nu-dkf" secondAttribute="bottom" constant="8" id="6ZN-Jb-aqm"/>
                             <constraint firstAttribute="centerX" secondItem="iSE-R8-M22" secondAttribute="centerX" id="7cg-7D-eYc"/>
+                            <constraint firstItem="5L3-Nu-dkf" firstAttribute="width" secondItem="86e-dG-L1q" secondAttribute="width" multiplier="0.5" id="8RQ-KZ-oWn"/>
                             <constraint firstItem="wIu-zq-T26" firstAttribute="bottom" secondItem="Vgz-1v-uts" secondAttribute="bottom" constant="-5" id="8dd-Hc-qL4"/>
                             <constraint firstItem="7db-G0-5GQ" firstAttribute="top" secondItem="86e-dG-L1q" secondAttribute="bottom" id="9F2-XK-w1P"/>
                             <constraint firstAttribute="centerY" secondItem="ZrQ-4A-fAU" secondAttribute="centerY" id="A6S-W4-NxN"/>
@@ -427,6 +429,7 @@
                             <constraint firstItem="i1l-eD-iST" firstAttribute="leading" secondItem="PrX-as-Dkg" secondAttribute="trailing" constant="8" id="iFj-7b-0Sh"/>
                             <constraint firstItem="X7X-fj-m0i" firstAttribute="trailing" secondItem="Vgz-1v-uts" secondAttribute="trailing" id="iOJ-9W-BSY"/>
                             <constraint firstItem="95n-fe-rtH" firstAttribute="width" secondItem="dWp-am-uRh" secondAttribute="width" id="idC-su-Ent"/>
+                            <constraint firstItem="86e-dG-L1q" firstAttribute="width" secondItem="EOK-mD-mXs" secondAttribute="width" multiplier="2" id="jlf-6l-UGa"/>
                             <constraint firstAttribute="centerX" secondItem="Ju2-0W-kr1" secondAttribute="centerX" id="l10-ZJ-GgN"/>
                             <constraint firstItem="EOK-mD-mXs" firstAttribute="trailing" secondItem="LFf-PF-jaK" secondAttribute="trailing" id="lBZ-sS-3cS"/>
                             <constraint firstItem="95n-fe-rtH" firstAttribute="width" secondItem="0AU-64-liZ" secondAttribute="width" id="lka-HN-FpV"/>
