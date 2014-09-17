@@ -14,7 +14,7 @@
 #pragma mark - Generic request
 
 /**
- *  Sends a request to Twitter's APIs using the user's Twitter credentials stored in Settings
+ *  Prepares a request to send to Twitter's APIs using the user's Twitter credentials stored in Settings
  *
  *  @param url         Twitter API URL
  *  @param getOrPost   GET or POST type API
@@ -51,6 +51,17 @@
     }
 }
 
+/**
+ *  Sends a request to Twitter's API
+ *
+ *  @param account     The Twitter account to use
+ *  @param url         Twitter API URL
+ *  @param getOrPost   GET or POST type API
+ *  @param parameters  Dictionary of additional parameters for the API (e.g. {@"screen_name" : @"twittername"})
+ *  @param requestType PDXRequestType (see specific requests below)
+ *
+ *  @since 1.0
+ */
 - (void)twitterRequest:(ACAccount *)account url:(NSURL *)url getOrPost:(SLRequestMethod)getOrPost parameters:(NSDictionary *)parameters requestType:(PDXRequestType)requestType {
     
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:getOrPost URL:url parameters:parameters];
@@ -82,7 +93,7 @@
 
 #pragma mark - Specific requests
 /**
- *  Get user infor for twitterName
+ *  Get user info for twitterName
  *
  *  @param twitterName Twitter name to look up. Does NOT include the leading "@" symbol
  *
@@ -100,6 +111,8 @@
 /**
  *  Does the user currently follow the Twitter user with the ID idString?
  *
+ *  Response from Twitter will be handled by handleResponse:(NSDictionary *)data requestType:(PDXRequestType)requestType
+ *
  *  @param idString Twitter's unique ID string for users. Obtained from the getUserInfo query
  *
  *  @since 1.0
@@ -113,8 +126,18 @@
     
 }
 
+/**
+ *  Get person's Twitter photo
+ *
+ *  Note: Does NOT use Apple's Twitter API; uses NSURLSession instead
+ *
+ *  @param photoURL <#photoURL description#>
+ *
+ *  @since <#version number#>
+ */
 - (void)getUserImage:(NSString *)photoURL {
     NSURLSession *session = [NSURLSession sharedSession];
+   
     [[session dataTaskWithURL:[NSURL URLWithString:photoURL]
             completionHandler:^(NSData *data,
                                 NSURLResponse *response,
@@ -160,6 +183,15 @@
 
 #pragma mark - Handle Responses
 
+/**
+ *  Function to replace null responses with @"" for data returned by Twitter
+ *
+ *  @param rootObject Data object from Twitter. Could be NSDictionary or NSArray
+ *
+ *  @return Object of same class as given, with null values replaced with @""
+ *
+ *  @since 1.0
+ */
 id removeNull(id rootObject) {
     if ([rootObject isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *sanitizedDictionary = [NSMutableDictionary dictionaryWithDictionary:rootObject];
@@ -193,7 +225,6 @@ id removeNull(id rootObject) {
         return rootObject;
     }
 }
-
 
 /**
  *  Chooses how to handle the response from a Twitter request
@@ -277,14 +308,17 @@ id removeNull(id rootObject) {
 }
 
 #pragma mark - Parse Data
-// The names of the methods here are based on Twitter's API scheme
+// The names of the methods here are based on Twitter's API scheme(s)
 
 /**
  *  Parses results from a getUserInfo request
  *
  *  @param data Twitter data returned by the request
  *
- *  @return Dictionary containing: name, idString, photoURLString, description, and twitterName
+ *  @return Dictionary containing: firstName, lastName, twitterName, idString, emailAddress, phoneNumber, wwwAddress,
+ *                                 twitterDescription, photoURL and following
+ *
+ *  All objects in the dictionary are strings, except following, which is an NSNumber representation of a BOOL
  *
  *  @since 1.0
  */
@@ -321,6 +355,16 @@ id removeNull(id rootObject) {
     return results;
 }
 
+/**
+ *  Parses a JSON dictionary for a key
+ *
+ *  @param data NSDictionary representation of JSON data
+ *  @param key  Key to look for
+ *
+ *  @return Object for key (or nil, if not found)
+ *
+ *  @since 1.0
+ */
 - (id)parseJSON:(NSDictionary *)data forKey:(NSString *)key {
     id result;
     for (id object in data) {
@@ -342,7 +386,17 @@ id removeNull(id rootObject) {
     return nil;
 }
 
-
+/**
+ *  Splits a name string into firstName and lastName
+ *
+ *  First word of the string goes into firstName, the rest goes into lastName
+ *
+ *  @param name A string representing a name
+ *
+ *  @return Dictionary with two keys: firstName and lastName
+ *
+ *  @since 1.0
+ */
 - (NSDictionary *)splitName:(NSString *)name {
     // Split name into firstName / lastName
     NSDictionary *splitNames;
@@ -467,7 +521,7 @@ id removeNull(id rootObject) {
  *
  *  @since 1.0
  */
-- (void)followedOnTwitter:(BOOL)onOff {
+- (void)followedOnTwitter:(BOOL)success {
     
 }
 
@@ -484,10 +538,28 @@ id removeNull(id rootObject) {
 
 }
 
+/**
+ *  Tells the view to display a message to the user
+ *
+ *  Is used by views that conform to PDXTwitterCommunicatorDelegate, so it is not implemented here
+ *
+ *  @param message Message to display
+ *
+ *  @since 1.0
+ */
 - (void)displayErrorMessage:(NSString *)message {
     
 }
 
+/**
+ *  Display info returned by a getUserImage request
+ *
+ *  Is used by views that conform to PDXTwitterCommunicatorDelegate, so it is not implemented here
+ *
+ *  @param image Image returned by Twitter
+ *
+ *  @since 1.0
+ */
 - (void)displayUserImage:(UIImage *)image {
     
 }

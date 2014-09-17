@@ -352,7 +352,7 @@
                                 <state key="selected" image="Both Selected"/>
                                 <state key="highlighted" image="Both Highlighted"/>
                                 <connections>
-                                    <action selector="followAndAdd:" destination="a2f-bI-RVU" eventType="touchUpInside" id="Y2z-ff-0Nq"/>
+                                    <action selector="followAndAdd:" destination="a2f-bI-RVU" eventType="touchUpInside" id="Xl7-nL-bnN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-PF-jaK" userLabel="contacts">
@@ -370,7 +370,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcX-3U-RDU">
-                                <rect key="frame" x="200" y="240" width="200" height="120"/>
+                                <rect key="frame" x="200" y="121" width="200" height="200"/>
                                 <color key="backgroundColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="VML-p1-NeP"/>
@@ -378,6 +378,11 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="VML-p1-NeP"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="58a-DN-NVP">
                                 <rect key="frame" x="578" y="175" width="6" height="92"/>
@@ -404,9 +409,11 @@
                             <constraint firstItem="Vgz-1v-uts" firstAttribute="top" secondItem="0AU-64-liZ" secondAttribute="bottom" constant="7.5" id="19t-Wa-r6B"/>
                             <constraint firstAttribute="width" secondItem="Yvn-J6-16N" secondAttribute="width" id="1L9-oz-2ao"/>
                             <constraint firstItem="PrX-as-Dkg" firstAttribute="baseline" secondItem="i1l-eD-iST" secondAttribute="baseline" id="3Kh-59-lya"/>
+                            <constraint firstItem="Vgz-1v-uts" firstAttribute="centerY" secondItem="vcX-3U-RDU" secondAttribute="centerY" id="3NT-yj-O6C"/>
                             <constraint firstAttribute="centerY" secondItem="lxn-3I-Z47" secondAttribute="centerY" id="4MM-aW-hEV"/>
                             <constraint firstAttribute="centerX" secondItem="Yvn-J6-16N" secondAttribute="centerX" id="4x5-sX-blR"/>
                             <constraint firstItem="95n-fe-rtH" firstAttribute="centerX" secondItem="0AU-64-liZ" secondAttribute="centerX" id="5D1-hx-tNx"/>
+                            <constraint firstItem="Vgz-1v-uts" firstAttribute="height" secondItem="vcX-3U-RDU" secondAttribute="height" id="5vx-E4-rKH"/>
                             <constraint firstAttribute="centerY" secondItem="vcX-3U-RDU" secondAttribute="centerY" id="7TJ-mO-gWj"/>
                             <constraint firstAttribute="centerX" secondItem="iSE-R8-M22" secondAttribute="centerX" id="7cg-7D-eYc"/>
                             <constraint firstItem="wIu-zq-T26" firstAttribute="bottom" secondItem="Vgz-1v-uts" secondAttribute="bottom" constant="-5" id="8dd-Hc-qL4"/>
@@ -429,9 +436,11 @@
                             <constraint firstItem="86e-dG-L1q" firstAttribute="top" secondItem="i1l-eD-iST" secondAttribute="bottom" constant="7" id="SxG-oQ-Lx8"/>
                             <constraint firstItem="i1l-eD-iST" firstAttribute="top" secondItem="OWX-u5-Leo" secondAttribute="bottom" constant="7" id="THZ-A1-2rp"/>
                             <constraint firstItem="Ctm-pf-gHA" firstAttribute="centerY" secondItem="Ju2-0W-kr1" secondAttribute="centerY" id="TKb-cM-JI1"/>
+                            <constraint firstItem="Vgz-1v-uts" firstAttribute="width" secondItem="vcX-3U-RDU" secondAttribute="width" id="UJz-Rf-nPo"/>
                             <constraint firstAttribute="height" secondItem="ZrQ-4A-fAU" secondAttribute="height" id="V42-0a-6Wm"/>
                             <constraint firstItem="X7X-fj-m0i" firstAttribute="top" secondItem="Vgz-1v-uts" secondAttribute="bottom" constant="7" id="WuR-2C-uE5"/>
                             <constraint firstAttribute="height" secondItem="lxn-3I-Z47" secondAttribute="height" id="bUO-S9-V26"/>
+                            <constraint firstItem="Vgz-1v-uts" firstAttribute="centerX" secondItem="vcX-3U-RDU" secondAttribute="centerX" id="c0E-u5-GJD"/>
                             <constraint firstItem="yci-qZ-zSI" firstAttribute="trailing" secondItem="PrX-as-Dkg" secondAttribute="trailing" id="cON-4T-YtI"/>
                             <constraint firstItem="Vgz-1v-uts" firstAttribute="trailing" secondItem="i1l-eD-iST" secondAttribute="trailing" id="eEt-97-Zfe"/>
                             <constraint firstAttribute="height" secondItem="iSE-R8-M22" secondAttribute="height" id="eOV-o0-BnL"/>
@@ -459,12 +468,20 @@
                             <constraint firstItem="86e-dG-L1q" firstAttribute="leading" secondItem="Ctm-pf-gHA" secondAttribute="leading" id="yfw-nr-odl"/>
                             <constraint firstAttribute="centerX" secondItem="lxn-3I-Z47" secondAttribute="centerX" id="ywD-2O-avD"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="qon-pe-ZmR"/>
+                                <exclude reference="7TJ-mO-gWj"/>
+                                <exclude reference="nWl-xm-sLj"/>
+                            </mask>
+                        </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="blurOverlay" destination="iSE-R8-M22" id="ypD-Od-21f"/>
+                        <outlet property="bothButton" destination="Ju2-0W-kr1" id="uDS-4h-FC5"/>
                         <outlet property="contactsButton" destination="LFf-PF-jaK" id="4FB-PE-5Id"/>
                         <outlet property="email" destination="X7X-fj-m0i" id="Ek1-oy-ap7"/>
                         <outlet property="errorMessage" destination="vcX-3U-RDU" id="vxW-Nb-0ze"/>

@@ -10,12 +10,32 @@
 @import AddressBook;
 @implementation PDXContactMaker
 
+/**
+ *  Authorisation status for access to user's Contacts
+ *
+ *  @return Authorisation status. Possible values are:
+ *     kABAuthorizationStatusNotDetermined,
+ *     kABAuthorizationStatusRestricted,
+ *     kABAuthorizationStatusDenied,
+ *     kABAuthorizationStatusAuthorized
+ *
+ *  @since 1.0
+ */
 - (CFIndex)getAuthorisationStatus {
     CFIndex authorisationStatus = ABAddressBookGetAuthorizationStatus();
     
     return authorisationStatus;
 }
 
+/**
+ *  Checks for authorised access to Contacts. If necessary asks for authorisation.
+ *
+ *  Then creates a person and adds them to Contats
+ *
+ *  @param personData Dictionary of info for the person to create
+ *
+ *  @since 1.0
+ */
 - (void)addToContacts:(NSDictionary *)personData {
     
     CFIndex authorisationStatus = [self getAuthorisationStatus];
@@ -40,15 +60,38 @@
     }
 }
 
+/**
+ *  Is this person already in Contacts?
+ *
+ *  @param personData Dictionary of info for the person to check for
+ *
+ *  @return YES if a person with the exact same name already exists; NO if not
+ *
+ *  @since 1.0
+ */
 - (BOOL)isInContacts:(NSDictionary *)personData {
     ABRecordRef person = [self makePerson:personData];
     return [self isExistingContact:person];
 }
 
+/**
+ *  Display a message to user that we can't add this person
+ *
+ *  @since 1.0
+ */
 - (void)displayCantAddContactAlert {
     [_delegate displayErrorMessage:NSLocalizedString(@"Can't add contact", @"Can't add a contact error alert")];
 }
 
+/**
+ *  Is this person already in Contacts?
+ *
+ *  @param person An ABRecordRef for the person
+ *
+ *  @return YES if a person with the exact same name already exists; NO if not
+ *
+ *  @since 1.0
+ */
 - (BOOL)isExistingContact:(ABRecordRef)person {
     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
     NSArray *allContacts = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
@@ -62,6 +105,13 @@
     return NO;
 }
 
+/**
+ *  Turns a dictionary of person data into an ABRecordRef and saves it to Contacts if it is not a duplicate
+ *
+ *  @param personData Dictionary with the person's data
+ *
+ *  @since 1.0
+ */
 - (void)makeContact:(NSDictionary *)personData {
     ABRecordRef person = [self makePerson:personData];
     if (![self isExistingContact:person]) {
@@ -76,6 +126,15 @@
     
 }
 
+/**
+ *  Turns a dictionary of person data into an ABRecordRef
+ *
+ *  @param personData Dictionary with the person's data
+ *
+ *  @return An ABRecordRef for the person
+ *
+ *  @since 1.0
+ */
 - (ABRecordRef)makePerson:(NSDictionary *)personData {
     NSString *firstName = [personData valueForKey:@"firstName"];
     NSString *lastName = [personData valueForKey:@"lastName"];
@@ -119,6 +178,13 @@
     return person;
 }
 
+/**
+ *  Saves a person to Contacts
+ *
+ *  @param person ABRecordRef for the person
+ *
+ *  @since 1.0
+ */
 - (void)saveContact:(ABRecordRef)person {
     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
     ABAddressBookAddRecord(addressBookRef, person, nil);

@@ -25,9 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *indicator;
 @property (weak, nonatomic) IBOutlet UIButton *twitterButton;
 @property (weak, nonatomic) IBOutlet UIButton *contactsButton;
+@property (weak, nonatomic) IBOutlet UIButton *bothButton;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *blurOverlay;
-@property (weak, nonatomic) IBOutlet UILabel *followedOnTwitter;
-@property (weak, nonatomic) IBOutlet UILabel *addedToContacts;
 @property (weak, nonatomic) IBOutlet UILabel *errorMessage;
 
 @property (strong, nonatomic) NSDictionary *data;

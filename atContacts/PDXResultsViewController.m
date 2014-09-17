@@ -69,12 +69,7 @@
     [self followedOnTwitter:_following];
     
     // Set Contacts status
-    PDXContactMaker *contacts = [PDXContactMaker new];
-    contacts.delegate = self;
-    if ([contacts isInContacts:[self personData]]) {
-        UIImage *defaultImage = [UIImage imageNamed:@"Contacts Highlighted"];
-        [_contactsButton setImage:defaultImage forState:UIControlStateNormal];
-    }
+    [self setContactState];
     
     // Set other elements to hidden
     _indicator.hidden = YES;
@@ -171,27 +166,45 @@
 
 #pragma mark - Protocol methods
 
+/**
+ *  Sets the Twitter button. If user already follows person, displays the highlighted button and disables button
+ *
+ *  Called by PDXTwitterCommunicator when it receives an answer from Twitter
+ *
+ *  @param success YES if the user already follows the person, NO if they do not
+ *
+ *  @since 1.0
+ */
 - (void)followedOnTwitter:(BOOL)success {
     if (success) {
         [self setButtonHighlighted:YES button:_twitterButton];
         [self displayErrorMessage:NSLocalizedString(@"Followed on Twitter", @"Display result of hitting Twitter button")];
+        [self setBothButtonEnabled];
     }
 }
 
+/**
+ *  Sets the Contacts button upon creaton of person, displays the highlighted button and disables button
+ *
+ *  @param success YES is the person was successfully created, NO if not
+ *
+ *  @since 1.0
+ */
 - (void)newContactMade:(BOOL)success {
     if (success) {
         [self setButtonHighlighted:YES button:_contactsButton];
         [self displayErrorMessage:NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button")];
+        [self setBothButtonEnabled];
     }
 }
 
-- (void)setButtonHighlighted:(BOOL)highlighted button:(UIButton *)button {
-    if (highlighted) {
-        [button setImage:[button imageForState:UIControlStateHighlighted] forState:UIControlStateDisabled];
-        button.enabled = NO;
-    }
-}
-
+/**
+ *  Animates the display of the person's image when it is received (which will usually be after the other details are displayed)
+ *
+ *  @param image Image returned by Twitter of the person's profile picture
+ *
+ *  @since 1.0
+ */
 - (void)displayUserImage:(UIImage *)image {
     CGFloat duration = 0.8f;
     
@@ -203,19 +216,31 @@
      ];
 }
 
+/**
+ *  Display a message to the user. Animates a fade in/fade out effect
+ *
+ *  Fade in & fade out time are each set as animationDuration
+ *  Display time is set as displayTime
+ *  (i.e. total animation time = 2 x animationDuration + displayDuration)
+ *
+ *  @param message The message to be displayed
+ *
+ *  @since 1.0
+ */
 - (void)displayErrorMessage:(NSString *)message {
     _errorMessage.text = message;
     _errorMessage.alpha = 0;
     _errorMessage.hidden = NO;
-    CGFloat duration = 0.8f;
+    CGFloat animationDuration = 0.8f;
+    CGFloat displayDuration = 2.0;
     
-    [UIView animateWithDuration:duration
+    [UIView animateWithDuration:animationDuration
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{_errorMessage.alpha = 1;}
                      completion:^(BOOL finished) {
-                         [UIView animateWithDuration:duration
-                                               delay:2.0
+                         [UIView animateWithDuration:animationDuration
+                                               delay:displayDuration
                                              options: UIViewAnimationOptionCurveEaseOut
                                           animations:^{_errorMessage.alpha = 0;}
                                           completion:^(BOOL finished) {
@@ -241,11 +266,19 @@
     if (!_following) {
         [twitter follow:[_data valueForKey:@"idString"]];
     } else {
+        // This should never be displayed as the button should not be enabled
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Already following %@ on Twitter", @"Trying to follow someone we already follow"), _twitterHandle];
         [self displayErrorMessage:message];
     }
 }
 
+/**
+ *  Returns a dictionary suitable to send to PDXContactMaker
+ *
+ *  @return A dictionary suitable to send to PDXContactMaker
+ *
+ *  @since 1.0
+ */
 - (NSDictionary *)personData {
     NSDictionary *personData = @{ @"firstName"    : _firstName.text,
                                   @"lastName"     : _lastName.text,
@@ -260,10 +293,9 @@
 }
 
 /**
- *  setContactState
- *  Uses PSXContactMaker to check whether a person with the same name as the person already exists in out Contacts
+ *  Uses PSXContactMaker to check whether a person with the same name as the person already exists in Contacts
  *
- *  PDXContactMaker calls 
+ *  Sets the Contact button's state based on the result of that check
  *
  *  @since 1.0
  */
@@ -271,29 +303,27 @@
     // Set Contacts status
     PDXContactMaker *contacts = [PDXContactMaker new];
     contacts.delegate = self;
-    _contactsButton.highlighted = [contacts isInContacts:[self personData]];
+    if ([contacts isInContacts:[self personData]]) {
+        [self setButtonHighlighted:YES button:_contactsButton];
+        [self setBothButtonEnabled];
+    }
 }
 
 /**
  *  When user taps on the Contacts button, add the person's details to the user's Contacts
  *
- *  @param sender Will always be the contactButton
- *
  *  @since 1.0
  */
 - (IBAction)addToContacts {
-    NSLog(@"addToContacts button selected");
-    NSLog(@"_contactsButton.state = %u", _contactsButton.state);
-
     PDXContactMaker *contactMaker = [PDXContactMaker new];
+    contactMaker.delegate = self;
     NSDictionary *personData = [self personData];
     
-    contactMaker.delegate = self;
     [contactMaker addToContacts:personData];
 }
 
 /**
- *  Equivalent of pressing both the twitterButton and the contactButton
+ *  Equivalent of tapping both the twitterButton and the contactButton
  *
  *  @param sender Will always be the bothButton
  *
@@ -303,6 +333,31 @@
     NSLog(@"followAndAdd button selected");
     [self followOnTwitter:sender];
     [self addToContacts];
+}
+
+/**
+ *  Sets the Both button to enabled if either the Twitter button or the Contacts button is enabled
+ *
+ *  @since 1.0
+ */
+- (void)setBothButtonEnabled {
+    BOOL enabled = (_twitterButton.enabled || _contactsButton.enabled);
+    [self setButtonHighlighted:enabled button:_bothButton];
+}
+
+/**
+ *  Sets a button to remain highlighted and be disabled
+ *
+ *  @param highlighted YES sets the button to highlighted and disables the button; NO has no effect
+ *  @param button      Which button to set
+ *
+ *  @since 1.0
+ */
+- (void)setButtonHighlighted:(BOOL)highlighted button:(UIButton *)button {
+    if (highlighted) {
+        [button setImage:[button imageForState:UIControlStateHighlighted] forState:UIControlStateDisabled];
+        button.enabled = NO;
+    }
 }
 
 #pragma mark - Swipe & Tap actions
@@ -451,37 +506,6 @@
         }
     }
      ];
-}
-
-- (void)showTwitterButtonResults:(NSString *)text {
-    _followedOnTwitter.text = text;
-    [self animateResultsButton:_followedOnTwitter];
-}
-
-- (void)showContactButtonResults:(NSString *)text {
-    _addedToContacts.text = text;
-    [self animateResultsButton:_addedToContacts];
-}
-
-- (void)animateResultsButton:(UILabel *)label {
-    label.alpha = 0;
-    label.hidden = NO;
-    CGFloat duration = 0.8f;
-    
-    [UIView animateWithDuration:duration
-                          delay:0.0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{label.alpha = 1;}
-                     completion:^(BOOL finished) {
-                         [UIView animateWithDuration:duration
-                                               delay:0.0
-                                             options: UIViewAnimationOptionCurveEaseOut
-                                          animations:^{label.alpha = 0;}
-                                          completion:^(BOOL finished) {
-                                              label.hidden = YES;
-                                          }
-                          ];
-                     }];
 }
 
 /**
