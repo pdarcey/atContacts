@@ -378,7 +378,6 @@
 - (IBAction)tapToEndEditing {
     UITextField *textField = [self currentTextField];
     [textField resignFirstResponder];
-    [self textFieldDidEndEditing:textField];
 }
 
 #pragma mark - Text view editing
