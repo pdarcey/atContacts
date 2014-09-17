@@ -33,6 +33,8 @@
 @property (strong, nonatomic) NSDictionary *data;
 @property (strong, nonatomic) PDXInputViewController *parent;
 @property (strong, nonatomic) NSString *hashtag;
+@property (strong, nonatomic) NSString *idString;
+@property BOOL following;
 
 @property (weak, nonatomic) NSArray *originalConstraints;
 @property (weak, nonatomic) UITextField *realTextField;

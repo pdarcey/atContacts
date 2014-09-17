@@ -44,6 +44,7 @@
     _email.text = [data valueForKey:@"emailAddress"];
     _phone.text = [data valueForKey:@"phoneNumber"];
     _webAddress.text = [data valueForKey:@"wwwAddress"];
+    _idString = [data valueForKey:@"idString"];
 
     // Set user photo
     NSString *photoURL = [data valueForKey:@"photoURL"];
@@ -64,7 +65,8 @@
 
     // Set Following status
     NSNumber *following= [data valueForKey:@"following"];
-    [self toggleTwitter:[following boolValue]];
+    _following = [following boolValue];
+    [self followedOnTwitter:_following];
     
     // Set Contacts status
     PDXContactMaker *contacts = [PDXContactMaker new];
@@ -169,17 +171,24 @@
 
 #pragma mark - Protocol methods
 
-- (void)toggleTwitter:(BOOL)onOff {
-    _twitterButton.highlighted = onOff;
+- (void)followedOnTwitter:(BOOL)success {
+    if (success) {
+        [self setButtonHighlighted:YES button:_twitterButton];
+        [self displayErrorMessage:NSLocalizedString(@"Followed on Twitter", @"Display result of hitting Twitter button")];
+    }
 }
 
 - (void)newContactMade:(BOOL)success {
-    NSLog(@"NewContactMade protocol message received");
     if (success) {
-        NSLog(@"New contact added");
-        [self showContactButtonResults:NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button")];
-        UIImage *defaultImage = [UIImage imageNamed:@"Contacts Highlighted"];
-        [_contactsButton setImage:defaultImage forState:UIControlStateNormal];
+        [self setButtonHighlighted:YES button:_contactsButton];
+        [self displayErrorMessage:NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button")];
+    }
+}
+
+- (void)setButtonHighlighted:(BOOL)highlighted button:(UIButton *)button {
+    if (highlighted) {
+        [button setImage:[button imageForState:UIControlStateHighlighted] forState:UIControlStateDisabled];
+        button.enabled = NO;
     }
 }
 
@@ -229,16 +238,11 @@
     NSLog(@"Twitter follow status = %hhd", sender.selected);
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     twitter.delegate = self;
-    if (sender.selected) {
-        // Follow on Twitter
+    if (!_following) {
         [twitter follow:[_data valueForKey:@"idString"]];
-        [self showTwitterButtonResults:NSLocalizedString(@"Followed on Twitter", @"Display result of hitting Twitter button")];
-        _twitterButton.highlighted = YES;
     } else {
-        // Unfollow
-        [twitter unfollow:[_data valueForKey:@"idString"]];
-        [self showTwitterButtonResults:NSLocalizedString(@"Unfollowed on Twitter", @"Display result of hitting Twitter button")];
-        _twitterButton.highlighted = NO;
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Already following %@ on Twitter", @"Trying to follow someone we already follow"), _twitterHandle];
+        [self displayErrorMessage:message];
     }
 }
 
@@ -255,6 +259,14 @@
     return personData;
 }
 
+/**
+ *  setContactState
+ *  Uses PSXContactMaker to check whether a person with the same name as the person already exists in out Contacts
+ *
+ *  PDXContactMaker calls 
+ *
+ *  @since 1.0
+ */
 - (void)setContactState {
     // Set Contacts status
     PDXContactMaker *contacts = [PDXContactMaker new];

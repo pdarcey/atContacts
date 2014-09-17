@@ -249,7 +249,7 @@ id removeNull(id rootObject) {
  */
 - (void)handleGetFollowStatus:(NSDictionary *)data {
     BOOL result = [self parseFriendshipsLookup:data];
-    [_delegate toggleTwitter:result];
+    [_delegate followedOnTwitter:result];
 }
 
 /**
@@ -261,7 +261,7 @@ id removeNull(id rootObject) {
  */
 - (void)handleFollow:(NSDictionary *)data {
     BOOL result = [self parseFriendshipsCreate:data];
-    [_delegate toggleTwitter:result];
+    [_delegate followedOnTwitter:result];
 }
 
 /**
@@ -273,7 +273,7 @@ id removeNull(id rootObject) {
  */
 - (void)handleUnfollow:(NSDictionary *)data {
     BOOL result = [self parseFriendshipsCreate:data];
-    [_delegate toggleTwitter:result];
+    [_delegate followedOnTwitter:result];
 }
 
 #pragma mark - Parse Data
@@ -467,7 +467,7 @@ id removeNull(id rootObject) {
  *
  *  @since 1.0
  */
-- (void)toggleTwitter:(BOOL)onOff {
+- (void)followedOnTwitter:(BOOL)onOff {
     
 }
 

@@ -17,7 +17,7 @@
 - (void)displayErrorMessage:(NSString *)message;
 
 @optional
-- (void)toggleTwitter:(BOOL)onOff;
+- (void)followedOnTwitter:(BOOL)onOff;
 - (void)displayInfo:(NSDictionary *)data;
 - (void)displayUserImage:(UIImage *)image;
 
