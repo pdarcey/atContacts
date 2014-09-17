@@ -41,14 +41,10 @@
 }
 
 - (void)displayCantAddContactAlert {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"Display alert view: Can't add contact");
-//        UIAlertView *cantAddContactAlert = [[UIAlertView alloc] initWithTitle: @"Cannot Add Contact" message: @"You must give the app permission to add the contact first." delegate:nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
-//        [cantAddContactAlert show];
-    });
+    [_delegate displayErrorMessage:NSLocalizedString(@"Can't add contact", @"Can't add a contact error alert")];
 }
 
-- (BOOL)checkForExistingContact:(ABAddressBookRef)addressBookRef firstName:(NSString *)firstName person:(ABRecordRef)person {
+- (BOOL)checkForExistingContact:(ABAddressBookRef)addressBookRef person:(ABRecordRef)person {
     NSArray *allContacts = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
     for (id record in allContacts){
         ABRecordRef thisContact = (__bridge ABRecordRef)record;
@@ -56,6 +52,9 @@
                             ABRecordCopyCompositeName(person), 0) == kCFCompareEqualTo){
             //The contact already exists!
             NSLog(@"Person already exists!");
+            NSString *name = (__bridge NSString *)ABRecordCopyCompositeName(person);
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ is already in your Contacts", @"Tried to add a duplicate to Contacts"), name];
+            [_delegate displayErrorMessage:message];
             return YES;
         }
     }
@@ -104,10 +103,9 @@
     ABPersonSetImageData(person, (__bridge CFDataRef)photoData, nil);
     ABAddressBookAddRecord(addressBookRef, person, nil);
     
-    if (![self checkForExistingContact:addressBookRef firstName:firstName person:person]) {
+    if (![self checkForExistingContact:addressBookRef person:person]) {
         ABAddressBookSave(addressBookRef, nil);
         [_delegate newContactMade:YES];
-        NSLog(@"Display alert view: Contact added");
     };
     
 }

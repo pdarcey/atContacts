@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *blurOverlay;
 @property (weak, nonatomic) IBOutlet UILabel *followedOnTwitter;
 @property (weak, nonatomic) IBOutlet UILabel *addedToContacts;
+@property (weak, nonatomic) IBOutlet UILabel *errorMessage;
 
 @property (strong, nonatomic) NSDictionary *data;
 @property (strong, nonatomic) PDXInputViewController *parent;

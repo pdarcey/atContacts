@@ -52,6 +52,7 @@
     [_twitterName becomeFirstResponder];
     _hashtag.text = [self retrieveHashtag];
     _searching = NO;
+    _errorMessage.hidden = YES;
 }
 
 /**
@@ -344,9 +345,26 @@
 }
 
 - (void)displayErrorMessage:(NSString *)message {
-    UIAlertView *displayErrorMessage = [[UIAlertView alloc]initWithTitle:@"Problem" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [displayErrorMessage show];
+    _errorMessage.text = message;
+    _errorMessage.alpha = 0;
+    _errorMessage.hidden = NO;
+    CGFloat duration = 0.8f;
     
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{_errorMessage.alpha = 1;}
+                     completion:^(BOOL finished) {
+                         [UIView animateWithDuration:duration
+                                               delay:2.0
+                                             options: UIViewAnimationOptionCurveEaseOut
+                                          animations:^{_errorMessage.alpha = 0;}
+                                          completion:^(BOOL finished) {
+                                              _errorMessage.hidden = YES;
+                                              NSLog(@"Error message finished displaying");
+                                          }
+                          ];
+                     }];
 }
 
 @end
