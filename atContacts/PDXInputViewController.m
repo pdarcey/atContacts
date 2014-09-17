@@ -65,7 +65,6 @@
 - (IBAction)findTwitterName {    
 //    self.activitySpinner.hidden = NO;
 //    [activitySpinner startAnimating];
-    NSLog(@"findTwitterName called");
     _searching = YES;
     
     // Ensure that user hasn't included the initial "@" in the user name
@@ -106,17 +105,14 @@
 - (IBAction)popTextField:(UITextField *)textField {
     if (textField == _hashtag) {
         [self popAnimation:textField];
-        NSLog(@"popTextField fired");
         [_hashtag becomeFirstResponder];
     }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSLog(@"textFieldShouldReturn");
     if (textField == _twitterName) {
         [self findTwitterName];
     } else if (textField == _hashtag) {
-        NSLog(@"textFieldShouldReturn; textField = _hashtag");
         [self endHashtagEditing];
     }
     

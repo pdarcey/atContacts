@@ -118,7 +118,6 @@
         [self saveContact:person];
     } else {
         //The contact already exists!
-        NSLog(@"Person already exists!");
         NSString *name = (__bridge NSString *)ABRecordCopyCompositeName(person);
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ is already in your Contacts", @"Tried to add a duplicate to Contacts"), name];
         [_delegate displayErrorMessage:message];

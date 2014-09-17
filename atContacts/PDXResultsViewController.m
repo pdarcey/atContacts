@@ -260,7 +260,6 @@
  *  @since 1.0
  */
 - (IBAction)followOnTwitter:(UIButton *)sender {
-    NSLog(@"Twitter follow status = %hhd", sender.selected);
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     twitter.delegate = self;
     if (!_following) {
@@ -330,7 +329,6 @@
  *  @since 1.0
  */
 - (IBAction)followAndAdd:(UIButton *)sender {
-    NSLog(@"followAndAdd button selected");
     [self followOnTwitter:sender];
     [self addToContacts];
 }
