@@ -28,6 +28,7 @@
 @property (nonatomic, strong) ACAccountStore *accountStore;
 @property (nonatomic, strong) ACAccountType *twitterType;
 @property (nonatomic, assign) id < PDXTwitterCommunicatorDelegate > delegate;
+@property (strong, nonatomic) NSString *twitterName;
 
 - (void)getUserInfo:(NSString *)twitterName;
 - (void)getUserImage:(NSString *)idString;

@@ -100,6 +100,7 @@
  *  @since 1.0
  */
 - (void)getUserInfo:(NSString *)twitterName {
+    _twitterName = twitterName;
     NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/users/lookup.json"];
     NSDictionary *parameters = @{@"screen_name" : twitterName};
     SLRequestMethod get = SLRequestMethodGET;
@@ -118,6 +119,7 @@
  *  @since 1.0
  */
 - (void)getFollowStatus:(NSString *)idString {
+    _twitterName = idString;
     NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/friendships/lookup.json?"];
     NSDictionary *parameters = @{@"user_id" : idString};
     SLRequestMethod get = SLRequestMethodGET;
@@ -157,6 +159,7 @@
  *  @since 1.0
  */
 - (void)follow:(NSString *)idString {
+    _twitterName = idString;
     NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/friendships/create.json"];
     NSDictionary *parameters = @{@"user_id" : idString, @"follow" : @"true"};
     SLRequestMethod post = SLRequestMethodPOST;
@@ -173,6 +176,7 @@
  *  @since 1.0
  */
 - (void)unfollow:(NSString *)idString {
+    _twitterName = idString;
     NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/friendships/create.json"];
     NSDictionary *parameters = @{@"user_id" : idString, @"follow" : @"false"};
     SLRequestMethod post = SLRequestMethodPOST;
@@ -602,11 +606,123 @@ id removeNull(id rootObject) {
  */
 - (void)performRequestWithHandlerError:(NSHTTPURLResponse *)urlResponse {
     NSInteger statusCode = urlResponse.statusCode;
-    NSString *message = [NSString stringWithFormat:@"[ERROR] Server responded: status code %ld %@", (long)statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]];
-    [_delegate displayErrorMessage:message];
 
-    NSLog(@"%@", message);
+    NSString *message = @"";
     
+    switch (statusCode) {
+        case 200:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"OK")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"200", @"OK");
+            
+            break;
+            
+        case 304:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Not Modified")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"304", @"Not Modified");
+            
+            break;
+            
+        case 400:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Bad Request")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"400", @"Bad Request");
+            
+            break;
+            
+        case 401:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Unauthorized")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"401", @"Unauthorized");
+            
+            break;
+            
+        case 403:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Forbidden")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"403", @"Forbidden");
+            
+            break;
+            
+        case 404:
+            message = [NSString stringWithFormat:NSLocalizedString(@"No user with Twitter name %@", @"Not Found"), _twitterName];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"404", @"Not Found");
+            
+            break;
+            
+        case 406:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Not Acceptable")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"406", @"Not Acceptable");
+            
+            break;
+            
+        case 410:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Gone")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"410", @"Gone");
+            
+            break;
+            
+        case 420:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Enhance Your Calm")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"420", @"Enhance Your Calm");
+            
+            break;
+            
+        case 422:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Unprocessable Entity")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"422", @"Unprocessable Entity");
+            
+            break;
+            
+        case 429:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Too Many Requests")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"429", @"Too Many Requests");
+            
+            break;
+            
+        case 500:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Internal Server Error")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"500", @"Internal Server Error");
+            
+            break;
+            
+        case 502:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Bad Gateway")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"502", @"Bad Gateway");
+            
+            break;
+            
+        case 503:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Service Unavailable")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"503", @"Service Unavailable");
+            
+            break;
+            
+        case 504:
+            message = [NSString stringWithFormat:NSLocalizedString(@"There has been a problem connecting with Twitter", @"Gateway timeout")];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"Twitter Error:%@ %@", @"504", @"Gateway timeout");
+            
+            break;
+            
+
+        default:
+            message = [NSString stringWithFormat:@"[ERROR] Server responded: status code %ld %@", (long)statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]];
+            [_delegate displayErrorMessage:message];
+            NSLog(@"%@", message);
+
+            break;
+    }
 }
 
 /**
