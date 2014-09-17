@@ -31,7 +31,6 @@
 
 @property (strong, nonatomic) NSDictionary *data;
 @property (strong, nonatomic) PDXInputViewController *parent;
-@property (strong, nonatomic) PDXTwitterCommunicator *twitter;
 @property (strong, nonatomic) NSString *hashtag;
 
 @property (weak, nonatomic) NSArray *originalConstraints;

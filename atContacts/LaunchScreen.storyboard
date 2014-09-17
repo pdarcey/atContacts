@@ -8,7 +8,7 @@
         <!--View Controller-->
         <scene sceneID="Vmx-VU-b5G">
             <objects>
-                <viewController id="icW-Q9-BWe" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchScreen" id="icW-Q9-BWe" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kgD-2b-YO8"/>
                         <viewControllerLayoutGuide type="bottom" id="02b-TF-8g5"/>
@@ -41,8 +41,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExJ-t7-a4E">
-                                <rect key="frame" x="203" y="251.5" width="14" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExJ-t7-a4E">
+                                <rect key="frame" x="203" y="253.5" width="14" height="19.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

@@ -113,6 +113,19 @@
     
 }
 
+- (void)getUserImage:(NSString *)photoURL {
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:[NSURL URLWithString:photoURL]
+            completionHandler:^(NSData *data,
+                                NSURLResponse *response,
+                                NSError *error) {
+                // TODO: Check NSURLResponse to ensure we received a valid response
+                [_delegate displayUserImage:[UIImage imageWithData:data]];
+                
+            }] resume];
+}
+
+
 /**
  *  Sets the user's Twitter account to follow the Twitter user with the ID idString
  *
@@ -201,7 +214,7 @@ id removeNull(id rootObject) {
         case PDXRequestTypeGetFollowStatus:
             [self handleGetFollowStatus:sanitisedData];
             break;
-            
+                        
         case PDXRequestTypeFollow:
             [self handleFollow:sanitisedData];
             break;
@@ -472,6 +485,10 @@ id removeNull(id rootObject) {
 }
 
 - (void)displayErrorMessage:(NSString *)message {
+    
+}
+
+- (void)displayUserImage:(UIImage *)image {
     
 }
 

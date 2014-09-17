@@ -19,6 +19,7 @@
 @optional
 - (void)toggleTwitter:(BOOL)onOff;
 - (void)displayInfo:(NSDictionary *)data;
+- (void)displayUserImage:(UIImage *)image;
 
 @end
 
@@ -29,6 +30,7 @@
 @property (nonatomic, assign) id < PDXTwitterCommunicatorDelegate > delegate;
 
 - (void)getUserInfo:(NSString *)twitterName;
+- (void)getUserImage:(NSString *)idString;
 - (void)getFollowStatus:(NSString *)idString;
 - (void)follow:(NSString *)idString;
 - (void)unfollow:(NSString *)idString;

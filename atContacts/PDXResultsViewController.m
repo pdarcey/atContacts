@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [[self twitter] setDelegate:self.parent];
     [self initialiseData:_data];
 }
 
@@ -38,19 +37,20 @@
  *  @since 1.0
  */
 - (void)initialiseData:(NSDictionary *)data {
-    
+    // Set user info
     _firstName.text = [data valueForKey:@"firstName"];
     _lastName.text = [data valueForKey:@"lastName"];
-    NSString *photoURL = [data valueForKey:@"photoURL"];
     _twitterHandle.text = [data valueForKey:@"twitterName"];
     _email.text = [data valueForKey:@"emailAddress"];
     _phone.text = [data valueForKey:@"phoneNumber"];
     _webAddress.text = [data valueForKey:@"wwwAddress"];
-    NSString *dataDescription = [data valueForKey:@"twitterDescription"];
-    NSNumber *following= [data valueForKey:@"following"];
-    [self toggleTwitter:[following boolValue]];
-    
+
+    // Set user photo
+    NSString *photoURL = [data valueForKey:@"photoURL"];
     [self getPhoto:photoURL];
+    
+    // Combine hashtag and description (if they exist)
+    NSString *dataDescription = [data valueForKey:@"twitterDescription"];
     NSString *combinedHashtagAndDescription = @"";
     if (_hashtag && ![_hashtag isEqualToString:@""]) {
         combinedHashtagAndDescription = _hashtag;
@@ -61,10 +61,16 @@
         combinedHashtagAndDescription = dataDescription;
     }
     _twitterDescription.text = combinedHashtagAndDescription;
+
+    // Set Following status
+    NSNumber *following= [data valueForKey:@"following"];
+    [self toggleTwitter:[following boolValue]];
+    
+    // Set Contacts status
     _contactsButton.highlighted = NO;
     
-    PDXTwitterCommunicator *twitter = [self twitter];
-    twitter.delegate = self;
+    
+    // Set other elements to hidden
     _indicator.hidden = YES;
     _blurOverlay.hidden = YES;
     
@@ -85,45 +91,13 @@
         // We bypass this by removing the "_normal" part of the URL; this should return the full-sized version of the image
         NSString *largePhotoURL = [photoURL stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         
-        NSURLSession *session = [NSURLSession sharedSession];
-        [[session dataTaskWithURL:[NSURL URLWithString:largePhotoURL]
-                completionHandler:^(NSData *data,
-                                    NSURLResponse *response,
-                                    NSError *error) {
-                    // TODO: Check NSURLResponse to ensure we received a valid response
-                    [self animateAddPhoto:[UIImage imageWithData:data]];
-                    
-                }] resume];
+        PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+        twitter.delegate = self;
+        [twitter getUserImage:largePhotoURL];
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - Convenience methods
-
-/**
- *  Convenience method to retrieve Twitter Communicator
- *
- *  @return Twitter Communicator
- *
- *  @since 1.0
- */
-- (PDXTwitterCommunicator *)twitter {
-    if (_twitter != nil) {
-        return _twitter;
-    }
-    PDXTwitterCommunicator *twitterCommunicator = [PDXTwitterCommunicator new];
-    _twitter = twitterCommunicator;
-    return _twitter;
-}
 
 /**
  *  Works out which of the UITextFields is being edited
@@ -204,6 +178,17 @@
     }
 }
 
+- (void)displayUserImage:(UIImage *)image {
+    CGFloat duration = 0.8f;
+    
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options: UIViewAnimationOptionTransitionCrossDissolve
+                     animations:^{_photo.image = image;}
+                     completion:nil
+     ];
+}
+
 - (void)displayErrorMessage:(NSString *)message {
     UIAlertView *displayErrorMessage = [[UIAlertView alloc]initWithTitle:@"Problem" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [displayErrorMessage show];
@@ -221,15 +206,15 @@
  */
 - (IBAction)followOnTwitter:(UIButton *)sender {
     NSLog(@"Twitter follow status = %hhd", sender.selected);
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    twitter.delegate = self;
     if (sender.selected) {
         // Follow on Twitter
-        PDXTwitterCommunicator *twitter = [self twitter];
         [twitter follow:[_data valueForKey:@"idString"]];
         [self showTwitterButtonResults:NSLocalizedString(@"Followed on Twitter", @"Display result of hitting Twitter button")];
         _twitterButton.highlighted = YES;
     } else {
         // Unfollow
-        PDXTwitterCommunicator *twitter = [self twitter];
         [twitter unfollow:[_data valueForKey:@"idString"]];
         [self showTwitterButtonResults:NSLocalizedString(@"Unfollowed on Twitter", @"Display result of hitting Twitter button")];
         _twitterButton.highlighted = NO;
@@ -450,17 +435,6 @@
                                           }
                           ];
                      }];
-}
-
-- (void)animateAddPhoto:(UIImage *)image {
-    CGFloat duration = 0.8f;
-    
-    [UIView animateWithDuration:duration
-                          delay:0.0
-                        options: UIViewAnimationOptionTransitionCrossDissolve
-                     animations:^{_photo.image = image;}
-                     completion:nil
-                     ];
 }
 
 /**
