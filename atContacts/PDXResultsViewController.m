@@ -67,8 +67,12 @@
     [self toggleTwitter:[following boolValue]];
     
     // Set Contacts status
-    _contactsButton.highlighted = NO;
-    
+    PDXContactMaker *contacts = [PDXContactMaker new];
+    contacts.delegate = self;
+    if ([contacts isInContacts:[self personData]]) {
+        UIImage *defaultImage = [UIImage imageNamed:@"Contacts Highlighted"];
+        [_contactsButton setImage:defaultImage forState:UIControlStateNormal];
+    }
     
     // Set other elements to hidden
     _indicator.hidden = YES;
@@ -174,7 +178,8 @@
     if (success) {
         NSLog(@"New contact added");
         [self showContactButtonResults:NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button")];
-        _contactsButton.highlighted = YES;
+        UIImage *defaultImage = [UIImage imageNamed:@"Contacts Highlighted"];
+        [_contactsButton setImage:defaultImage forState:UIControlStateNormal];
     }
 }
 
@@ -237,6 +242,26 @@
     }
 }
 
+- (NSDictionary *)personData {
+    NSDictionary *personData = @{ @"firstName"    : _firstName.text,
+                                  @"lastName"     : _lastName.text,
+                                  @"twitterName"  : _twitterHandle.text,
+                                  @"emailAddress" : _email.text,
+                                  @"phoneNumber"  : _phone.text,
+                                  @"wwwAddress"   : _webAddress.text,
+                                  @"twitterDescription" : _twitterDescription.text,
+                                  @"photoData"    : UIImageJPEGRepresentation(_photo.image, 1.0f)
+                                  };
+    return personData;
+}
+
+- (void)setContactState {
+    // Set Contacts status
+    PDXContactMaker *contacts = [PDXContactMaker new];
+    contacts.delegate = self;
+    _contactsButton.highlighted = [contacts isInContacts:[self personData]];
+}
+
 /**
  *  When user taps on the Contacts button, add the person's details to the user's Contacts
  *
@@ -246,16 +271,10 @@
  */
 - (IBAction)addToContacts {
     NSLog(@"addToContacts button selected");
+    NSLog(@"_contactsButton.state = %u", _contactsButton.state);
+
     PDXContactMaker *contactMaker = [PDXContactMaker new];
-    NSDictionary *personData = @{ @"firstName"    : _firstName.text,
-                                  @"lastName"     : _lastName.text,
-                                  @"twitterName"  : _twitterHandle.text,
-                                  @"emailAddress" : _email.text,
-                                  @"phoneNumber"  : _phone.text,
-                                  @"wwwAddress"   : _webAddress.text,
-                                  @"twitterDescription" : _twitterDescription.text,
-                                  @"photoData"    : UIImageJPEGRepresentation(_photo.image, 1.0f)
-                                 };
+    NSDictionary *personData = [self personData];
     
     contactMaker.delegate = self;
     [contactMaker addToContacts:personData];

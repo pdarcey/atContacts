@@ -367,7 +367,7 @@
                                 <color key="textColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-PF-jaK" userLabel="contacts">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-PF-jaK" userLabel="contacts">
                                 <rect key="frame" x="485" y="539" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" hint="Will add this person to contacts" label="Add to contacts button"/>
@@ -376,7 +376,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="disabled" image="Contacts Disabled"/>
-                                <state key="selected" image="Contacts Selected"/>
                                 <state key="highlighted" image="Contacts Highlighted"/>
                                 <connections>
                                     <action selector="addToContacts" destination="a2f-bI-RVU" eventType="touchUpInside" id="x4x-IX-gOa"/>

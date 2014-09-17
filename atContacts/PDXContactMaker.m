@@ -40,21 +40,22 @@
     }
 }
 
+- (BOOL)isInContacts:(NSDictionary *)personData {
+    ABRecordRef person = [self makePerson:personData];
+    return [self isExistingContact:person];
+}
+
 - (void)displayCantAddContactAlert {
     [_delegate displayErrorMessage:NSLocalizedString(@"Can't add contact", @"Can't add a contact error alert")];
 }
 
-- (BOOL)checkForExistingContact:(ABAddressBookRef)addressBookRef person:(ABRecordRef)person {
+- (BOOL)isExistingContact:(ABRecordRef)person {
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
     NSArray *allContacts = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
     for (id record in allContacts){
         ABRecordRef thisContact = (__bridge ABRecordRef)record;
         if (CFStringCompare(ABRecordCopyCompositeName(thisContact),
                             ABRecordCopyCompositeName(person), 0) == kCFCompareEqualTo){
-            //The contact already exists!
-            NSLog(@"Person already exists!");
-            NSString *name = (__bridge NSString *)ABRecordCopyCompositeName(person);
-            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ is already in your Contacts", @"Tried to add a duplicate to Contacts"), name];
-            [_delegate displayErrorMessage:message];
             return YES;
         }
     }
@@ -62,6 +63,20 @@
 }
 
 - (void)makeContact:(NSDictionary *)personData {
+    ABRecordRef person = [self makePerson:personData];
+    if (![self isExistingContact:person]) {
+        [self saveContact:person];
+    } else {
+        //The contact already exists!
+        NSLog(@"Person already exists!");
+        NSString *name = (__bridge NSString *)ABRecordCopyCompositeName(person);
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ is already in your Contacts", @"Tried to add a duplicate to Contacts"), name];
+        [_delegate displayErrorMessage:message];
+    }
+    
+}
+
+- (ABRecordRef)makePerson:(NSDictionary *)personData {
     NSString *firstName = [personData valueForKey:@"firstName"];
     NSString *lastName = [personData valueForKey:@"lastName"];
     NSString *twitterName = [personData valueForKey:@"twitterName"];
@@ -71,7 +86,6 @@
     NSString *twitterDescription = [personData valueForKey:@"twitterDescription"];
     NSData *photoData = [personData valueForKey:@"photoData"];
     
-    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
     ABRecordRef person = ABPersonCreate();
     ABRecordSetValue(person, kABPersonFirstNameProperty, (__bridge CFStringRef)firstName, nil);
     ABRecordSetValue(person, kABPersonLastNameProperty, (__bridge CFStringRef)lastName, nil);
@@ -101,13 +115,15 @@
     CFRelease(web);
 
     ABPersonSetImageData(person, (__bridge CFDataRef)photoData, nil);
+
+    return person;
+}
+
+- (void)saveContact:(ABRecordRef)person {
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
     ABAddressBookAddRecord(addressBookRef, person, nil);
-    
-    if (![self checkForExistingContact:addressBookRef person:person]) {
-        ABAddressBookSave(addressBookRef, nil);
-        [_delegate newContactMade:YES];
-    };
-    
+    ABAddressBookSave(addressBookRef, nil);
+    [_delegate newContactMade:YES];
 }
 
 // Required for protocol

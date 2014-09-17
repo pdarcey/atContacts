@@ -23,5 +23,6 @@
 @property (nonatomic, assign) id < PDXContactMakerDelegate > delegate;
 
 - (void)addToContacts:(NSDictionary *)personData;
+- (BOOL)isInContacts:(NSDictionary *)personData;
 
 @end

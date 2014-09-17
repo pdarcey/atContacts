@@ -361,7 +361,6 @@
                                           animations:^{_errorMessage.alpha = 0;}
                                           completion:^(BOOL finished) {
                                               _errorMessage.hidden = YES;
-                                              NSLog(@"Error message finished displaying");
                                           }
                           ];
                      }];
