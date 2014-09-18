@@ -1,0 +1,153 @@
+
+/* Class = "IBUILabel"; accessibilityLabel = "Other Naes"; ObjectID = "0AU-64-liZ"; */
+"0AU-64-liZ.accessibilityLabel" = "Other Naes";
+
+/* Class = "IBUILabel"; text = "Ipsum"; ObjectID = "0AU-64-liZ"; */
+"0AU-64-liZ.text" = "Ipsum";
+
+/* Class = "IBUIImageView"; accessibilityHint = "Swipe left for more pages"; ObjectID = "58a-DN-NVP"; */
+"58a-DN-NVP.accessibilityHint" = "Swipe left for more pages";
+
+/* Class = "IBUIImageView"; accessibilityLabel = "More pages indicator"; ObjectID = "58a-DN-NVP"; */
+"58a-DN-NVP.accessibilityLabel" = "More pages indicator";
+
+/* Class = "IBUITextView"; accessibilityLabel = "Description"; ObjectID = "86e-dG-L1q"; */
+"86e-dG-L1q.accessibilityLabel" = "Description";
+
+/* Class = "IBUITextView"; text = "Lorem ipsum"; ObjectID = "86e-dG-L1q"; */
+"86e-dG-L1q.text" = "Lorem ipsum";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "8c2-Tt-Kzl"; */
+"8c2-Tt-Kzl.text" = "Label";
+
+/* Class = "IBUILabel"; accessibilityLabel = "First Name"; ObjectID = "95n-fe-rtH"; */
+"95n-fe-rtH.accessibilityLabel" = "First Name";
+
+/* Class = "IBUILabel"; text = "Lorem"; ObjectID = "95n-fe-rtH"; */
+"95n-fe-rtH.text" = "Lorem";
+
+/* Class = "IBUIButton"; accessibilityHint = "Without access this app will not be able to function"; ObjectID = "AT8-N9-OBw"; */
+"AT8-N9-OBw.accessibilityHint" = "Without access this app will not be able to function";
+
+/* Class = "IBUIButton"; accessibilityLabel = "I don't have a Twitter account"; ObjectID = "AT8-N9-OBw"; */
+"AT8-N9-OBw.accessibilityLabel" = "I don't have a Twitter account";
+
+/* Class = "IBUIButton"; normalTitle = "I don't have a Twitter account"; ObjectID = "AT8-N9-OBw"; */
+"AT8-N9-OBw.normalTitle" = "I don't have a Twitter account";
+
+/* Class = "IBUIButton"; accessibilityHint = "Will follow this person on Twitter"; ObjectID = "Ctm-pf-gHA"; */
+"Ctm-pf-gHA.accessibilityHint" = "Will follow this person on Twitter";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Follow on Twitter button"; ObjectID = "Ctm-pf-gHA"; */
+"Ctm-pf-gHA.accessibilityLabel" = "Follow on Twitter button";
+
+/* Class = "IBUITextField"; accessibilityHint = "Enter the Twitter name to search for (without leading @)"; ObjectID = "Ib1-pi-m32"; */
+"Ib1-pi-m32.accessibilityHint" = "Enter the Twitter name to search for (without leading @)";
+
+/* Class = "IBUITextField"; accessibilityLabel = "Twitter name"; ObjectID = "Ib1-pi-m32"; */
+"Ib1-pi-m32.accessibilityLabel" = "Twitter name";
+
+/* Class = "IBUITextField"; placeholder = "twittername"; ObjectID = "Ib1-pi-m32"; */
+"Ib1-pi-m32.placeholder" = "twittername";
+
+/* Class = "IBUILabel"; text = "I have entered in Settings"; ObjectID = "Jab-wt-d5v"; */
+"Jab-wt-d5v.text" = "I have entered in Settings";
+
+/* Class = "IBUIButton"; accessibilityHint = "Follows on Twitter and adds to contacts"; ObjectID = "Ju2-0W-kr1"; */
+"Ju2-0W-kr1.accessibilityHint" = "Follows on Twitter and adds to contacts";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Both button"; ObjectID = "Ju2-0W-kr1"; */
+"Ju2-0W-kr1.accessibilityLabel" = "Both button";
+
+/* Class = "IBUIButton"; accessibilityHint = "The system-wide Twitter account"; ObjectID = "KOu-50-9yc"; */
+"KOu-50-9yc.accessibilityHint" = "The system-wide Twitter account";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Use my Twitter account"; ObjectID = "KOu-50-9yc"; */
+"KOu-50-9yc.accessibilityLabel" = "Use my Twitter account";
+
+/* Class = "IBUIButton"; normalTitle = "Use the Twitter account"; ObjectID = "KOu-50-9yc"; */
+"KOu-50-9yc.normalTitle" = "Use the Twitter account";
+
+/* Class = "IBUIButton"; accessibilityHint = "Will add this person to contacts"; ObjectID = "LFf-PF-jaK"; */
+"LFf-PF-jaK.accessibilityHint" = "Will add this person to contacts";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Add to contacts button"; ObjectID = "LFf-PF-jaK"; */
+"LFf-PF-jaK.accessibilityLabel" = "Add to contacts button";
+
+/* Class = "IBUITextField"; accessibilityLabel = "Phone number"; ObjectID = "OWX-u5-Leo"; */
+"OWX-u5-Leo.accessibilityLabel" = "Phone number";
+
+/* Class = "IBUITextField"; placeholder = "Add phone"; ObjectID = "OWX-u5-Leo"; */
+"OWX-u5-Leo.placeholder" = "Add phone";
+
+/* Class = "IBUILabel"; text = "⍵⍵⍵"; ObjectID = "PrX-as-Dkg"; */
+"PrX-as-Dkg.text" = "⍵⍵⍵";
+
+/* Class = "IBUITextField"; accessibilityLabel = "Email address"; ObjectID = "X7X-fj-m0i"; */
+"X7X-fj-m0i.accessibilityLabel" = "Email address";
+
+/* Class = "IBUITextField"; placeholder = "Add email"; ObjectID = "X7X-fj-m0i"; */
+"X7X-fj-m0i.placeholder" = "Add email";
+
+/* Class = "IBUIViewController"; title = "Results"; ObjectID = "a2f-bI-RVU"; */
+"a2f-bI-RVU.title" = "Results";
+
+/* Class = "IBUIImageView"; accessibilityHint = "Twitter requires a Twitter account to get access to users' info"; ObjectID = "d5j-Q4-SNw"; */
+"d5j-Q4-SNw.accessibilityHint" = "Twitter requires a Twitter account to get access to users' info";
+
+/* Class = "IBUIImageView"; accessibilityLabel = "Allow access to your Twitter account?"; ObjectID = "d5j-Q4-SNw"; */
+"d5j-Q4-SNw.accessibilityLabel" = "Allow access to your Twitter account?";
+
+/* Class = "IBUIViewController"; title = "PreTwitterAccessRequest"; ObjectID = "dK4-aa-SdS"; */
+"dK4-aa-SdS.title" = "PreTwitterAccessRequest";
+
+/* Class = "IBUITextField"; accessibilityLabel = "Web address"; ObjectID = "i1l-eD-iST"; */
+"i1l-eD-iST.accessibilityLabel" = "Web address";
+
+/* Class = "IBUITextField"; placeholder = "Add web address"; ObjectID = "i1l-eD-iST"; */
+"i1l-eD-iST.placeholder" = "Add web address";
+
+/* Class = "IBUILabel"; accessibilityHint = "Don't enter the leading @"; ObjectID = "mMZ-zf-l8P"; */
+"mMZ-zf-l8P.accessibilityHint" = "Don't enter the leading @";
+
+/* Class = "IBUILabel"; text = "@"; ObjectID = "mMZ-zf-l8P"; */
+"mMZ-zf-l8P.text" = "@";
+
+/* Class = "IBUITextField"; accessibilityHint = "Enter an optional hashtag"; ObjectID = "qfS-g8-B3B"; */
+"qfS-g8-B3B.accessibilityHint" = "Enter an optional hashtag";
+
+/* Class = "IBUITextField"; accessibilityLabel = "Hashtag"; ObjectID = "qfS-g8-B3B"; */
+"qfS-g8-B3B.accessibilityLabel" = "Hashtag";
+
+/* Class = "IBUITextField"; placeholder = "hashtag"; ObjectID = "qfS-g8-B3B"; */
+"qfS-g8-B3B.placeholder" = "hashtag";
+
+/* Class = "IBUILabel"; text = "✉︎"; ObjectID = "tLV-6H-FHy"; */
+"tLV-6H-FHy.text" = "✉︎";
+
+/* Class = "IBUIButton"; accessibilityHint = "Without access this app will not be able to function"; ObjectID = "uDY-Rw-2hp"; */
+"uDY-Rw-2hp.accessibilityHint" = "Without access this app will not be able to function";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Do not use my Twitter account"; ObjectID = "uDY-Rw-2hp"; */
+"uDY-Rw-2hp.accessibilityLabel" = "Do not use my Twitter account";
+
+/* Class = "IBUIButton"; normalTitle = "Do NOT use my Twitter account"; ObjectID = "uDY-Rw-2hp"; */
+"uDY-Rw-2hp.normalTitle" = "Do NOT use my Twitter account";
+
+/* Class = "IBUIViewController"; title = "InputView"; ObjectID = "vXZ-lx-hvc"; */
+"vXZ-lx-hvc.title" = "InputView";
+
+/* Class = "IBUILabel"; accessibilityLabel = "Message"; ObjectID = "vcX-3U-RDU"; */
+"vcX-3U-RDU.accessibilityLabel" = "Message";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "vcX-3U-RDU"; */
+"vcX-3U-RDU.text" = "Label";
+
+/* Class = "IBUILabel"; accessibilityLabel = "Twitter Name"; ObjectID = "wIu-zq-T26"; */
+"wIu-zq-T26.accessibilityLabel" = "Twitter Name";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "wIu-zq-T26"; */
+"wIu-zq-T26.text" = "Label";
+
+/* Class = "IBUILabel"; text = "☎︎"; ObjectID = "yci-qZ-zSI"; */
+"yci-qZ-zSI.text" = "☎︎";
