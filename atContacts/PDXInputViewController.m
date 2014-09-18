@@ -309,6 +309,13 @@
     resultsViewController.hashtag = _hashtag.text;
     resultsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
+    // Accessibility announcement
+    NSString *message = NSLocalizedString(@"Presenting results", "Presenting results");
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+    
+    // Animation
+
+    
     // Display view
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:resultsViewController animated:YES completion:nil];
@@ -333,7 +340,11 @@
 - (void)presentPreApprovalDialog {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     PDXPreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"PreApproval"];
-    
+
+    // Accessibility announcement
+    NSString *message = NSLocalizedString(@"Requesting your approval for access to Twitter", "Presenting pre-approval");
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+
     preApprovalViewController.parent = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:preApprovalViewController animated:YES completion:nil];
@@ -346,6 +357,10 @@
     _errorMessage.hidden = NO;
     CGFloat duration = 0.8f;
     
+    // Accessibility announcement
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+    
+    // Animation
     [UIView animateWithDuration:duration
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseIn

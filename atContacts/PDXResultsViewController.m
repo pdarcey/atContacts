@@ -177,8 +177,9 @@
  */
 - (void)followedOnTwitter:(BOOL)success {
     if (success) {
-        [self setButtonHighlighted:YES button:_twitterButton];
-        [self displayErrorMessage:NSLocalizedString(@"Followed on Twitter", @"Display result of hitting Twitter button")];
+        NSString *message = NSLocalizedString(@"Followed on Twitter", @"Display result of hitting Twitter button");
+        [self displayErrorMessage:message];
+        [self setButtonHighlighted:YES button:_twitterButton message:message];
         [self setBothButtonEnabled];
     }
 }
@@ -192,8 +193,9 @@
  */
 - (void)newContactMade:(BOOL)success {
     if (success) {
-        [self setButtonHighlighted:YES button:_contactsButton];
-        [self displayErrorMessage:NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button")];
+        NSString *message = NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button");
+        [self setButtonHighlighted:YES button:_contactsButton message:message];
+        [self displayErrorMessage:message];
         [self setBothButtonEnabled];
     }
 }
@@ -234,6 +236,10 @@
     CGFloat animationDuration = 0.8f;
     CGFloat displayDuration = 2.0;
     
+    // Accessibility announcement
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+
+    // Animation
     [UIView animateWithDuration:animationDuration
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseIn
@@ -303,7 +309,8 @@
     PDXContactMaker *contacts = [PDXContactMaker new];
     contacts.delegate = self;
     if ([contacts isInContacts:[self personData]]) {
-        [self setButtonHighlighted:YES button:_contactsButton];
+        NSString *message = NSLocalizedString(@"Person is in Contacts", @"Display contact state");
+        [self setButtonHighlighted:YES button:_contactsButton message:message];
         [self setBothButtonEnabled];
     }
 }
@@ -340,7 +347,8 @@
  */
 - (void)setBothButtonEnabled {
     BOOL enabled = (_twitterButton.enabled || _contactsButton.enabled);
-    [self setButtonHighlighted:enabled button:_bothButton];
+    NSString *message = NSLocalizedString(@"Person is in Contacts and followed on Twitter", @"Set both contact state");
+    [self setButtonHighlighted:enabled button:_bothButton message:message];
 }
 
 /**
@@ -351,10 +359,11 @@
  *
  *  @since 1.0
  */
-- (void)setButtonHighlighted:(BOOL)highlighted button:(UIButton *)button {
+- (void)setButtonHighlighted:(BOOL)highlighted button:(UIButton *)button message:(NSString *)message {
     if (highlighted) {
         [button setImage:[button imageForState:UIControlStateHighlighted] forState:UIControlStateDisabled];
         button.enabled = NO;
+        button.accessibilityHint = message;
     }
 }
 
@@ -469,6 +478,10 @@
     fakeTextField.enablesReturnKeyAutomatically = realTextField.enablesReturnKeyAutomatically;
     fakeTextField.delegate = self;
     
+    // Add accessibility traits
+    fakeTextField.accessibilityLabel = realTextField.accessibilityLabel;
+    fakeTextField.accessibilityHint = realTextField.accessibilityHint;
+    
     // Add to view
     [self.view addSubview:fakeTextField];
 
@@ -547,9 +560,13 @@
     [UIView animateWithDuration:0.7 animations:^{
         // Move
         textField.center = newCenter;
+        NSString *accessibilityNotification = [NSString stringWithFormat:NSLocalizedString(@"Displaying keyboard and moving %@ field above it", @"Accessibility announcement when moving input field"), textField.description];
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityNotification);
     } completion:^(BOOL finished) {
         if (finished) {
             [textField becomeFirstResponder];
+            NSString *accessibilityNotification = [NSString stringWithFormat:NSLocalizedString(@"%@ field is ready for input", @"Accessibility announcement that input field has stopped moving"), textField.description];
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityNotification);
         }
     }];
 }
@@ -569,6 +586,8 @@
     [UIView animateWithDuration:0.7 animations:^{
         // Move
         textField.center = newCenter;
+        NSString *accessibilityNotification = [NSString stringWithFormat:NSLocalizedString(@"Removing keyboard and moving %@ field back to its original position", @"Accessibility announcement when moving input field back"), textField.description];
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityNotification);
     } completion:^(BOOL finished) {
         if (finished) {
             _realTextField.text = textField.text;
