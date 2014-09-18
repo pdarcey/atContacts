@@ -27,6 +27,9 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMZ-zf-l8P">
                                 <rect key="frame" x="203" y="219" width="14" height="19.5"/>
+                                <accessibility key="accessibilityConfiguration" hint="Don't enter the leading @">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="14" id="Ima-fN-SZ4"/>
                                 </constraints>
@@ -38,6 +41,7 @@
                                 <rect key="frame" x="217" y="214" width="180" height="30"/>
                                 <color key="backgroundColor" red="0.96862751245498657" green="0.68627452850341797" blue="0.32156863808631897" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" hint="Enter the Twitter name to search for (without leading @)" label="Twitter name"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
@@ -47,6 +51,7 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="hashtag" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qfS-g8-B3B">
                                 <rect key="frame" x="203" y="252" width="194" height="20"/>
+                                <accessibility key="accessibilityConfiguration" hint="Enter an optional hashtag" label="Hashtag"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="194" id="SPl-JI-bEg"/>
                                 </constraints>
@@ -63,6 +68,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c2-Tt-Kzl">
                                 <rect key="frame" x="203" y="199" width="194" height="60"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="aN2-li-vID"/>
                                 </constraints>
@@ -126,6 +134,10 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApprovalDialog" translatesAutoresizingMaskIntoConstraints="NO" id="d5j-Q4-SNw">
                                 <rect key="frame" x="143" y="57" width="320" height="485"/>
+                                <accessibility key="accessibilityConfiguration" hint="Twitter requires a Twitter account to get access to users' info" label="Allow access to your Twitter account?">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="485" id="IDG-8r-yZp"/>
                                     <constraint firstAttribute="width" constant="320" id="xOJ-1b-9FU"/>
@@ -133,6 +145,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KOu-50-9yc">
                                 <rect key="frame" x="143" y="386" width="320" height="32"/>
+                                <accessibility key="accessibilityConfiguration" hint="The system-wide Twitter account" label="Use my Twitter account"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Use the Twitter account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -143,6 +156,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT8-N9-OBw">
                                 <rect key="frame" x="143" y="443" width="320" height="29"/>
+                                <accessibility key="accessibilityConfiguration" hint="Without access this app will not be able to function" label="I don't have a Twitter account"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <state key="normal" title="I don't have a Twitter account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -153,6 +167,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDY-Rw-2hp">
                                 <rect key="frame" x="143" y="486" width="320" height="29"/>
+                                <accessibility key="accessibilityConfiguration" hint="Without access this app will not be able to function" label="Do not use my Twitter account"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <state key="normal" title="Do NOT use my Twitter account">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -164,6 +179,10 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have entered in Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jab-wt-d5v">
                                 <rect key="frame" x="143" y="410" width="320" height="19.5"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" red="0.21176472306251526" green="0.56862747669219971" blue="0.96078437566757202" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -223,10 +242,16 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="ZrQ-4A-fAU">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <gestureRecognizers/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="firstName" text="Lorem" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95n-fe-rtH">
                                 <rect key="frame" x="0.0" y="5" width="600" height="54.5"/>
+                                <accessibility key="accessibilityConfiguration" label="First Name">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="rcB-N3-rNP"/>
                                 </constraints>
@@ -236,6 +261,9 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="lastName" text="Ipsum" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AU-64-liZ">
                                 <rect key="frame" x="0.0" y="59" width="600" height="54"/>
+                                <accessibility key="accessibilityConfiguration" label="Other Naes">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="O4P-Nq-XQo"/>
                                 </constraints>
@@ -247,6 +275,9 @@
                                 <rect key="frame" x="200" y="121" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="q6e-6m-ZVY"/>
                                     <constraint firstAttribute="height" constant="200" id="xyD-hu-KeP"/>
@@ -254,6 +285,9 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="twitterName" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-zq-T26">
                                 <rect key="frame" x="200" y="295" width="200" height="20.5"/>
+                                <accessibility key="accessibilityConfiguration" label="Twitter Name">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -270,25 +304,35 @@
                             <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" keyboardDismissMode="onDrag" editable="NO" text="Lorem ipsum" translatesAutoresizingMaskIntoConstraints="NO" id="86e-dG-L1q">
                                 <rect key="frame" x="75" y="409" width="450" height="191"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" label="Description"/>
+                                <accessibility key="accessibilityConfiguration" label="Description">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES"/>
+                                </accessibility>
                                 <color key="textColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrangeFade" translatesAutoresizingMaskIntoConstraints="NO" id="Yvn-J6-16N">
                                 <rect key="frame" x="0.0" y="529" width="600" height="135"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Opm-xg-hbP" appends="YES" id="90s-fR-Yjw"/>
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✉︎" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLV-6H-FHy">
                                 <rect key="frame" x="200" y="327" width="14.5" height="20.5"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X7X-fj-m0i">
                                 <rect key="frame" x="222" y="328" width="177.5" height="20"/>
+                                <accessibility key="accessibilityConfiguration" label="Email address"/>
                                 <color key="textColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -298,12 +342,17 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☎︎" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yci-qZ-zSI">
                                 <rect key="frame" x="200" y="354" width="17" height="20.5"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add phone" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OWX-u5-Leo">
                                 <rect key="frame" x="225" y="355" width="175" height="20"/>
+                                <accessibility key="accessibilityConfiguration" label="Phone number"/>
                                 <color key="textColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -313,12 +362,16 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⍵⍵⍵" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrX-as-Dkg">
                                 <rect key="frame" x="174" y="381" width="43" height="20.5"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add web address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i1l-eD-iST">
                                 <rect key="frame" x="225" y="382" width="175" height="20"/>
+                                <accessibility key="accessibilityConfiguration" label="Web address"/>
                                 <color key="textColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -372,6 +425,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcX-3U-RDU">
                                 <rect key="frame" x="200" y="121" width="200" height="200"/>
                                 <color key="backgroundColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" label="Message">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="VML-p1-NeP"/>
                                 </constraints>
@@ -386,6 +442,10 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="58a-DN-NVP">
                                 <rect key="frame" x="578" y="175" width="6" height="92"/>
+                                <accessibility key="accessibilityConfiguration" hint="Swipe left for more pages" label="More pages indicator">
+                                    <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="Kfb-gG-9DL"/>
                                 </constraints>
@@ -395,6 +455,9 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5or-ck-dSD">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                    </accessibility>
                                     <gestureRecognizers/>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="QEU-bO-FK6" appends="YES" id="Mjf-6d-4Ib"/>
