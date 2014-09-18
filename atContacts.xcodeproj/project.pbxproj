@@ -7,29 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C92D0DB719C1FA05000BA63B /* testFriendshipsCreateNO.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB219C1FA05000BA63B /* testFriendshipsCreateNO.json */; };
-		C92D0DB919C1FA05000BA63B /* testFriendshipsCreateYES.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB319C1FA05000BA63B /* testFriendshipsCreateYES.json */; };
-		C92D0DBB19C1FA05000BA63B /* testUsersLookup.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB419C1FA05000BA63B /* testUsersLookup.json */; };
-		C92D0DBD19C1FA05000BA63B /* testUsersSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DB519C1FA05000BA63B /* testUsersSearch.json */; };
-		C92D0DC019C2015A000BA63B /* testFriendshipsLookupFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DBE19C2015A000BA63B /* testFriendshipsLookupFollowing.json */; };
-		C92D0DC319C201CC000BA63B /* testFriendshipsLookupNotFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = C92D0DC119C201CC000BA63B /* testFriendshipsLookupNotFollowing.json */; };
 		C93E2D3D19ADD51200B06809 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D3C19ADD51200B06809 /* main.m */; };
-		C93E2D4019ADD51200B06809 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D3F19ADD51200B06809 /* AppDelegate.m */; };
 		C93E2D4319ADD51200B06809 /* PDXInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D4219ADD51200B06809 /* PDXInputViewController.m */; };
-		C93E2D4619ADD51200B06809 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93E2D4419ADD51200B06809 /* Main.storyboard */; };
-		C93E2D4819ADD51200B06809 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93E2D4719ADD51200B06809 /* Images.xcassets */; };
-		C93E2D5419ADD51200B06809 /* PDXTwitterCommunicatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D5319ADD51200B06809 /* PDXTwitterCommunicatorTests.m */; };
 		C971A1C019B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */; };
 		C971A1C119B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */; };
 		C971A1C419B4A42100F67E75 /* PDXResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C319B4A42100F67E75 /* PDXResultsViewController.m */; };
 		C971A1C519B4A42100F67E75 /* PDXResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C319B4A42100F67E75 /* PDXResultsViewController.m */; };
 		C99D295619C4FBEE00E42D86 /* PDXContactMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D295519C4FBEE00E42D86 /* PDXContactMaker.m */; };
-		C99D295819C518C500E42D86 /* PDXContactMakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D295719C518C500E42D86 /* PDXContactMakerTests.m */; };
-		C99D295D19C5E3E100E42D86 /* File.strings in Resources */ = {isa = PBXBuildFile; fileRef = C99D295C19C5E3E100E42D86 /* File.strings */; };
-		C99D296419C8AC2B00E42D86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C99D296319C8AC2B00E42D86 /* LaunchScreen.storyboard */; };
 		C9A010F819BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */; };
 		C9A010F919BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */; };
-		C9FA6DAD19C31D940086FDAB /* PDXInputVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FA6DAC19C31D940086FDAB /* PDXInputVCTests.m */; };
+		C9A9976B19CB33EF007A033E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9976A19CB33EF007A033E /* AppDelegate.m */; };
+		C9A9978119CB3425007A033E /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9A9976D19CB3425007A033E /* Main.strings */; };
+		C9A9978219CB3425007A033E /* File.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977019CB3425007A033E /* File.strings */; };
+		C9A9978319CB3425007A033E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977219CB3425007A033E /* LaunchScreen.storyboard */; };
+		C9A9978419CB3425007A033E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977419CB3425007A033E /* Main.storyboard */; };
+		C9A9978519CB3425007A033E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977819CB3425007A033E /* Images.xcassets */; };
+		C9A9979819CB34A7007A033E /* PDXContactMakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9978819CB34A7007A033E /* PDXContactMakerTests.m */; };
+		C9A9979919CB34A7007A033E /* PDXInputVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9978A19CB34A7007A033E /* PDXInputVCTests.m */; };
+		C9A9979A19CB34A7007A033E /* PDXTwitterCommunicatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9978E19CB34A7007A033E /* PDXTwitterCommunicatorTests.m */; };
+		C9A9979B19CB34A7007A033E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979019CB34A7007A033E /* Info.plist */; };
+		C9A9979C19CB34A7007A033E /* testFriendshipsCreateNO.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979219CB34A7007A033E /* testFriendshipsCreateNO.json */; };
+		C9A9979D19CB34A7007A033E /* testFriendshipsCreateYES.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979319CB34A7007A033E /* testFriendshipsCreateYES.json */; };
+		C9A9979E19CB34A7007A033E /* testFriendshipsLookupFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979419CB34A7007A033E /* testFriendshipsLookupFollowing.json */; };
+		C9A9979F19CB34A7007A033E /* testFriendshipsLookupNotFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979519CB34A7007A033E /* testFriendshipsLookupNotFollowing.json */; };
+		C9A997A019CB34A7007A033E /* testUsersLookup.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979619CB34A7007A033E /* testUsersLookup.json */; };
+		C9A997A119CB34A7007A033E /* testUsersSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979719CB34A7007A033E /* testUsersSearch.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,51 +45,52 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C92D0DAC19C1CEA4000BA63B /* PDXTwitterCommunicator+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXTwitterCommunicator+TestExtensions.h"; sourceTree = "<group>"; };
-		C92D0DB219C1FA05000BA63B /* testFriendshipsCreateNO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testFriendshipsCreateNO.json; path = ../testFriendshipsCreateNO.json; sourceTree = "<group>"; };
-		C92D0DB319C1FA05000BA63B /* testFriendshipsCreateYES.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testFriendshipsCreateYES.json; path = ../testFriendshipsCreateYES.json; sourceTree = "<group>"; };
-		C92D0DB419C1FA05000BA63B /* testUsersLookup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testUsersLookup.json; path = ../testUsersLookup.json; sourceTree = "<group>"; };
-		C92D0DB519C1FA05000BA63B /* testUsersSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testUsersSearch.json; path = ../testUsersSearch.json; sourceTree = "<group>"; };
-		C92D0DBE19C2015A000BA63B /* testFriendshipsLookupFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsLookupFollowing.json; sourceTree = "<group>"; };
-		C92D0DC119C201CC000BA63B /* testFriendshipsLookupNotFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsLookupNotFollowing.json; sourceTree = "<group>"; };
 		C93E2D3719ADD51200B06809 /* atContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = atContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93E2D3B19ADD51200B06809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C93E2D3C19ADD51200B06809 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C93E2D3E19ADD51200B06809 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		C93E2D3F19ADD51200B06809 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C93E2D4119ADD51200B06809 /* PDXInputViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDXInputViewController.h; sourceTree = "<group>"; };
 		C93E2D4219ADD51200B06809 /* PDXInputViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDXInputViewController.m; sourceTree = "<group>"; };
-		C93E2D4519ADD51200B06809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C93E2D4719ADD51200B06809 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C93E2D4D19ADD51200B06809 /* atContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = atContactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93E2D5219ADD51200B06809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C93E2D5319ADD51200B06809 /* PDXTwitterCommunicatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterCommunicatorTests.m; sourceTree = "<group>"; };
-		C96E02DD19CB0D4000470502 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		C96E02DE19CB0D5100470502 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		C96E02DF19CB0D6100470502 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		C96E02E019CB0D6900470502 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
-		C96E02E119CB0D7000470502 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
-		C96E02E219CB0D7800470502 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		C96E02E319CB0DF000470502 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
-		C96E02E419CB0E0300470502 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
-		C96E02E519CB0E2900470502 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
-		C96E02E619CB0E3B00470502 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		C96E02E719CB0E4E00470502 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Main.strings; sourceTree = "<group>"; };
-		C96E02E819CB0E6000470502 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		C971A1BE19B0E65300F67E75 /* PDXPreApprovalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXPreApprovalViewController.h; sourceTree = "<group>"; };
 		C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXPreApprovalViewController.m; sourceTree = "<group>"; };
 		C971A1C219B4A42100F67E75 /* PDXResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXResultsViewController.h; sourceTree = "<group>"; };
 		C971A1C319B4A42100F67E75 /* PDXResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXResultsViewController.m; sourceTree = "<group>"; };
 		C99D295419C4FBEE00E42D86 /* PDXContactMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXContactMaker.h; sourceTree = "<group>"; };
 		C99D295519C4FBEE00E42D86 /* PDXContactMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXContactMaker.m; sourceTree = "<group>"; };
-		C99D295719C518C500E42D86 /* PDXContactMakerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDXContactMakerTests.m; path = ../atContacts/PDXContactMakerTests.m; sourceTree = "<group>"; };
-		C99D295919C5192900E42D86 /* PDXContactMaker+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXContactMaker+TestExtensions.h"; sourceTree = "<group>"; };
-		C99D295C19C5E3E100E42D86 /* File.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = File.strings; sourceTree = "<group>"; };
-		C99D296319C8AC2B00E42D86 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9A010F619BCA6470024BFC6 /* PDXTwitterCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXTwitterCommunicator.h; sourceTree = "<group>"; };
 		C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterCommunicator.m; sourceTree = "<group>"; };
-		C9FA6DAC19C31D940086FDAB /* PDXInputVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDXInputVCTests.m; path = ../atContacts/PDXInputVCTests.m; sourceTree = "<group>"; };
-		C9FA6DB119C31ECC0086FDAB /* PDXInputViewController+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXInputViewController+TestExtensions.h"; sourceTree = "<group>"; };
+		C9A9976919CB33EF007A033E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C9A9976A19CB33EF007A033E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C9A9976E19CB3425007A033E /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A9976F19CB3425007A033E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A9977119CB3425007A033E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/File.strings; sourceTree = "<group>"; };
+		C9A9977319CB3425007A033E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C9A9977519CB3425007A033E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C9A9977619CB3425007A033E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A9977719CB3425007A033E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A9977819CB3425007A033E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C9A9977919CB3425007A033E /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A9977A19CB3425007A033E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A9977B19CB3425007A033E /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A9977C19CB3425007A033E /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A9977D19CB3425007A033E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A9977E19CB3425007A033E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A9977F19CB3425007A033E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		C9A9978019CB3425007A033E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		C9A9978719CB34A7007A033E /* PDXContactMaker+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXContactMaker+TestExtensions.h"; sourceTree = "<group>"; };
+		C9A9978819CB34A7007A033E /* PDXContactMakerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXContactMakerTests.m; sourceTree = "<group>"; };
+		C9A9978A19CB34A7007A033E /* PDXInputVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXInputVCTests.m; sourceTree = "<group>"; };
+		C9A9978B19CB34A7007A033E /* PDXInputViewController+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXInputViewController+TestExtensions.h"; sourceTree = "<group>"; };
+		C9A9978D19CB34A7007A033E /* PDXTwitterCommunicator+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXTwitterCommunicator+TestExtensions.h"; sourceTree = "<group>"; };
+		C9A9978E19CB34A7007A033E /* PDXTwitterCommunicatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterCommunicatorTests.m; sourceTree = "<group>"; };
+		C9A9979019CB34A7007A033E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9A9979219CB34A7007A033E /* testFriendshipsCreateNO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsCreateNO.json; sourceTree = "<group>"; };
+		C9A9979319CB34A7007A033E /* testFriendshipsCreateYES.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsCreateYES.json; sourceTree = "<group>"; };
+		C9A9979419CB34A7007A033E /* testFriendshipsLookupFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsLookupFollowing.json; sourceTree = "<group>"; };
+		C9A9979519CB34A7007A033E /* testFriendshipsLookupNotFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsLookupNotFollowing.json; sourceTree = "<group>"; };
+		C9A9979619CB34A7007A033E /* testUsersLookup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testUsersLookup.json; sourceTree = "<group>"; };
+		C9A9979719CB34A7007A033E /* testUsersSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testUsersSearch.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,13 +132,10 @@
 		C93E2D3919ADD51200B06809 /* atContacts */ = {
 			isa = PBXGroup;
 			children = (
-				C93E2D3E19ADD51200B06809 /* AppDelegate.h */,
-				C93E2D3F19ADD51200B06809 /* AppDelegate.m */,
+				C9A9976819CB33EF007A033E /* Classes */,
+				C9A9976C19CB3425007A033E /* Resources */,
 				C971A1C619B4A43E00F67E75 /* View Controllers */,
 				C971A1C719B4A44C00F67E75 /* Workers */,
-				C93E2D4419ADD51200B06809 /* Main.storyboard */,
-				C99D296319C8AC2B00E42D86 /* LaunchScreen.storyboard */,
-				C93E2D4719ADD51200B06809 /* Images.xcassets */,
 				C93E2D3A19ADD51200B06809 /* Supporting Files */,
 			);
 			path = atContacts;
@@ -144,23 +144,20 @@
 		C93E2D3A19ADD51200B06809 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C99D295C19C5E3E100E42D86 /* File.strings */,
 				C93E2D3B19ADD51200B06809 /* Info.plist */,
 				C93E2D3C19ADD51200B06809 /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		C93E2D5019ADD51200B06809 /* atContactsTests */ = {
 			isa = PBXGroup;
 			children = (
-				C9FA6DAB19C31C030086FDAB /* Test Data */,
-				C92D0DAC19C1CEA4000BA63B /* PDXTwitterCommunicator+TestExtensions.h */,
-				C93E2D5319ADD51200B06809 /* PDXTwitterCommunicatorTests.m */,
-				C9FA6DB119C31ECC0086FDAB /* PDXInputViewController+TestExtensions.h */,
-				C9FA6DAC19C31D940086FDAB /* PDXInputVCTests.m */,
-				C99D295919C5192900E42D86 /* PDXContactMaker+TestExtensions.h */,
-				C99D295719C518C500E42D86 /* PDXContactMakerTests.m */,
+				C9A9978619CB34A7007A033E /* PDXContactMaker */,
+				C9A9978919CB34A7007A033E /* PDXInputViewController */,
+				C9A9978C19CB34A7007A033E /* PDXTwitterCommunicator */,
+				C9A9978F19CB34A7007A033E /* Supporting Files */,
+				C9A9979119CB34A7007A033E /* Test Data */,
 				C93E2D5119ADD51200B06809 /* Supporting Files */,
 			);
 			path = atContactsTests;
@@ -171,7 +168,7 @@
 			children = (
 				C93E2D5219ADD51200B06809 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		C971A1C619B4A43E00F67E75 /* View Controllers */ = {
@@ -184,7 +181,7 @@
 				C971A1BE19B0E65300F67E75 /* PDXPreApprovalViewController.h */,
 				C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */,
 			);
-			name = "View Controllers";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		C971A1C719B4A44C00F67E75 /* Workers */ = {
@@ -195,21 +192,76 @@
 				C9A010F619BCA6470024BFC6 /* PDXTwitterCommunicator.h */,
 				C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */,
 			);
-			name = Workers;
+			path = Workers;
 			sourceTree = "<group>";
 		};
-		C9FA6DAB19C31C030086FDAB /* Test Data */ = {
+		C9A9976819CB33EF007A033E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C92D0DC119C201CC000BA63B /* testFriendshipsLookupNotFollowing.json */,
-				C92D0DBE19C2015A000BA63B /* testFriendshipsLookupFollowing.json */,
-				C92D0DB219C1FA05000BA63B /* testFriendshipsCreateNO.json */,
-				C92D0DB319C1FA05000BA63B /* testFriendshipsCreateYES.json */,
-				C92D0DB419C1FA05000BA63B /* testUsersLookup.json */,
-				C92D0DB519C1FA05000BA63B /* testUsersSearch.json */,
+				C9A9976919CB33EF007A033E /* AppDelegate.h */,
+				C9A9976A19CB33EF007A033E /* AppDelegate.m */,
 			);
-			name = "Test Data";
-			path = ../atContacts;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		C9A9976C19CB3425007A033E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9976D19CB3425007A033E /* Main.strings */,
+				C9A9977019CB3425007A033E /* File.strings */,
+				C9A9977219CB3425007A033E /* LaunchScreen.storyboard */,
+				C9A9977419CB3425007A033E /* Main.storyboard */,
+				C9A9977819CB3425007A033E /* Images.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C9A9978619CB34A7007A033E /* PDXContactMaker */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9978719CB34A7007A033E /* PDXContactMaker+TestExtensions.h */,
+				C9A9978819CB34A7007A033E /* PDXContactMakerTests.m */,
+			);
+			path = PDXContactMaker;
+			sourceTree = "<group>";
+		};
+		C9A9978919CB34A7007A033E /* PDXInputViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9978A19CB34A7007A033E /* PDXInputVCTests.m */,
+				C9A9978B19CB34A7007A033E /* PDXInputViewController+TestExtensions.h */,
+			);
+			path = PDXInputViewController;
+			sourceTree = "<group>";
+		};
+		C9A9978C19CB34A7007A033E /* PDXTwitterCommunicator */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9978D19CB34A7007A033E /* PDXTwitterCommunicator+TestExtensions.h */,
+				C9A9978E19CB34A7007A033E /* PDXTwitterCommunicatorTests.m */,
+			);
+			path = PDXTwitterCommunicator;
+			sourceTree = "<group>";
+		};
+		C9A9978F19CB34A7007A033E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9979019CB34A7007A033E /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C9A9979119CB34A7007A033E /* Test Data */ = {
+			isa = PBXGroup;
+			children = (
+				C9A9979219CB34A7007A033E /* testFriendshipsCreateNO.json */,
+				C9A9979319CB34A7007A033E /* testFriendshipsCreateYES.json */,
+				C9A9979419CB34A7007A033E /* testFriendshipsLookupFollowing.json */,
+				C9A9979519CB34A7007A033E /* testFriendshipsLookupNotFollowing.json */,
+				C9A9979619CB34A7007A033E /* testUsersLookup.json */,
+				C9A9979719CB34A7007A033E /* testUsersSearch.json */,
+			);
+			path = "Test Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +334,18 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
+				de,
+				es,
+				fr,
+				it,
+				ja,
+				ko,
+				pt,
+				ru,
+				tr,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = C93E2D2E19ADD51200B06809;
 			productRefGroup = C93E2D3819ADD51200B06809 /* Products */;
@@ -299,10 +363,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C93E2D4619ADD51200B06809 /* Main.storyboard in Resources */,
-				C99D296419C8AC2B00E42D86 /* LaunchScreen.storyboard in Resources */,
-				C93E2D4819ADD51200B06809 /* Images.xcassets in Resources */,
-				C99D295D19C5E3E100E42D86 /* File.strings in Resources */,
+				C9A9978219CB3425007A033E /* File.strings in Resources */,
+				C9A9978119CB3425007A033E /* Main.strings in Resources */,
+				C9A9978519CB3425007A033E /* Images.xcassets in Resources */,
+				C9A9978419CB3425007A033E /* Main.storyboard in Resources */,
+				C9A9978319CB3425007A033E /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,12 +375,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C92D0DBD19C1FA05000BA63B /* testUsersSearch.json in Resources */,
-				C92D0DC319C201CC000BA63B /* testFriendshipsLookupNotFollowing.json in Resources */,
-				C92D0DB719C1FA05000BA63B /* testFriendshipsCreateNO.json in Resources */,
-				C92D0DC019C2015A000BA63B /* testFriendshipsLookupFollowing.json in Resources */,
-				C92D0DBB19C1FA05000BA63B /* testUsersLookup.json in Resources */,
-				C92D0DB919C1FA05000BA63B /* testFriendshipsCreateYES.json in Resources */,
+				C9A9979C19CB34A7007A033E /* testFriendshipsCreateNO.json in Resources */,
+				C9A9979E19CB34A7007A033E /* testFriendshipsLookupFollowing.json in Resources */,
+				C9A9979D19CB34A7007A033E /* testFriendshipsCreateYES.json in Resources */,
+				C9A997A119CB34A7007A033E /* testUsersSearch.json in Resources */,
+				C9A9979F19CB34A7007A033E /* testFriendshipsLookupNotFollowing.json in Resources */,
+				C9A997A019CB34A7007A033E /* testUsersLookup.json in Resources */,
+				C9A9979B19CB34A7007A033E /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,8 +411,8 @@
 			files = (
 				C971A1C019B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */,
 				C93E2D4319ADD51200B06809 /* PDXInputViewController.m in Sources */,
-				C93E2D4019ADD51200B06809 /* AppDelegate.m in Sources */,
 				C9A010F819BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */,
+				C9A9976B19CB33EF007A033E /* AppDelegate.m in Sources */,
 				C99D295619C4FBEE00E42D86 /* PDXContactMaker.m in Sources */,
 				C971A1C419B4A42100F67E75 /* PDXResultsViewController.m in Sources */,
 				C93E2D3D19ADD51200B06809 /* main.m in Sources */,
@@ -357,11 +423,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9A9979819CB34A7007A033E /* PDXContactMakerTests.m in Sources */,
 				C9A010F919BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */,
+				C9A9979919CB34A7007A033E /* PDXInputVCTests.m in Sources */,
+				C9A9979A19CB34A7007A033E /* PDXTwitterCommunicatorTests.m in Sources */,
 				C971A1C119B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */,
-				C93E2D5419ADD51200B06809 /* PDXTwitterCommunicatorTests.m in Sources */,
-				C99D295819C518C500E42D86 /* PDXContactMakerTests.m in Sources */,
-				C9FA6DAD19C31D940086FDAB /* PDXInputVCTests.m in Sources */,
 				C971A1C519B4A42100F67E75 /* PDXResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,22 +443,45 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C93E2D4419ADD51200B06809 /* Main.storyboard */ = {
+		C9A9976D19CB3425007A033E /* Main.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C93E2D4519ADD51200B06809 /* Base */,
-				C96E02DD19CB0D4000470502 /* fr */,
-				C96E02DE19CB0D5100470502 /* de */,
-				C96E02DF19CB0D6100470502 /* zh-Hans */,
-				C96E02E019CB0D6900470502 /* zh-Hant */,
-				C96E02E119CB0D7000470502 /* ja */,
-				C96E02E219CB0D7800470502 /* es */,
-				C96E02E319CB0DF000470502 /* it */,
-				C96E02E419CB0E0300470502 /* ko */,
-				C96E02E519CB0E2900470502 /* pt */,
-				C96E02E619CB0E3B00470502 /* ru */,
-				C96E02E719CB0E4E00470502 /* tr */,
-				C96E02E819CB0E6000470502 /* ar */,
+				C9A9976E19CB3425007A033E /* ar */,
+				C9A9976F19CB3425007A033E /* de */,
+				C9A9977619CB3425007A033E /* es */,
+				C9A9977719CB3425007A033E /* fr */,
+				C9A9977919CB3425007A033E /* it */,
+				C9A9977A19CB3425007A033E /* ja */,
+				C9A9977B19CB3425007A033E /* ko */,
+				C9A9977C19CB3425007A033E /* pt */,
+				C9A9977D19CB3425007A033E /* ru */,
+				C9A9977E19CB3425007A033E /* tr */,
+				C9A9977F19CB3425007A033E /* zh-Hans */,
+				C9A9978019CB3425007A033E /* zh-Hant */,
+			);
+			name = Main.strings;
+			sourceTree = "<group>";
+		};
+		C9A9977019CB3425007A033E /* File.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9A9977119CB3425007A033E /* en */,
+			);
+			name = File.strings;
+			sourceTree = "<group>";
+		};
+		C9A9977219CB3425007A033E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9A9977319CB3425007A033E /* en */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C9A9977419CB3425007A033E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9A9977519CB3425007A033E /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -482,7 +571,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = atContacts/Info.plist;
+				INFOPLIST_FILE = "atContacts/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -495,7 +584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = atContacts/Info.plist;
+				INFOPLIST_FILE = "atContacts/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -514,7 +603,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = atContactsTests/Info.plist;
+				INFOPLIST_FILE = "atContactsTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/atContacts.app/atContacts";
@@ -529,7 +618,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = atContactsTests/Info.plist;
+				INFOPLIST_FILE = "atContactsTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/atContacts.app/atContacts";
