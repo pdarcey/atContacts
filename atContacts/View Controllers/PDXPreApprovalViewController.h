@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *permissionGranted;
 @property (weak, nonatomic) IBOutlet UIButton *permissionDenied;
 @property (weak, nonatomic) IBOutlet UIButton *noTwitterAccount;
+@property (weak, nonatomic) IBOutlet UILabel *errorMessage;
 @property (weak, nonatomic) PDXTwitterCommunicator *twitter;
 @property (weak, nonatomic) PDXInputViewController *parent;
 

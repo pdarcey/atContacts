@@ -361,20 +361,22 @@
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
     
     // Animation
-    [UIView animateWithDuration:duration
-                          delay:0.0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{_errorMessage.alpha = 1;}
-                     completion:^(BOOL finished) {
-                         [UIView animateWithDuration:duration
-                                               delay:2.0
-                                             options: UIViewAnimationOptionCurveEaseOut
-                                          animations:^{_errorMessage.alpha = 0;}
-                                          completion:^(BOOL finished) {
-                                              _errorMessage.hidden = YES;
-                                          }
-                          ];
-                     }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+       [UIView animateWithDuration:duration
+                              delay:0.0
+                            options: UIViewAnimationOptionCurveEaseIn
+                         animations:^{_errorMessage.alpha = 1;}
+                         completion:^(BOOL finished) {
+                             [UIView animateWithDuration:duration
+                                                   delay:2.0
+                                                 options: UIViewAnimationOptionCurveEaseOut
+                                              animations:^{_errorMessage.alpha = 0;}
+                                              completion:^(BOOL finished) {
+                                                  _errorMessage.hidden = YES;
+                                              }
+                              ];
+                         }];
+    });
 }
 
 @end
