@@ -238,7 +238,7 @@
  */
 - (BOOL)userDeniedPermission {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL userDeniedPermission = [defaults boolForKey:@"userDeniedPermission"];
+    BOOL userDeniedPermission = [defaults boolForKey:@"dialogHasBeenPresented"];
     
     return userDeniedPermission;
 }
@@ -253,7 +253,7 @@
  */
 - (BOOL)userHasNoAccount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL userHasNoAccount = [defaults boolForKey:@"userHasNoAccount"];
+    BOOL userHasNoAccount = [defaults boolForKey:@"dialogHasBeenPresented"];
     
     return userHasNoAccount;
 }
