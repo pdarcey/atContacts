@@ -209,13 +209,15 @@
  */
 - (void)displayUserImage:(UIImage *)image {
     CGFloat duration = 0.8f;
-    
+
+    dispatch_async(dispatch_get_main_queue(), ^{
     [UIView animateWithDuration:duration
                           delay:0.0
                         options: UIViewAnimationOptionTransitionCrossDissolve
                      animations:^{_photo.image = image;}
                      completion:nil
      ];
+    });
 }
 
 /**
@@ -507,16 +509,18 @@
     CGFloat percent = 0.2; // Try 20%
     CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0f + percent, 1.0f + percent);
     CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0 + percent), 1.0f / (1.0 + percent));
-    [UIView animateWithDuration:0.1f animations:^{
-        textField.transform = embiggen;
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [UIView animateWithDuration:0.1f animations:^{
-                textField.transform = shrink;
-            }];
-        }
-    }
-     ];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.1f animations:^{
+            textField.transform = embiggen;
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    [UIView animateWithDuration:0.1f animations:^{
+                        textField.transform = shrink;
+                    }];
+                }
+            }
+         ];
+    });
 }
 
 /**
@@ -527,9 +531,11 @@
  *  @since 1.0
  */
 - (void)showBlurOverlay {
-    [UIView animateWithDuration:0.8 animations:^{
-        _blurOverlay.hidden = NO;
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.8 animations:^{
+            _blurOverlay.hidden = NO;
+        }];
+    });
 }
 
 /**
@@ -538,9 +544,11 @@
  *  @since 1.0
  */
 - (void)hideBlurOverlay {
-    [UIView animateWithDuration:0.8 animations:^{
-        _blurOverlay.hidden = YES;
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.8 animations:^{
+            _blurOverlay.hidden = YES;
+        }];
+    });
 }
 
 /**
@@ -555,21 +563,21 @@
 - (void)moveTextFieldToOverlay:(UITextField *)textField {
     // Change views
     [self.view insertSubview:textField aboveSubview:_blurOverlay];
-    
     CGPoint newCenter = CGPointMake(textField.center.x, self.view.center.y - 100);
     
-    [UIView animateWithDuration:0.7 animations:^{
-        // Move
-        textField.center = newCenter;
-        NSString *accessibilityNotification = [NSString stringWithFormat:NSLocalizedString(@"Displaying keyboard and moving %@ field above it", @"Accessibility announcement when moving input field"), textField.description];
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityNotification);
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [textField becomeFirstResponder];
-            NSString *accessibilityNotification = [NSString stringWithFormat:NSLocalizedString(@"%@ field is ready for input", @"Accessibility announcement that input field has stopped moving"), textField.description];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.7 animations:^{
+            textField.center = newCenter;
+            NSString *accessibilityNotification = [NSString stringWithFormat:NSLocalizedString(@"Displaying keyboard and moving %@ field above it", @"Accessibility announcement when moving input field"), textField.description];
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityNotification);
-        }
-    }];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [textField becomeFirstResponder];
+                NSString *accessibilityNotification = [NSString stringWithFormat:NSLocalizedString(@"%@ field is ready for input", @"Accessibility announcement that input field has stopped moving"), textField.description];
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityNotification);
+            }
+        }];
+    });
 }
 
 /**
@@ -583,24 +591,26 @@
  */
 - (void)moveTextFieldFromOverlay:(UITextField *)textField {
     CGPoint newCenter = CGPointMake(_realTextField.center.x, _realTextField.center.y);
-    
-    [UIView animateWithDuration:0.7 animations:^{
-        // Move
-        textField.center = newCenter;
-        NSString *accessibilityNotification = [NSString stringWithFormat:NSLocalizedString(@"Removing keyboard and moving %@ field back to its original position", @"Accessibility announcement when moving input field back"), textField.description];
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityNotification);
-    } completion:^(BOOL finished) {
-        if (finished) {
-            _realTextField.text = textField.text;
-            [UIView animateWithDuration:0.3 animations:^{
-                textField.alpha = 0;
-            } completion:^(BOOL finished) {
-                if (finished) {
-                    [textField removeFromSuperview];
-                }
-            }];
-        }
-    }];
+ 
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.7 animations:^{
+            // Move
+            textField.center = newCenter;
+            NSString *accessibilityNotification = [NSString stringWithFormat:NSLocalizedString(@"Removing keyboard and moving %@ field back to its original position", @"Accessibility announcement when moving input field back"), textField.description];
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityNotification);
+        } completion:^(BOOL finished) {
+            if (finished) {
+                _realTextField.text = textField.text;
+                [UIView animateWithDuration:0.3 animations:^{
+                    textField.alpha = 0;
+                } completion:^(BOOL finished) {
+                    if (finished) {
+                        [textField removeFromSuperview];
+                    }
+                }];
+            }
+        }];
+    });
 }
 
 @end

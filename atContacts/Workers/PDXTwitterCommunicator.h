@@ -17,11 +17,11 @@
 
 @required
 
-@property (strong, nonatomic) UILabel *errorMessage;
+@property (weak, nonatomic) UILabel *errorMessage;
 
+- (void)displayErrorMessage:(NSString *)message;
 
 @optional
-- (void)displayErrorMessage:(NSString *)message;
 - (void)followedOnTwitter:(BOOL)success;
 - (void)displayInfo:(NSDictionary *)data;
 - (void)displayUserImage:(UIImage *)image;
