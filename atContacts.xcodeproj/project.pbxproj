@@ -7,15 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C93E2D3D19ADD51200B06809 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D3C19ADD51200B06809 /* main.m */; };
-		C93E2D4319ADD51200B06809 /* PDXInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C93E2D4219ADD51200B06809 /* PDXInputViewController.m */; };
-		C971A1C019B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */; };
-		C971A1C119B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */; };
-		C971A1C419B4A42100F67E75 /* PDXResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C319B4A42100F67E75 /* PDXResultsViewController.m */; };
-		C971A1C519B4A42100F67E75 /* PDXResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A1C319B4A42100F67E75 /* PDXResultsViewController.m */; };
-		C99D295619C4FBEE00E42D86 /* PDXContactMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D295519C4FBEE00E42D86 /* PDXContactMaker.m */; };
-		C9A010F819BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */; };
-		C9A010F919BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */; };
 		C9A9976B19CB33EF007A033E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9976A19CB33EF007A033E /* AppDelegate.m */; };
 		C9A9978119CB3425007A033E /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9A9976D19CB3425007A033E /* Main.strings */; };
 		C9A9978219CB3425007A033E /* File.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977019CB3425007A033E /* File.strings */; };
@@ -32,6 +23,12 @@
 		C9A9979F19CB34A7007A033E /* testFriendshipsLookupNotFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979519CB34A7007A033E /* testFriendshipsLookupNotFollowing.json */; };
 		C9A997A019CB34A7007A033E /* testUsersLookup.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979619CB34A7007A033E /* testUsersLookup.json */; };
 		C9A997A119CB34A7007A033E /* testUsersSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979719CB34A7007A033E /* testUsersSearch.json */; };
+		C9A997B719CB49E1007A033E /* PDXInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997AD19CB49E1007A033E /* PDXInputViewController.m */; };
+		C9A997B819CB49E1007A033E /* PDXPreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997AF19CB49E1007A033E /* PDXPreApprovalViewController.m */; };
+		C9A997B919CB49E1007A033E /* PDXResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B119CB49E1007A033E /* PDXResultsViewController.m */; };
+		C9A997BA19CB49E1007A033E /* PDXContactMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B419CB49E1007A033E /* PDXContactMaker.m */; };
+		C9A997BB19CB49E1007A033E /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B619CB49E1007A033E /* PDXTwitterCommunicator.m */; };
+		C9A997C219CB4A7D007A033E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997C019CB4A7D007A033E /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,20 +43,8 @@
 
 /* Begin PBXFileReference section */
 		C93E2D3719ADD51200B06809 /* atContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = atContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C93E2D3B19ADD51200B06809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C93E2D3C19ADD51200B06809 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C93E2D4119ADD51200B06809 /* PDXInputViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDXInputViewController.h; sourceTree = "<group>"; };
-		C93E2D4219ADD51200B06809 /* PDXInputViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDXInputViewController.m; sourceTree = "<group>"; };
 		C93E2D4D19ADD51200B06809 /* atContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = atContactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93E2D5219ADD51200B06809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C971A1BE19B0E65300F67E75 /* PDXPreApprovalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXPreApprovalViewController.h; sourceTree = "<group>"; };
-		C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXPreApprovalViewController.m; sourceTree = "<group>"; };
-		C971A1C219B4A42100F67E75 /* PDXResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXResultsViewController.h; sourceTree = "<group>"; };
-		C971A1C319B4A42100F67E75 /* PDXResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXResultsViewController.m; sourceTree = "<group>"; };
-		C99D295419C4FBEE00E42D86 /* PDXContactMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXContactMaker.h; sourceTree = "<group>"; };
-		C99D295519C4FBEE00E42D86 /* PDXContactMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXContactMaker.m; sourceTree = "<group>"; };
-		C9A010F619BCA6470024BFC6 /* PDXTwitterCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXTwitterCommunicator.h; sourceTree = "<group>"; };
-		C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterCommunicator.m; sourceTree = "<group>"; };
 		C9A9976919CB33EF007A033E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C9A9976A19CB33EF007A033E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C9A9976E19CB3425007A033E /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
@@ -91,6 +76,18 @@
 		C9A9979519CB34A7007A033E /* testFriendshipsLookupNotFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsLookupNotFollowing.json; sourceTree = "<group>"; };
 		C9A9979619CB34A7007A033E /* testUsersLookup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testUsersLookup.json; sourceTree = "<group>"; };
 		C9A9979719CB34A7007A033E /* testUsersSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testUsersSearch.json; sourceTree = "<group>"; };
+		C9A997AC19CB49E1007A033E /* PDXInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXInputViewController.h; sourceTree = "<group>"; };
+		C9A997AD19CB49E1007A033E /* PDXInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXInputViewController.m; sourceTree = "<group>"; };
+		C9A997AE19CB49E1007A033E /* PDXPreApprovalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXPreApprovalViewController.h; sourceTree = "<group>"; };
+		C9A997AF19CB49E1007A033E /* PDXPreApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXPreApprovalViewController.m; sourceTree = "<group>"; };
+		C9A997B019CB49E1007A033E /* PDXResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXResultsViewController.h; sourceTree = "<group>"; };
+		C9A997B119CB49E1007A033E /* PDXResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXResultsViewController.m; sourceTree = "<group>"; };
+		C9A997B319CB49E1007A033E /* PDXContactMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXContactMaker.h; sourceTree = "<group>"; };
+		C9A997B419CB49E1007A033E /* PDXContactMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXContactMaker.m; sourceTree = "<group>"; };
+		C9A997B519CB49E1007A033E /* PDXTwitterCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXTwitterCommunicator.h; sourceTree = "<group>"; };
+		C9A997B619CB49E1007A033E /* PDXTwitterCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterCommunicator.m; sourceTree = "<group>"; };
+		C9A997C019CB4A7D007A033E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C9A997C619CC3B2B007A033E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = atContacts/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +111,7 @@
 		C93E2D2E19ADD51200B06809 = {
 			isa = PBXGroup;
 			children = (
+				C9A997C619CC3B2B007A033E /* Info.plist */,
 				C93E2D3919ADD51200B06809 /* atContacts */,
 				C93E2D5019ADD51200B06809 /* atContactsTests */,
 				C93E2D3819ADD51200B06809 /* Products */,
@@ -133,21 +131,12 @@
 			isa = PBXGroup;
 			children = (
 				C9A9976819CB33EF007A033E /* Classes */,
+				C9A997AB19CB49E1007A033E /* View Controllers */,
+				C9A997B219CB49E1007A033E /* Workers */,
 				C9A9976C19CB3425007A033E /* Resources */,
-				C971A1C619B4A43E00F67E75 /* View Controllers */,
-				C971A1C719B4A44C00F67E75 /* Workers */,
-				C93E2D3A19ADD51200B06809 /* Supporting Files */,
+				C9A997BE19CB4A7D007A033E /* Supporting Files */,
 			);
 			path = atContacts;
-			sourceTree = "<group>";
-		};
-		C93E2D3A19ADD51200B06809 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C93E2D3B19ADD51200B06809 /* Info.plist */,
-				C93E2D3C19ADD51200B06809 /* main.m */,
-			);
-			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		C93E2D5019ADD51200B06809 /* atContactsTests */ = {
@@ -169,30 +158,6 @@
 				C93E2D5219ADD51200B06809 /* Info.plist */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C971A1C619B4A43E00F67E75 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				C93E2D4119ADD51200B06809 /* PDXInputViewController.h */,
-				C93E2D4219ADD51200B06809 /* PDXInputViewController.m */,
-				C971A1C219B4A42100F67E75 /* PDXResultsViewController.h */,
-				C971A1C319B4A42100F67E75 /* PDXResultsViewController.m */,
-				C971A1BE19B0E65300F67E75 /* PDXPreApprovalViewController.h */,
-				C971A1BF19B0E65300F67E75 /* PDXPreApprovalViewController.m */,
-			);
-			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		C971A1C719B4A44C00F67E75 /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				C99D295419C4FBEE00E42D86 /* PDXContactMaker.h */,
-				C99D295519C4FBEE00E42D86 /* PDXContactMaker.m */,
-				C9A010F619BCA6470024BFC6 /* PDXTwitterCommunicator.h */,
-				C9A010F719BCA6470024BFC6 /* PDXTwitterCommunicator.m */,
-			);
-			path = Workers;
 			sourceTree = "<group>";
 		};
 		C9A9976819CB33EF007A033E /* Classes */ = {
@@ -262,6 +227,38 @@
 				C9A9979719CB34A7007A033E /* testUsersSearch.json */,
 			);
 			path = "Test Data";
+			sourceTree = "<group>";
+		};
+		C9A997AB19CB49E1007A033E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C9A997AC19CB49E1007A033E /* PDXInputViewController.h */,
+				C9A997AD19CB49E1007A033E /* PDXInputViewController.m */,
+				C9A997AE19CB49E1007A033E /* PDXPreApprovalViewController.h */,
+				C9A997AF19CB49E1007A033E /* PDXPreApprovalViewController.m */,
+				C9A997B019CB49E1007A033E /* PDXResultsViewController.h */,
+				C9A997B119CB49E1007A033E /* PDXResultsViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C9A997B219CB49E1007A033E /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				C9A997B319CB49E1007A033E /* PDXContactMaker.h */,
+				C9A997B419CB49E1007A033E /* PDXContactMaker.m */,
+				C9A997B519CB49E1007A033E /* PDXTwitterCommunicator.h */,
+				C9A997B619CB49E1007A033E /* PDXTwitterCommunicator.m */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		C9A997BE19CB4A7D007A033E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C9A997C019CB4A7D007A033E /* main.m */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,13 +406,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C971A1C019B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */,
-				C93E2D4319ADD51200B06809 /* PDXInputViewController.m in Sources */,
-				C9A010F819BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */,
+				C9A997B819CB49E1007A033E /* PDXPreApprovalViewController.m in Sources */,
 				C9A9976B19CB33EF007A033E /* AppDelegate.m in Sources */,
-				C99D295619C4FBEE00E42D86 /* PDXContactMaker.m in Sources */,
-				C971A1C419B4A42100F67E75 /* PDXResultsViewController.m in Sources */,
-				C93E2D3D19ADD51200B06809 /* main.m in Sources */,
+				C9A997B919CB49E1007A033E /* PDXResultsViewController.m in Sources */,
+				C9A997B719CB49E1007A033E /* PDXInputViewController.m in Sources */,
+				C9A997BA19CB49E1007A033E /* PDXContactMaker.m in Sources */,
+				C9A997C219CB4A7D007A033E /* main.m in Sources */,
+				C9A997BB19CB49E1007A033E /* PDXTwitterCommunicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,11 +421,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A9979819CB34A7007A033E /* PDXContactMakerTests.m in Sources */,
-				C9A010F919BCA6470024BFC6 /* PDXTwitterCommunicator.m in Sources */,
 				C9A9979919CB34A7007A033E /* PDXInputVCTests.m in Sources */,
 				C9A9979A19CB34A7007A033E /* PDXTwitterCommunicatorTests.m in Sources */,
-				C971A1C119B0E65300F67E75 /* PDXPreApprovalViewController.m in Sources */,
-				C971A1C519B4A42100F67E75 /* PDXResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,7 +565,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = "atContacts/Supporting Files/Info.plist";
+				INFOPLIST_FILE = atContacts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -584,7 +578,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = "atContacts/Supporting Files/Info.plist";
+				INFOPLIST_FILE = atContacts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -603,7 +597,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "atContactsTests/Supporting Files/Info.plist";
+				INFOPLIST_FILE = atContacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/atContacts.app/atContacts";
@@ -618,7 +612,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "atContactsTests/Supporting Files/Info.plist";
+				INFOPLIST_FILE = atContacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/atContacts.app/atContacts";
