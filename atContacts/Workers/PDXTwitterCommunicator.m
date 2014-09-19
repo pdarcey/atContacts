@@ -339,7 +339,7 @@ id removeNull(id rootObject) {
     NSString *twitterName = [NSString stringWithFormat:@"@%@", shortTwitterName];
     NSString *personalURL = [self parsePersonalURL:data];
     //    NSString *personalURL = [self parseJSON:data forKey:@"expanded_url"];
-    if (!personalURL) {
+    if ([personalURL isEqualToString:kBlankString]) {
         personalURL = [self parseJSON:data forKey:kTwitterParameterURL];
     }
     NSNumber *followingNumber = [self parseJSON:data forKey:kTwitterParameterFollowing];
