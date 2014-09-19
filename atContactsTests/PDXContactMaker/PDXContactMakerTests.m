@@ -45,7 +45,7 @@
 
 - (void)testAddToContacts {
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
-    int startPersonCount = ABAddressBookGetPersonCount(addressBook);
+    CFIndex startPersonCount = ABAddressBookGetPersonCount(addressBook);
     
     PDXContactMaker *contactMaker = [PDXContactMaker new];
     NSDictionary *personData = @{ kPersonFirstName          : @"Test",
@@ -59,9 +59,9 @@
     
     [contactMaker addToContacts:personData];
     
-    int endPersonCount = ABAddressBookGetPersonCount(addressBook);
+    CFIndex endPersonCount = ABAddressBookGetPersonCount(addressBook);
     
-    XCTAssertEqual(endPersonCount, startPersonCount + 1, @"\nStarted with %i entries, ended with %i (expected %i)\n", startPersonCount, endPersonCount, startPersonCount + 1);
+    XCTAssertEqual(endPersonCount, startPersonCount + 1, @"\nStarted with %li entries, ended with %li (expected %li)\n", startPersonCount, endPersonCount, startPersonCount + 1);
 
 }
 
