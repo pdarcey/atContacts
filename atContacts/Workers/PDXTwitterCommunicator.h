@@ -16,9 +16,12 @@
 @protocol PDXTwitterCommunicatorDelegate <NSObject>
 
 @required
-- (void)displayErrorMessage:(NSString *)message;
+
+@property (strong, nonatomic) UILabel *errorMessage;
+
 
 @optional
+- (void)displayErrorMessage:(NSString *)message;
 - (void)followedOnTwitter:(BOOL)success;
 - (void)displayInfo:(NSDictionary *)data;
 - (void)displayUserImage:(UIImage *)image;

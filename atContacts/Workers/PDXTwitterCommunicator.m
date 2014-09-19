@@ -552,7 +552,6 @@ id removeNull(id rootObject) {
  *  @since 1.0
  */
 - (void)displayErrorMessage:(NSString *)message {
-    
 }
 
 /**
@@ -590,7 +589,7 @@ id removeNull(id rootObject) {
  *  @since 1.0
  */
 - (void)performResponseError:(NSError *)error {
-    NSString *message = NSLocalizedString(@"There has been a problem connecting with Twitter", @"Not Modified");
+    NSString *message = [error localizedDescription];
     [_delegate displayErrorMessage:message];
     
     NSLog(@"[ERROR] An error occurred: %@", [error localizedDescription]);
@@ -605,8 +604,9 @@ id removeNull(id rootObject) {
  *  @since 1.0
  */
 - (void)performRequestWithHandlerError:(NSHTTPURLResponse *)urlResponse {
+    // Twitter API responses: https://dev.twitter.com/overview/api/response-codes
+    
     NSInteger statusCode = urlResponse.statusCode;
-
     NSString *message = kBlankString;
     
     switch (statusCode) {
@@ -645,7 +645,7 @@ id removeNull(id rootObject) {
             break;
             
         case 404:
-            message = [NSString stringWithFormat:NSLocalizedString(@"No user with Twitter name %@", @"Not Found"), _twitterName];
+            message = [NSString stringWithFormat:NSLocalizedString(@"No user with Twitter name @%@", @"Not Found"), _twitterName];
             [_delegate displayErrorMessage:message];
             NSLog(@"Twitter Error:%@ %@", @"404", @"Not Found");
             

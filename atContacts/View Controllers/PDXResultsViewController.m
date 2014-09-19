@@ -229,17 +229,17 @@
  *
  *  @since 1.0
  */
-- (void)displayErrorMessage:(NSString *)message {
-    _errorMessage.text = message;
-    _errorMessage.alpha = 0;
-    _errorMessage.hidden = NO;
-    CGFloat duration = 0.8f;
-    
+- (void)displayErrorMessage:(NSString *)message {    
     // Accessibility announcement
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
     
     // Animation
     dispatch_async(dispatch_get_main_queue(), ^{
+        _errorMessage.text = message;
+        _errorMessage.alpha = 0;
+        _errorMessage.hidden = NO;
+        CGFloat duration = 0.8f;
+
         [UIView animateWithDuration:duration
                               delay:0.0
                             options: UIViewAnimationOptionCurveEaseIn

@@ -29,7 +29,7 @@ static NSString * const kStoryboardIdentifierInput = @"InputView";
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;
 @property (weak, nonatomic) PDXTwitterCommunicator *twitter;
 @property BOOL searching;
-@property (weak, nonatomic) IBOutlet UILabel *errorMessage;
+@property (strong, nonatomic) IBOutlet UILabel *errorMessage;
 
 - (IBAction)findTwitterName;
 - (IBAction)endHashtagEditing;
