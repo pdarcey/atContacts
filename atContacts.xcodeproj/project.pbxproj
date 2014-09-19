@@ -92,6 +92,8 @@
 		C9A997C719CC5054007A033E /* PDXConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PDXConstants.h; path = ../Workers/PDXConstants.h; sourceTree = "<group>"; };
 		C9A997C819CC7691007A033E /* PDXOutlineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXOutlineLabel.h; sourceTree = "<group>"; };
 		C9A997C919CC7691007A033E /* PDXOutlineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXOutlineLabel.m; sourceTree = "<group>"; };
+		C9A997CB19CC9D03007A033E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Main.strings; sourceTree = "<group>"; };
+		C9A997CC19CC9D0C007A033E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,6 +462,8 @@
 				C9A9977E19CB3425007A033E /* tr */,
 				C9A9977F19CB3425007A033E /* zh-Hans */,
 				C9A9978019CB3425007A033E /* zh-Hant */,
+				C9A997CB19CC9D03007A033E /* Base */,
+				C9A997CC19CC9D0C007A033E /* en */,
 			);
 			name = Main.strings;
 			sourceTree = "<group>";

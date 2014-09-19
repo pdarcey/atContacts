@@ -577,7 +577,7 @@ id removeNull(id rootObject) {
  *  @since 1.0
  */
 - (void)resultsDataEqualsNil:(NSError *)error {
-    [_delegate displayErrorMessage:NSLocalizedString(@"No Twitter use with this name", @"No data returned")];
+    [_delegate displayErrorMessage:NSLocalizedString(@"No Twitter user with this name", @"No data returned")];
     NSLog(@"[ERROR] An error occurred: %@", [error localizedDescription]);
 }
 

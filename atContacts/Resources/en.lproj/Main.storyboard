@@ -261,7 +261,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="lastName" text="Ipsum" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AU-64-liZ">
                                 <rect key="frame" x="0.0" y="59" width="600" height="54"/>
-                                <accessibility key="accessibilityConfiguration" label="Other Naes">
+                                <accessibility key="accessibilityConfiguration" label="Other Names">
                                     <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                                 </accessibility>
                                 <constraints>
