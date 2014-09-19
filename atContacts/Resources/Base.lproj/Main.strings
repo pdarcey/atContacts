@@ -17,10 +17,10 @@
 /* Class = "IBUIButton"; accessibilityHint = "Without access this app will not be able to function"; ObjectID = "AT8-N9-OBw"; */
 "AT8-N9-OBw.accessibilityHint" = "Without access this app will not be able to function";
 
-/* Class = "IBUIButton"; accessibilityLabel = "I don’t have a Twitter account"; ObjectID = "AT8-N9-OBw"; */
+/* Class = "IBUIButton"; accessibilityLabel = "I don't have a Twitter account"; ObjectID = "AT8-N9-OBw"; */
 "AT8-N9-OBw.accessibilityLabel" = "I don’t have a Twitter account";
 
-/* Class = "IBUIButton"; normalTitle = "I don’t have a Twitter account"; ObjectID = "AT8-N9-OBw"; */
+/* Class = "IBUIButton"; normalTitle = "I don't have a Twitter account"; ObjectID = "AT8-N9-OBw"; */
 "AT8-N9-OBw.normalTitle" = "I don’t have a Twitter account";
 
 /* Class = "IBUIButton"; accessibilityHint = "Will follow this person on Twitter"; ObjectID = "Ctm-pf-gHA"; */
@@ -77,7 +77,7 @@
 /* Class = "IBUIViewController"; title = "Results"; ObjectID = "a2f-bI-RVU"; */
 "a2f-bI-RVU.title" = "Results";
 
-/* Class = "IBUIImageView"; accessibilityHint = "Twitter requires a Twitter account to get access to users’ info"; ObjectID = "d5j-Q4-SNw"; */
+/* Class = "IBUIImageView"; accessibilityHint = "Twitter requires a Twitter account to get access to users' info"; ObjectID = "d5j-Q4-SNw"; */
 "d5j-Q4-SNw.accessibilityHint" = "Twitter requires a Twitter account to get access to users’ info";
 
 /* Class = "IBUIImageView"; accessibilityLabel = "Allow access to your Twitter account?"; ObjectID = "d5j-Q4-SNw"; */
@@ -92,7 +92,7 @@
 /* Class = "IBUITextField"; placeholder = "Add web address"; ObjectID = "i1l-eD-iST"; */
 "i1l-eD-iST.placeholder" = "Add web address";
 
-/* Class = "IBUILabel"; accessibilityHint = "Don’t enter the leading @"; ObjectID = "mMZ-zf-l8P"; */
+/* Class = "IBUILabel"; accessibilityHint = "Don't enter the leading @"; ObjectID = "mMZ-zf-l8P"; */
 "mMZ-zf-l8P.accessibilityHint" = "Don’t enter the leading @";
 
 /* Class = "IBUITextField"; accessibilityHint = "Enter an optional hashtag"; ObjectID = "qfS-g8-B3B"; */
@@ -125,7 +125,7 @@
 /* Tried to add a duplicate to Contacts */
 "%@ is already in your Contacts" = "%@ is already in your Contacts";
 
-/* Can’t add a contact error alert */
+/* Can't add a contact error alert */
 "Can’t add contact" = "Can’t add contact";
 
 /* No data returned */

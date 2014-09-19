@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C9A9976B19CB33EF007A033E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9976A19CB33EF007A033E /* AppDelegate.m */; };
 		C9A9978119CB3425007A033E /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9A9976D19CB3425007A033E /* Main.strings */; };
-		C9A9978219CB3425007A033E /* File.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977019CB3425007A033E /* File.strings */; };
 		C9A9978319CB3425007A033E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977219CB3425007A033E /* LaunchScreen.storyboard */; };
 		C9A9978419CB3425007A033E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977419CB3425007A033E /* Main.storyboard */; };
 		C9A9978519CB3425007A033E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977819CB3425007A033E /* Images.xcassets */; };
@@ -50,7 +49,6 @@
 		C9A9976A19CB33EF007A033E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C9A9976E19CB3425007A033E /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		C9A9976F19CB3425007A033E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		C9A9977119CB3425007A033E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/File.strings; sourceTree = "<group>"; };
 		C9A9977319CB3425007A033E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9A9977519CB3425007A033E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C9A9977619CB3425007A033E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				C9A9976D19CB3425007A033E /* Main.strings */,
-				C9A9977019CB3425007A033E /* File.strings */,
 				C9A9977219CB3425007A033E /* LaunchScreen.storyboard */,
 				C9A9977419CB3425007A033E /* Main.storyboard */,
 				C9A9977819CB3425007A033E /* Images.xcassets */,
@@ -369,7 +366,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9A9978219CB3425007A033E /* File.strings in Resources */,
 				C9A9978119CB3425007A033E /* Main.strings in Resources */,
 				C9A9978519CB3425007A033E /* Images.xcassets in Resources */,
 				C9A9978419CB3425007A033E /* Main.storyboard in Resources */,
@@ -466,14 +462,6 @@
 				C9A997CC19CC9D0C007A033E /* en */,
 			);
 			name = Main.strings;
-			sourceTree = "<group>";
-		};
-		C9A9977019CB3425007A033E /* File.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C9A9977119CB3425007A033E /* en */,
-			);
-			name = File.strings;
 			sourceTree = "<group>";
 		};
 		C9A9977219CB3425007A033E /* LaunchScreen.storyboard */ = {
