@@ -743,131 +743,133 @@ id removeNull(id rootObject) {
     
     switch (error.code) {
         case ACErrorUnknown:
-            message = [NSString stringWithFormat:@"Unknown error accessing user's Twitter account. Error: %@", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorUnknown");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"%@", message);
+            NSLog(@"Error: %@ - %@",error, @"Unknown error accessing user's Twitter account");
+            
             break;
             
         case ACErrorAccountMissingRequiredProperty:
-            message = [NSString stringWithFormat:@"Major error accessing user's Twitter account. Error: %@ \
-                                 \nMost likely cause is new Twitter API", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccountMissingRequiredProperty");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"%@", message);
+            NSLog(@"Error: %@ - %@",error, @"Most likely cause is new Twitter API");
+            
             break;
             
         case ACErrorAccountAuthenticationFailed:
-            message = [NSString stringWithFormat:@"Error accessing user's Twitter account. Error: %@ \
-                                 \nHas user entered correct password?", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you entered correct password?", @"ACErrorAccountAuthenticationFailed");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"%@", message);
+            NSLog(@"Error: %@ - %@",error, message);
+            
             break;
             
         case ACErrorAccountTypeInvalid:
-            message = [NSString stringWithFormat:@"Major error accessing user's Twitter account. Error: %@ \
-                                 \nMost likely cause is new Apple API to access Twitter", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccountTypeInvalid");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"%@", message);
+            NSLog(@"Error: %@ - %@",error, @"Most likely cause is new Twitter API");
+           
             break;
             
         case ACErrorAccountAlreadyExists:
-            message = [NSString stringWithFormat:@"Major error accessing user's Twitter account. Error: %@ \
-                                 \nThis error should never be called, as we never try to create a new account", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccountAlreadyExists");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"%@", message);
+            NSLog(@"Error: %@ - %@",error, @"This error should never be called, as we never try to create a new account");
+            
             break;
             
         case ACErrorAccountNotFound:
-            message = [NSString stringWithFormat:@"Error accessing user's Twitter account. Error: %@ \
-                                 \nMost likely that user has deleted their Twitter account on this device", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account on this device?", @"ACErrorAccountNotFound");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"%@", message);
+            NSLog(@"Error: %@ - %@",error, message);
+            
             break;
             
         case ACErrorPermissionDenied:
-            message = [NSString stringWithFormat:@"Error accessing user's Twitter account. Error: %@ \
-                                 \nUser has denied (or revoked) their permission", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nYou have denied (or revoked) permission for this app to use Twitter", @"ACErrorPermissionDenied");
             [_delegate displayErrorMessage:message];
-
-            NSLog(@"%@", message);
+            
+            NSLog(@"Error: %@ - %@",error, message);
+            
             break;
-
+            
         case ACErrorAccessInfoInvalid:
-            message = [NSString stringWithFormat:@"Unknown error accessing user's Twitter account. Error: %@", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccessInfoInvalid");
             [_delegate displayErrorMessage:message];
-
-            NSLog(@"%@", message);
+            
+            NSLog(@"Error: %@ - %@",error, message);
+            
             break;
-
+            
         case ACErrorClientPermissionDenied:
-            message = [NSString stringWithFormat:@"Error accessing user's Twitter account. Error: %@ \
-            \nUser has denied (or revoked) their permission)", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nYou have denied (or revoked) permission to access Twitter", @"ACErrorClientPermissionDenied");
             [_delegate displayErrorMessage:message];
-
-            NSLog(@"%@", message);
+            
+            NSLog(@"Error: %@ - %@",error, message);
+            
             break;
-
+            
         case ACErrorAccessDeniedByProtectionPolicy:
-            message = [NSString stringWithFormat:@"Error accessing user's Twitter account. Error: %@ \
-            \nUser is not able to give permission to access their Twitter account (if they have one)", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nAsk your administrator to allow permission", @"ACErrorAccessDeniedByProtectionPolicy");
             [_delegate displayErrorMessage:message];
-
-            NSLog(@"%@", message);
+            
+            NSLog(@"Error: %@ - %@",error, @"User is not able to give permission to access their Twitter account (if they have one)");
+            
             break;
-
+            
         case ACErrorCredentialNotFound:
-            message = [NSString stringWithFormat:@"Error accessing user's Twitter account. Error: %@ \
-                                \nUser may have deleted their Twitter account from this device, or revoked their permission", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?", @"ACErrorCredentialNotFound");
             [_delegate displayErrorMessage:message];
-
-            NSLog(@"%@", message);
+            
+            NSLog(@"Error: %@ - %@",error, message);
+            
             break;
-
+            
         case ACErrorFetchCredentialFailed:
-            message = [NSString stringWithFormat:@"Error accessing user's Twitter account. Error: %@ \
-                                \nUser may have deleted their Twitter account from this device, or revoked their permission", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?", @"ACErrorFetchCredentialFailed");
             [_delegate displayErrorMessage:message];
-
-            NSLog(@"%@", message);
+            
+            NSLog(@"Error: %@ - %@",error, message);
+            
             break;
-
+            
         case ACErrorStoreCredentialFailed:
-            message = [NSString stringWithFormat:@"Error accessing user's Twitter account. Error: %@ \
-                                \nUser may have deleted their Twitter account from this device, or revoked their permission", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?", @"ACErrorStoreCredentialFailed");
             [_delegate displayErrorMessage:message];
-
-            NSLog(@"%@", message);
-            ;
+            
+            NSLog(@"Error: %@ - %@",error, message);
+            
             break;
-
+            
         case ACErrorRemoveCredentialFailed:
-            message = [NSString stringWithFormat:@"Major error accessing user's Twitter account. Error: %@ \
-                                \nThis error should never be called, as we never try to remove an account's credentials", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorRemoveCredentialFailed");
             [_delegate displayErrorMessage:message];
-
-            NSLog(@"%@", message);
+            
+            NSLog(@"Error: %@ - %@",error, @"This error should never be called, as we never try to remove an account's credentials");
+            
             break;
-
+            
         case ACErrorUpdatingNonexistentAccount:
-            message = [NSString stringWithFormat:@"Error accessing user's Twitter account. Error: %@ \
-                                \nUser must have deleted their Twitter account from this device", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device?", @"ACErrorUpdatingNonexistentAccount");
             [_delegate displayErrorMessage:message];
-
-            NSLog(@"%@", message);
+            
+            NSLog(@"Error: %@ - %@",error, message);
+            
             break;
-
+            
         case ACErrorInvalidClientBundleID:
-            message = [NSString stringWithFormat:@"Unknown error accessing user's Twitter account. Error: %@", error];
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorInvalidClientBundleID");
             [_delegate displayErrorMessage:message];
-
-            NSLog(@"%@", message);
+            
+            NSLog(@"Error: %@ - %@",error, message);
+            
             break;
-                     
+            
         default:
             break;
     }
