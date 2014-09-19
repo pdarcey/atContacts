@@ -17,6 +17,9 @@ static NSString * const kHashSign = @"#";
 // Storyboard Names:
 static NSString * const kStoryboardMain = @"Main";
 static NSString * const kStoryboardPreApproval = @"PreApproval";
+static NSString * const kStoryboardIdentifierResults = @"Results";
+static NSString * const kStoryboardIdentifierPreApproval = @"PreApproval";
+static NSString * const kStoryboardIdentifierInput = @"InputView";
 
 # pragma mark - Interface
 

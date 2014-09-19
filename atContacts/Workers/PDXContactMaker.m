@@ -135,14 +135,14 @@
  *  @since 1.0
  */
 - (ABRecordRef)makePerson:(NSDictionary *)personData {
-    NSString *firstName = [personData valueForKey:@"firstName"];
-    NSString *lastName = [personData valueForKey:@"lastName"];
-    NSString *twitterName = [personData valueForKey:@"twitterName"];
-    NSString *emailAddress = [personData valueForKey:@"emailAddress"];
-    NSString *phoneNumber = [personData valueForKey:@"phoneNumber"];
-    NSString *wwwAddress = [personData valueForKey:@"wwwAddress"];
-    NSString *twitterDescription = [personData valueForKey:@"twitterDescription"];
-    NSData *photoData = [personData valueForKey:@"photoData"];
+    NSString *firstName = [personData valueForKey:kPersonFirstName];
+    NSString *lastName = [personData valueForKey:kPersonLastName];
+    NSString *twitterName = [personData valueForKey:kPersonTwitterName];
+    NSString *emailAddress = [personData valueForKey:kPersonEmailAddress];
+    NSString *phoneNumber = [personData valueForKey:kPersonPhoneNumber];
+    NSString *wwwAddress = [personData valueForKey:kPersonWwwAddress];
+    NSString *twitterDescription = [personData valueForKey:kPersonTwitterDescription];
+    NSData *photoData = [personData valueForKey:kPersonPhotoData];
     
     ABRecordRef person = ABPersonCreate();
     ABRecordSetValue(person, kABPersonFirstNameProperty, (__bridge CFStringRef)firstName, nil);

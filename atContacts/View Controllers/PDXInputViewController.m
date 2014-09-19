@@ -71,8 +71,8 @@
     if (_twitterName.text.length > 0) {
         NSString *name = _twitterName.text;
         NSString *firstCharacter = [name substringToIndex:1];
-        if (![firstCharacter isEqualToString:@"@"]) {
-            name = [name stringByReplacingOccurrencesOfString:@"@" withString:kBlankString];
+        if (![firstCharacter isEqualToString:kAtSign]) {
+            name = [name stringByReplacingOccurrencesOfString:kAtSign withString:kBlankString];
         }
 
         // Check if permission has previously been asked for
@@ -141,8 +141,8 @@
     if (_hashtag.text.length > 0) {
         [self saveHashtag:_hashtag.text];
         NSString *firstCharacter = [_hashtag.text substringToIndex:1];
-        if (![firstCharacter isEqualToString:@"#"]) {
-            _hashtag.text = [@"#" stringByAppendingString:_hashtag.text];
+        if (![firstCharacter isEqualToString:kHashSign]) {
+            _hashtag.text = [kHashSign stringByAppendingString:_hashtag.text];
         }
     }
     [_twitterName becomeFirstResponder];
@@ -186,8 +186,8 @@
  */
 - (NSString *)removeHash:(NSString *)hashtag {
     NSString *firstCharacter = [hashtag substringToIndex:1];
-    if ([firstCharacter isEqualToString:@"#"]) {
-        hashtag = [hashtag stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    if ([firstCharacter isEqualToString:kHashSign]) {
+        hashtag = [hashtag stringByReplacingOccurrencesOfString:kHashSign withString:kBlankString];
     }
     
     return hashtag;
@@ -223,7 +223,7 @@
  */
 - (BOOL)dialogHasBeenPresented {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL dialogHasBeenPresented = [defaults boolForKey:@"dialogHasBeenPresented"];
+    BOOL dialogHasBeenPresented = [defaults boolForKey:kUserDefaultDialogHasBeenPresented];
     
     return dialogHasBeenPresented;
 }
@@ -238,7 +238,7 @@
  */
 - (BOOL)userDeniedPermission {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL userDeniedPermission = [defaults boolForKey:@"dialogHasBeenPresented"];
+    BOOL userDeniedPermission = [defaults boolForKey:kUserDefaultUserDeniedPermission];
     
     return userDeniedPermission;
 }
@@ -253,7 +253,7 @@
  */
 - (BOOL)userHasNoAccount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL userHasNoAccount = [defaults boolForKey:@"dialogHasBeenPresented"];
+    BOOL userHasNoAccount = [defaults boolForKey:kUserDefaultUserHasNoAccount];
     
     return userHasNoAccount;
 }
@@ -267,7 +267,7 @@
  */
 - (void)saveHashtag:(NSString *)hashtag {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:[self removeHash:hashtag] forKey:@"lastUsedHashtag"];
+    [defaults setValue:[self removeHash:hashtag] forKey:kUserDefaultLastUsedHashtag];
     [defaults synchronize];
 }
 
@@ -280,7 +280,7 @@
  */
 - (NSString *)retrieveHashtag {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *hashtag = [defaults valueForKey:@"lastUsedHashtag"];
+    NSString *hashtag = [defaults valueForKey:kUserDefaultLastUsedHashtag];
     if (hashtag) {
         return hashtag;
     }
@@ -301,8 +301,8 @@
  */
 - (void)displayInfo:(NSDictionary *)data {    
     // Initialise Results screen
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PDXResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"Results"];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:kStoryboardMain bundle:nil];
+    PDXResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:kStoryboardIdentifierResults];
 
     resultsViewController.data = data;
     resultsViewController.parent = self;
@@ -338,8 +338,8 @@
  *  @since 1.0
  */
 - (void)presentPreApprovalDialog {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PDXPreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"PreApproval"];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:kStoryboardMain bundle:nil];
+    PDXPreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:kStoryboardIdentifierPreApproval];
 
     // Accessibility announcement
     NSString *message = NSLocalizedString(@"Requesting your approval for access to Twitter", "Presenting pre-approval");

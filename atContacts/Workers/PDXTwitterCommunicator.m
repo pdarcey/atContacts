@@ -101,8 +101,8 @@
  */
 - (void)getUserInfo:(NSString *)twitterName {
     _twitterName = twitterName;
-    NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/users/lookup.json"];
-    NSDictionary *parameters = @{@"screen_name" : twitterName};
+    NSURL *url = [NSURL URLWithString: kTwitterAPIURLUsersLookup];
+    NSDictionary *parameters = @{kTwitterParameterScreenName : twitterName};
     SLRequestMethod get = SLRequestMethodGET;
     
     [self sendTwitterRequestTo:url getOrPost:get parameters:parameters requestType:PDXRequestTypeGetUserInfo];
@@ -120,8 +120,8 @@
  */
 - (void)getFollowStatus:(NSString *)idString {
     _twitterName = idString;
-    NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/friendships/lookup.json?"];
-    NSDictionary *parameters = @{@"user_id" : idString};
+    NSURL *url = [NSURL URLWithString: kTwitterAPIURLFriendshipsLookup];
+    NSDictionary *parameters = @{kTwitterParameterUserID : idString};
     SLRequestMethod get = SLRequestMethodGET;
     
     [self sendTwitterRequestTo:url getOrPost:get parameters:parameters requestType:PDXRequestTypeGetFollowStatus];
@@ -133,9 +133,9 @@
  *
  *  Note: Does NOT use Apple's Twitter API; uses NSURLSession instead
  *
- *  @param photoURL <#photoURL description#>
+ *  @param photoURL URL for the person's photo
  *
- *  @since <#version number#>
+ *  @since 1.0
  */
 - (void)getUserImage:(NSString *)photoURL {
     NSURLSession *session = [NSURLSession sharedSession];
@@ -160,8 +160,8 @@
  */
 - (void)follow:(NSString *)idString {
     _twitterName = idString;
-    NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/friendships/create.json"];
-    NSDictionary *parameters = @{@"user_id" : idString, @"follow" : @"true"};
+    NSURL *url = [NSURL URLWithString: kTwitterAPIURLFriendshipsCreate];
+    NSDictionary *parameters = @{kTwitterParameterUserID : idString, kTwitterParameterFollow : kTwitterParameterTrue};
     SLRequestMethod post = SLRequestMethodPOST;
     
     [self sendTwitterRequestTo:url getOrPost:post parameters:parameters requestType:PDXRequestTypeFollow];
@@ -177,8 +177,8 @@
  */
 - (void)unfollow:(NSString *)idString {
     _twitterName = idString;
-    NSURL *url = [NSURL URLWithString: @"https://api.twitter.com/1.1/friendships/create.json"];
-    NSDictionary *parameters = @{@"user_id" : idString, @"follow" : @"false"};
+    NSURL *url = [NSURL URLWithString: kTwitterAPIURLFriendshipsCreate];
+    NSDictionary *parameters = @{kTwitterParameterUserID : idString, kTwitterParameterFollow : kTwitterParameterFalse};
     SLRequestMethod post = SLRequestMethodPOST;
     
     [self sendTwitterRequestTo:url getOrPost:post parameters:parameters requestType:PDXRequestTypeUnfollow];
@@ -202,7 +202,7 @@ id removeNull(id rootObject) {
         [rootObject enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             id sanitized = removeNull(obj);
             if (!sanitized) {
-                [sanitizedDictionary setObject:@"" forKey:key];
+                [sanitizedDictionary setObject:kBlankString forKey:key];
             } else {
                 [sanitizedDictionary setObject:sanitized forKey:key];
             }
@@ -215,7 +215,7 @@ id removeNull(id rootObject) {
         [rootObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             id sanitized = removeNull(obj);
             if (!sanitized) {
-                [sanitizedArray replaceObjectAtIndex:[sanitizedArray indexOfObject:obj] withObject:@""];
+                [sanitizedArray replaceObjectAtIndex:[sanitizedArray indexOfObject:obj] withObject:kBlankString];
             } else {
                 [sanitizedArray replaceObjectAtIndex:[sanitizedArray indexOfObject:obj] withObject:sanitized];
             }
@@ -328,32 +328,32 @@ id removeNull(id rootObject) {
  */
 - (NSDictionary *)parseUsersLookup:(NSDictionary *)data {
     // Extract the fields we want
-    NSString *name = [self parseJSON:data forKey:@"name"];
+    NSString *name = [self parseJSON:data forKey:kTwitterParameterName];
     NSDictionary *splitNames = [self splitName:name];
-    NSString *firstName = [splitNames valueForKey:@"firstName"];
-    NSString *lastName = [splitNames valueForKey:@"lastName"];
-    NSString *idString = [self parseJSON:data forKey:@"id_str"];
-    NSString *photoURLString = [self parseJSON:data forKey:@"profile_image_url"];
-    NSString *description = [self parseJSON:data forKey:@"description"];
-    NSString *shortTwitterName = [self parseJSON:data forKey:@"screen_name"];
+    NSString *firstName = [splitNames valueForKey:kPersonFirstName];
+    NSString *lastName = [splitNames valueForKey:kPersonLastName];
+    NSString *idString = [self parseJSON:data forKey:kTwitterParameterIDStr];
+    NSString *photoURLString = [self parseJSON:data forKey:kTwitterParameterProfileImageUrl];
+    NSString *description = [self parseJSON:data forKey:kTwitterParameterDescription];
+    NSString *shortTwitterName = [self parseJSON:data forKey:kTwitterParameterScreenName];
     NSString *twitterName = [NSString stringWithFormat:@"@%@", shortTwitterName];
     NSString *personalURL = [self parsePersonalURL:data];
     //    NSString *personalURL = [self parseJSON:data forKey:@"expanded_url"];
     if (!personalURL) {
-        personalURL = [self parseJSON:data forKey:@"url"];
+        personalURL = [self parseJSON:data forKey:kTwitterParameterURL];
     }
-    NSNumber *followingNumber = [self parseJSON:data forKey:@"following"];
+    NSNumber *followingNumber = [self parseJSON:data forKey:kTwitterParameterFollowing];
     
-    NSDictionary *results = @{ @"firstName"          : firstName,
-                               @"lastName"           : lastName,
-                               @"twitterName"        : twitterName,
-                               @"idString"           : idString,
-                               @"emailAddress"       : @"",
-                               @"phoneNumber"        : @"",
-                               @"wwwAddress"         : personalURL,
-                               @"twitterDescription" : description,
-                               @"photoURL"           : photoURLString,
-                               @"following"          : followingNumber
+    NSDictionary *results = @{ kPersonFirstName             : firstName,
+                               kPersonLastName              : lastName,
+                               kPersonTwitterName           : twitterName,
+                               kPersonIdString              : idString,
+                               kPersonEmailAddress          : @"",
+                               kPersonPhoneNumber           : @"",
+                               kPersonWwwAddress            : personalURL,
+                               kPersonTwitterDescription    : description,
+                               kPersonPhotoURL              : photoURLString,
+                               kPersonFollowing             : followingNumber
                                };
     
     return results;
@@ -404,15 +404,15 @@ id removeNull(id rootObject) {
 - (NSDictionary *)splitName:(NSString *)name {
     // Split name into firstName / lastName
     NSDictionary *splitNames;
-    if (![name isEqualToString:@""]) {
+    if (![name isEqualToString:kBlankString]) {
         NSArray *nameArray = [name componentsSeparatedByString:@" "];
         NSString *firstWord = nameArray[0];
         if ([name isEqualToString:firstWord]) {
             // Name is just one word
-            splitNames = @{ @"firstName" : name, @"lastName" : @"" };
+            splitNames = @{ kPersonFirstName : name, kPersonLastName : @"" };
          } else {
             // Name is multi-word
-             splitNames = @{ @"firstName" : firstWord, @"lastName" : [name substringFromIndex:[firstWord length] + 1] };
+             splitNames = @{ kPersonFirstName : firstWord, kPersonLastName : [name substringFromIndex:[firstWord length] + 1] };
         }
     }
     
@@ -434,7 +434,7 @@ id removeNull(id rootObject) {
  *  @since 1.0
  */
 - (BOOL)parseFriendshipsCreate:(NSDictionary *)data {
-    BOOL following = [(NSNumber *)[data valueForKey:@"following"] boolValue];
+    BOOL following = [(NSNumber *)[data valueForKey:kPersonFollowing] boolValue];
     if (following) {
                 
         return YES;
@@ -453,10 +453,10 @@ id removeNull(id rootObject) {
  *  @since 1.0
  */
 - (BOOL)parseFriendshipsLookup:(NSDictionary *)data {
-    NSArray *connections = [data valueForKey:@"connections"];
+    NSArray *connections = [data valueForKey:kTwitterParameterConnections];
     for (NSArray *item in connections) {
         for (NSString *connection in item) {
-            if ([connection isEqualToString:@"following"]) {
+            if ([connection isEqualToString:kTwitterParameterFollowing]) {
                 
                 return YES;
             }
@@ -476,17 +476,17 @@ id removeNull(id rootObject) {
  *  @since 1.0
  */
 - (NSString *)parsePersonalURL:(NSDictionary *)data {
-    NSDictionary *entityDict = [self parseJSON:data forKey:@"entities"];
+    NSDictionary *entityDict = [self parseJSON:data forKey:kTwitterParameterEntities];
     NSString *personalURL;
     if (entityDict) {
-        NSDictionary *url = [entityDict valueForKey:@"url"];
-        NSArray *urls = [url valueForKey:@"urls"];
-        personalURL = [[urls valueForKey:@"expanded_url"] firstObject];
+        NSDictionary *url = [entityDict valueForKey:kTwitterParameterURL];
+        NSArray *urls = [url valueForKey:kTwitterParameterURLS];
+        personalURL = [[urls valueForKey:kTwitterParameterExpandedURL] firstObject];
     }
     if (personalURL) {
         return personalURL;
     }
-    return @"";
+    return kBlankString;
 }
 
 /**
@@ -501,11 +501,11 @@ id removeNull(id rootObject) {
  */
 - (NSString *)extractString:(NSString *)key from:(NSDictionary *)data {
     NSArray *array = [data valueForKey:key];
-    NSString *string = @"";
+    NSString *string = kBlankString;
     if ([array count] > 0) {
         NSString *nullCheck = array[0];
         if ([nullCheck class] == [NSNull class]) {
-            string = @"";
+            string = kBlankString;
         } else {
             string = nullCheck;
         }
@@ -607,7 +607,7 @@ id removeNull(id rootObject) {
 - (void)performRequestWithHandlerError:(NSHTTPURLResponse *)urlResponse {
     NSInteger statusCode = urlResponse.statusCode;
 
-    NSString *message = @"";
+    NSString *message = kBlankString;
     
     switch (statusCode) {
         case 200:
@@ -738,7 +738,7 @@ id removeNull(id rootObject) {
     
     // TODO Add methods to recover from errors
     NSLog(@"Error accessing user's Twitter account. Error: %@", error);
-    NSString *message = @"";
+    NSString *message = kBlankString;
     
     switch (error.code) {
         case ACErrorUnknown:
@@ -920,7 +920,7 @@ id removeNull(id rootObject) {
  */
 - (BOOL)dialogHasBeenPresented {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL dialogHasBeenPresented = [defaults boolForKey:@"dialogHasBeenPresented"];
+    BOOL dialogHasBeenPresented = [defaults boolForKey:kUserDefaultDialogHasBeenPresented];
     
     return dialogHasBeenPresented;
 }
@@ -936,7 +936,7 @@ id removeNull(id rootObject) {
  */
 - (BOOL)userDeniedPermission {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL userDeniedPermission = [defaults boolForKey:@"userDeniedPermission"];
+    BOOL userDeniedPermission = [defaults boolForKey:kUserDefaultUserDeniedPermission];
     
     return userDeniedPermission;
 }
@@ -952,7 +952,7 @@ id removeNull(id rootObject) {
  */
 - (BOOL)userHasNoAccount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL userHasNoAccount = [defaults boolForKey:@"userHasNoAccount"];
+    BOOL userHasNoAccount = [defaults boolForKey:kUserDefaultUserHasNoAccount];
     
     return userHasNoAccount;
 }
@@ -964,7 +964,7 @@ id removeNull(id rootObject) {
 - (NSString *)identifier {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *identifier = [defaults valueForKey:@"defaultTwitterAccount"];
+    NSString *identifier = [defaults valueForKey:kUserDefaultDefaultAccount];
     
     return identifier;
 }
@@ -976,7 +976,7 @@ id removeNull(id rootObject) {
 - (void)setDefaultTwitterAccount:(NSString *)identifier {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:identifier forKey:@"defaultTwitterAccount"];
+    [defaults setValue:identifier forKey:kUserDefaultDefaultAccount];
     
 }
 

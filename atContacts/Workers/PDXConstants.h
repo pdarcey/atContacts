@@ -14,6 +14,7 @@ static NSString * const kUserDefaultDialogHasBeenPresented = @"dialogHasBeenPres
 static NSString * const kUserDefaultUserDeniedPermission = @"userDeniedPermission";
 static NSString * const kUserDefaultUserHasNoAccount = @"userHasNoAccount";
 static NSString * const kUserDefaultLastUsedHashtag = @"lastUsedHashtag";
+static NSString * const kUserDefaultDefaultAccount = @"defaultDefaultAccount";
 
 // Dictionary of person details
 static NSString * const kPersonFirstName = @"firstName";

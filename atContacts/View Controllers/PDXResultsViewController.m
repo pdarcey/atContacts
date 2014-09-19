@@ -38,33 +38,33 @@
  */
 - (void)initialiseData:(NSDictionary *)data {
     // Set user info
-    _firstName.text = [data valueForKey:@"firstName"];
-    _lastName.text = [data valueForKey:@"lastName"];
-    _twitterHandle.text = [data valueForKey:@"twitterName"];
-    _email.text = [data valueForKey:@"emailAddress"];
-    _phone.text = [data valueForKey:@"phoneNumber"];
-    _webAddress.text = [data valueForKey:@"wwwAddress"];
-    _idString = [data valueForKey:@"idString"];
+    _firstName.text = [data valueForKey:kPersonFirstName];
+    _lastName.text = [data valueForKey:kPersonLastName];
+    _twitterHandle.text = [data valueForKey:kPersonTwitterName];
+    _email.text = [data valueForKey:kPersonEmailAddress];
+    _phone.text = [data valueForKey:kPersonPhoneNumber];
+    _webAddress.text = [data valueForKey:kPersonWwwAddress];
+    _idString = [data valueForKey:kPersonIdString];
 
     // Set user photo
-    NSString *photoURL = [data valueForKey:@"photoURL"];
+    NSString *photoURL = [data valueForKey:kPersonPhotoURL];
     [self getPhoto:photoURL];
     
     // Combine hashtag and description (if they exist)
-    NSString *dataDescription = [data valueForKey:@"twitterDescription"];
-    NSString *combinedHashtagAndDescription = @"";
-    if (_hashtag && ![_hashtag isEqualToString:@""]) {
+    NSString *dataDescription = [data valueForKey:kPersonTwitterDescription];
+    NSString *combinedHashtagAndDescription = kBlankString;
+    if (_hashtag && ![_hashtag isEqualToString:kBlankString]) {
         combinedHashtagAndDescription = _hashtag;
-        if (dataDescription && ![dataDescription isEqualToString:@""]) {
+        if (dataDescription && ![dataDescription isEqualToString:kBlankString]) {
             combinedHashtagAndDescription = [combinedHashtagAndDescription stringByAppendingString:[NSString stringWithFormat:@"\n%@", dataDescription]];
         }
-    } else if (dataDescription && ![dataDescription isEqualToString:@""]) {
+    } else if (dataDescription && ![dataDescription isEqualToString:kBlankString]) {
         combinedHashtagAndDescription = dataDescription;
     }
     _twitterDescription.text = combinedHashtagAndDescription;
 
     // Set Following status
-    NSNumber *following= [data valueForKey:@"following"];
+    NSNumber *following= [data valueForKey:kPersonFollowing];
     _following = [following boolValue];
     [self followedOnTwitter:_following];
     
@@ -90,7 +90,7 @@
         
         // Twitter by default returns a photo URL that gives a low-rez version of the person's image
         // We bypass this by removing the "_normal" part of the URL; this should return the full-sized version of the image
-        NSString *largePhotoURL = [photoURL stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+        NSString *largePhotoURL = [photoURL stringByReplacingOccurrencesOfString:@"_normal" withString:kBlankString];
         
         PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
         twitter.delegate = self;
@@ -269,7 +269,7 @@
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     twitter.delegate = self;
     if (!_following) {
-        [twitter follow:[_data valueForKey:@"idString"]];
+        [twitter follow:[_data valueForKey:kPersonFollowing]];
     } else {
         // This should never be displayed as the button should not be enabled
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Already following %@ on Twitter", @"Trying to follow someone we already follow"), _twitterHandle];
@@ -285,14 +285,14 @@
  *  @since 1.0
  */
 - (NSDictionary *)personData {
-    NSDictionary *personData = @{ @"firstName"    : _firstName.text,
-                                  @"lastName"     : _lastName.text,
-                                  @"twitterName"  : _twitterHandle.text,
-                                  @"emailAddress" : _email.text,
-                                  @"phoneNumber"  : _phone.text,
-                                  @"wwwAddress"   : _webAddress.text,
-                                  @"twitterDescription" : _twitterDescription.text,
-                                  @"photoData"    : UIImageJPEGRepresentation(_photo.image, 1.0f)
+    NSDictionary *personData = @{ kPersonFirstName    : _firstName.text,
+                                  kPersonLastName     : _lastName.text,
+                                  kPersonTwitterName  : _twitterHandle.text,
+                                  kPersonEmailAddress : _email.text,
+                                  kPersonPhoneNumber : _phone.text,
+                                  kPersonWwwAddress   : _webAddress.text,
+                                  kPersonTwitterDescription : _twitterDescription.text,
+                                  kPersonPhotoData    : UIImageJPEGRepresentation(_photo.image, 1.0f)
                                   };
     return personData;
 }
@@ -420,7 +420,7 @@
  *  @since 1.0
  */
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if ([textField.restorationIdentifier isEqualToString:@"fakeTextField"]) {
+    if ([textField.restorationIdentifier isEqualToString:kFakeTextField]) {
         [self moveTextFieldFromOverlay:textField];
         [self hideBlurOverlay];
     }
@@ -458,7 +458,7 @@
     
     // Make the fake
     UITextField *fakeTextField = [UITextField new];
-    fakeTextField.restorationIdentifier = @"fakeTextField";
+    fakeTextField.restorationIdentifier = kFakeTextField;
     
     // Set it to the same frame as the caller
     fakeTextField.frame = realTextField.frame;
