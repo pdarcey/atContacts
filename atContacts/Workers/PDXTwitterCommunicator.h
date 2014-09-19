@@ -6,11 +6,13 @@
 //  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 @import Accounts;
 @import Social;
+#import "PDXConstants.h"
 
 #pragma mark - Protocol
+
 @protocol PDXTwitterCommunicatorDelegate <NSObject>
 
 @required
@@ -22,6 +24,32 @@
 - (void)displayUserImage:(UIImage *)image;
 
 @end
+
+# pragma mark - Constants
+
+// Twitter API URLs
+static NSString * const kTwitterAPIURLUsersLookup = @"https://api.twitter.com/1.1/users/lookup.json";
+static NSString * const kTwitterAPIURLFriendshipsLookup = @"https://api.twitter.com/1.1/friendships/lookup.json?";
+static NSString * const kTwitterAPIURLFriendshipsCreate = @"https://api.twitter.com/1.1/friendships/create.json";
+
+// Twitter API Parameter Names
+static NSString * const kTwitterParameterName = @"name";
+static NSString * const kTwitterParameterIDStr = @"id_str";
+static NSString * const kTwitterParameterProfileImageUrl = @"profile_image_url";
+static NSString * const kTwitterParameterDescription = @"description";
+static NSString * const kTwitterParameterScreenName = @"screen_name";
+static NSString * const kTwitterParameterURL = @"url";
+static NSString * const kTwitterParameterFollowing = @"following";
+static NSString * const kTwitterParameterConnections = @"connections";
+static NSString * const kTwitterParameterEntities = @"entities";
+static NSString * const kTwitterParameterURLS = @"urls";
+static NSString * const kTwitterParameterExpandedURL = @"expanded_url";
+static NSString * const kTwitterParameterUserID = @"user_id";
+static NSString * const kTwitterParameterFollow = @"follow";
+static NSString * const kTwitterParameterTrue = @"true";
+static NSString * const kTwitterParameterFalse = @"false";
+
+# pragma mark - Interface
 
 @interface PDXTwitterCommunicator : NSObject
 

@@ -6,17 +6,21 @@
 //  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 @import AddressBook;
+#import "PDXConstants.h"
+
+#pragma mark - Protocol
 
 @protocol PDXContactMakerDelegate <NSObject>
-#pragma mark - Protocol
 
 @required
 - (void)newContactMade:(BOOL)success;
 - (void)displayErrorMessage:(NSString *)message;
 
 @end
+
+#pragma make - Interface
 
 @interface PDXContactMaker : NSObject
 

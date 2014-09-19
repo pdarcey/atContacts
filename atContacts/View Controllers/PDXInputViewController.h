@@ -9,6 +9,17 @@
 @import UIKit;
 #import "PDXTwitterCommunicator.h"
 
+# pragma mark - Constants
+
+static NSString * const kAtSign = @"@";
+static NSString * const kHashSign = @"#";
+
+// Storyboard Names:
+static NSString * const kStoryboardMain = @"Main";
+static NSString * const kStoryboardPreApproval = @"PreApproval";
+
+# pragma mark - Interface
+
 @interface PDXInputViewController : UIViewController <PDXTwitterCommunicatorDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *twitterName;

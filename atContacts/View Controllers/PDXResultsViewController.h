@@ -11,6 +11,10 @@
 #import "PDXInputViewController.h"
 #import "PDXTwitterCommunicator.h"
 #import "PDXContactMaker.h"
+#import "PDXConstants.h"
+
+// Constants
+static NSString * const kResultsFakeTextField = @"fakeTextField";
 
 @interface PDXResultsViewController : UIViewController <UITextFieldDelegate, PDXTwitterCommunicatorDelegate, PDXContactMakerDelegate>
 

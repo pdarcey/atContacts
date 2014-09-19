@@ -48,7 +48,7 @@
  *  @since 1.0
  */
 - (void)reset {
-    [_twitterName setText:@""];
+    [_twitterName setText:kBlankString];
     [_twitterName becomeFirstResponder];
     _hashtag.text = [self retrieveHashtag];
     _searching = NO;
@@ -72,7 +72,7 @@
         NSString *name = _twitterName.text;
         NSString *firstCharacter = [name substringToIndex:1];
         if (![firstCharacter isEqualToString:@"@"]) {
-            name = [name stringByReplacingOccurrencesOfString:@"@" withString:@""];
+            name = [name stringByReplacingOccurrencesOfString:@"@" withString:kBlankString];
         }
 
         // Check if permission has previously been asked for

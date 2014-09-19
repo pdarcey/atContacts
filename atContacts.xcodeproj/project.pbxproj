@@ -88,6 +88,7 @@
 		C9A997B619CB49E1007A033E /* PDXTwitterCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterCommunicator.m; sourceTree = "<group>"; };
 		C9A997C019CB4A7D007A033E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9A997C619CC3B2B007A033E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = atContacts/Info.plist; sourceTree = "<group>"; };
+		C9A997C719CC5054007A033E /* PDXConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PDXConstants.h; path = ../Workers/PDXConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +166,7 @@
 			children = (
 				C9A9976919CB33EF007A033E /* AppDelegate.h */,
 				C9A9976A19CB33EF007A033E /* AppDelegate.m */,
+				C9A997C719CC5054007A033E /* PDXConstants.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
