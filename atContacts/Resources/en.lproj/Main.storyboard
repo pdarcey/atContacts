@@ -283,7 +283,7 @@
                                     <constraint firstAttribute="height" constant="200" id="xyD-hu-KeP"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="twitterName" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-zq-T26">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="twitterName" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-zq-T26" customClass="PDXOutlineLabel">
                                 <rect key="frame" x="200" y="295" width="200" height="20.5"/>
                                 <accessibility key="accessibilityConfiguration" label="Twitter Name">
                                     <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
@@ -291,6 +291,11 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="outlineColor">
+                                        <color key="value" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" restorationIdentifier="SwipeLayer" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-3I-Z47" userLabel="SwipeLayer">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
