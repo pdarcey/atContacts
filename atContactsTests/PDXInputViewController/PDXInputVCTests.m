@@ -26,8 +26,8 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
     // Initialise view controller
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PDXInputViewController *vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"InputView"];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:kStoryboardMain bundle:nil];
+    PDXInputViewController *vc = [mainStoryboard instantiateViewControllerWithIdentifier:kStoryboardIdentifierInput];
     _inputVC = vc;
 
 }

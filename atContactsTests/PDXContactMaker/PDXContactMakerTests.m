@@ -48,13 +48,13 @@
     int startPersonCount = ABAddressBookGetPersonCount(addressBook);
     
     PDXContactMaker *contactMaker = [PDXContactMaker new];
-    NSDictionary *personData = @{ @"firstName"    : @"Test",
-                                  @"lastName"     : [NSString stringWithFormat:@"Else %@", [NSDate date]],
-                                  @"twitterName"  : @"@abcdefg",
-                                  @"emailAddress" : @"email@test.com",
-                                  @"phoneNumber"  : @"+38512345678",
-                                  @"wwwAddress"   : @"www.test.com",
-                                  @"twitterDescription" : @"Test description"
+    NSDictionary *personData = @{ kPersonFirstName          : @"Test",
+                                  kPersonLastName           : [NSString stringWithFormat:@"Else %@", [NSDate date]],
+                                  kPersonTwitterName        : @"@abcdefg",
+                                  kPersonEmailAddress       : @"email@test.com",
+                                  kPersonPhoneNumber        : @"+38512345678",
+                                  kPersonWwwAddress         : @"www.test.com",
+                                  kPersonTwitterDescription : @"Test description"
                                   };
     
     [contactMaker addToContacts:personData];

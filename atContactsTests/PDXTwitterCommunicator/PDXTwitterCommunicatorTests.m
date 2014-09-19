@@ -11,6 +11,14 @@
 #import "PDXTwitterCommunicator.h"
 #import "PDXTwitterCommunicator+TestExtensions.h"
 
+// Test data files
+static NSString * const kTestDataUsersLookup = @"testUsersLookup";
+static NSString * const kTestDataUsersSearch = @"testUsersSearch";
+static NSString * const kTestDataFriendshipsCreateYES = @"testFriendshipsCreateYES";
+static NSString * const kTestDataFriendshipsCreateNO = @"testFriendshipsCreateNO";
+static NSString * const kTestDataFriendshipsLookupFollowing = @"testFriendshipsLookupFollowing";
+static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshipsLookupNotFollowing";
+
 @interface PDXTwitterCommunicatorTests : XCTestCase
 
 @end
@@ -40,16 +48,16 @@
 
 - (void)testParseUsersLookup {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
-    NSDictionary *data = [self getTestData:@"testUsersLookup"];
-    NSDictionary *expectedResults = @{ @"firstName" : @"Twitter",
-                                       @"lastName" : @"API",
-                                       @"twitterName" : @"@twitterapi",
-                                       @"idString" : @"6253282",
-                                       @"emailAddress" : @"",
-                                       @"phoneNumber" : @"",
-                                       @"wwwAddress" : @"http://dev.twitter.com",
-                                       @"twitterDescription" : @"The Real Twitter API. I tweet about API changes, service issues and happily answer questions about Twitter and our API. Don't get an answer? It's on my website.",
-                                       @"photoURL" : @"http://a0.twimg.com/profile_images/2284174872/7df3h38zabcvjylnyfe3_normal.png",
+    NSDictionary *data = [self getTestData:kTestDataUsersLookup];
+    NSDictionary *expectedResults = @{ kPersonFirstName         : @"Twitter",
+                                       kPersonLastName          : @"API",
+                                       kPersonTwitterName       : @"@twitterapi",
+                                       kPersonIdString          : @"6253282",
+                                       kPersonEmailAddress      : @"",
+                                       kPersonPhoneNumber       : @"",
+                                       kPersonWwwAddress        : @"http://dev.twitter.com",
+                                       kPersonTwitterDescription : @"The Real Twitter API. I tweet about API changes, service issues and happily answer questions about Twitter and our API. Don't get an answer? It's on my website.",
+                                       kPersonPhotoURL          : @"http://a0.twimg.com/profile_images/2284174872/7df3h38zabcvjylnyfe3_normal.png",
                                        };
     NSDictionary *results = [twitter parseUsersLookup:data];
     XCTAssertEqualObjects(results, expectedResults, @"Dictionary not correctly parsed:\nExpected results = %@\n\nActual results = %@\n\n", expectedResults, results);
@@ -60,7 +68,7 @@
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSString *name = @"David";
     NSDictionary *result = [twitter splitName:name];
-    NSDictionary *expectedResult = @{ @"firstName" : @"David", @"lastName" : @"" };
+    NSDictionary *expectedResult = @{ kPersonFirstName : @"David", kPersonLastName : @"" };
     XCTAssertEqualObjects(result, expectedResult, @"Dictionary not correctly parsed");
 }
 
@@ -68,7 +76,7 @@
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSString *name = @"David Smith";
     NSDictionary *result = [twitter splitName:name];
-    NSDictionary *expectedResult = @{ @"firstName" : @"David", @"lastName" : @"Smith" };
+    NSDictionary *expectedResult = @{ kPersonFirstName : @"David", kPersonLastName : @"Smith" };
     XCTAssertEqualObjects(result, expectedResult, @"Dictionary not correctly parsed");
 }
 
@@ -76,13 +84,13 @@
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSString *name = @"David van der Laar";
     NSDictionary *result = [twitter splitName:name];
-    NSDictionary *expectedResult = @{ @"firstName" : @"David", @"lastName" : @"van der Laar" };
+    NSDictionary *expectedResult = @{ kPersonFirstName : @"David", kPersonLastName : @"van der Laar" };
     XCTAssertEqualObjects(result, expectedResult, @"Dictionary not correctly parsed");
 }
 
 - (void)testParseFriendshipsCreateYES {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
-    NSDictionary *data = [self getTestData:@"testFriendshipsCreateYES"];
+    NSDictionary *data = [self getTestData:kTestDataFriendshipsCreateYES];
     
     BOOL result = [twitter parseFriendshipsCreate:data];
     
@@ -92,7 +100,7 @@
 
 - (void)testParseFriendshipsCreateNO {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
-    NSDictionary *data = [self getTestData:@"testFriendshipsCreateNO"];
+    NSDictionary *data = [self getTestData:kTestDataFriendshipsCreateNO];
     
     BOOL result = [twitter parseFriendshipsCreate:data];
     
@@ -102,7 +110,7 @@
 
 - (void)testParseFriendshipsLookupYES {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
-    NSDictionary *data = [self getTestData:@"testFriendshipsLookupFollowing"];
+    NSDictionary *data = [self getTestData:kTestDataFriendshipsLookupFollowing];
     
     BOOL result = [twitter parseFriendshipsLookup:data];
     
@@ -112,7 +120,7 @@
 
 - (void)testParseFriendshipsLookupNO {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
-    NSDictionary *data = [self getTestData:@"testFriendshipsLookupNotFollowing"];
+    NSDictionary *data = [self getTestData:kTestDataFriendshipsLookupNotFollowing];
     
     BOOL result = [twitter parseFriendshipsLookup:data];
     
@@ -122,19 +130,19 @@
 
 - (void)testParsePersonalURL {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
-    NSDictionary *data = [self getTestData:@"testUsersSearch"];
+    NSDictionary *data = [self getTestData:kTestDataUsersSearch];
     
     NSString *result = [twitter parsePersonalURL:data];
-    NSString *expectedResult = @"";
+    NSString *expectedResult = kBlankString;
     
     XCTAssertEqualObjects(result, expectedResult, @"Expected \"%@\" but got \"%@\"", expectedResult, result);
 }
 
 - (void)testExtractString {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
-    NSDictionary *data = [self getTestData:@"testUsersLookup"];
+    NSDictionary *data = [self getTestData:kTestDataUsersLookup];
 
-    NSString *result = [twitter extractString:@"id_str" from:data];
+    NSString *result = [twitter extractString:kTwitterParameterIDStr from:data];
     NSString *expectedResult = @"6253282";
     
     XCTAssertEqualObjects(result, expectedResult, @"Expected \"%@\" but got \"%@\"", expectedResult, result);
