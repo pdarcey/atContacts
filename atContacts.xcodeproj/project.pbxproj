@@ -29,6 +29,7 @@
 		C9A997BA19CB49E1007A033E /* PDXContactMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B419CB49E1007A033E /* PDXContactMaker.m */; };
 		C9A997BB19CB49E1007A033E /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B619CB49E1007A033E /* PDXTwitterCommunicator.m */; };
 		C9A997C219CB4A7D007A033E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997C019CB4A7D007A033E /* main.m */; };
+		C9A997CA19CC7691007A033E /* PDXOutlineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997C919CC7691007A033E /* PDXOutlineLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +71,7 @@
 		C9A9978D19CB34A7007A033E /* PDXTwitterCommunicator+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXTwitterCommunicator+TestExtensions.h"; sourceTree = "<group>"; };
 		C9A9978E19CB34A7007A033E /* PDXTwitterCommunicatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterCommunicatorTests.m; sourceTree = "<group>"; };
 		C9A9979019CB34A7007A033E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9A9979219CB34A7007A033E /* testFriendshipsCreateNO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsCreateNO.json; sourceTree = "<group>"; };
+		C9A9979219CB34A7007A033E /* testFriendshipsCreateNO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testFriendshipsCreateNO.json; path = "../../../../../../../../Developer/Repos/atContacts/atContactsTests/Test Data/testFriendshipsCreateNO.json"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A9979319CB34A7007A033E /* testFriendshipsCreateYES.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsCreateYES.json; sourceTree = "<group>"; };
 		C9A9979419CB34A7007A033E /* testFriendshipsLookupFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsLookupFollowing.json; sourceTree = "<group>"; };
 		C9A9979519CB34A7007A033E /* testFriendshipsLookupNotFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFriendshipsLookupNotFollowing.json; sourceTree = "<group>"; };
@@ -89,6 +90,8 @@
 		C9A997C019CB4A7D007A033E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9A997C619CC3B2B007A033E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = atContacts/Info.plist; sourceTree = "<group>"; };
 		C9A997C719CC5054007A033E /* PDXConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PDXConstants.h; path = ../Workers/PDXConstants.h; sourceTree = "<group>"; };
+		C9A997C819CC7691007A033E /* PDXOutlineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXOutlineLabel.h; sourceTree = "<group>"; };
+		C9A997C919CC7691007A033E /* PDXOutlineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXOutlineLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,8 @@
 				C9A9976919CB33EF007A033E /* AppDelegate.h */,
 				C9A9976A19CB33EF007A033E /* AppDelegate.m */,
 				C9A997C719CC5054007A033E /* PDXConstants.h */,
+				C9A997C819CC7691007A033E /* PDXOutlineLabel.h */,
+				C9A997C919CC7691007A033E /* PDXOutlineLabel.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -408,6 +413,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9A997CA19CC7691007A033E /* PDXOutlineLabel.m in Sources */,
 				C9A997B819CB49E1007A033E /* PDXPreApprovalViewController.m in Sources */,
 				C9A9976B19CB33EF007A033E /* AppDelegate.m in Sources */,
 				C9A997B919CB49E1007A033E /* PDXResultsViewController.m in Sources */,

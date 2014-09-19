@@ -37,7 +37,7 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
 }
 
 - (NSDictionary *)getTestData:(NSString *)fileName {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"json"];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:fileName ofType:@"json"];
     NSData *jsonData = [[NSData alloc] initWithContentsOfFile:filePath];
     
     NSError *error = nil;
@@ -53,6 +53,7 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
                                        kPersonLastName          : @"API",
                                        kPersonTwitterName       : @"@twitterapi",
                                        kPersonIdString          : @"6253282",
+                                       kPersonFollowing         : [NSNumber numberWithBool:YES],
                                        kPersonEmailAddress      : @"",
                                        kPersonPhoneNumber       : @"",
                                        kPersonWwwAddress        : @"http://dev.twitter.com",
@@ -96,6 +97,16 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     
     XCTAssertTrue(result, @"Not parsing results from Friendship Create correctly");
 
+}
+
+- (void)testParseFriendshipsCreateSpeed {
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+    NSDictionary *data = [self getTestData:kTestDataFriendshipsCreateYES];
+    [self measureBlock:^{
+        // Put the code you want to measure the time of here.
+        [twitter parseFriendshipsCreate:data];
+    }];
+    
 }
 
 - (void)testParseFriendshipsCreateNO {

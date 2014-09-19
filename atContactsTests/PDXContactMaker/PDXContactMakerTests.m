@@ -65,4 +65,24 @@
 
 }
 
+- (void)testAddToContactsSpeed {
+//    // This is an example of a performance test case.
+
+    PDXContactMaker *contactMaker = [PDXContactMaker new];
+    NSDictionary *personData = @{ kPersonFirstName          : @"Test",
+                                  kPersonLastName           : [NSString stringWithFormat:@"Else %@", [NSDate date]],
+                                  kPersonTwitterName        : @"@abcdefg",
+                                  kPersonEmailAddress       : @"email@test.com",
+                                  kPersonPhoneNumber        : @"+38512345678",
+                                  kPersonWwwAddress         : @"www.test.com",
+                                  kPersonTwitterDescription : @"Test description"
+                                  };
+
+    [self measureBlock:^{
+        // Put the code you want to measure the time of here.
+       [contactMaker addToContacts:personData];
+    }];
+
+}
+
 @end
