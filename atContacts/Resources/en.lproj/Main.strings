@@ -1,0 +1,216 @@
+
+/* Class = "IBUILabel"; accessibilityLabel = "Other Names"; ObjectID = "0AU-64-liZ"; */
+"0AU-64-liZ.accessibilityLabel" = "Other Names";
+
+/* Class = "IBUIImageView"; accessibilityHint = "Swipe left for more pages"; ObjectID = "58a-DN-NVP"; */
+"58a-DN-NVP.accessibilityHint" = "Swipe left for more pages";
+
+/* Class = "IBUIImageView"; accessibilityLabel = "More pages indicator"; ObjectID = "58a-DN-NVP"; */
+"58a-DN-NVP.accessibilityLabel" = "More pages indicator";
+
+/* Class = "IBUITextView"; accessibilityLabel = "Description"; ObjectID = "86e-dG-L1q"; */
+"86e-dG-L1q.accessibilityLabel" = "Description";
+
+/* Class = "IBUILabel"; accessibilityLabel = "First Name"; ObjectID = "95n-fe-rtH"; */
+"95n-fe-rtH.accessibilityLabel" = "First Name";
+
+/* Class = "IBUIButton"; accessibilityHint = "Without access this app will not be able to function"; ObjectID = "AT8-N9-OBw"; */
+"AT8-N9-OBw.accessibilityHint" = "Without access this app will not be able to function";
+
+/* Class = "IBUIButton"; accessibilityLabel = "I don’t have a Twitter account"; ObjectID = "AT8-N9-OBw"; */
+"AT8-N9-OBw.accessibilityLabel" = "I don’t have a Twitter account";
+
+/* Class = "IBUIButton"; normalTitle = "I don’t have a Twitter account"; ObjectID = "AT8-N9-OBw"; */
+"AT8-N9-OBw.normalTitle" = "I don’t have a Twitter account";
+
+/* Class = "IBUIButton"; accessibilityHint = "Will follow this person on Twitter"; ObjectID = "Ctm-pf-gHA"; */
+"Ctm-pf-gHA.accessibilityHint" = "Will follow this person on Twitter";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Follow on Twitter button"; ObjectID = "Ctm-pf-gHA"; */
+"Ctm-pf-gHA.accessibilityLabel" = "Follow on Twitter button";
+
+/* Class = "IBUITextField"; accessibilityHint = "Enter the Twitter name to search for (without leading @)"; ObjectID = "Ib1-pi-m32"; */
+"Ib1-pi-m32.accessibilityHint" = "Enter the Twitter name to search for (without leading @)";
+
+/* Class = "IBUITextField"; accessibilityLabel = "Twitter name"; ObjectID = "Ib1-pi-m32"; */
+"Ib1-pi-m32.accessibilityLabel" = "Twitter name";
+
+/* Class = "IBUITextField"; placeholder = "twittername"; ObjectID = "Ib1-pi-m32"; */
+"Ib1-pi-m32.placeholder" = "twittername";
+
+/* Class = "IBUILabel"; text = "I have entered in Settings"; ObjectID = "Jab-wt-d5v"; */
+"Jab-wt-d5v.text" = "I have entered in Settings";
+
+/* Class = "IBUIButton"; accessibilityHint = "Follows on Twitter and adds to contacts"; ObjectID = "Ju2-0W-kr1"; */
+"Ju2-0W-kr1.accessibilityHint" = "Follows on Twitter and adds to contacts";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Both button"; ObjectID = "Ju2-0W-kr1"; */
+"Ju2-0W-kr1.accessibilityLabel" = "Both button";
+
+/* Class = "IBUIButton"; accessibilityHint = "The system-wide Twitter account"; ObjectID = "KOu-50-9yc"; */
+"KOu-50-9yc.accessibilityHint" = "The system-wide Twitter account";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Use my Twitter account"; ObjectID = "KOu-50-9yc"; */
+"KOu-50-9yc.accessibilityLabel" = "Use my Twitter account";
+
+/* Class = "IBUIButton"; normalTitle = "Use the Twitter account"; ObjectID = "KOu-50-9yc"; */
+"KOu-50-9yc.normalTitle" = "Use the Twitter account";
+
+/* Class = "IBUIButton"; accessibilityHint = "Will add this person to contacts"; ObjectID = "LFf-PF-jaK"; */
+"LFf-PF-jaK.accessibilityHint" = "Will add this person to contacts";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Add to contacts button"; ObjectID = "LFf-PF-jaK"; */
+"LFf-PF-jaK.accessibilityLabel" = "Add to contacts button";
+
+/* Class = "IBUITextField"; accessibilityLabel = "Phone number"; ObjectID = "OWX-u5-Leo"; */
+"OWX-u5-Leo.accessibilityLabel" = "Phone number";
+
+/* Class = "IBUITextField"; placeholder = "Add phone"; ObjectID = "OWX-u5-Leo"; */
+"OWX-u5-Leo.placeholder" = "Add phone";
+
+/* Class = "IBUITextField"; accessibilityLabel = "Email address"; ObjectID = "X7X-fj-m0i"; */
+"X7X-fj-m0i.accessibilityLabel" = "Email address";
+
+/* Class = "IBUITextField"; placeholder = "Add email"; ObjectID = "X7X-fj-m0i"; */
+"X7X-fj-m0i.placeholder" = "Add email";
+
+/* Class = "IBUIViewController"; title = "Results"; ObjectID = "a2f-bI-RVU"; */
+"a2f-bI-RVU.title" = "Results";
+
+/* Class = "IBUIImageView"; accessibilityHint = "Twitter requires a Twitter account to get access to users’ info"; ObjectID = "d5j-Q4-SNw"; */
+"d5j-Q4-SNw.accessibilityHint" = "Twitter requires a Twitter account to get access to users’ info";
+
+/* Class = "IBUIImageView"; accessibilityLabel = "Allow access to your Twitter account?"; ObjectID = "d5j-Q4-SNw"; */
+"d5j-Q4-SNw.accessibilityLabel" = "Allow access to your Twitter account?";
+
+/* Class = "IBUIViewController"; title = "PreTwitterAccessRequest"; ObjectID = "dK4-aa-SdS"; */
+"dK4-aa-SdS.title" = "PreTwitterAccessRequest";
+
+/* Class = "IBUITextField"; accessibilityLabel = "Web address"; ObjectID = "i1l-eD-iST"; */
+"i1l-eD-iST.accessibilityLabel" = "Web address";
+
+/* Class = "IBUITextField"; placeholder = "Add web address"; ObjectID = "i1l-eD-iST"; */
+"i1l-eD-iST.placeholder" = "Add web address";
+
+/* Class = "IBUILabel"; accessibilityHint = "Don’t enter the leading @"; ObjectID = "mMZ-zf-l8P"; */
+"mMZ-zf-l8P.accessibilityHint" = "Don’t enter the leading @";
+
+/* Class = "IBUITextField"; accessibilityHint = "Enter an optional hashtag"; ObjectID = "qfS-g8-B3B"; */
+"qfS-g8-B3B.accessibilityHint" = "Enter an optional hashtag";
+
+/* Class = "IBUITextField"; accessibilityLabel = "Hashtag"; ObjectID = "qfS-g8-B3B"; */
+"qfS-g8-B3B.accessibilityLabel" = "Hashtag";
+
+/* Class = "IBUITextField"; placeholder = "hashtag"; ObjectID = "qfS-g8-B3B"; */
+"qfS-g8-B3B.placeholder" = "hashtag";
+
+/* Class = "IBUIButton"; accessibilityHint = "Without access this app will not be able to function"; ObjectID = "uDY-Rw-2hp"; */
+"uDY-Rw-2hp.accessibilityHint" = "Without access this app will not be able to function";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Do not use my Twitter account"; ObjectID = "uDY-Rw-2hp"; */
+"uDY-Rw-2hp.accessibilityLabel" = "Do not use my Twitter account";
+
+/* Class = "IBUIButton"; normalTitle = "Do NOT use my Twitter account"; ObjectID = "uDY-Rw-2hp"; */
+"uDY-Rw-2hp.normalTitle" = "Do NOT use my Twitter account";
+
+/* Class = "IBUIViewController"; title = "InputView"; ObjectID = "vXZ-lx-hvc"; */
+"vXZ-lx-hvc.title" = "InputView";
+
+/* Class = "IBUILabel"; accessibilityLabel = "Message"; ObjectID = "vcX-3U-RDU"; */
+"vcX-3U-RDU.accessibilityLabel" = "Message";
+
+/* Class = "IBUILabel"; accessibilityLabel = "Twitter Name"; ObjectID = "wIu-zq-T26"; */
+"wIu-zq-T26.accessibilityLabel" = "Twitter Name";
+
+/* Tried to add a duplicate to Contacts */
+"%@ is already in your Contacts" = "%@ is already in your Contacts";
+
+/* Can’t add a contact error alert */
+"Can’t add contact" = "Can’t add contact";
+
+/* No data returned */
+"No Twitter user with this name" = "No Twitter user with this name";
+
+/* Not Found */
+"No user with Twitter name @%@" = "No user with Twitter name @%@";
+
+/* ACErrorAccessInfoInvalid
+   ACErrorAccountAlreadyExists
+   ACErrorAccountMissingRequiredProperty
+   ACErrorAccountTypeInvalid
+   ACErrorInvalidClientBundleID
+   ACErrorRemoveCredentialFailed
+   ACErrorUnknown */
+"There has been a problem accessing your Twitter account" = "There has been a problem accessing your Twitter account";
+
+/* ACErrorAccessDeniedByProtectionPolicy */
+"There has been a problem accessing your Twitter account\n\nAsk your administrator to allow permission" = "There has been a problem accessing your Twitter account\n\nAsk your administrator to allow permission";
+
+/* ACErrorCredentialNotFound
+   ACErrorFetchCredentialFailed
+   ACErrorStoreCredentialFailed */
+"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?" = "There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?";
+
+/* ACErrorUpdatingNonexistentAccount */
+"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device?" = "There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device?";
+
+/* ACErrorAccountNotFound */
+"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account on this device?" = "There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account on this device?";
+
+/* ACErrorAccountAuthenticationFailed */
+"There has been a problem accessing your Twitter account\n\nHave you entered correct password?" = "There has been a problem accessing your Twitter account\n\nHave you entered correct password?";
+
+/* ACErrorPermissionDenied */
+"There has been a problem accessing your Twitter account\n\nYou have denied (or revoked) permission for this app to use Twitter" = "There has been a problem accessing your Twitter account\n\nYou have denied (or revoked) permission for this app to use Twitter";
+
+/* ACErrorClientPermissionDenied */
+"There has been a problem accessing your Twitter account\n\nYou have denied (or revoked) permission to access Twitter" = "There has been a problem accessing your Twitter account\n\nYou have denied (or revoked) permission to access Twitter";
+
+/* Bad Gateway
+   Bad Request
+   Default HTTP response error message
+   Enhance Your Calm
+   Forbidden
+   Gateway timeout
+   Gone
+   Internal Server Error
+   Not Acceptable
+   Not Modified
+   Service Unavailable
+   Too Many Requests
+   Unauthorized
+   Unprocessable Entity */
+"There has been a problem connecting with Twitter" = "There has been a problem connecting with Twitter";
+
+/* Use has denied permission to use Twitter account */
+"This app doesn’t work unless you give permission to use your Twitter account\n\nSorry" = "This app doesn’t work unless you give permission to use your Twitter account\n\nSorry";
+
+/* Accessibility announcement that input field has stopped moving */
+"%@ field is ready for input" = "%@ field is ready for input";
+
+/* Display result of hitting Contacts button */
+"Added to Contacts" = "Added to Contacts";
+
+/* Trying to follow someone we already follow */
+"Already following %@ on Twitter" = "Already following %@ on Twitter";
+
+/* Accessibility announcement when moving input field */
+"Displaying keyboard and moving %@ field above it" = "Displaying keyboard and moving %@ field above it";
+
+/* Display result of hitting Twitter button */
+"Followed on Twitter" = "Followed on Twitter";
+
+/* Display contact state */
+"Person is in Contacts" = "Person is in Contacts";
+
+/* Set both contact state */
+"Person is in Contacts and followed on Twitter" = "Person is in Contacts and followed on Twitter";
+
+/* Presenting results */
+"Presenting results" = "Presenting results";
+
+/* Accessibility announcement when moving input field back */
+"Removing keyboard and moving %@ field back to its original position" = "Removing keyboard and moving %@ field back to its original position";
+
+/* Presenting pre-approval */
+"Requesting your approval for access to Twitter" = "Requesting your approval for access to Twitter";
