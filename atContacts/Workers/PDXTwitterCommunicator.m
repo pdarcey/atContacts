@@ -26,6 +26,7 @@
 - (void)sendTwitterRequestTo:(NSURL *)url getOrPost:(SLRequestMethod)getOrPost parameters:(NSDictionary *)parameters requestType:(PDXRequestType)requestType {
     ACAccountStore *store = [self accountStore];
     ACAccountType *accountType = [self accountType];
+
     if (![self userDeniedPermission] && ![self userHasNoAccount]) {
         // Actually access user's Twitter account to get info
         [store requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
@@ -72,6 +73,7 @@
     [request performRequestWithHandler: ^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         if (responseData) {
             NSInteger statusCode = urlResponse.statusCode;
+
             if (statusCode >= 200 && statusCode < 300) {
                 dataDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
                 
@@ -92,6 +94,7 @@
 }
 
 #pragma mark - Specific requests
+
 /**
  *  Get user info for twitterName
  *
@@ -101,8 +104,8 @@
  */
 - (void)getUserInfo:(NSString *)twitterName {
     _twitterName = twitterName;
-    NSURL *url = [NSURL URLWithString: kTwitterAPIURLUsersLookup];
-    NSDictionary *parameters = @{kTwitterParameterScreenName : twitterName};
+    NSURL *url = [NSURL URLWithString:kTwitterAPIURLUsersLookup];
+    NSDictionary *parameters = @{kTwitterParameterScreenName :twitterName};
     SLRequestMethod get = SLRequestMethodGET;
     
     [self sendTwitterRequestTo:url getOrPost:get parameters:parameters requestType:PDXRequestTypeGetUserInfo];
@@ -120,7 +123,7 @@
  */
 - (void)getFollowStatus:(NSString *)idString {
     _twitterName = idString;
-    NSURL *url = [NSURL URLWithString: kTwitterAPIURLFriendshipsLookup];
+    NSURL *url = [NSURL URLWithString:kTwitterAPIURLFriendshipsLookup];
     NSDictionary *parameters = @{kTwitterParameterUserID : idString};
     SLRequestMethod get = SLRequestMethodGET;
     
@@ -141,15 +144,12 @@
     NSURLSession *session = [NSURLSession sharedSession];
    
     [[session dataTaskWithURL:[NSURL URLWithString:photoURL]
-            completionHandler:^(NSData *data,
-                                NSURLResponse *response,
-                                NSError *error) {
+            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 // TODO: Check NSURLResponse to ensure we received a valid response
                 [_delegate displayUserImage:[UIImage imageWithData:data]];
                 
             }] resume];
 }
-
 
 /**
  *  Sets the user's Twitter account to follow the Twitter user with the ID idString
@@ -160,7 +160,7 @@
  */
 - (void)follow:(NSString *)idString {
     _twitterName = idString;
-    NSURL *url = [NSURL URLWithString: kTwitterAPIURLFriendshipsCreate];
+    NSURL *url = [NSURL URLWithString:kTwitterAPIURLFriendshipsCreate];
     NSDictionary *parameters = @{kTwitterParameterUserID : idString, kTwitterParameterFollow : kTwitterParameterTrue};
     SLRequestMethod post = SLRequestMethodPOST;
     
@@ -177,7 +177,7 @@
  */
 - (void)unfollow:(NSString *)idString {
     _twitterName = idString;
-    NSURL *url = [NSURL URLWithString: kTwitterAPIURLFriendshipsCreate];
+    NSURL *url = [NSURL URLWithString:kTwitterAPIURLFriendshipsCreate];
     NSDictionary *parameters = @{kTwitterParameterUserID : idString, kTwitterParameterFollow : kTwitterParameterFalse};
     SLRequestMethod post = SLRequestMethodPOST;
     
@@ -201,12 +201,14 @@ id removeNull(id rootObject) {
         NSMutableDictionary *sanitizedDictionary = [NSMutableDictionary dictionaryWithDictionary:rootObject];
         [rootObject enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             id sanitized = removeNull(obj);
+
             if (!sanitized) {
                 [sanitizedDictionary setObject:kBlankString forKey:key];
             } else {
                 [sanitizedDictionary setObject:sanitized forKey:key];
             }
         }];
+
         return [NSMutableDictionary dictionaryWithDictionary:sanitizedDictionary];
     }
     
@@ -214,18 +216,22 @@ id removeNull(id rootObject) {
         NSMutableArray *sanitizedArray = [NSMutableArray arrayWithArray:rootObject];
         [rootObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             id sanitized = removeNull(obj);
+
             if (!sanitized) {
                 [sanitizedArray replaceObjectAtIndex:[sanitizedArray indexOfObject:obj] withObject:kBlankString];
             } else {
                 [sanitizedArray replaceObjectAtIndex:[sanitizedArray indexOfObject:obj] withObject:sanitized];
             }
         }];
+
         return [NSMutableArray arrayWithArray:sanitizedArray];
     }
     
     if ([rootObject isKindOfClass:[NSNull class]]) {
+
         return (id)nil;
     } else {
+        
         return rootObject;
     }
 }
@@ -244,21 +250,26 @@ id removeNull(id rootObject) {
     switch (requestType) {
         case PDXRequestTypeGetUserInfo:
             [self handleGetUserInfo:sanitisedData];
+
             break;
             
         case PDXRequestTypeGetFollowStatus:
             [self handleGetFollowStatus:sanitisedData];
+
             break;
                         
         case PDXRequestTypeFollow:
             [self handleFollow:sanitisedData];
+
             break;
             
         case PDXRequestTypeUnfollow:
             [self handleUnfollow:sanitisedData];
+
             break;
             
         default:
+
             break;
     }
 }
@@ -371,22 +382,30 @@ id removeNull(id rootObject) {
  */
 - (id)parseJSON:(NSDictionary *)data forKey:(NSString *)key {
     id result;
+
     for (id object in data) {
         result = nil;
+
         if ([object isKindOfClass:[NSArray class]]) {
+
             for (NSDictionary *dict in object) {
                 result = [dict objectForKey:key];
+
                 if (result) {
+
                     return result;
                 }
             }
         } else if ([object isKindOfClass:[NSDictionary class]]) {
             result = [(NSDictionary *)object objectForKey:key];
+
             if (result) {
+
                 return result;
             } 
         }
     }
+
     return nil;
 }
 
@@ -404,9 +423,11 @@ id removeNull(id rootObject) {
 - (NSDictionary *)splitName:(NSString *)name {
     // Split name into firstName / lastName
     NSDictionary *splitNames;
+
     if (![name isEqualToString:kBlankString]) {
         NSArray *nameArray = [name componentsSeparatedByString:@" "];
         NSString *firstWord = nameArray[0];
+
         if ([name isEqualToString:firstWord]) {
             // Name is just one word
             splitNames = @{ kPersonFirstName : name, kPersonLastName : @"" };
@@ -422,8 +443,6 @@ id removeNull(id rootObject) {
 /*  The following two methods differ because Twitter returns a different data dictionary from a getFollowStatus request
     and a request to follow/unfollow an ID
 */
-
-
 /**
  *  Checks if a request to follow/unfollow a user has been successful
  *
@@ -435,6 +454,7 @@ id removeNull(id rootObject) {
  */
 - (BOOL)parseFriendshipsCreate:(NSDictionary *)data {
     BOOL following = [(NSNumber *)[data valueForKey:kPersonFollowing] boolValue];
+
     if (following) {
                 
         return YES;
@@ -454,8 +474,11 @@ id removeNull(id rootObject) {
  */
 - (BOOL)parseFriendshipsLookup:(NSDictionary *)data {
     NSArray *connections = [data valueForKey:kTwitterParameterConnections];
+
     for (NSArray *item in connections) {
+
         for (NSString *connection in item) {
+
             if ([connection isEqualToString:kTwitterParameterFollowing]) {
                 
                 return YES;
@@ -478,14 +501,17 @@ id removeNull(id rootObject) {
 - (NSString *)parsePersonalURL:(NSDictionary *)data {
     NSDictionary *entityDict = [self parseJSON:data forKey:kTwitterParameterEntities];
     NSString *personalURL;
+
     if (entityDict) {
         NSDictionary *url = [entityDict valueForKey:kTwitterParameterURL];
         NSArray *urls = [url valueForKey:kTwitterParameterURLS];
         personalURL = [[urls valueForKey:kTwitterParameterExpandedURL] firstObject];
     }
+
     if (personalURL) {
         return personalURL;
     }
+
     return kBlankString;
 }
 
@@ -502,8 +528,10 @@ id removeNull(id rootObject) {
 - (NSString *)extractString:(NSString *)key from:(NSDictionary *)data {
     NSArray *array = [data valueForKey:key];
     NSString *string = kBlankString;
+
     if ([array count] > 0) {
         NSString *nullCheck = array[0];
+
         if ([nullCheck class] == [NSNull class]) {
             string = kBlankString;
         } else {
@@ -745,7 +773,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorUnknown");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, @"Unknown error accessing user's Twitter account");
+            NSLog(@"Error: %@ - %@", error, @"Unknown error accessing user's Twitter account");
             
             break;
             
@@ -753,7 +781,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccountMissingRequiredProperty");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, @"Most likely cause is new Twitter API");
+            NSLog(@"Error: %@ - %@", error, @"Most likely cause is new Twitter API");
             
             break;
             
@@ -761,7 +789,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you entered correct password?", @"ACErrorAccountAuthenticationFailed");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, message);
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
@@ -769,7 +797,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccountTypeInvalid");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, @"Most likely cause is new Twitter API");
+            NSLog(@"Error: %@ - %@", error, @"Most likely cause is new Twitter API");
            
             break;
             
@@ -777,7 +805,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccountAlreadyExists");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, @"This error should never be called, as we never try to create a new account");
+            NSLog(@"Error: %@ - %@", error, @"This error should never be called, as we never try to create a new account");
             
             break;
             
@@ -785,7 +813,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account on this device?", @"ACErrorAccountNotFound");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, message);
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
@@ -793,7 +821,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nYou have denied (or revoked) permission for this app to use Twitter", @"ACErrorPermissionDenied");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, message);
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
@@ -801,7 +829,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccessInfoInvalid");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, message);
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
@@ -809,7 +837,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nYou have denied (or revoked) permission to access Twitter", @"ACErrorClientPermissionDenied");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, message);
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
@@ -817,7 +845,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nAsk your administrator to allow permission", @"ACErrorAccessDeniedByProtectionPolicy");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, @"User is not able to give permission to access their Twitter account (if they have one)");
+            NSLog(@"Error: %@ - %@", error, @"User is not able to give permission to access their Twitter account (if they have one)");
             
             break;
             
@@ -825,7 +853,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?", @"ACErrorCredentialNotFound");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, message);
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
@@ -833,7 +861,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?", @"ACErrorFetchCredentialFailed");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, message);
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
@@ -841,7 +869,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?", @"ACErrorStoreCredentialFailed");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, message);
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
@@ -849,7 +877,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorRemoveCredentialFailed");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, @"This error should never be called, as we never try to remove an account's credentials");
+            NSLog(@"Error: %@ - %@", error, @"This error should never be called, as we never try to remove an account's credentials");
             
             break;
             
@@ -857,7 +885,7 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device?", @"ACErrorUpdatingNonexistentAccount");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, message);
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
@@ -865,11 +893,12 @@ id removeNull(id rootObject) {
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorInvalidClientBundleID");
             [_delegate displayErrorMessage:message];
             
-            NSLog(@"Error: %@ - %@",error, message);
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         default:
+            
             break;
     }
 }
@@ -905,7 +934,6 @@ id removeNull(id rootObject) {
     
     return _twitterType;
 }
-
 
 #pragma mark - Convenience methods for User Defaults
 
@@ -995,6 +1023,7 @@ id removeNull(id rootObject) {
     } else {
         NSArray *arrayOfAccounts = [store accountsWithAccountType:accountType];
         ACAccount *account;
+
         if ([arrayOfAccounts count] == 1) {
             // Only one Twitter account is set up in Settings; make it the default
             account = (ACAccount *)arrayOfAccounts[0];
@@ -1014,6 +1043,7 @@ id removeNull(id rootObject) {
             return account;
         }
     }
+
     return nil;
 
 }
@@ -1027,11 +1057,13 @@ id removeNull(id rootObject) {
 
 - (NSArray *)arrayOfAccountIdentifiers:(NSArray *)arrayOfAccounts {
     NSMutableArray *identifierArray = [NSMutableArray new];
+
     for (ACAccount *account in arrayOfAccounts) {
         NSString *identifier = [account identifier];
         [identifierArray addObject:identifier];
     }
     NSArray *arrayOfAccountIdentifiers = [NSArray arrayWithArray:identifierArray];
+
     return arrayOfAccountIdentifiers;
 }
 

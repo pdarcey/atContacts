@@ -71,6 +71,7 @@
     if (_twitterName.text.length > 0) {
         NSString *name = _twitterName.text;
         NSString *firstCharacter = [name substringToIndex:1];
+
         if (![firstCharacter isEqualToString:kAtSign]) {
             name = [name stringByReplacingOccurrencesOfString:kAtSign withString:kBlankString];
         }
@@ -136,6 +137,7 @@
 - (IBAction)endHashtagEditing {
     if (_hashtag.text.length > 0) {
         NSString *firstCharacter = [_hashtag.text substringToIndex:1];
+
         if (![firstCharacter isEqualToString:kHashSign]) {
             _hashtag.text = [kHashSign stringByAppendingString:_hashtag.text];
         }
@@ -192,7 +194,9 @@
     }
     PDXTwitterCommunicator *twitterCommunicator = [PDXTwitterCommunicator new];
     _twitter = twitterCommunicator;
+
     return _twitter;
+
 }
 
 #pragma mark - Convenience methods for User Defaults
@@ -267,6 +271,7 @@
 - (NSString *)retrieveHashtag {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *hashtag = [defaults valueForKey:kUserDefaultLastUsedHashtag];
+
     if (hashtag) {
         return hashtag;
     }
@@ -276,6 +281,7 @@
 }
 
 #pragma mark - Protocol methods
+
 /**
  *  Protocol method optional for PDXTwitterCommunicatorDelegate
  *
@@ -350,12 +356,12 @@
         
         [UIView animateWithDuration:duration
                               delay:0.0
-                            options: UIViewAnimationOptionCurveEaseIn
+                            options:UIViewAnimationOptionCurveEaseIn
                          animations:^{_errorMessage.alpha = 1;}
                          completion:^(BOOL finished) {
                              [UIView animateWithDuration:duration
                                                    delay:2.0
-                                                 options: UIViewAnimationOptionCurveEaseOut
+                                                 options:UIViewAnimationOptionCurveEaseOut
                                               animations:^{_errorMessage.alpha = 0;}
                                               completion:^(BOOL finished) {
                                                   _errorMessage.hidden = YES;
@@ -363,7 +369,7 @@
                               ];
                          }];
     });
+    
 }
-
 
 @end

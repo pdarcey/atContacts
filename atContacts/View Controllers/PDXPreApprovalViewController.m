@@ -103,12 +103,12 @@
         
         [UIView animateWithDuration:duration
                               delay:0.0
-                            options: UIViewAnimationOptionCurveEaseIn
+                            options:UIViewAnimationOptionCurveEaseIn
                          animations:^{_errorMessage.alpha = 1;}
                          completion:^(BOOL finished) {
                              [UIView animateWithDuration:duration
                                                    delay:2.0
-                                                 options: UIViewAnimationOptionCurveEaseOut
+                                                 options:UIViewAnimationOptionCurveEaseOut
                                               animations:^{_errorMessage.alpha = 0;}
                                               completion:^(BOOL finished) {
                                                   _errorMessage.hidden = YES;
@@ -117,7 +117,6 @@
                          }];
     });
 }
-
 
 #pragma mark - Convenience methods
 
@@ -134,6 +133,7 @@
     }
     PDXTwitterCommunicator *twitterCommunicator = [PDXTwitterCommunicator new];
     _twitter = twitterCommunicator;
+
     return _twitter;
 }
 
@@ -144,6 +144,5 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
 
 @end

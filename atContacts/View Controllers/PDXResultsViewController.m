@@ -53,18 +53,21 @@
     // Combine hashtag and description (if they exist)
     NSString *dataDescription = [data valueForKey:kPersonTwitterDescription];
     NSString *combinedHashtagAndDescription = kBlankString;
+
     if (_hashtag && ![_hashtag isEqualToString:kBlankString]) {
         combinedHashtagAndDescription = _hashtag;
+
         if (dataDescription && ![dataDescription isEqualToString:kBlankString]) {
             combinedHashtagAndDescription = [combinedHashtagAndDescription stringByAppendingString:[NSString stringWithFormat:@"\n%@", dataDescription]];
         }
+        
     } else if (dataDescription && ![dataDescription isEqualToString:kBlankString]) {
         combinedHashtagAndDescription = dataDescription;
     }
     _twitterDescription.text = combinedHashtagAndDescription;
 
     // Set Following status
-    NSNumber *following= [data valueForKey:kPersonFollowing];
+    NSNumber *following = [data valueForKey:kPersonFollowing];
     _following = [following boolValue];
     [self followedOnTwitter:_following];
     
@@ -109,11 +112,14 @@
  */
 - (UITextField *)currentTextField {
     NSArray *subviews = self.view.subviews;
+
     for (UIView *subview in subviews) {
+
         if ((subview.class == [UITextField class]) && [subview isFirstResponder]) {
             return (UITextField *)subview;
         }
     }
+
     return nil;
 }
 
@@ -213,7 +219,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
     [UIView animateWithDuration:duration
                           delay:0.0
-                        options: UIViewAnimationOptionTransitionCrossDissolve
+                        options:UIViewAnimationOptionTransitionCrossDissolve
                      animations:^{_photo.image = image;}
                      completion:nil
      ];
@@ -244,12 +250,12 @@
 
         [UIView animateWithDuration:duration
                               delay:0.0
-                            options: UIViewAnimationOptionCurveEaseIn
+                            options:UIViewAnimationOptionCurveEaseIn
                          animations:^{_errorMessage.alpha = 1;}
                          completion:^(BOOL finished) {
                              [UIView animateWithDuration:duration
                                                    delay:2.0
-                                                 options: UIViewAnimationOptionCurveEaseOut
+                                                 options:UIViewAnimationOptionCurveEaseOut
                                               animations:^{_errorMessage.alpha = 0;}
                                               completion:^(BOOL finished) {
                                                   _errorMessage.hidden = YES;
@@ -271,6 +277,7 @@
 - (IBAction)followOnTwitter:(UIButton *)sender {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     twitter.delegate = self;
+    
     if (!_following) {
         [twitter follow:[_data valueForKey:kPersonFollowing]];
     } else {
@@ -297,6 +304,7 @@
                                   kPersonTwitterDescription : _twitterDescription.text,
                                   kPersonPhotoData    : UIImageJPEGRepresentation(_photo.image, 1.0f)
                                   };
+
     return personData;
 }
 
@@ -311,6 +319,7 @@
     // Set Contacts status
     PDXContactMaker *contacts = [PDXContactMaker new];
     contacts.delegate = self;
+
     if ([contacts isInContacts:[self personData]]) {
         NSString *message = NSLocalizedString(@"Person is in Contacts", @"Display contact state");
         [self setButtonHighlighted:YES button:_contactsButton message:message];
@@ -443,6 +452,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     // Remove keyboard & send message textFieldDidEndEditing
     [textField resignFirstResponder];
+
     return YES;
 }
 

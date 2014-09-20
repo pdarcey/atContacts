@@ -29,5 +29,4 @@
 - (NSArray *)arrayOfAccountIdentifiers:(NSArray *)arrayOfAccounts;
 - (ACAccount *)askForDefaultTwitterAccount:(NSArray *)arrayOfAccountIdentifiers;
 
-
 @end

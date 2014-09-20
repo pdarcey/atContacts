@@ -19,5 +19,4 @@
 - (void)saveHashtag:(NSString *)hashtag;
 - (NSString *)retrieveHashtag;
 
-
 @end

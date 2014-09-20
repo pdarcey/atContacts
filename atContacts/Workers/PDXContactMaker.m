@@ -8,6 +8,7 @@
 
 #import "PDXContactMaker.h"
 @import AddressBook;
+
 @implementation PDXContactMaker
 
 /**
@@ -41,7 +42,7 @@
     CFIndex authorisationStatus = [self getAuthorisationStatus];
     
     if (authorisationStatus == kABAuthorizationStatusDenied ||
-        authorisationStatus == kABAuthorizationStatusRestricted){
+        authorisationStatus == kABAuthorizationStatusRestricted) {
             [self displayCantAddContactAlert];
             NSLog(@"Denied");
     } else if (authorisationStatus == kABAuthorizationStatusAuthorized){
@@ -51,7 +52,7 @@
         // authorisationStatus == kABAuthorizationStatusNotDetermined
         NSLog(@"Not determined");
         ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
-            if (!granted){
+            if (!granted) {
                 [self displayCantAddContactAlert];
                 return;
             }
@@ -71,6 +72,7 @@
  */
 - (BOOL)isInContacts:(NSDictionary *)personData {
     ABRecordRef person = [self makePerson:personData];
+    
     return [self isExistingContact:person];
 }
 
@@ -95,13 +97,17 @@
 - (BOOL)isExistingContact:(ABRecordRef)person {
     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
     NSArray *allContacts = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
-    for (id record in allContacts){
+
+    for (id record in allContacts) {
         ABRecordRef thisContact = (__bridge ABRecordRef)record;
+
         if (CFStringCompare(ABRecordCopyCompositeName(thisContact),
-                            ABRecordCopyCompositeName(person), 0) == kCFCompareEqualTo){
+                            ABRecordCopyCompositeName(person), 0) == kCFCompareEqualTo) {
+
             return YES;
         }
     }
+
     return NO;
 }
 
@@ -114,6 +120,7 @@
  */
 - (void)makeContact:(NSDictionary *)personData {
     ABRecordRef person = [self makePerson:personData];
+
     if (![self isExistingContact:person]) {
         [self saveContact:person];
     } else {
@@ -199,6 +206,5 @@
 - (void)displayErrorMessage:(NSString *)message {
     
 }
-
 
 @end
