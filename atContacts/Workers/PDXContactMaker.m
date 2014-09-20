@@ -198,13 +198,4 @@
     [_delegate newContactMade:YES];
 }
 
-// Required for protocol
-- (void)newContactMade:(BOOL)success {
-    
-}
-
-- (void)displayErrorMessage:(NSString *)message {
-    
-}
-
 @end

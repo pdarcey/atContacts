@@ -12,6 +12,7 @@
 #import "PDXTwitterCommunicator+TestExtensions.h"
 
 // Test data files
+// These files are used to generate the NSData which is expected by PDXTwitterCommunicator
 static NSString * const kTestDataUsersLookup = @"testUsersLookup";
 static NSString * const kTestDataUsersSearch = @"testUsersSearch";
 static NSString * const kTestDataFriendshipsCreateYES = @"testFriendshipsCreateYES";
@@ -36,6 +37,16 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     [super tearDown];
 }
 
+/**
+ *  Convenience method that will read in a text file, turn it into NSData, and de-serialize the data 
+ *  using NSJSONSerialization, just like the data being returned from Twitter
+ *
+ *  @param fileName The name of the file of test data to use
+ *
+ *  @return A dictionary of JSON data that has been de-serialized by NSJSONSerialization
+ *
+ *  @since 1.0
+ */
 - (NSDictionary *)getTestData:(NSString *)fileName {
     NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:fileName ofType:@"json"];
     NSData *jsonData = [[NSData alloc] initWithContentsOfFile:filePath];
@@ -46,6 +57,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     return jsonDict;
 }
 
+/**
+ *  Tests the parsing algorithm for data from a Users/Lookup request from Twitter
+ *
+ *  @since 1.0
+ */
 - (void)testParseUsersLookup {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSDictionary *data = [self getTestData:kTestDataUsersLookup];
@@ -65,6 +81,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
 
 }
 
+/**
+ *  Tests method for splitting nameString into firstName and lastName when nameString is one word
+ *
+ *  @since 1.0
+ */
 - (void)testSplitNameOneWord {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSString *name = @"David";
@@ -73,6 +94,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     XCTAssertEqualObjects(result, expectedResult, @"Dictionary not correctly parsed");
 }
 
+/**
+ *  Tests method for splitting nameString into firstName and lastName when nameString is two words
+ *
+ *  @since 1.0
+ */
 - (void)testSplitNameTwoWords {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSString *name = @"David Smith";
@@ -81,6 +107,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     XCTAssertEqualObjects(result, expectedResult, @"Dictionary not correctly parsed");
 }
 
+/**
+ *  Tests method for splitting nameString into firstName and lastName when nameString is more than two words
+ *
+ *  @since 1.0
+ */
 - (void)testSplitNameMultiWords {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSString *name = @"David van der Laar";
@@ -89,6 +120,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     XCTAssertEqualObjects(result, expectedResult, @"Dictionary not correctly parsed");
 }
 
+/**
+ *  Tests the parsing algorithm for response data from a Friendships/Create PUT request to Twitter
+ *
+ *  @since 1.0
+ */
 - (void)testParseFriendshipsCreateYES {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSDictionary *data = [self getTestData:kTestDataFriendshipsCreateYES];
@@ -99,6 +135,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
 
 }
 
+/**
+ *  Tests the speed of parsing response data from a Friendships/Create PUT request to Twitter
+ *
+ *  @since 1.0
+ */
 - (void)testParseFriendshipsCreateSpeed {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSDictionary *data = [self getTestData:kTestDataFriendshipsCreateYES];
@@ -109,6 +150,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     
 }
 
+/**
+ *  Tests the parsing algorithm for response data from a Friendships/Create PUT request to Twitter
+ *
+ *  @since 1.0
+ */
 - (void)testParseFriendshipsCreateNO {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSDictionary *data = [self getTestData:kTestDataFriendshipsCreateNO];
@@ -119,6 +165,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     
 }
 
+/**
+ *  Tests the parsing algorithm for data from a Friendships/Lookup request from Twitter
+ *
+ *  @since 1.0
+ */
 - (void)testParseFriendshipsLookupYES {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSDictionary *data = [self getTestData:kTestDataFriendshipsLookupFollowing];
@@ -129,6 +180,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     
 }
 
+/**
+ *  Tests the parsing algorithm for data from a Friendships/Lookup request from Twitter
+ *
+ *  @since 1.0
+ */
 - (void)testParseFriendshipsLookupNO {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSDictionary *data = [self getTestData:kTestDataFriendshipsLookupNotFollowing];
@@ -139,6 +195,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     
 }
 
+/**
+ *  Tests the parsing algorithm for data from a Users/Search request from Twitter
+ *
+ *  @since 1.0
+ */
 - (void)testParsePersonalURL {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSDictionary *data = [self getTestData:kTestDataUsersSearch];
@@ -149,6 +210,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     XCTAssertEqualObjects(result, expectedResult, @"Expected \"%@\" but got \"%@\"", expectedResult, result);
 }
 
+/**
+ *  Tests extracting a specific type of data from a Users/Lookup request from Twitter
+ *
+ *  @since 1.0
+ */
 - (void)testExtractString {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     NSDictionary *data = [self getTestData:kTestDataUsersLookup];
@@ -160,6 +226,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
 
 }
 
+/**
+ *  Tests that, if accountStore was nil, one is created and returned
+ *
+ *  @since 1.0
+ */
 - (void)testAccountStoreWasNil {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     twitter.accountStore = nil;
@@ -169,6 +240,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     XCTAssertNotNil(result, "Should *always* return an ACAccountStore object");
 }
 
+/**
+ *  Tests that, if accountStore exists, that one is returned
+ *
+ *  @since <#version number#>
+ */
 - (void)testAccountStoreExists {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     ACAccountStore *account = [[ACAccountStore alloc] init];
@@ -179,6 +255,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     XCTAssertEqualObjects(result, account, @"Should return existing ACAccountStore if one exists");
 }
 
+/**
+ *  Tests that, if twitterType was nil, one is created and returned
+ *
+ *  @since 1.0
+ */
 - (void)testAccountTypeWasNil {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     twitter.twitterType = nil;
@@ -188,6 +269,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     XCTAssertNotNil(result, "Should *always* return an ACAccountType object");
 }
 
+/**
+ *  Tests that, if twitterType exists, that one is returned
+ *
+ *  @since <#version number#>
+ */
 - (void)testAccountTypeExists {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     ACAccountType *accountType = [[twitter accountStore] accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];

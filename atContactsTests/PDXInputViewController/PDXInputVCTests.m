@@ -36,20 +36,6 @@
     [super tearDown];
 }
 
-- (void)testRemoveHash {
-    PDXInputViewController *inputVC = _inputVC;
-    NSString *hashText = @"#hashtag";
-    NSString *nonHashText = @"hashtag";
-    NSString *expectedResult = @"hashtag";
-    
-    NSString *result1 = [inputVC removeHash:hashText];
-    NSString *result2 = [inputVC removeHash:nonHashText];
-    
-    XCTAssertEqualObjects(result1, expectedResult, @"Hashtag not removed correctly");
-    XCTAssertEqualObjects(result2, expectedResult, @"Non-hash text incorrectly modified");
-    
-}
-
 - (void)testTwitter {
     
 }

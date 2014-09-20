@@ -7,9 +7,12 @@
 //
 
 @import UIKit;
-#import "AppDelegate.h"
+#import "PDXAppDelegate.h"
 #import "PDXTwitterCommunicator.h"
 #import "PDXInputViewController.h"
+
+// View that is displayed before triggering Apple's system approval dialog for access to the user's Twitter account
+// Allows us to control whether or not to trigger Apple's dialog
 
 @interface PDXPreApprovalViewController : UIViewController <PDXTwitterCommunicatorDelegate>
 

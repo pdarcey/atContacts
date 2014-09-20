@@ -14,9 +14,15 @@
 
 @implementation PDXResultsViewController
 
+/**
+ *  Initialise data that was set in the data property immediately after the view controller was created
+ *
+ *  Data cannot be allocated to fields in the view before this point or it will cause a crash!
+ *
+ *  @since 1.0
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self initialiseData:_data];
 }
 
@@ -92,7 +98,7 @@
     if (![photoURL isEqualToString:@""]) {
         
         // Twitter by default returns a photo URL that gives a low-rez version of the person's image
-        // We bypass this by removing the "_normal" part of the URL; this should return the full-sized version of the image
+        // We bypass this by removing the "_normal" part of the URL; this should return the original-sized version of the image
         NSString *largePhotoURL = [photoURL stringByReplacingOccurrencesOfString:@"_normal" withString:kBlankString];
         
         PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
@@ -123,54 +129,7 @@
     return nil;
 }
 
-/**
- *  A set of constraints used to display a UITextField for editing
- *
- *  @param textField The UITextField to use for editing
- *
- *  @return Array of contstraints to add to the relevant UITextField
- *
- *  @since 1.0
- */
-- (NSArray *)newConstraints:(UITextField *)textField {
-    NSLayoutConstraint *constraint1 = [NSLayoutConstraint constraintWithItem:textField
-                                                                   attribute:NSLayoutAttributeWidth
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:nil
-                                                                   attribute:NSLayoutAttributeNotAnAttribute
-                                                                  multiplier:0
-                                                                    constant:textField.frame.size.width];
-    
-    NSLayoutConstraint *constraint2 = [NSLayoutConstraint constraintWithItem:textField
-                                                                   attribute:NSLayoutAttributeHeight
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:nil
-                                                                   attribute:NSLayoutAttributeNotAnAttribute
-                                                                  multiplier:0
-                                                                    constant:textField.frame.size.height];
-    
-    NSLayoutConstraint *constraint3 = [NSLayoutConstraint constraintWithItem:textField
-                                                                   attribute:NSLayoutAttributeCenterX
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:self.view
-                                                                   attribute:NSLayoutAttributeCenterX
-                                                                  multiplier:1
-                                                                    constant:0];
-    
-    NSLayoutConstraint *constraint4 = [NSLayoutConstraint constraintWithItem:textField
-                                                                   attribute:NSLayoutAttributeCenterY
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:self.view
-                                                                   attribute:NSLayoutAttributeCenterY
-                                                                  multiplier:1
-                                                                    constant:-50];
-
-    NSArray *newConstraints = @[constraint1, constraint2, constraint3, constraint4];
-    
-    return newConstraints;
-}
-
-#pragma mark - Protocol methods
+#pragma mark - Protocol methods for PDXTwitterCommunicatorDelegate
 
 /**
  *  Sets the Twitter button. If user already follows person, displays the highlighted button and disables button
@@ -207,7 +166,7 @@
 }
 
 /**
- *  Animates the display of the person's image when it is received (which will usually be after the other details are displayed)
+ *  Animates the display of the person's image when it is received (which will be immediately after the other details are displayed)
  *
  *  @param image Image returned by Twitter of the person's profile picture
  *
@@ -228,6 +187,8 @@
 
 /**
  *  Display a message to the user. Animates a fade in/fade out effect
+ *
+ *  Required by PDXTwitterCommunicatorDelegate protocol
  *
  *  Fade in & fade out time are each set as animationDuration
  *  Display time is set as displayTime

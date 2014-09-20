@@ -10,7 +10,14 @@
 
 @interface PDXInputViewController (TestExtensions)
 
-// The following are only exposed for testing
+/**
+ *  Exposes methods within PDXInputViewController which would otherwise not be available for individual testing
+ *
+ *  The following are only exposed for testing
+ *
+ *  @since 1.0
+ */
+
 - (NSString *)removeHash:(NSString *)hashtag;
 - (PDXTwitterCommunicator *)twitter;
 - (BOOL)dialogHasBeenPresented;

@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    PDXTwitterCommunicator *twitter = [self twitter];
+    PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
     twitter.delegate = self;
 }
 
@@ -118,31 +118,12 @@
     });
 }
 
-#pragma mark - Convenience methods
-
-/**
- *  Convenience method to retrieve Twitter Communicator
- *
- *  @return Twitter Communicator
- *
- *  @since 1.0
- */
-- (PDXTwitterCommunicator *)twitter {
-    if (_twitter != nil) {
-        return _twitter;
-    }
-    PDXTwitterCommunicator *twitterCommunicator = [PDXTwitterCommunicator new];
-    _twitter = twitterCommunicator;
-
-    return _twitter;
-}
-
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
+//// In a storyboard-based application, you will often want to do a little preparation before navigation
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    // Get the new view controller using [segue destinationViewController].
+//    // Pass the selected object to the new view controller.
+//}
 
 @end

@@ -10,7 +10,14 @@
 
 @interface PDXTwitterCommunicator (TestExtensions)
 
-// The following are only exposed for testing
+/**
+ *  Exposes methods within PDXTwitterCommunicator which would otherwise not be available for individual testing
+ *
+ *  The following are only exposed for testing
+ *
+ *  @since 1.0
+ */
+
 - (NSDictionary *)parseUsersLookup:(NSDictionary *)data;
 - (NSDictionary *)splitName:(NSString *)name;
 - (BOOL)parseFriendshipsCreate:(NSDictionary *)data;

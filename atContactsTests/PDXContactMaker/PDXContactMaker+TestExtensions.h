@@ -10,6 +10,14 @@
 
 @interface PDXContactMaker (TestExtensions)
 
+/**
+ *  Exposes methods within PDXContactMaker which would otherwise not be available for individual testing
+ *
+ *  The following are only exposed for testing
+ *
+ *  @since 1.0
+ */
+
 - (CFIndex)getAuthorisationStatus;
 - (void)displayCantAddContactAlert;
 - (void)checkForExistingContact:(ABAddressBookRef)addressBookRef firstName:(NSString *)firstName person:(ABRecordRef)person;

@@ -7,7 +7,7 @@
 //
 
 #import "PDXTwitterCommunicator.h"
-#import "AppDelegate.h"
+#import "PDXAppDelegate.h"
 
 @implementation PDXTwitterCommunicator
 
@@ -237,7 +237,7 @@ id removeNull(id rootObject) {
 }
 
 /**
- *  Chooses how to handle the response from a Twitter request
+ *  Chooses how to handle the response from a Twitter request. We expect only one of four possible responses.
  *
  *  @param data        Data returned from Twitter request
  *  @param requestType PDXRequestType
@@ -333,7 +333,7 @@ id removeNull(id rootObject) {
  *  @return Dictionary containing: firstName, lastName, twitterName, idString, emailAddress, phoneNumber, wwwAddress,
  *                                 twitterDescription, photoURL and following
  *
- *  All objects in the dictionary are strings, except following, which is an NSNumber representation of a BOOL
+ *  All objects in the dictionary are strings, except kPersonFollowing, which is an NSNumber representation of a BOOL
  *
  *  @since 1.0
  */
@@ -542,59 +542,6 @@ id removeNull(id rootObject) {
     return string;
 }
 
-#pragma mark - Protocols
-
-/**
- *  Toggles the Twitter follow status on/off
- *
- *  Is used by views that conform to PDXTwitterCommunicatorDelegate, so it is not implemented here
- *
- *  @param onOff YES if user follows the Twitter ID; NO if they don't
- *
- *  @since 1.0
- */
-- (void)followedOnTwitter:(BOOL)success {
-    
-}
-
-/**
- *  Display info returned by a getUserInfo request
- *
- *  Is used by views that conform to PDXTwitterCommunicatorDelegate, so it is not implemented here
- *
- *  @param data Data dictionary producted by parsing a getUserInfo request
- *
- *  @since 1.0
- */
-- (void)displayInfo:(NSDictionary *)data {
-
-}
-
-/**
- *  Tells the view to display a message to the user
- *
- *  Is used by views that conform to PDXTwitterCommunicatorDelegate, so it is not implemented here
- *
- *  @param message Message to display
- *
- *  @since 1.0
- */
-- (void)displayErrorMessage:(NSString *)message {
-}
-
-/**
- *  Display info returned by a getUserImage request
- *
- *  Is used by views that conform to PDXTwitterCommunicatorDelegate, so it is not implemented here
- *
- *  @param image Image returned by Twitter
- *
- *  @since 1.0
- */
-- (void)displayUserImage:(UIImage *)image {
-    
-}
-
 #pragma mark - Error Conditions
 
 /**
@@ -612,6 +559,8 @@ id removeNull(id rootObject) {
 /**
  *  Present dialog and log information if we get a non-expected HTTP response (i.e. a non-2xx response)
  *
+ *  This is for HTTP responses coming from the general network, not from Twitter
+ *
  *  @param urlResponse The HTTP URL response we received
  *
  *  @since 1.0
@@ -626,6 +575,8 @@ id removeNull(id rootObject) {
 
 /**
  *  Present dialog and log information if we get a non-expected HTTP response (i.e. a non-2xx response)
+ *
+ *  These HTTP responses come from Twitter
  *
  *  @param urlResponse The HTTP URL response we received
  *
@@ -755,6 +706,8 @@ id removeNull(id rootObject) {
 /**
  *  We have tried to access the user's Twitter account (after they have said they would give us 
  *  permission), but we have not been able to do so as expected
+ *
+ *  These error codes come from Apples Account framework
  *
  *  @param error Error returned when we tried to access the account
  *

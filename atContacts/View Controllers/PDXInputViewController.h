@@ -11,6 +11,7 @@
 
 # pragma mark - Constants
 
+// Standard string constants
 static NSString * const kAtSign = @"@";
 static NSString * const kHashSign = @"#";
 
@@ -27,8 +28,6 @@ static NSString * const kStoryboardIdentifierInput = @"InputView";
 
 @property (weak, nonatomic) IBOutlet UITextField *twitterName;
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;
-@property (weak, nonatomic) PDXTwitterCommunicator *twitter;
-@property BOOL searching;
 @property (weak, nonatomic) IBOutlet UILabel *errorMessage;
 
 - (IBAction)findTwitterName;

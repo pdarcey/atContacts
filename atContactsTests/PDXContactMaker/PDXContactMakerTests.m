@@ -43,6 +43,11 @@
     
 }
 
+/**
+ *  Tests that a person is correctly added to Contacts
+ *
+ *  @since 1.0
+ */
 - (void)testAddToContacts {
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
     CFIndex startPersonCount = ABAddressBookGetPersonCount(addressBook);
@@ -65,6 +70,11 @@
 
 }
 
+/**
+ *  Monitors the speed of the code which adds a person to Contacts
+ *
+ *  @since 1.0
+ */
 - (void)testAddToContactsSpeed {
 //    // This is an example of a performance test case.
 

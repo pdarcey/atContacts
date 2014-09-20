@@ -25,7 +25,7 @@
 }
 
 /**
- *  When view appears, set up data model (if necessary) and set twitterName to become FirstResponder
+ *  When view appears, reset input fields
  *
  *  @since 1.0
  */
@@ -43,7 +43,7 @@
 #pragma mark - Actions
 
 /**
- *  Sets twitterName to @"", the hashtag to the last used hashtag, and prepares to receive input in twitterName
+ *  Sets twitterName to @"", the hashtag to the last-used hashtag, hides the errorMessage field, and prepares to receive input in twitterName
  *
  *  @since 1.0
  */
@@ -51,7 +51,6 @@
     [_twitterName setText:kBlankString];
     [_twitterName becomeFirstResponder];
     _hashtag.text = [self retrieveHashtag];
-    _searching = NO;
     _errorMessage.hidden = YES;
 }
 
@@ -65,7 +64,6 @@
 - (IBAction)findTwitterName {    
 //    self.activitySpinner.hidden = NO;
 //    [activitySpinner startAnimating];
-    _searching = YES;
     
     // Ensure that user hasn't included the initial "@" in the user name
     if (_twitterName.text.length > 0) {
@@ -82,7 +80,7 @@
             
         } else {
             
-            PDXTwitterCommunicator *twitter = [self twitter];
+            PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
             twitter.delegate = self;
             [twitter getUserInfo:name];
 
@@ -90,7 +88,6 @@
         
     } else {
         [_twitterName becomeFirstResponder];
-        _searching = NO;
     }
 }
 
@@ -110,6 +107,17 @@
     }
 }
 
+/**
+ *  Protocol method called to see if a UIControl should return
+ *
+ *  We use it to determine which action to take, then always return YES
+ *
+ *  @param textField The text field in which the Return key has been pressed
+ *
+ *  @return Always returns YES
+ *
+ *  @since 1.0
+ */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == _twitterName) {
         [self findTwitterName];
@@ -118,12 +126,6 @@
     }
     
     return YES;
-}
-
-- (void)disableReturnKey:(UITextField *)textField {
-    // Set label exactly over the textField and populate it with the same text
-    // then empty the text field; this should grey out the Return key
-    // 
 }
 
 /**
@@ -155,7 +157,7 @@
 /**
  *  Does a little "pop" and changes the textField from looking like a label to looking like an input field
  *
- *  @param textField The UITextField to "pop". Should only ever be called for the field hashtag
+ *  @param textField The UITextField to "pop". Should only ever be called for the hashtag textField
  *
  *  @since 1.0
  */
@@ -177,26 +179,6 @@
             }
         }];
     });
-}
-
-#pragma mark - Convenience methods
-
-/**
- *  Convenience method to retrieve Twitter Communicator
- *
- *  @return Twitter Communicator
- *
- *  @since 1.0
- */
-- (PDXTwitterCommunicator *)twitter {
-    if (_twitter != nil) {
-        return _twitter;
-    }
-    PDXTwitterCommunicator *twitterCommunicator = [PDXTwitterCommunicator new];
-    _twitter = twitterCommunicator;
-
-    return _twitter;
-
 }
 
 #pragma mark - Convenience methods for User Defaults
@@ -247,7 +229,7 @@
 }
 
 /**
- *  Stores the entered hashtag (without the leading #) in user defaults, so it can be used later
+ *  Stores the entered hashtag in user defaults, so it can be used later (Hashtag should always have leading #)
  *
  *  @param hashtag Text from the hashtag field
  *
@@ -264,7 +246,7 @@
 /**
  *  Retrieves the last used hashtag from user defaults
  *
- *  @return The last used hashtag (without the leading #), or @""
+ *  @return The last used hashtag (with the leading #), or @""
  *
  *  @since 1.0
  */
@@ -273,6 +255,7 @@
     NSString *hashtag = [defaults valueForKey:kUserDefaultLastUsedHashtag];
 
     if (hashtag) {
+        
         return hashtag;
     }
     hashtag = kBlankString;
@@ -280,7 +263,7 @@
     return hashtag;
 }
 
-#pragma mark - Protocol methods
+#pragma mark - Protocol methods for PDXTwitterCommunicatorDelegate
 
 /**
  *  Protocol method optional for PDXTwitterCommunicatorDelegate
@@ -305,9 +288,6 @@
     NSString *message = NSLocalizedString(@"Presenting results", "Presenting results");
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
     
-    // Animation
-
-    
     // Display view
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:resultsViewController animated:YES completion:nil];
@@ -321,10 +301,10 @@
  *
  *  1. Use Twitter account - continues to retrieve information from Twitter
  *
- *  2. I don't have a Twitter account - presents a dialog saying we need a Twitter account to
+ *  2. I don't have a Twitter account - presents an errorMessage saying we need a Twitter account to
  *     use this app
  *
- *  3. Do NOT use my Twitter account - presents a dialog saying we need a Twitter account to
+ *  3. Do NOT use my Twitter account - presents an errorMessage saying we need a Twitter account to
  *     use this app
  *
  *  @since 1.0
@@ -338,11 +318,22 @@
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
 
     preApprovalViewController.parent = self;
+    
+    // Display view
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:preApprovalViewController animated:YES completion:nil];
     });
 }
 
+/**
+ *  Required protocol method for PDXTwitterCommunicatorDelegate
+ *
+ *  Animates a message passed to it to fade in/fade out
+ *
+ *  @param message Text to display
+ *
+ *  @since 1.0
+ */
 - (void)displayErrorMessage:(NSString *)message {
     // Accessibility announcement
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);

@@ -8,8 +8,18 @@
 
 #import "PDXOutlineLabel.h"
 
+// Subclass of PDXLabel which displays the label's text with a 1px outline in a color set by the label's
+// newly-added property, outlineText.
+
 @implementation PDXOutlineLabel
 
+/**
+ *  Overrides default drawTextInRect to draw text in its textColor with a 1px outline in outlineColor
+ *
+ *  @param rect The rect in which to draw the text. This is set by the UILable
+ *
+ *  @since 1.0
+ */
 - (void)drawTextInRect:(CGRect)rect {
     
     CGSize shadowOffset = self.shadowOffset;
