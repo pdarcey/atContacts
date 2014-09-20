@@ -243,7 +243,7 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
 /**
  *  Tests that, if accountStore exists, that one is returned
  *
- *  @since <#version number#>
+ *  @since 1.0
  */
 - (void)testAccountStoreExists {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];

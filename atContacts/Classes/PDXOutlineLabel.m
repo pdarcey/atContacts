@@ -5,11 +5,10 @@
 //  Created by Paul Darcey on 19/09/2014.
 //  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
-
-#import "PDXOutlineLabel.h"
-
 // Subclass of PDXLabel which displays the label's text with a 1px outline in a color set by the label's
 // newly-added property, outlineText.
+
+#import "PDXOutlineLabel.h"
 
 @implementation PDXOutlineLabel
 
