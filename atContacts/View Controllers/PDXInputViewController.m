@@ -134,19 +134,20 @@
  *  @since 1.0
  */
 - (IBAction)endHashtagEditing {
-    [UIView animateWithDuration:0.1f animations:^{
-        _hashtag.borderStyle = UITextBorderStyleNone;
-        _hashtag.backgroundColor = [UIColor clearColor];
-    }];
     if (_hashtag.text.length > 0) {
-        [self saveHashtag:_hashtag.text];
         NSString *firstCharacter = [_hashtag.text substringToIndex:1];
         if (![firstCharacter isEqualToString:kHashSign]) {
             _hashtag.text = [kHashSign stringByAppendingString:_hashtag.text];
         }
+        [self saveHashtag:_hashtag.text];
     }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.1f animations:^{
+            _hashtag.borderStyle = UITextBorderStyleNone;
+            _hashtag.backgroundColor = [UIColor clearColor];
+        }];
+    });
     [_twitterName becomeFirstResponder];
-    
 }
 
 /**
@@ -157,40 +158,23 @@
  *  @since 1.0
  */
 - (void)popAnimation:(UITextField *)textField {
-    textField.borderStyle = _twitterName.borderStyle;
-    textField.backgroundColor = _twitterName.backgroundColor;
-    
-    CGFloat percent = 0.2; // Try 20%
-    [UIView animateWithDuration:0.1f animations:^{
-        CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0f + percent, 1.0f + percent);
-        textField.transform = embiggen;
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [UIView animateWithDuration:0.1f animations:^{
-                CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0f + percent) , 1.0f / (1.0f + percent) );
-                textField.transform = shrink;
-            }];
-        }
-    }
-     ];
-}
-
-/**
- *  Removes the leading "#" from a string
- *
- *  @param hashtag String which may/may not have a leading "#"
- *
- *  @return Input string without the leading "#" (if applicable)
- *
- *  @since 1.0
- */
-- (NSString *)removeHash:(NSString *)hashtag {
-    NSString *firstCharacter = [hashtag substringToIndex:1];
-    if ([firstCharacter isEqualToString:kHashSign]) {
-        hashtag = [hashtag stringByReplacingOccurrencesOfString:kHashSign withString:kBlankString];
-    }
-    
-    return hashtag;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        textField.borderStyle = _twitterName.borderStyle;
+        textField.backgroundColor = _twitterName.backgroundColor;
+        
+        CGFloat percent = 0.2; // Try 20%
+        [UIView animateWithDuration:0.1f animations:^{
+            CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0f + percent, 1.0f + percent);
+            textField.transform = embiggen;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [UIView animateWithDuration:0.1f animations:^{
+                    CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0f + percent) , 1.0f / (1.0f + percent) );
+                    textField.transform = shrink;
+                }];
+            }
+        }];
+    });
 }
 
 #pragma mark - Convenience methods
@@ -266,9 +250,11 @@
  *  @since 1.0
  */
 - (void)saveHashtag:(NSString *)hashtag {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:[self removeHash:hashtag] forKey:kUserDefaultLastUsedHashtag];
-    [defaults synchronize];
+    if (![hashtag isEqualToString:kBlankString]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:hashtag forKey:kUserDefaultLastUsedHashtag];
+        [defaults synchronize];
+    }
 }
 
 /**
@@ -284,7 +270,7 @@
     if (hashtag) {
         return hashtag;
     }
-    hashtag = @"";
+    hashtag = kBlankString;
     
     return hashtag;
 }
