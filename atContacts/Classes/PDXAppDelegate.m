@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "PDXAppDelegate.h"
 
-@interface AppDelegate ()
+@interface PDXAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation PDXAppDelegate
             
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

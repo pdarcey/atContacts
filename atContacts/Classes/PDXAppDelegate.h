@@ -9,7 +9,7 @@
 @import UIKit;
 #import "PDXTwitterCommunicator.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface PDXAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSArray *dataArray;
