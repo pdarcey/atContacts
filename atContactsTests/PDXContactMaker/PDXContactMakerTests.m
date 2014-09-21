@@ -58,7 +58,7 @@
                                   kPersonTwitterName        : @"@abcdefg",
                                   kPersonEmailAddress       : @"email@test.com",
                                   kPersonPhoneNumber        : @"+38512345678",
-                                  kPersonWwwAddress         : @"www.test.com",
+                                  kPersonWebAddress         : @"www.test.com",
                                   kPersonTwitterDescription : @"Test description"
                                   };
     
@@ -84,7 +84,7 @@
                                   kPersonTwitterName        : @"@abcdefg",
                                   kPersonEmailAddress       : @"email@test.com",
                                   kPersonPhoneNumber        : @"+38512345678",
-                                  kPersonWwwAddress         : @"www.test.com",
+                                  kPersonWebAddress         : @"www.test.com",
                                   kPersonTwitterDescription : @"Test description"
                                   };
 

@@ -147,7 +147,7 @@
     NSString *twitterName = [personData valueForKey:kPersonTwitterName];
     NSString *emailAddress = [personData valueForKey:kPersonEmailAddress];
     NSString *phoneNumber = [personData valueForKey:kPersonPhoneNumber];
-    NSString *wwwAddress = [personData valueForKey:kPersonWwwAddress];
+    NSString *wwwAddress = [personData valueForKey:kPersonWebAddress];
     NSString *twitterDescription = [personData valueForKey:kPersonTwitterDescription];
     NSData *photoData = [personData valueForKey:kPersonPhotoData];
     

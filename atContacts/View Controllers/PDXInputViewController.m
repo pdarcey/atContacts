@@ -193,7 +193,7 @@
  */
 - (BOOL)dialogHasBeenPresented {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL dialogHasBeenPresented = [defaults boolForKey:kUserDefaultDialogHasBeenPresented];
+    BOOL dialogHasBeenPresented = [defaults boolForKey:kUserDefaultTwitterPreApprovalDialogHasBeenPresented];
     
     return dialogHasBeenPresented;
 }
@@ -208,7 +208,7 @@
  */
 - (BOOL)userDeniedPermission {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL userDeniedPermission = [defaults boolForKey:kUserDefaultUserDeniedPermission];
+    BOOL userDeniedPermission = [defaults boolForKey:kUserDefaultUserDeniedPermissionToTwitter];
     
     return userDeniedPermission;
 }
@@ -223,7 +223,7 @@
  */
 - (BOOL)userHasNoAccount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL userHasNoAccount = [defaults boolForKey:kUserDefaultUserHasNoAccount];
+    BOOL userHasNoAccount = [defaults boolForKey:kUserDefaultUserHasNoTwitterAccount];
     
     return userHasNoAccount;
 }

@@ -68,11 +68,11 @@ static NSString * const kTestDataFriendshipsLookupNotFollowing = @"testFriendshi
     NSDictionary *expectedResults = @{ kPersonFirstName         : @"Twitter",
                                        kPersonLastName          : @"API",
                                        kPersonTwitterName       : @"@twitterapi",
-                                       kPersonIdString          : @"6253282",
+                                       kPersonIDString          : @"6253282",
                                        kPersonFollowing         : [NSNumber numberWithBool:YES],
                                        kPersonEmailAddress      : @"",
                                        kPersonPhoneNumber       : @"",
-                                       kPersonWwwAddress        : @"http://dev.twitter.com",
+                                       kPersonWebAddress        : @"http://dev.twitter.com",
                                        kPersonTwitterDescription : @"The Real Twitter API. I tweet about API changes, service issues and happily answer questions about Twitter and our API. Don't get an answer? It's on my website.",
                                        kPersonPhotoURL          : @"http://a0.twimg.com/profile_images/2284174872/7df3h38zabcvjylnyfe3_normal.png",
                                        };

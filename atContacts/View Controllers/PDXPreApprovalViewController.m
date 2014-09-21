@@ -38,9 +38,9 @@
  */
 - (IBAction)permissionGranted:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:kUserDefaultDialogHasBeenPresented];
-    [defaults setBool:NO forKey:kUserDefaultUserDeniedPermission];
-    [defaults setBool:NO forKey:kUserDefaultUserHasNoAccount];
+    [defaults setBool:YES forKey:kUserDefaultTwitterPreApprovalDialogHasBeenPresented];
+    [defaults setBool:NO forKey:kUserDefaultUserDeniedPermissionToTwitter];
+    [defaults setBool:NO forKey:kUserDefaultUserHasNoTwitterAccount];
     [self dismissViewController];
 }
 
@@ -54,9 +54,9 @@
  */
 - (IBAction)permissionDenied:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:kUserDefaultDialogHasBeenPresented];
-    [defaults setBool:YES forKey:kUserDefaultUserDeniedPermission];
-    [defaults setBool:NO forKey:kUserDefaultUserHasNoAccount];
+    [defaults setBool:YES forKey:kUserDefaultTwitterPreApprovalDialogHasBeenPresented];
+    [defaults setBool:YES forKey:kUserDefaultUserDeniedPermissionToTwitter];
+    [defaults setBool:NO forKey:kUserDefaultUserHasNoTwitterAccount];
     [self dismissViewController];
 }
 
@@ -70,9 +70,9 @@
  */
 - (IBAction)noTwitterAccount:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:kUserDefaultDialogHasBeenPresented];
-    [defaults setBool:NO forKey:kUserDefaultUserDeniedPermission];
-    [defaults setBool:YES forKey:kUserDefaultUserHasNoAccount];
+    [defaults setBool:YES forKey:kUserDefaultTwitterPreApprovalDialogHasBeenPresented];
+    [defaults setBool:NO forKey:kUserDefaultUserDeniedPermissionToTwitter];
+    [defaults setBool:YES forKey:kUserDefaultUserHasNoTwitterAccount];
     [self dismissViewController];
 }
 

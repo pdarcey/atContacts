@@ -358,10 +358,10 @@ id removeNull(id rootObject) {
     NSDictionary *results = @{ kPersonFirstName             : firstName,
                                kPersonLastName              : lastName,
                                kPersonTwitterName           : twitterName,
-                               kPersonIdString              : idString,
+                               kPersonIDString              : idString,
                                kPersonEmailAddress          : @"",
                                kPersonPhoneNumber           : @"",
-                               kPersonWwwAddress            : personalURL,
+                               kPersonWebAddress            : personalURL,
                                kPersonTwitterDescription    : description,
                                kPersonPhotoURL              : photoURLString,
                                kPersonFollowing             : followingNumber
@@ -901,7 +901,7 @@ id removeNull(id rootObject) {
  */
 - (BOOL)dialogHasBeenPresented {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL dialogHasBeenPresented = [defaults boolForKey:kUserDefaultDialogHasBeenPresented];
+    BOOL dialogHasBeenPresented = [defaults boolForKey:kUserDefaultTwitterPreApprovalDialogHasBeenPresented];
     
     return dialogHasBeenPresented;
 }
@@ -917,7 +917,7 @@ id removeNull(id rootObject) {
  */
 - (BOOL)userDeniedPermission {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL userDeniedPermission = [defaults boolForKey:kUserDefaultUserDeniedPermission];
+    BOOL userDeniedPermission = [defaults boolForKey:kUserDefaultUserDeniedPermissionToTwitter];
     
     return userDeniedPermission;
 }
@@ -933,7 +933,7 @@ id removeNull(id rootObject) {
  */
 - (BOOL)userHasNoAccount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL userHasNoAccount = [defaults boolForKey:kUserDefaultUserHasNoAccount];
+    BOOL userHasNoAccount = [defaults boolForKey:kUserDefaultUserHasNoTwitterAccount];
     
     return userHasNoAccount;
 }
@@ -945,7 +945,7 @@ id removeNull(id rootObject) {
 - (NSString *)identifier {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *identifier = [defaults valueForKey:kUserDefaultDefaultAccount];
+    NSString *identifier = [defaults valueForKey:kUserDefaultTwitterAccount];
     
     return identifier;
 }
@@ -957,7 +957,7 @@ id removeNull(id rootObject) {
 - (void)setDefaultTwitterAccount:(NSString *)identifier {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:identifier forKey:kUserDefaultDefaultAccount];
+    [defaults setValue:identifier forKey:kUserDefaultTwitterAccount];
     
 }
 

@@ -49,8 +49,8 @@
     _twitterHandle.text = [data valueForKey:kPersonTwitterName];
     _email.text = [data valueForKey:kPersonEmailAddress];
     _phone.text = [data valueForKey:kPersonPhoneNumber];
-    _webAddress.text = [data valueForKey:kPersonWwwAddress];
-    _idString = [data valueForKey:kPersonIdString];
+    _webAddress.text = [data valueForKey:kPersonWebAddress];
+    _idString = [data valueForKey:kPersonIDString];
 
     // Set user photo
     NSString *photoURL = [data valueForKey:kPersonPhotoURL];
@@ -261,7 +261,7 @@
                                   kPersonTwitterName  : _twitterHandle.text,
                                   kPersonEmailAddress : _email.text,
                                   kPersonPhoneNumber : _phone.text,
-                                  kPersonWwwAddress   : _webAddress.text,
+                                  kPersonWebAddress   : _webAddress.text,
                                   kPersonTwitterDescription : _twitterDescription.text,
                                   kPersonPhotoData    : UIImageJPEGRepresentation(_photo.image, 1.0f)
                                   };

@@ -10,11 +10,13 @@
 static NSString * const kBlankString = @"";
 
 // User defaults
-static NSString * const kUserDefaultDialogHasBeenPresented = @"dialogHasBeenPresented";
-static NSString * const kUserDefaultUserDeniedPermission = @"userDeniedPermission";
-static NSString * const kUserDefaultUserHasNoAccount = @"userHasNoAccount";
+static NSString * const kUserDefaultTwitterPreApprovalDialogHasBeenPresented = @"twitterPreApprovalDialogHasBeenPresented";
+static NSString * const kUserDefaultUserDeniedPermissionToTwitter = @"userDeniedPermissionToTwitter";
+static NSString * const kUserDefaultUserHasNoTwitterAccount = @"userHasNoAccount";
 static NSString * const kUserDefaultLastUsedHashtag = @"lastUsedHashtag";
-static NSString * const kUserDefaultDefaultAccount = @"defaultDefaultAccount";
+static NSString * const kUserDefaultTwitterAccount = @"defaultDefaultAccount";
+static NSString * const kUserDefaultContactsPreApprovalDialogHasBeenPresented = @"contactsPreApprovalDialogHasBeenPresented";
+static NSString * const kUserDefaultUserDeniedPermissionToContacts = @"userDeniedPermissionToContacts";
 
 // Dictionary of person details
 static NSString * const kPersonFirstName = @"firstName";
@@ -22,12 +24,12 @@ static NSString * const kPersonLastName = @"lastName";
 static NSString * const kPersonTwitterName = @"twitterName";
 static NSString * const kPersonEmailAddress = @"emailAddress";
 static NSString * const kPersonPhoneNumber = @"phoneNumber";
-static NSString * const kPersonWwwAddress = @"wwwAddress";
+static NSString * const kPersonWebAddress = @"webAddress";
 static NSString * const kPersonTwitterDescription = @"twitterDescription";
 static NSString * const kPersonPhotoURL = @"photoURL";
 static NSString * const kPersonPhotoData = @"photoData";
 static NSString * const kPersonFollowing = @"following";
-static NSString * const kPersonIdString = @"idString";
+static NSString * const kPersonIDString = @"idString";
 
 @interface PDXConstants : NSObject
 
