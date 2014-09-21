@@ -7,6 +7,7 @@
 //
 
 #import "PDXAppDelegate.h"
+@import HockeySDK;
 
 @interface PDXAppDelegate ()
 
@@ -16,7 +17,11 @@
             
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // Initialise Hockey App
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"APP_IDENTIFIER"];
+    [[BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+    
     return YES;
 }
 
