@@ -3,7 +3,7 @@
 //  atContactsTests
 //
 //  Created by Paul Darcey on 27/08/2014.
-//  Copyright (c) 2014 Paul Darcey. All rights reserved.
+//  © 2014 Paul Darcey. All rights reserved.
 //
 
 @import UIKit;

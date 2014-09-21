@@ -3,7 +3,7 @@
 //  @Contacts
 //
 //  Created by Paul Darcey on 19/09/2014.
-//  Copyright © 2014 Paul Darcey. All rights reserved.
+//  © 2014 Paul Darcey. All rights reserved.
 //
 
 // Standard

@@ -3,7 +3,7 @@
 //  atContacts
 //
 //  Created by Paul Darcey on 1/09/2014.
-//  Copyright (c) 2014 Paul Darcey. All rights reserved.
+//  © 2014 Paul Darcey. All rights reserved.
 //
 
 #import "PDXResultsViewController.h"
@@ -173,7 +173,7 @@
  *  @since 1.0
  */
 - (void)displayUserImage:(UIImage *)image {
-    CGFloat duration = 0.8f;
+    CGFloat duration = 1.2f;
 
     dispatch_async(dispatch_get_main_queue(), ^{
     [UIView animateWithDuration:duration

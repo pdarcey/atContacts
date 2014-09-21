@@ -3,7 +3,7 @@
 //  atContacts
 //
 //  Created by Paul Darcey on 1/09/2014.
-//  Copyright (c) 2014 Paul Darcey. All rights reserved.
+//  © 2014 Paul Darcey. All rights reserved.
 //
 
 @import UIKit;

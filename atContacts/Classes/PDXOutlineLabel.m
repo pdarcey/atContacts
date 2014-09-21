@@ -3,7 +3,7 @@
 //  atContacts
 //
 //  Created by Paul Darcey on 19/09/2014.
-//  Copyright (c) 2014 Paul Darcey. All rights reserved.
+//  © 2014 Paul Darcey. All rights reserved.
 //
 // Subclass of PDXLabel which displays the label's text with a 1px outline in a color set by the label's
 // newly-added property, outlineText.
