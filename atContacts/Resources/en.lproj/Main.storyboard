@@ -599,7 +599,7 @@
         <!--PreTwitterAccessRequest-->
         <scene sceneID="3Cz-bB-su6">
             <objects>
-                <viewController storyboardIdentifier="ContactsPreApproval" title="PreTwitterAccessRequest" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="ybA-v0-mSp" customClass="PDXTwitterPreApprovalViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactsPreApproval" title="PreTwitterAccessRequest" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ybA-v0-mSp" customClass="PDXContactsPreApprovalViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dg0-uR-Ffv"/>
                         <viewControllerLayoutGuide type="bottom" id="zOZ-JU-wDv"/>
