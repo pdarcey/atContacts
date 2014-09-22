@@ -24,14 +24,6 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>DefaultValue</key>
-			<string>© 2014 Paul Darcey  All rights reserved</string>
-			<key>Key</key>
-			<string>copyright</string>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Legal</string>
@@ -51,6 +43,14 @@
 			<string>Acknowledgements</string>
 			<key>File</key>
 			<string>Acknowledgements</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>DefaultValue</key>
+			<string>© 2014 Paul Darcey  All rights reserved</string>
+			<key>Key</key>
+			<string>copyright</string>
 		</dict>
 	</array>
 </dict>
