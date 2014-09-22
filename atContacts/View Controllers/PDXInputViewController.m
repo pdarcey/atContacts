@@ -9,7 +9,7 @@
 #import "PDXInputViewController.h"
 #import "PDXTwitterCommunicator.h"
 #import "PDXResultsViewController.h"
-#import "PDXPreApprovalViewController.h"
+#import "PDXTwitterPreApprovalViewController.h"
 
 @interface PDXInputViewController ()
 
@@ -311,7 +311,7 @@
  */
 - (void)presentPreApprovalDialog {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:kStoryboardMain bundle:nil];
-    PDXPreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:kStoryboardIdentifierPreApproval];
+    PDXTwitterPreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:kStoryboardIdentifierTwitterPreApproval];
 
     // Accessibility announcement
     NSString *message = NSLocalizedString(@"Requesting your approval for access to Twitter", "Presenting pre-approval");

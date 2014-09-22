@@ -6,14 +6,14 @@
 //  © 2014 Paul Darcey. All rights reserved.
 //
 
-#import "PDXPreApprovalViewController.h"
+#import "PDXTwitterPreApprovalViewController.h"
 #import "PDXInputViewController.h"
 
-@interface PDXPreApprovalViewController ()
+@interface PDXTwitterPreApprovalViewController ()
 
 @end
 
-@implementation PDXPreApprovalViewController
+@implementation PDXTwitterPreApprovalViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

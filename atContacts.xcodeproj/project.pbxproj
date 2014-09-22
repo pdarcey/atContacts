@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9720B8E19D07CCA00F11BB0 /* PDXContactsPreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9720B8D19D07CCA00F11BB0 /* PDXContactsPreApprovalViewController.m */; };
 		C9A0EBBB19CF1C7C0067B98E /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A0EBB719CF1C7C0067B98E /* HockeySDK.framework */; };
 		C9A0EBBC19CF1C7D0067B98E /* HockeySDK.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C9A0EBB919CF1C7C0067B98E /* HockeySDK.xcconfig */; };
 		C9A0EBBD19CF1C7D0067B98E /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9A0EBBA19CF1C7C0067B98E /* HockeySDKResources.bundle */; };
@@ -33,7 +34,7 @@
 		C9A997A019CB34A7007A033E /* testUsersLookup.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979619CB34A7007A033E /* testUsersLookup.json */; };
 		C9A997A119CB34A7007A033E /* testUsersSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C9A9979719CB34A7007A033E /* testUsersSearch.json */; };
 		C9A997B719CB49E1007A033E /* PDXInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997AD19CB49E1007A033E /* PDXInputViewController.m */; };
-		C9A997B819CB49E1007A033E /* PDXPreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997AF19CB49E1007A033E /* PDXPreApprovalViewController.m */; };
+		C9A997B819CB49E1007A033E /* PDXTwitterPreApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997AF19CB49E1007A033E /* PDXTwitterPreApprovalViewController.m */; };
 		C9A997B919CB49E1007A033E /* PDXResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B119CB49E1007A033E /* PDXResultsViewController.m */; };
 		C9A997BA19CB49E1007A033E /* PDXContactMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B419CB49E1007A033E /* PDXContactMaker.m */; };
 		C9A997BB19CB49E1007A033E /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B619CB49E1007A033E /* PDXTwitterCommunicator.m */; };
@@ -55,6 +56,8 @@
 		C93E2D3719ADD51200B06809 /* atContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = atContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93E2D4D19ADD51200B06809 /* atContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = atContactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93E2D5219ADD51200B06809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9720B8C19D07CCA00F11BB0 /* PDXContactsPreApprovalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXContactsPreApprovalViewController.h; sourceTree = "<group>"; };
+		C9720B8D19D07CCA00F11BB0 /* PDXContactsPreApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXContactsPreApprovalViewController.m; sourceTree = "<group>"; };
 		C9A0EBB719CF1C7C0067B98E /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 		C9A0EBB919CF1C7C0067B98E /* HockeySDK.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = HockeySDK.xcconfig; sourceTree = "<group>"; };
 		C9A0EBBA19CF1C7C0067B98E /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
@@ -97,8 +100,8 @@
 		C9A9979719CB34A7007A033E /* testUsersSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testUsersSearch.json; sourceTree = "<group>"; };
 		C9A997AC19CB49E1007A033E /* PDXInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXInputViewController.h; sourceTree = "<group>"; };
 		C9A997AD19CB49E1007A033E /* PDXInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXInputViewController.m; sourceTree = "<group>"; };
-		C9A997AE19CB49E1007A033E /* PDXPreApprovalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXPreApprovalViewController.h; sourceTree = "<group>"; };
-		C9A997AF19CB49E1007A033E /* PDXPreApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXPreApprovalViewController.m; sourceTree = "<group>"; };
+		C9A997AE19CB49E1007A033E /* PDXTwitterPreApprovalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXTwitterPreApprovalViewController.h; sourceTree = "<group>"; };
+		C9A997AF19CB49E1007A033E /* PDXTwitterPreApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXTwitterPreApprovalViewController.m; sourceTree = "<group>"; };
 		C9A997B019CB49E1007A033E /* PDXResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXResultsViewController.h; sourceTree = "<group>"; };
 		C9A997B119CB49E1007A033E /* PDXResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDXResultsViewController.m; sourceTree = "<group>"; };
 		C9A997B319CB49E1007A033E /* PDXContactMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDXContactMaker.h; sourceTree = "<group>"; };
@@ -312,8 +315,10 @@
 			children = (
 				C9A997AC19CB49E1007A033E /* PDXInputViewController.h */,
 				C9A997AD19CB49E1007A033E /* PDXInputViewController.m */,
-				C9A997AE19CB49E1007A033E /* PDXPreApprovalViewController.h */,
-				C9A997AF19CB49E1007A033E /* PDXPreApprovalViewController.m */,
+				C9A997AE19CB49E1007A033E /* PDXTwitterPreApprovalViewController.h */,
+				C9A997AF19CB49E1007A033E /* PDXTwitterPreApprovalViewController.m */,
+				C9720B8C19D07CCA00F11BB0 /* PDXContactsPreApprovalViewController.h */,
+				C9720B8D19D07CCA00F11BB0 /* PDXContactsPreApprovalViewController.m */,
 				C9A997B019CB49E1007A033E /* PDXResultsViewController.h */,
 				C9A997B119CB49E1007A033E /* PDXResultsViewController.m */,
 			);
@@ -501,9 +506,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A997CA19CC7691007A033E /* PDXOutlineLabel.m in Sources */,
-				C9A997B819CB49E1007A033E /* PDXPreApprovalViewController.m in Sources */,
+				C9A997B819CB49E1007A033E /* PDXTwitterPreApprovalViewController.m in Sources */,
 				C9A9976B19CB33EF007A033E /* PDXAppDelegate.m in Sources */,
 				C9A997B919CB49E1007A033E /* PDXResultsViewController.m in Sources */,
+				C9720B8E19D07CCA00F11BB0 /* PDXContactsPreApprovalViewController.m in Sources */,
 				C9A997B719CB49E1007A033E /* PDXInputViewController.m in Sources */,
 				C9A997BA19CB49E1007A033E /* PDXContactMaker.m in Sources */,
 				C9A997C219CB4A7D007A033E /* main.m in Sources */,
