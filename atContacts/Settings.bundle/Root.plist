@@ -15,8 +15,10 @@
 		<dict>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>1.0</string>
 			<key>Title</key>
-			<string>Version 1.0</string>
+			<string>Version</string>
 			<key>Key</key>
 			<string>version</string>
 		</dict>
@@ -32,7 +34,7 @@
 			<key>Title</key>
 			<string>End-User Licence Agreement</string>
 			<key>File</key>
-			<string>EULA.plist</string>
+			<string>EULA</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -40,7 +42,7 @@
 			<key>Title</key>
 			<string>Acknowledgements</string>
 			<key>File</key>
-			<string>Acknowledgements.plist</string>
+			<string>Acknowledgements</string>
 		</dict>
 	</array>
 </dict>

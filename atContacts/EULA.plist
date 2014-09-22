@@ -9,7 +9,7 @@
 		<dict>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
-			<key>Title</key>
+			<key>DefaultValue</key>
 			<string>LICENSED APPLICATION END USER LICENSE AGREEMENT
 
 The Products transacted through the Service are licensed, not sold, to You for use only under the terms of this license, unless a Product is accompanied by a separate license agreement, in which case the terms of that separate license agreement will govern, subject to Your prior acceptance of that separate license agreement. The licensor (“Application Provider”) reserves all rights not expressly granted to You. The Product that is subject to this license is referred to in this license as the “Licensed Application.”
@@ -58,7 +58,7 @@ i. Jurisdiction:
 
 The laws of Ireland, excluding its conflicts of law rules, govern this license and your use of the Licensed Application. Your use of the Licensed Application may also be subject to other local, state, national, or international laws.</string>
 			<key>Key</key>
-			<string></string>
+			<string>eula</string>
 		</dict>
 	</array>
 </dict>

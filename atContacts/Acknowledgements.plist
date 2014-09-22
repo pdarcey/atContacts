@@ -2,14 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Title</key>
-	<string>Acknowledgements</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
-			<key>Title</key>
+			<key>Key</key>
+			<string>acknowledgements</string>
+			<key>DefaultValue</key>
 			<string>Created by:
 Paul Darcey
 
@@ -17,10 +17,7 @@ Invaluable assistance from:
 Saul Mora
 Mike Lee
 Samuel Goodwin
-Rob Atkins
-</string>
-			<key>Key</key>
-			<string>acknowledgements</string>
+Rob Atkins</string>
 		</dict>
 	</array>
 </dict>
