@@ -39,30 +39,31 @@
  */
 - (void)addToContacts:(NSDictionary *)personData {
     
-    if (![self isPreApprovedPresented]) {
-        UIAlertController *initialDialog = [self preApprovalDialog];
-        [_delegate displayAlert:initialDialog];
-    }
-    
-    CFIndex authorisationStatus = [self getAuthorisationStatus];
-    
-    if (authorisationStatus == kABAuthorizationStatusDenied ||
-        authorisationStatus == kABAuthorizationStatusRestricted) {
+    if ([self isPreApprovedPresented]) {
+        CFIndex authorisationStatus = [self getAuthorisationStatus];
+        
+        if (authorisationStatus == kABAuthorizationStatusDenied ||
+            authorisationStatus == kABAuthorizationStatusRestricted) {
             [self displayCantAddContactAlert];
             NSLog(@"Denied");
-    } else if (authorisationStatus == kABAuthorizationStatusAuthorized){
+        } else if (authorisationStatus == kABAuthorizationStatusAuthorized){
             NSLog(@"Authorized");
-        [self makeContact:personData];
-    } else {
-        // authorisationStatus == kABAuthorizationStatusNotDetermined
-        NSLog(@"Not determined");
-        ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
-            if (!granted) {
-                [self displayCantAddContactAlert];
-                return;
-            }
             [self makeContact:personData];
-        });
+        } else {
+            // authorisationStatus == kABAuthorizationStatusNotDetermined
+            NSLog(@"Not determined");
+            ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
+                if (!granted) {
+                    [self displayCantAddContactAlert];
+                    return;
+                }
+                [self makeContact:personData];
+            });
+        }
+    } else {
+        _data = personData;
+        UIAlertController *initialDialog = [self preApprovalDialog];
+        [_delegate displayAlert:initialDialog];
     }
 }
 
@@ -83,6 +84,7 @@
     UIAlertAction *allow = [UIAlertAction actionWithTitle:@"Allow access to Contacts" style:UIAlertActionStyleDefault
                                                   handler:^(UIAlertAction *action) {
                                                       [self setUserDefault:kUserDefaultContactsPreApprovalDialogHasBeenPresented to:YES];
+                                                      [self addToContacts:_data];
                                                   }];
     
     

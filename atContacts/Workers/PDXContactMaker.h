@@ -29,6 +29,7 @@ static NSString * const kUserDefaultContactsPreApprovalDialogHasBeenPresented = 
 
 @interface PDXContactMaker : NSObject
 
+@property (strong, nonatomic) NSDictionary *data;
 @property (nonatomic, assign) id < PDXContactMakerDelegate > delegate;
 
 - (void)addToContacts:(NSDictionary *)personData;
