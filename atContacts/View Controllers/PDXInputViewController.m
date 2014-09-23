@@ -9,7 +9,6 @@
 #import "PDXInputViewController.h"
 #import "PDXTwitterCommunicator.h"
 #import "PDXResultsViewController.h"
-#import "PDXTwitterPreApprovalViewController.h"
 
 @interface PDXInputViewController ()
 
@@ -283,37 +282,6 @@
     // Display view
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:resultsViewController animated:YES completion:nil];
-    });
-}
-
-/**
- *  Presents the pre-approval scene from the Main.storyboard
- *
- *  User will select one of three options, which will determine what happens next:
- *
- *  1. Use Twitter account - continues to retrieve information from Twitter
- *
- *  2. I don't have a Twitter account - presents an errorMessage saying we need a Twitter account to
- *     use this app
- *
- *  3. Do NOT use my Twitter account - presents an errorMessage saying we need a Twitter account to
- *     use this app
- *
- *  @since 1.0
- */
-- (void)presentPreApprovalDialog {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:kStoryboardMain bundle:nil];
-    PDXTwitterPreApprovalViewController *preApprovalViewController = [mainStoryboard instantiateViewControllerWithIdentifier:kStoryboardIdentifierTwitterPreApproval];
-
-    // Accessibility announcement
-    NSString *message = NSLocalizedString(@"Requesting your approval for access to Twitter", "Presenting pre-approval");
-    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
-
-    preApprovalViewController.parent = self;
-    
-    // Display view
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self presentViewController:preApprovalViewController animated:YES completion:nil];
     });
 }
 
