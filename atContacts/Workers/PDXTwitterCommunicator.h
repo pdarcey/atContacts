@@ -20,6 +20,7 @@
 @property (weak, nonatomic) UILabel *errorMessage;
 
 - (void)displayErrorMessage:(NSString *)message;
+- (void)displayAlert:(UIAlertController *)alert;
 
 @optional
 - (void)followedOnTwitter:(BOOL)success;
@@ -52,6 +53,15 @@ static NSString * const kTwitterParameterFollow = @"follow";
 static NSString * const kTwitterParameterTrue = @"true";
 static NSString * const kTwitterParameterFalse = @"false";
 
+// User Defaults Names
+static NSString * const kUserDefaultTwitterApproved = @"userDeniedPermissionToContacts";
+static NSString * const kUserDefaultTwitterPreApprovalPresented = @"userDeniedPermissionToContacts";
+static NSString * const kUserDefaultTwitterDenied = @"userDeniedPermissionToContacts";
+static NSString * const kUserDefaultTwitterNoTwitterAccount = @"userDeniedPermissionToContacts";
+
+// Alerts
+static NSString * const kAlertTitle = @"Problem";
+
 # pragma mark - Interface
 
 @interface PDXTwitterCommunicator : NSObject
@@ -72,6 +82,19 @@ typedef NS_ENUM(NSInteger, PDXRequestType) {
     PDXRequestTypeGetFollowStatus,
     PDXRequestTypeFollow,
     PDXRequestTypeUnfollow
+};
+
+typedef NS_ENUM(NSInteger, PDXTwitterAlert) {
+    PDXTwitterAlertInitialDialog,
+    PDXTwitterAlertNoTwitterDialog,
+    PDXTwitterAlertDeniedDialog,
+    PDXTwitterAlertSetUpTwitterDialog,
+    PDXTwitterAlertAllowAccessDialog,
+    PDXTwitterAlertAuthenticationFailed,
+    PDXTwitterAlertAccountNotFound,
+    PDXTwitterAlertPermissionDenied,
+    PDXTwitterAlertDeniedByProtectionPolicy,
+    PDXTwitterAlertNonExistingAccount
 };
 
 @end

@@ -74,17 +74,9 @@
             name = [name stringByReplacingOccurrencesOfString:kAtSign withString:kBlankString];
         }
 
-        // Check if permission has previously been asked for
-        if (![self dialogHasBeenPresented]) {
-            [self presentPreApprovalDialog];
-            
-        } else {
-            
-            PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
-            twitter.delegate = self;
-            [twitter getUserInfo:name];
-
-        }
+        PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
+        twitter.delegate = self;
+        [twitter getUserInfo:name];
         
     } else {
         [_twitterName becomeFirstResponder];
@@ -359,6 +351,18 @@
                                               }
                               ];
                          }];
+    });
+    
+}
+
+- (void)displayAlert:(UIAlertController *)alert {
+    // Accessibility announcement
+    NSString *message = alert.message;
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+    
+    // Animation
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:alert animated:YES completion:nil];
     });
     
 }

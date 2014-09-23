@@ -27,10 +27,13 @@
     ACAccountStore *store = [self accountStore];
     ACAccountType *accountType = [self accountType];
 
-    if (![self userDeniedPermission] && ![self userHasNoAccount]) {
+    if ([self isApproved]) {
         // Actually access user's Twitter account to get info
         [store requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
             if (granted == YES) {
+                [self setUserDefault:kUserDefaultTwitterApproved to:YES];
+                [self setUserDefault:kUserDefaultTwitterDenied to:NO];
+                [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:NO];
                 
                 NSString *identifier = [self identifier];
                 ACAccount *account = [store accountWithIdentifier:identifier];
@@ -45,10 +48,24 @@
                         [self twitterRequest:account url:url getOrPost:getOrPost parameters:parameters requestType:requestType];
                     }
                 }
+            } else {
+                [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+                [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+                [self requestAccessToAccountsError:error];
+                
             }
         }];
     } else {
-        [_delegate displayErrorMessage:NSLocalizedString(@"This app doesn't work unless you give permission to use your Twitter account\n\nSorry", @"Use has denied permission to use Twitter account")];
+        if (![self isPreApprovedPresented]) {
+            UIAlertController *initialDialog = [self preApprovalDialog];
+            [_delegate displayAlert:initialDialog];
+        } else {
+            if ([self isNoTwitterAccount]) {
+                [self displayNoTwitterDialog];
+            } else {
+                [self displayDeniedDialog];
+            }
+        }
     }
 }
 
@@ -720,140 +737,292 @@ id removeNull(id rootObject) {
     // TODO Add methods to recover from errors
     NSLog(@"Error accessing user's Twitter account. Error: %@", error);
     NSString *message = kBlankString;
+    UIAlertController *alert;
     
     switch (error.code) {
         case ACErrorUnknown:
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorUnknown");
-            [_delegate displayErrorMessage:message];
+            [self setUserDefault:kUserDefaultTwitterApproved to:YES];
+            [self setUserDefault:kUserDefaultTwitterDenied to:NO];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:NO];
+
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, @"Unknown error accessing user's Twitter account");
-            
+
             break;
             
         case ACErrorAccountMissingRequiredProperty:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:NO];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccountMissingRequiredProperty");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, @"Most likely cause is new Twitter API");
             
             break;
             
         case ACErrorAccountAuthenticationFailed:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:NO];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:YES];
+
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you entered correct password?", @"ACErrorAccountAuthenticationFailed");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         case ACErrorAccountTypeInvalid:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:NO];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccountTypeInvalid");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, @"Most likely cause is new Twitter API");
            
             break;
             
         case ACErrorAccountAlreadyExists:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:NO];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccountAlreadyExists");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, @"This error should never be called, as we never try to create a new account");
             
             break;
             
         case ACErrorAccountNotFound:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:NO];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:YES];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account on this device?", @"ACErrorAccountNotFound");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         case ACErrorPermissionDenied:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:NO];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nYou have denied (or revoked) permission for this app to use Twitter", @"ACErrorPermissionDenied");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         case ACErrorAccessInfoInvalid:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:NO];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorAccessInfoInvalid");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         case ACErrorClientPermissionDenied:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:NO];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nYou have denied (or revoked) permission to access Twitter", @"ACErrorClientPermissionDenied");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         case ACErrorAccessDeniedByProtectionPolicy:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:NO];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nAsk your administrator to allow permission", @"ACErrorAccessDeniedByProtectionPolicy");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, @"User is not able to give permission to access their Twitter account (if they have one)");
             
             break;
             
         case ACErrorCredentialNotFound:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:YES];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?", @"ACErrorCredentialNotFound");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         case ACErrorFetchCredentialFailed:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:YES];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?", @"ACErrorFetchCredentialFailed");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         case ACErrorStoreCredentialFailed:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:YES];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device, or revoked permission for this app?", @"ACErrorStoreCredentialFailed");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         case ACErrorRemoveCredentialFailed:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:NO];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:YES];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorRemoveCredentialFailed");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, @"This error should never be called, as we never try to remove an account's credentials");
             
             break;
             
         case ACErrorUpdatingNonexistentAccount:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:YES];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account\n\nHave you deleted your Twitter account from this device?", @"ACErrorUpdatingNonexistentAccount");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         case ACErrorInvalidClientBundleID:
+            [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+            [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+            [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:NO];
+            
             message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"ACErrorInvalidClientBundleID");
-            [_delegate displayErrorMessage:message];
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
             
             NSLog(@"Error: %@ - %@", error, message);
             
             break;
             
         default:
+            message = NSLocalizedString(@"There has been a problem accessing your Twitter account", @"default Error message acccessing Twitter");
+            alert = [self basicAlert:message];
+            [_delegate displayAlert:alert];
+            
+            NSLog(@"Error: %@ - %@", error, message);
             
             break;
     }
+}
+
+# pragma mark - Alerts
+
+- (UIAlertController *)basicAlert:(NSString *)message {
+    NSString *title = NSLocalizedString(kAlertTitle, @"Default title for alerts");
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController __weak *weakAlert = alert;
+    
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                                                          }];
+    [alert addAction:defaultAction];
+
+    return alert;
+}
+
+- (UIAlertController *)preApprovalDialog {
+    NSString *title = NSLocalizedString(@"Access to Twitter", @"Title for pre-approval dialog");
+    NSString *message = NSLocalizedString(@"@Contacts requires access to your Twitter account so we can retrieve information about your new contact from Twitter", @"Pre-approval message for Twitter");
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController __weak *weakAlert = alert;
+    
+    UIAlertAction *allow = [UIAlertAction actionWithTitle:@"Allow access to Twitter" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self setUserDefault:kUserDefaultTwitterApproved to:YES];
+                                                              [self getUserInfo:_twitterName];
+                                                          }];
+
+    UIAlertAction *noTwitter = [UIAlertAction actionWithTitle:@"I don’t have a Twitter account" style:UIAlertActionStyleDefault
+                                                  handler:^(UIAlertAction *action) {
+                                                      [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                                                      [self displayNoTwitterDialog];
+                                                  }];
+
+    UIAlertAction *deny = [UIAlertAction actionWithTitle:@"Do NOT allow access to Twitter" style:UIAlertActionStyleDefault
+                                                  handler:^(UIAlertAction *action) {
+                                                      [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                                                      [self displayDeniedDialog];
+                                                  }];
+    // The order in which the buttons are added is the order in which they are displayed
+    // Last button added will be highlighted as the default
+    [alert addAction:allow];
+    [alert addAction:noTwitter];
+    [alert addAction:deny];
+
+    return alert;
+}
+
+- (void)displayNoTwitterDialog {
+    [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+    [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:YES];
+    NSString *noTwitterMessage = NSLocalizedString(@"In order to use this app, you must have a Twitter account set up in Settings", @"Title for pre-approval dialog");
+    UIAlertController *noTwitterAlert = [self basicAlert:noTwitterMessage];
+    [_delegate displayAlert:noTwitterAlert];
+}
+
+- (void)displayDeniedDialog {
+    [self setUserDefault:kUserDefaultTwitterApproved to:NO];
+    [self setUserDefault:kUserDefaultTwitterDenied to:YES];
+    NSString *deniedMessage = NSLocalizedString(@"Without access to your Twitter account, we will not be able to retrieve information about the person.", @"Title for pre-approval dialog");
+    UIAlertController *noTwitterAlert = [self basicAlert:deniedMessage];
+    [_delegate displayAlert:noTwitterAlert];
 }
 
 #pragma mark - Convenience methods for setting Account Store, etc
@@ -889,6 +1058,44 @@ id removeNull(id rootObject) {
 }
 
 #pragma mark - Convenience methods for User Defaults
+
+- (BOOL)isApproved {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL result = [defaults boolForKey:kUserDefaultTwitterApproved];
+    
+    return result;
+}
+
+- (BOOL)isPreApprovedPresented {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL result = [defaults boolForKey:kUserDefaultTwitterPreApprovalDialogHasBeenPresented];
+    
+    return result;
+}
+
+- (BOOL)isNoTwitterAccount {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL result = [defaults boolForKey:kUserDefaultTwitterNoTwitterAccount];
+    
+    return result;
+}
+
+- (BOOL)isDenied {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL result = [defaults boolForKey:kUserDefaultTwitterDenied];
+    
+    return result;
+}
+
+- (void)setUserDefault:(NSString *)key toValue:(id)value {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:value forKey:key];
+}
+
+- (void)setUserDefault:(NSString *)key to:(BOOL)value {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:value forKey:key];
+}
 
 /**
  *  Convenience method to retrieve dialogHasBeenPresented from User Defaults

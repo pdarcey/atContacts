@@ -118,4 +118,16 @@
     });
 }
 
+- (void)displayAlert:(UIAlertController *)alert {
+    // Accessibility announcement
+    NSString *message = alert.message;
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+    
+    // Animation
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+    
+}
+
 @end
