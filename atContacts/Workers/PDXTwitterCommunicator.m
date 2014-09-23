@@ -27,7 +27,7 @@
     ACAccountStore *store = [self accountStore];
     ACAccountType *accountType = [self accountType];
 
-    if ([self isApproved]) {
+    if ([self isPreApprovedPresented]) {
         // Actually access user's Twitter account to get info
         [store requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
             if (granted == YES) {
@@ -46,26 +46,22 @@
                     if ([arrayOfAccounts count] > 0) {
                         account = [arrayOfAccounts lastObject];
                         [self twitterRequest:account url:url getOrPost:getOrPost parameters:parameters requestType:requestType];
+                    } else {
+                        // No accounts are set up!
+                        [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:YES];
+                        [self displayNoTwitterDialog];
                     }
                 }
             } else {
                 [self setUserDefault:kUserDefaultTwitterApproved to:NO];
                 [self setUserDefault:kUserDefaultTwitterDenied to:YES];
-                [self requestAccessToAccountsError:error];
+                [self displayDeniedDialog];
                 
             }
         }];
     } else {
-        if (![self isPreApprovedPresented]) {
             UIAlertController *initialDialog = [self preApprovalDialog];
             [_delegate displayAlert:initialDialog];
-        } else {
-            if ([self isNoTwitterAccount]) {
-                [self displayNoTwitterDialog];
-            } else {
-                [self displayDeniedDialog];
-            }
-        }
     }
 }
 
@@ -960,10 +956,14 @@ id removeNull(id rootObject) {
 }
 
 # pragma mark - Alerts
-
-- (UIAlertController *)basicAlert:(NSString *)message {
-    NSString *title = NSLocalizedString(kAlertTitle, @"Default title for alerts");
-
+- (UIAlertController *)basicAlert:(NSString *)message title:(NSString *)title {
+    if (!title) {
+        title = NSLocalizedString(kAlertTitle, @"Default title for alerts");
+    }
+    
+    if (!message) {
+        message = NSLocalizedString(@"An unexpected error occured", "Blank message");
+    }
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertController __weak *weakAlert = alert;
     
@@ -972,6 +972,14 @@ id removeNull(id rootObject) {
                                                               [weakAlert dismissViewControllerAnimated:YES completion:nil];
                                                           }];
     [alert addAction:defaultAction];
+    
+    return alert;
+}
+
+- (UIAlertController *)basicAlert:(NSString *)message {
+    NSString *title = NSLocalizedString(kAlertTitle, @"Default title for alerts");
+
+    UIAlertController *alert = [self basicAlert:message title:title];
 
     return alert;
 }
@@ -985,6 +993,7 @@ id removeNull(id rootObject) {
     
     UIAlertAction *allow = [UIAlertAction actionWithTitle:@"Allow access to Twitter" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action) {
+                                                              [self setUserDefault:kUserDefaultTwitterPreApprovalDialogHasBeenPresented to:YES];
                                                               [self setUserDefault:kUserDefaultTwitterApproved to:YES];
                                                               [self getUserInfo:_twitterName];
                                                           }];
@@ -992,12 +1001,14 @@ id removeNull(id rootObject) {
     UIAlertAction *noTwitter = [UIAlertAction actionWithTitle:@"I don’t have a Twitter account" style:UIAlertActionStyleDefault
                                                   handler:^(UIAlertAction *action) {
                                                       [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                                                      [self setUserDefault:kUserDefaultTwitterPreApprovalDialogHasBeenPresented to:YES];
                                                       [self displayNoTwitterDialog];
                                                   }];
 
     UIAlertAction *deny = [UIAlertAction actionWithTitle:@"Do NOT allow access to Twitter" style:UIAlertActionStyleDefault
                                                   handler:^(UIAlertAction *action) {
                                                       [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                                                      [self setUserDefault:kUserDefaultTwitterPreApprovalDialogHasBeenPresented to:YES];
                                                       [self displayDeniedDialog];
                                                   }];
     // The order in which the buttons are added is the order in which they are displayed
@@ -1010,18 +1021,16 @@ id removeNull(id rootObject) {
 }
 
 - (void)displayNoTwitterDialog {
-    [self setUserDefault:kUserDefaultTwitterApproved to:NO];
-    [self setUserDefault:kUserDefaultTwitterNoTwitterAccount to:YES];
-    NSString *noTwitterMessage = NSLocalizedString(@"In order to use this app, you must have a Twitter account set up in Settings", @"Title for pre-approval dialog");
-    UIAlertController *noTwitterAlert = [self basicAlert:noTwitterMessage];
+    NSString *noTwitterMessage = [NSString stringWithFormat:NSLocalizedString(@"To retrieve information about @%@, you must have a Twitter account\n\n You can add a new or existing Twitter account in Settings", @"Title for pre-approval dialog"), _twitterName];
+    NSString *noTwitterTitle = NSLocalizedString(@"@Contacts Requires a Twitter Account", @"Title for No Twitter Account message");
+    UIAlertController *noTwitterAlert = [self basicAlert:noTwitterMessage title:noTwitterTitle];
     [_delegate displayAlert:noTwitterAlert];
 }
 
 - (void)displayDeniedDialog {
-    [self setUserDefault:kUserDefaultTwitterApproved to:NO];
-    [self setUserDefault:kUserDefaultTwitterDenied to:YES];
-    NSString *deniedMessage = NSLocalizedString(@"Without access to your Twitter account, we will not be able to retrieve information about the person.", @"Title for pre-approval dialog");
-    UIAlertController *noTwitterAlert = [self basicAlert:deniedMessage];
+    NSString *deniedMessage = [NSString stringWithFormat:NSLocalizedString(@"Without a Twitter account, we will not be able to retrieve information about @%@", @"Title for pre-approval dialog"), _twitterName];
+    NSString *deniedTitle = NSLocalizedString(@"Access to Twitter Denied", @"Title for Access to Twitter Denied message");
+    UIAlertController *noTwitterAlert = [self basicAlert:deniedMessage title:deniedTitle];
     [_delegate displayAlert:noTwitterAlert];
 }
 
@@ -1090,11 +1099,13 @@ id removeNull(id rootObject) {
 - (void)setUserDefault:(NSString *)key toValue:(id)value {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:value forKey:key];
+    [defaults synchronize];
 }
 
 - (void)setUserDefault:(NSString *)key to:(BOOL)value {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:value forKey:key];
+    [defaults synchronize];
 }
 
 /**

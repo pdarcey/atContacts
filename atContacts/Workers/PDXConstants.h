@@ -15,7 +15,6 @@ static NSString * const kUserDefaultUserDeniedPermissionToTwitter = @"userDenied
 static NSString * const kUserDefaultUserHasNoTwitterAccount = @"userHasNoAccount";
 static NSString * const kUserDefaultLastUsedHashtag = @"lastUsedHashtag";
 static NSString * const kUserDefaultTwitterAccount = @"defaultDefaultAccount";
-static NSString * const kUserDefaultContactsPreApprovalDialogHasBeenPresented = @"contactsPreApprovalDialogHasBeenPresented";
 static NSString * const kUserDefaultUserDeniedPermissionToContacts = @"userDeniedPermissionToContacts";
 
 // Dictionary of person details

@@ -54,10 +54,10 @@ static NSString * const kTwitterParameterTrue = @"true";
 static NSString * const kTwitterParameterFalse = @"false";
 
 // User Defaults Names
-static NSString * const kUserDefaultTwitterApproved = @"userDeniedPermissionToContacts";
-static NSString * const kUserDefaultTwitterPreApprovalPresented = @"userDeniedPermissionToContacts";
-static NSString * const kUserDefaultTwitterDenied = @"userDeniedPermissionToContacts";
-static NSString * const kUserDefaultTwitterNoTwitterAccount = @"userDeniedPermissionToContacts";
+static NSString * const kUserDefaultTwitterApproved = @"twitterApproved";
+static NSString * const kUserDefaultTwitterPreApprovalPresented = @"twitterPreApprovalPresented";
+static NSString * const kUserDefaultTwitterDenied = @"twitterDenied";
+static NSString * const kUserDefaultTwitterNoTwitterAccount = @"twitterNoAccount";
 
 // Alerts
 static NSString * const kAlertTitle = @"Problem";

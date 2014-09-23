@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+@import UIKit;
 @import AddressBook;
 #import "PDXConstants.h"
 
@@ -17,8 +18,12 @@
 @required
 - (void)newContactMade:(BOOL)success;
 - (void)displayErrorMessage:(NSString *)message;
+- (void)displayAlert:(UIAlertController *)alert;
 
 @end
+
+// User Defaults
+static NSString * const kUserDefaultContactsPreApprovalDialogHasBeenPresented = @"contactsPreApprovalDialogHasBeenPresented";
 
 #pragma make - Interface
 

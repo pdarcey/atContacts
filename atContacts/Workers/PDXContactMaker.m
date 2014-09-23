@@ -39,6 +39,11 @@
  */
 - (void)addToContacts:(NSDictionary *)personData {
     
+    if (![self isPreApprovedPresented]) {
+        UIAlertController *initialDialog = [self preApprovalDialog];
+        [_delegate displayAlert:initialDialog];
+    }
+    
     CFIndex authorisationStatus = [self getAuthorisationStatus];
     
     if (authorisationStatus == kABAuthorizationStatusDenied ||
@@ -59,6 +64,45 @@
             [self makeContact:personData];
         });
     }
+}
+
+- (BOOL)isPreApprovedPresented {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL result = [defaults boolForKey:kUserDefaultContactsPreApprovalDialogHasBeenPresented];
+    
+    return result;
+}
+
+- (UIAlertController *)preApprovalDialog {
+    NSString *title = NSLocalizedString(@"Access to Contacts", @"Title for contacts pre-approval dialog");
+    NSString *message = NSLocalizedString(@"@Contacts requires access to your Contacts so we can save information about your new contact from Twitter", @"Pre-approval message for Contacts");
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController __weak *weakAlert = alert;
+    
+    UIAlertAction *allow = [UIAlertAction actionWithTitle:@"Allow access to Contacts" style:UIAlertActionStyleDefault
+                                                  handler:^(UIAlertAction *action) {
+                                                      [self setUserDefault:kUserDefaultContactsPreApprovalDialogHasBeenPresented to:YES];
+                                                  }];
+    
+    
+    UIAlertAction *deny = [UIAlertAction actionWithTitle:@"Do NOT allow access to Contacts" style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction *action) {
+                                                     [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                                                     [self setUserDefault:kUserDefaultContactsPreApprovalDialogHasBeenPresented to:YES];
+                                                 }];
+    // The order in which the buttons are added is the order in which they are displayed
+    // Last button added will be highlighted as the default
+    [alert addAction:allow];
+    [alert addAction:deny];
+    
+    return alert;
+}
+
+- (void)setUserDefault:(NSString *)key to:(BOOL)value {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:value forKey:key];
+    [defaults synchronize];
 }
 
 /**
