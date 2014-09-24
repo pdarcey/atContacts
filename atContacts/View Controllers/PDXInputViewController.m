@@ -30,7 +30,11 @@
  */
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(preferredContentSizeChanged:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+
     [self reset];
 }
 
@@ -158,13 +162,13 @@
         textField.backgroundColor = _twitterName.backgroundColor;
         
         CGFloat percent = 0.2; // Try 20%
-        [UIView animateWithDuration:0.1f animations:^{
-            CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0f + percent, 1.0f + percent);
+        [UIView animateWithDuration:0.1 animations:^{
+            CGAffineTransform embiggen = CGAffineTransformMakeScale(1 + percent, 1 + percent);
             textField.transform = embiggen;
         } completion:^(BOOL finished) {
             if (finished) {
-                [UIView animateWithDuration:0.1f animations:^{
-                    CGAffineTransform shrink   = CGAffineTransformMakeScale(1.0f / (1.0f + percent) , 1.0f / (1.0f + percent) );
+                [UIView animateWithDuration:0.1 animations:^{
+                    CGAffineTransform shrink   = CGAffineTransformMakeScale(1, 1);
                     textField.transform = shrink;
                 }];
             }
@@ -333,6 +337,16 @@
         [self presentViewController:alert animated:YES completion:nil];
     });
     
+}
+
+# pragma mark - Notification Center Notifications
+
+- (void)preferredContentSizeChanged:(NSNotification *)notification {
+    _atSymbol.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _twitterName.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _hashtag.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _errorMessage.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [self.view setNeedsLayout];
 }
 
 @end

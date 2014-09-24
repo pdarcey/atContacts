@@ -44,8 +44,17 @@
         
         if (authorisationStatus == kABAuthorizationStatusDenied ||
             authorisationStatus == kABAuthorizationStatusRestricted) {
-            [self displayCantAddContactAlert];
-            NSLog(@"Denied");
+            NSString *name = [NSString stringWithFormat:@"%@ %@", [personData valueForKey:kPersonFirstName], [personData valueForKey:kPersonLastName]];
+            name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            NSString *message;
+
+            if (authorisationStatus == kABAuthorizationStatusDenied) {
+                message = [NSString stringWithFormat:NSLocalizedString(@"Cannot add %@ to contacts as you have denied access to @Contacts. This can be changed in Settings", @"User has denied access to Contacts"), name];
+            } else {
+                message = [NSString stringWithFormat:NSLocalizedString(@"Cannot add %@ to contacts as @Contacts does not have permission. See your administrator", @"Administrator has restricted access to Contacts"), name];
+            }
+            UIAlertController *initialDialog = [self errorDialog:message title:nil];
+            [_delegate displayAlert:initialDialog];
         } else if (authorisationStatus == kABAuthorizationStatusAuthorized){
             NSLog(@"Authorized");
             [self makeContact:personData];
@@ -54,7 +63,10 @@
             NSLog(@"Not determined");
             ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
                 if (!granted) {
-                    [self displayCantAddContactAlert];
+                    NSString *message = [NSString stringWithFormat:@"Error accessing Contacts: %ld - %@", CFErrorGetCode(error), CFErrorCopyDescription(error)];
+                    NSLog(@"%@", message);
+                    UIAlertController *initialDialog = [self errorDialog:message title:nil];
+                    [_delegate displayAlert:initialDialog];
                     return;
                 }
                 [self makeContact:personData];
@@ -83,6 +95,7 @@
     
     UIAlertAction *allow = [UIAlertAction actionWithTitle:@"Allow access to Contacts" style:UIAlertActionStyleDefault
                                                   handler:^(UIAlertAction *action) {
+                                                      [weakAlert dismissViewControllerAnimated:YES completion:nil];
                                                       [self setUserDefault:kUserDefaultContactsPreApprovalDialogHasBeenPresented to:YES];
                                                       [self addToContacts:_data];
                                                   }];
@@ -97,6 +110,28 @@
     // Last button added will be highlighted as the default
     [alert addAction:allow];
     [alert addAction:deny];
+    
+    return alert;
+}
+
+- (UIAlertController *)errorDialog:(NSString *)message title:(NSString *)title {
+    if (!title) {
+        title = NSLocalizedString(@"Problem Accessing Contacts", @"Default title for contacts error dialog");
+    }
+
+    if (!message) {
+        message = NSLocalizedString(@"There was an unexpected problem accessing contacts", @"Default message for contacts error dialog");
+    }
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController __weak *weakAlert = alert;
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction *action) {
+                                                     [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                                                 }];
+    
+    [alert addAction:ok];
     
     return alert;
 }
@@ -129,6 +164,15 @@
  */
 - (void)displayCantAddContactAlert {
     [_delegate displayErrorMessage:NSLocalizedString(@"Can't add contact", @"Can't add a contact error alert")];
+}
+
+/**
+ *  Display a message to user that we can't add this person
+ *
+ *  @since 1.0
+ */
+- (void)displayCantAddContactAlert:(NSString *)message {
+    [_delegate displayErrorMessage:NSLocalizedString(message, @"")];
 }
 
 /**

@@ -23,6 +23,10 @@
  */
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(preferredContentSizeChanged:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
     [self initialiseData:_data];
 }
 
@@ -594,6 +598,18 @@
             }
         }];
     });
+}
+
+# pragma mark - Notification Center Notifications
+
+- (void)preferredContentSizeChanged:(NSNotification *)notification {
+    _twitterHandle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _email.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _phone.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _webAddress.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _twitterDescription.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _errorMessage.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [self.view setNeedsLayout];
 }
 
 @end
