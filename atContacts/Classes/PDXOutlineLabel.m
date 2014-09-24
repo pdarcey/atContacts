@@ -29,7 +29,8 @@
     CGContextSetLineJoin(context, kCGLineJoinRound);
     
     CGContextSetTextDrawingMode(context, kCGTextStroke);
-    self.textColor = self.outlineColor;
+    self.textColor = [UIColor orangeColor];
+    // self.textColor = self.outlineColor;
     [super drawTextInRect:rect];
     
     CGContextSetTextDrawingMode(context, kCGTextFillStroke);

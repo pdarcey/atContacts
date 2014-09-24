@@ -177,12 +177,12 @@
  *  @since 1.0
  */
 - (void)displayUserImage:(UIImage *)image {
-    CGFloat duration = 1.2f;
+    CGFloat duration = 1.2;
 
     dispatch_async(dispatch_get_main_queue(), ^{
     [UIView animateWithDuration:duration
                           delay:0.0
-                        options:UIViewAnimationOptionTransitionCrossDissolve
+                        options:UIViewAnimationOptionCurveEaseIn
                      animations:^{_photo.image = image;}
                      completion:nil
      ];

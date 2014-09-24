@@ -158,8 +158,20 @@
    
     [[session dataTaskWithURL:[NSURL URLWithString:photoURL]
             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                // TODO: Check NSURLResponse to ensure we received a valid response
-                [_delegate displayUserImage:[UIImage imageWithData:data]];
+
+                if (response) {
+
+                    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                        NSInteger statusCode = httpResponse.statusCode;
+
+                        if (statusCode == 200) {
+                            [_delegate displayUserImage:[UIImage imageWithData:data]];
+                        } else {
+                            NSLog(@"Error getting image. Details = %ld: %@", (long)httpResponse.statusCode, httpResponse.description);
+                        }
+                    }
+                }
                 
             }] resume];
 }
