@@ -111,7 +111,7 @@
     }
 }
 
-#pragma mark - Convenience methods
+#pragma mark - Worker methods
 
 /**
  *  Works out which of the UITextFields is being edited
@@ -131,6 +131,27 @@
     }
 
     return nil;
+}
+
+/**
+ *  Returns a dictionary suitable to send to PDXContactMaker
+ *
+ *  @return A dictionary suitable to send to PDXContactMaker
+ *
+ *  @since 1.0
+ */
+- (NSDictionary *)personData {
+    NSDictionary *personData = @{ kPersonFirstName    : _firstName.text,
+                                  kPersonLastName     : _lastName.text,
+                                  kPersonTwitterName  : _twitterHandle.text,
+                                  kPersonEmailAddress : _email.text,
+                                  kPersonPhoneNumber : _phone.text,
+                                  kPersonWebAddress   : _webAddress.text,
+                                  kPersonTwitterDescription : _twitterDescription.text,
+                                  kPersonPhotoData    : UIImageJPEGRepresentation(_photo.image, 1.0f)
+                                  };
+    
+    return personData;
 }
 
 #pragma mark - Protocol methods for PDXTwitterCommunicatorDelegate
@@ -154,22 +175,6 @@
 }
 
 /**
- *  Sets the Contacts button upon creaton of person, displays the highlighted button and disables button
- *
- *  @param success YES is the person was successfully created, NO if not
- *
- *  @since 1.0
- */
-- (void)newContactMade:(BOOL)success {
-    if (success) {
-        NSString *message = NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button");
-        [self setButtonHighlighted:YES button:_contactsButton message:message];
-        [self displayErrorMessage:message];
-        [self setBothButtonEnabled];
-    }
-}
-
-/**
  *  Animates the display of the person's image when it is received (which will be immediately after the other details are displayed)
  *
  *  @param image Image returned by Twitter of the person's profile picture
@@ -188,6 +193,26 @@
      ];
     });
 }
+
+#pragma mark - Protocol methods for PDXContactMakerDelegate
+
+/**
+ *  Sets the Contacts button upon creaton of person, displays the highlighted button and disables button
+ *
+ *  @param success YES is the person was successfully created, NO if not
+ *
+ *  @since 1.0
+ */
+- (void)newContactMade:(BOOL)success {
+    if (success) {
+        NSString *message = NSLocalizedString(@"Added to Contacts", @"Display result of hitting Contacts button");
+        [self setButtonHighlighted:YES button:_contactsButton message:message];
+        [self displayErrorMessage:message];
+        [self setBothButtonEnabled];
+    }
+}
+
+#pragma mark - Protocol methods for both PDXTwitterCommunicatorDelegate and PDXContactMakerDelegate
 
 /**
  *  Display a message to the user. Animates a fade in/fade out effect
@@ -262,27 +287,6 @@
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Already following %@ on Twitter", @"Trying to follow someone we already follow"), _twitterHandle];
         [self displayErrorMessage:message];
     }
-}
-
-/**
- *  Returns a dictionary suitable to send to PDXContactMaker
- *
- *  @return A dictionary suitable to send to PDXContactMaker
- *
- *  @since 1.0
- */
-- (NSDictionary *)personData {
-    NSDictionary *personData = @{ kPersonFirstName    : _firstName.text,
-                                  kPersonLastName     : _lastName.text,
-                                  kPersonTwitterName  : _twitterHandle.text,
-                                  kPersonEmailAddress : _email.text,
-                                  kPersonPhoneNumber : _phone.text,
-                                  kPersonWebAddress   : _webAddress.text,
-                                  kPersonTwitterDescription : _twitterDescription.text,
-                                  kPersonPhotoData    : UIImageJPEGRepresentation(_photo.image, 1.0f)
-                                  };
-
-    return personData;
 }
 
 /**
@@ -453,7 +457,7 @@
     // Set it to the same frame as the caller
     fakeTextField.frame = realTextField.frame;
     fakeTextField.borderStyle = UITextBorderStyleRoundedRect;
-    fakeTextField.backgroundColor = [UIColor orangeColor]; // TODO: Set this to application-specific orange tint
+    fakeTextField.backgroundColor = [UIColor kAppOrangeColor];
     fakeTextField.textColor = realTextField.textColor;
     fakeTextField.font = realTextField.font;
     fakeTextField.autocapitalizationType = realTextField.autocapitalizationType;
@@ -491,7 +495,7 @@
  */
 - (void)popAnimation:(UITextField *)textField {
     textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.backgroundColor = [UIColor orangeColor]; // TODO: Set this to application-specific orange tint
+    textField.backgroundColor = [UIColor kAppOrangeColor];
 
     CGFloat percent = 0.2; // Try 20%
     CGAffineTransform embiggen = CGAffineTransformMakeScale(1.0f + percent, 1.0f + percent);

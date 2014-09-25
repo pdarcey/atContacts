@@ -150,7 +150,7 @@
 }
 
 /**
- *  Does a little "pop" and changes the textField from looking like a label to looking like an input field
+ *  Animates the little "pop" and changes the textField from looking like a label to looking like an input field
  *
  *  @param textField The UITextField to "pop". Should only ever be called for the hashtag textField
  *
@@ -159,7 +159,7 @@
 - (void)popAnimation:(UITextField *)textField {
     dispatch_async(dispatch_get_main_queue(), ^{
         textField.borderStyle = _twitterName.borderStyle;
-        textField.backgroundColor = _twitterName.backgroundColor;
+        textField.backgroundColor = [UIColor kAppOrangeColor];
         
         CGFloat percent = 0.2; // Try 20%
         [UIView animateWithDuration:0.1 animations:^{
@@ -174,6 +174,41 @@
             }
         }];
     });
+}
+
+/**
+ *  Stores the entered hashtag in user defaults, so it can be used later (Hashtag should always have leading #)
+ *
+ *  @param hashtag Text from the hashtag field
+ *
+ *  @since 1.0
+ */
+- (void)saveHashtag:(NSString *)hashtag {
+    if (![hashtag isEqualToString:kBlankString]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:hashtag forKey:kUserDefaultLastUsedHashtag];
+        [defaults synchronize];
+    }
+}
+
+/**
+ *  Retrieves the last used hashtag from user defaults
+ *
+ *  @return The last used hashtag (with the leading #), or @""
+ *
+ *  @since 1.0
+ */
+- (NSString *)retrieveHashtag {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *hashtag = [defaults valueForKey:kUserDefaultLastUsedHashtag];
+    
+    if (hashtag) {
+        
+        return hashtag;
+    }
+    hashtag = kBlankString;
+    
+    return hashtag;
 }
 
 #pragma mark - Convenience methods for User Defaults
@@ -221,41 +256,6 @@
     BOOL userHasNoAccount = [defaults boolForKey:kUserDefaultUserHasNoTwitterAccount];
     
     return userHasNoAccount;
-}
-
-/**
- *  Stores the entered hashtag in user defaults, so it can be used later (Hashtag should always have leading #)
- *
- *  @param hashtag Text from the hashtag field
- *
- *  @since 1.0
- */
-- (void)saveHashtag:(NSString *)hashtag {
-    if (![hashtag isEqualToString:kBlankString]) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setValue:hashtag forKey:kUserDefaultLastUsedHashtag];
-        [defaults synchronize];
-    }
-}
-
-/**
- *  Retrieves the last used hashtag from user defaults
- *
- *  @return The last used hashtag (with the leading #), or @""
- *
- *  @since 1.0
- */
-- (NSString *)retrieveHashtag {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *hashtag = [defaults valueForKey:kUserDefaultLastUsedHashtag];
-
-    if (hashtag) {
-        
-        return hashtag;
-    }
-    hashtag = kBlankString;
-    
-    return hashtag;
 }
 
 #pragma mark - Protocol methods for PDXTwitterCommunicatorDelegate

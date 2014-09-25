@@ -6,6 +6,8 @@
 //  © 2014 Paul Darcey. All rights reserved.
 //
 
+#import "UIColor+ColorAdditions.h"
+
 // Standard
 static NSString * const kBlankString = @"";
 
