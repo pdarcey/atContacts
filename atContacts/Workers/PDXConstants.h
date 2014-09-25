@@ -6,6 +6,7 @@
 //  © 2014 Paul Darcey. All rights reserved.
 //
 
+// Include application-specific colours
 #import "UIColor+ColorAdditions.h"
 
 // Standard

@@ -2,7 +2,7 @@
 //  UIColor+ColorAdditions.h
 //  Pilgrim
 //
-//  Created by Paul Darcey on 13/01/2014.
+//  Created by Paul Darcey on 25/09/2014.
 //  Copyright © 2014 Paul Darcey. All rights reserved.
 //
 

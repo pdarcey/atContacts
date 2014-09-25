@@ -2,18 +2,13 @@
 //  UIColor+ColorAdditions.m
 //  Pilgrim
 //
-//  Created by Paul Darcey on 13/01/2014.
+//  Created by Paul Darcey on 25/09/2014.
 //  Copyright © 2014 Paul Darcey. All rights reserved.
 //
 
 #import "UIColor+ColorAdditions.h"
 
 @implementation UIColor (UIColorAdditions)
-
-// Application-specific yellow
-+ (UIColor *) kTintColor {
-    return [UIColor colorWithRed:0.961 green:0.541 blue:0.235 alpha:1.000];
-}
 
 // App Standard Colors
 + (UIColor *) kAppOrangeColor {
@@ -30,6 +25,11 @@
 
 + (UIColor *) kAppWhiteColor {
     return [UIColor colorWithWhite:0.961 alpha:1.000];
+}
+
+// Application-specific tint colour
++ (UIColor *) kTintColor {
+    return [UIColor kAppOrangeColor];
 }
 
 @end

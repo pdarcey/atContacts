@@ -968,6 +968,17 @@ id removeNull(id rootObject) {
 }
 
 # pragma mark - Alerts
+
+/**
+ *  Formats a generic alert message, ready for presentation
+ *
+ *  @param message The message to go in the body of the alert. If nil, a default is used
+ *  @param title   The title of the alert. If nil, a default is used
+ *
+ *  @return A formatted alert message
+ *
+ *  @since 1.0
+ */
 - (UIAlertController *)basicAlert:(NSString *)message title:(NSString *)title {
     if (!title) {
         title = NSLocalizedString(kAlertTitle, @"Default title for alerts");
@@ -988,6 +999,15 @@ id removeNull(id rootObject) {
     return alert;
 }
 
+/**
+ *  Formats a generic alert message, ready for presentation. Convenience method that uses a default title
+ *
+ *  @param message The message to go in the body of the alert. If nil, a default is used
+ *
+ *  @return A formatted alert message
+ *
+ *  @since 1.0
+ */
 - (UIAlertController *)basicAlert:(NSString *)message {
     NSString *title = NSLocalizedString(kAlertTitle, @"Default title for alerts");
 
@@ -996,6 +1016,13 @@ id removeNull(id rootObject) {
     return alert;
 }
 
+/**
+ *  Formats a Twitter Pre-Approval alert
+ *
+ *  @return A formatted pre-approval alert, ready for presentation
+ *
+ *  @since 1.0
+ */
 - (UIAlertController *)preApprovalDialog {
     NSString *title = NSLocalizedString(@"Access to Twitter", @"Title for pre-approval dialog");
     NSString *message = NSLocalizedString(@"@Contacts requires access to your Twitter account so we can retrieve information about your new contact from Twitter", @"Pre-approval message for Twitter");
@@ -1032,6 +1059,11 @@ id removeNull(id rootObject) {
     return alert;
 }
 
+/**
+ *  Formats and displays an alert for the user if they say they do not have a Twitter account
+ *
+ *  @since 1.0
+ */
 - (void)displayNoTwitterDialog {
     NSString *noTwitterMessage = [NSString stringWithFormat:NSLocalizedString(@"To retrieve information about @%@, you must have a Twitter account\n\n You can add a new or existing Twitter account in Settings", @"Title for pre-approval dialog"), _twitterName];
     NSString *noTwitterTitle = NSLocalizedString(@"@Contacts Requires a Twitter Account", @"Title for No Twitter Account message");
@@ -1039,6 +1071,11 @@ id removeNull(id rootObject) {
     [_delegate displayAlert:noTwitterAlert];
 }
 
+/**
+ *  Formats and displays an alert for the user if they deny access to their Twitter account
+ *
+ *  @since 1.0
+ */
 - (void)displayDeniedDialog {
     NSString *deniedMessage = [NSString stringWithFormat:NSLocalizedString(@"Without a Twitter account, we will not be able to retrieve information about @%@", @"Title for pre-approval dialog"), _twitterName];
     NSString *deniedTitle = NSLocalizedString(@"Access to Twitter Denied", @"Title for Access to Twitter Denied message");
@@ -1080,6 +1117,13 @@ id removeNull(id rootObject) {
 
 #pragma mark - Convenience methods for User Defaults
 
+/**
+ *  Gets user default value for kUserDefaultTwitterApproved
+ *
+ *  @return User default value for kUserDefaultTwitterApproved
+ *
+ *  @since 1.0
+ */
 - (BOOL)isApproved {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL result = [defaults boolForKey:kUserDefaultTwitterApproved];
@@ -1087,6 +1131,13 @@ id removeNull(id rootObject) {
     return result;
 }
 
+/**
+ *  Gets user default value for kUserDefaultTwitterPreApprovalDialogHasBeenPresented
+ *
+ *  @return User default value for kUserDefaultTwitterPreApprovalDialogHasBeenPresented
+ *
+ *  @since 1.0
+ */
 - (BOOL)isPreApprovedPresented {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL result = [defaults boolForKey:kUserDefaultTwitterPreApprovalDialogHasBeenPresented];
@@ -1094,6 +1145,13 @@ id removeNull(id rootObject) {
     return result;
 }
 
+/**
+ *  Gets user default value for kUserDefaultTwitterNoTwitterAccount
+ *
+ *  @return User default value for kUserDefaultTwitterNoTwitterAccount
+ *
+ *  @since 1.0
+ */
 - (BOOL)isNoTwitterAccount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL result = [defaults boolForKey:kUserDefaultTwitterNoTwitterAccount];
@@ -1101,6 +1159,13 @@ id removeNull(id rootObject) {
     return result;
 }
 
+/**
+ *  Gets user default value for kUserDefaultTwitterDenied
+ *
+ *  @return User default value for kUserDefaultTwitterDenied
+ *
+ *  @since 1.0
+ */
 - (BOOL)isDenied {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL result = [defaults boolForKey:kUserDefaultTwitterDenied];
@@ -1108,12 +1173,28 @@ id removeNull(id rootObject) {
     return result;
 }
 
+/**
+ *  Generic setter for user defaults
+ *
+ *  @param key   Key to set
+ *  @param value Value to set for the key
+ *
+ *  @since 1.0
+ */
 - (void)setUserDefault:(NSString *)key toValue:(id)value {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:value forKey:key];
     [defaults synchronize];
 }
 
+/**
+ *  Generic setter for user defaults for BOOL values
+ *
+ *  @param key   Key to set
+ *  @param value YES/NO
+ *
+ *  @since 1.0
+ */
 - (void)setUserDefault:(NSString *)key to:(BOOL)value {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:value forKey:key];
@@ -1231,6 +1312,15 @@ id removeNull(id rootObject) {
 
 }
 
+/**
+ *  Returns the specific Twitter account for identifier
+ *
+ *  @param identifier Unique identifier for the Twitter account
+ *
+ *  @return The specified Twitter account
+ *
+ *  @since 1.0
+ */
 - (ACAccount *)twitterAccountWithIdentifier:(NSString *)identifier {
     ACAccountStore *store = [self accountStore];
     ACAccount *account = [store accountWithIdentifier:identifier];
@@ -1238,6 +1328,15 @@ id removeNull(id rootObject) {
     return account;
 }
 
+/**
+ *  Gets a list of all the account identifiers for a set of accounts
+ *
+ *  @param arrayOfAccounts This will always be an array of all the Twitter accounts the user has set up
+ *
+ *  @return Array of all the account identifiers
+ *
+ *  @since 1.0
+ */
 - (NSArray *)arrayOfAccountIdentifiers:(NSArray *)arrayOfAccounts {
     NSMutableArray *identifierArray = [NSMutableArray new];
 
@@ -1250,6 +1349,15 @@ id removeNull(id rootObject) {
     return arrayOfAccountIdentifiers;
 }
 
+/**
+ *  Asks user which of their multiple Twitter accounts would they like to use (to Follow contacts)
+ *
+ *  @param arrayOfAccountIdentifiers Unique identifiers for each of the accounts the user has set up
+ *
+ *  @return The Twitter account the user has selected as their default account
+ *
+ *  @since 1.0
+ */
 - (ACAccount *)askForDefaultTwitterAccount:(NSArray *)arrayOfAccountIdentifiers {
     // TODO Present account identifiers and allow user to select one. Return it as the default
     

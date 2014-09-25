@@ -79,6 +79,13 @@
     }
 }
 
+/**
+ *  Gets user preference for kUserDefaultContactsPreApprovalDialogHasBeenPresented
+ *
+ *  @return Value for user preference kUserDefaultContactsPreApprovalDialogHasBeenPresented
+ *
+ *  @since 1.0
+ */
 - (BOOL)isPreApprovedPresented {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL result = [defaults boolForKey:kUserDefaultContactsPreApprovalDialogHasBeenPresented];
@@ -86,6 +93,13 @@
     return result;
 }
 
+/**
+ *  Formats and presents the Contacts Pre-Approval dialog
+ *
+ *  @return A formatted UIAlertController
+ *
+ *  @since 1.0
+ */
 - (UIAlertController *)preApprovalDialog {
     NSString *title = NSLocalizedString(@"Access to Contacts", @"Title for contacts pre-approval dialog");
     NSString *message = NSLocalizedString(@"@Contacts requires access to your Contacts so we can save information about your new contact from Twitter", @"Pre-approval message for Contacts");
@@ -114,6 +128,16 @@
     return alert;
 }
 
+/**
+ *  Generic alert which can be formatted with a title and a message. If either of these is not included, use defaults
+ *
+ *  @param message The message to be presented in the body of the alert
+ *  @param title   The title for the alert
+ *
+ *  @return A formatted alert, ready for presenting
+ *
+ *  @since 1.0
+ */
 - (UIAlertController *)errorDialog:(NSString *)message title:(NSString *)title {
     if (!title) {
         title = NSLocalizedString(@"Problem Accessing Contacts", @"Default title for contacts error dialog");
@@ -136,6 +160,14 @@
     return alert;
 }
 
+/**
+ *  Convenience method to set a user default to a bool
+ *
+ *  @param key   The key to set
+ *  @param value YES/NO
+ *
+ *  @since 1.0
+ */
 - (void)setUserDefault:(NSString *)key to:(BOOL)value {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:value forKey:key];
@@ -168,6 +200,8 @@
 
 /**
  *  Display a message to user that we can't add this person
+ *
+ *  @param message Message giving reason why we can't add the person
  *
  *  @since 1.0
  */

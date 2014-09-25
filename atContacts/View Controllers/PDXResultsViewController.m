@@ -255,6 +255,15 @@
     });
 }
 
+/**
+ *  Required protocol method for PDXTwitterCommunicatorDelegate and PDXContactMakerDelegate
+ *
+ *  Displays a UIAlertController alert which is already configured
+ *
+ *  @param alert Pre-configured alert
+ *
+ *  @since 1.0
+ */
 - (void)displayAlert:(UIAlertController *)alert {
     // Accessibility announcement
     NSString *message = alert.message;
@@ -606,6 +615,13 @@
 
 # pragma mark - Notification Center Notifications
 
+/**
+ *  Changes the size of all the text fields on screen to match the user's preferred size
+ *
+ *  @param notification System notification sent when user changes their text size preference in Settings
+ *
+ *  @since 1.0
+ */
 - (void)preferredContentSizeChanged:(NSNotification *)notification {
     _twitterHandle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     _email.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
