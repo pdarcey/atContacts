@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -328,16 +327,6 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="58a-DN-NVP">
-                                <rect key="frame" x="578" y="175" width="6" height="92"/>
-                                <accessibility key="accessibilityConfiguration" hint="Swipe left for more pages" label="More pages indicator">
-                                    <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="92" id="Kfb-gG-9DL"/>
-                                </constraints>
-                            </imageView>
                             <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="blurEffect" translatesAutoresizingMaskIntoConstraints="NO" id="iSE-R8-M22" userLabel="blurEffect">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5or-ck-dSD">
@@ -409,9 +398,7 @@
                             <constraint firstItem="95n-fe-rtH" firstAttribute="top" secondItem="PmI-Np-wXE" secondAttribute="bottom" constant="5" id="of6-gG-lGy"/>
                             <constraint firstItem="yci-qZ-zSI" firstAttribute="leading" secondItem="Vgz-1v-uts" secondAttribute="leading" id="pbO-xc-kso"/>
                             <constraint firstItem="X7X-fj-m0i" firstAttribute="leading" secondItem="tLV-6H-FHy" secondAttribute="trailing" constant="8" id="qUE-Pg-xWG"/>
-                            <constraint firstItem="58a-DN-NVP" firstAttribute="trailing" secondItem="dWp-am-uRh" secondAttribute="trailingMargin" id="qkZ-hs-rHY"/>
                             <constraint firstItem="Vgz-1v-uts" firstAttribute="width" secondItem="vcX-3U-RDU" secondAttribute="width" id="qon-pe-ZmR"/>
-                            <constraint firstItem="58a-DN-NVP" firstAttribute="centerY" secondItem="Vgz-1v-uts" secondAttribute="centerY" id="raQ-Mx-FA0"/>
                             <constraint firstItem="Ctm-pf-gHA" firstAttribute="centerY" secondItem="LFf-PF-jaK" secondAttribute="centerY" id="rx0-D3-aNv"/>
                             <constraint firstItem="Ctm-pf-gHA" firstAttribute="height" secondItem="LFf-PF-jaK" secondAttribute="height" id="s3i-Cd-GIn"/>
                             <constraint firstAttribute="width" secondItem="iSE-R8-M22" secondAttribute="width" id="udq-sZ-4Na"/>
@@ -437,7 +424,6 @@
                         <outlet property="email" destination="X7X-fj-m0i" id="Ek1-oy-ap7"/>
                         <outlet property="errorMessage" destination="vcX-3U-RDU" id="vxW-Nb-0ze"/>
                         <outlet property="firstName" destination="95n-fe-rtH" id="2TF-wN-bRF"/>
-                        <outlet property="indicator" destination="58a-DN-NVP" id="bVf-vI-Chj"/>
                         <outlet property="lastName" destination="0AU-64-liZ" id="qme-br-dgz"/>
                         <outlet property="phone" destination="OWX-u5-Leo" id="CbG-jo-3te"/>
                         <outlet property="photo" destination="Vgz-1v-uts" id="7qO-Us-WZN"/>
@@ -470,8 +456,7 @@
         <image name="Contacts Disabled" width="40" height="40"/>
         <image name="Contacts Highlighted" width="40" height="40"/>
         <image name="Contacts Selected" width="40" height="40"/>
-        <image name="Indicator" width="6" height="92"/>
-        <image name="OrangeFade" width="320" height="135"/>
+        <image name="OrangeFade" width="600" height="135"/>
         <image name="Twitter Disabled" width="40" height="40"/>
         <image name="Twitter Highlighted" width="40" height="40"/>
         <image name="Twitter Selected" width="40" height="40"/>
