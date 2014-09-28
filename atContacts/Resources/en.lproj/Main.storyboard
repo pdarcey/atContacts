@@ -168,7 +168,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="twitterName" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-zq-T26">
-                                <rect key="frame" x="200" y="301.5" width="200" height="19.5"/>
+                                <rect key="frame" x="200" y="301" width="200" height="19.5"/>
                                 <color key="backgroundColor" red="0.038990393280982971" green="0.03900553286075592" blue="0.038989435881376266" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="Twitter Name">
                                     <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
