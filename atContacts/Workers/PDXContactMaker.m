@@ -63,10 +63,14 @@
             NSLog(@"Not determined");
             ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
                 if (!granted) {
-                    NSString *message = [NSString stringWithFormat:@"Error accessing Contacts: %ld - %@", CFErrorGetCode(error), CFErrorCopyDescription(error)];
+                    NSInteger errorCode = (CFIndex)CFErrorGetCode(error);
+                    NSString *errorDescription = CFBridgingRelease(CFErrorCopyDescription(error));
+                    CFRelease(error);
+                    NSString *message = [NSString stringWithFormat:@"Error accessing Contacts: %ld - %@", (long)errorCode, errorDescription];
                     NSLog(@"%@", message);
                     UIAlertController *initialDialog = [self errorDialog:message title:nil];
                     [_delegate displayAlert:initialDialog];
+                    
                     return;
                 }
                 [self makeContact:personData];
@@ -185,8 +189,10 @@
  */
 - (BOOL)isInContacts:(NSDictionary *)personData {
     ABRecordRef person = [self makePerson:personData];
+    BOOL result = [self isExistingContact:person];
+    CFRelease(person);
     
-    return [self isExistingContact:person];
+    return result;
 }
 
 /**
@@ -220,16 +226,26 @@
  */
 - (BOOL)isExistingContact:(ABRecordRef)person {
     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
-    NSArray *allContacts = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
+    CFArrayRef allContactsArray = ABAddressBookCopyArrayOfAllPeople(addressBookRef);
+    NSArray *allContacts = (__bridge NSArray *)allContactsArray;
+    CFRelease(addressBookRef);
+    CFRelease(allContactsArray);
 
     for (id record in allContacts) {
         ABRecordRef thisContact = (__bridge ABRecordRef)record;
 
-        if (CFStringCompare(ABRecordCopyCompositeName(thisContact),
-                            ABRecordCopyCompositeName(person), 0) == kCFCompareEqualTo) {
-
+        CFStringRef thisContactName = ABRecordCopyCompositeName(thisContact);
+        CFStringRef personName = ABRecordCopyCompositeName(person);
+        
+        if (CFStringCompare(thisContactName,
+                            personName, 0) == kCFCompareEqualTo) {
+            CFRelease(thisContactName);
+            CFRelease(personName);
+            
             return YES;
         }
+        CFRelease(thisContactName);
+        CFRelease(personName);
     }
 
     return NO;
@@ -247,11 +263,16 @@
 
     if (![self isExistingContact:person]) {
         [self saveContact:person];
+        CFRelease(person);
     } else {
         //The contact already exists!
-        NSString *name = (__bridge NSString *)ABRecordCopyCompositeName(person);
+        CFStringRef nameString = ABRecordCopyCompositeName(person);
+        CFRelease(person);
+        NSString *name = (__bridge NSString *)nameString;
+        
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ is already in your Contacts", @"Tried to add a duplicate to Contacts"), name];
         [_delegate displayErrorMessage:message];
+        CFRelease(nameString);
     }
     
 }
@@ -276,15 +297,17 @@
     NSData *photoData = [personData valueForKey:kPersonPhotoData];
     
     ABRecordRef person = ABPersonCreate();
+    
     ABRecordSetValue(person, kABPersonFirstNameProperty, (__bridge CFStringRef)firstName, nil);
     ABRecordSetValue(person, kABPersonLastNameProperty, (__bridge CFStringRef)lastName, nil);
     ABRecordSetValue(person, kABPersonNoteProperty, (__bridge CFStringRef)twitterDescription, nil);
     
     ABMutableMultiValueRef twitterID = ABMultiValueCreateMutable(kABMultiStringPropertyType);
-    ABMultiValueAddValueAndLabel(twitterID, (__bridge CFTypeRef)
-                            (@{ (NSString *)kABPersonSocialProfileServiceKey  : (NSString *)kABPersonSocialProfileServiceTwitter,
-                                (NSString *)kABPersonSocialProfileUsernameKey : twitterName
-                            }), kABPersonSocialProfileServiceTwitter, NULL);
+    NSDictionary *profileDictionary = @{ (NSString *)kABPersonSocialProfileServiceKey  : (NSString *)kABPersonSocialProfileServiceTwitter,
+                                         (NSString *)kABPersonSocialProfileUsernameKey : twitterName
+                                         };
+    CFTypeRef value = (__bridge CFTypeRef)profileDictionary;
+    ABMultiValueAddValueAndLabel(twitterID, value, kABPersonSocialProfileServiceTwitter, NULL);
     ABRecordSetValue(person, kABPersonSocialProfileProperty, twitterID, NULL);
     CFRelease(twitterID);
     
@@ -302,8 +325,9 @@
     ABMultiValueAddValueAndLabel(web, (__bridge CFStringRef)wwwAddress, kABPersonHomePageLabel, NULL);
     ABRecordSetValue(person, kABPersonURLProperty, web, nil);
     CFRelease(web);
-
-    ABPersonSetImageData(person, (__bridge CFDataRef)photoData, nil);
+    
+    CFDataRef photo = (__bridge CFDataRef)photoData;
+    ABPersonSetImageData(person, photo, nil);
 
     return person;
 }
@@ -319,6 +343,7 @@
     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
     ABAddressBookAddRecord(addressBookRef, person, nil);
     ABAddressBookSave(addressBookRef, nil);
+    CFRelease(addressBookRef);
     [_delegate newContactMade:YES];
 }
 

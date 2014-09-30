@@ -448,6 +448,7 @@ id removeNull(id rootObject) {
 - (NSDictionary *)splitName:(NSString *)name {
     // Split name into firstName / lastName
     NSDictionary *splitNames;
+    assert(name != nil);
 
     if (![name isEqualToString:kBlankString]) {
         NSArray *nameArray = [name componentsSeparatedByString:@" "];
@@ -1277,36 +1278,36 @@ id removeNull(id rootObject) {
  *
  */
 - (ACAccount *)defaultTwitterAccount {
-    ACAccountStore *store = [self accountStore];
-    NSString *identifier = [self identifier];
-    ACAccountType *accountType = [self accountType];
-    ACAccount *account = [self twitterAccountWithIdentifier:identifier];
-    
-    if (account) {
-        return account;
-    } else {
-        NSArray *arrayOfAccounts = [store accountsWithAccountType:accountType];
-        ACAccount *account;
-
-        if ([arrayOfAccounts count] == 1) {
-            // Only one Twitter account is set up in Settings; make it the default
-            account = (ACAccount *)arrayOfAccounts[0];
-            NSString *identifier = [account identifier];
-            [self setDefaultTwitterAccount:identifier];
-            
-            return account;
-        }
-        
-        if ([arrayOfAccounts count] > 0) {
-            account = [arrayOfAccounts lastObject];
-            NSArray *accountIdentifiers = [self arrayOfAccountIdentifiers:arrayOfAccounts];
-            account = [self askForDefaultTwitterAccount:accountIdentifiers];
-            NSString *identifier = [account identifier];
-            [self setDefaultTwitterAccount:identifier];
-            
-            return account;
-        }
-    }
+//    ACAccountStore *store = [self accountStore];
+//    NSString *identifier = [self identifier];
+//    ACAccountType *accountType = [self accountType];
+//    ACAccount *account = [self twitterAccountWithIdentifier:identifier];
+//    
+//    if (account) {
+//        return account;
+//    } else {
+//        NSArray *arrayOfAccounts = [store accountsWithAccountType:accountType];
+//        ACAccount *account;
+//
+//        if ([arrayOfAccounts count] == 1) {
+//            // Only one Twitter account is set up in Settings; make it the default
+//            account = (ACAccount *)arrayOfAccounts[0];
+//            NSString *identifier = [account identifier];
+//            [self setDefaultTwitterAccount:identifier];
+//            
+//            return account;
+//        }
+//        
+//        if ([arrayOfAccounts count] > 0) {
+//            account = (ACAccount *) [arrayOfAccounts firstObject];
+//            NSArray *accountIdentifiers = [self arrayOfAccountIdentifiers:arrayOfAccounts];
+//            account = [self askForDefaultTwitterAccount:accountIdentifiers];
+//            NSString *identifier = [account identifier];
+//            [self setDefaultTwitterAccount:identifier];
+//            
+//            return account;
+//        }
+//    }
 
     return nil;
 
