@@ -18,15 +18,6 @@
 #endif
 #endif
 
-@interface PDXContactMaker (Warnings)
-// The CF_RETURNS_RETAINED below tells the static analyser that the method will return a CF object with a retain count of +1
-// Otherwise, it will think there is a leak
-// The methods that call this method are responsible for releasing the ABRecordRef which is returned
-
-- (ABRecordRef)makePerson:(NSDictionary *)personData CF_RETURNS_RETAINED;
-
-@end
-
 @implementation PDXContactMaker
 
 /**
@@ -292,8 +283,12 @@
         [_delegate displayErrorMessage:message];
         CFRelease(nameString);
     }
+    
 }
 
+// The CF_RETURNS_RETAINED below tells the static analyser that the method will return a CF object with a retain count of +1
+// Otherwise, it will think there is a leak
+// The methods that call this method are responsible for releasing the ABRecordRef which is returned
 /**
  *  Turns a dictionary of person data into an ABRecordRef
  *
@@ -306,7 +301,7 @@
  *
  *  @since 1.0
  */
-- (ABRecordRef)makePerson:(NSDictionary *)personData {
+- (ABRecordRef)makePerson:(NSDictionary *)personData CF_RETURNS_RETAINED {
     NSString *firstName = [personData valueForKey:kPersonFirstName];
     NSString *lastName = [personData valueForKey:kPersonLastName];
     NSString *twitterName = [personData valueForKey:kPersonTwitterName];
