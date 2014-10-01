@@ -9,6 +9,24 @@
 #import "PDXContactMaker.h"
 @import AddressBook;
 
+// Clang definitions to prevent unwanted memory leak warnings when making a new person
+#ifndef CF_RETURNS_RETAINED
+#if __has_feature(attribute_cf_returns_retained)
+#define CF_RETURNS_RETAINED __attribute__((cf_returns_retained))
+#else
+#define CF_RETURNS_RETAINED
+#endif
+#endif
+
+@interface PDXContactMaker (Warnings)
+// The CF_RETURNS_RETAINED below tells the static analyser that the method will return a CF object with a retain count of +1
+// Otherwise, it will think there is a leak
+// The methods that call this method are responsible for releasing the ABRecordRef which is returned
+
+- (ABRecordRef)makePerson:(NSDictionary *)personData CF_RETURNS_RETAINED;
+
+@end
+
 @implementation PDXContactMaker
 
 /**
