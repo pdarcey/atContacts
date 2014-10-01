@@ -292,11 +292,13 @@
         [_delegate displayErrorMessage:message];
         CFRelease(nameString);
     }
-    
 }
 
 /**
  *  Turns a dictionary of person data into an ABRecordRef
+ *
+ *  IMPORTANT: The caller *MUST* release the ABRecordRef returned by this method!
+ *             i.e. must call CFRelease(person);
  *
  *  @param personData Dictionary with the person's data
  *
