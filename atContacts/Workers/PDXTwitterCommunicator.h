@@ -66,9 +66,9 @@ static NSString * const kAlertTitle = @"Problem";
 
 @interface PDXTwitterCommunicator : NSObject
 
-@property (nonatomic, strong) ACAccountStore *accountStore;
-@property (nonatomic, strong) ACAccountType *twitterType;
-@property (nonatomic, assign) id < PDXTwitterCommunicatorDelegate > delegate;
+@property (strong, nonatomic) ACAccountStore *accountStore;
+@property (strong, nonatomic) ACAccountType *twitterType;
+@property (weak, nonatomic) id < PDXTwitterCommunicatorDelegate > delegate;
 @property (strong, nonatomic) NSString *twitterName;
 
 - (void)getUserInfo:(NSString *)twitterName;
