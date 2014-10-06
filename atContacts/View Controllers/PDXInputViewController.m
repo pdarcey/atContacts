@@ -277,7 +277,9 @@
     resultsViewController.data = data;
     resultsViewController.parent = self;
     resultsViewController.hashtag = _hashtag.text;
-    resultsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    // Set up push segue
+    PDXPushSegue *segue = (PDXPushSegue *)[[UIStoryboardSegue alloc] initWithIdentifier:@"showResults" source:self destination:resultsViewController];
 
     // Accessibility announcement
     NSString *message = NSLocalizedString(@"Presenting results", "Presenting results");
@@ -285,7 +287,10 @@
     
     // Display view
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self presentViewController:resultsViewController animated:YES completion:nil];
+        
+        [self prepareForSegue:segue sender:self];
+        [self performSegueWithIdentifier:@"showResults" sender:self];
+        // [self presentViewController:resultsViewController animated:YES completion:nil];
     });
 }
 

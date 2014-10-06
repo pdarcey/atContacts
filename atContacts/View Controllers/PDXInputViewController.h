@@ -8,6 +8,7 @@
 
 @import UIKit;
 #import "PDXTwitterCommunicator.h"
+#import "PDXPushSegue.h"
 
 # pragma mark - Constants
 

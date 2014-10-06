@@ -17,6 +17,9 @@
             
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    self.window.backgroundColor = [UIColor whiteColor];
+    
     // Initialise Hockey App
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"6d79ffbe3ca379c38eade06547fb9d55"];
     [[BITHockeyManager sharedHockeyManager] startManager];
