@@ -288,28 +288,61 @@
  *
  *  @since 1.0
  */
+//- (void)displayErrorMessage:(NSString *)message {
+//    // Accessibility announcement
+//    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+//    
+//    // Animation
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        _errorMessage.text = message;
+//        _errorMessage.alpha = 0;
+//        _errorMessage.hidden = NO;
+//        CGFloat duration = 0.8f;
+//        
+//        [UIView animateWithDuration:duration
+//                              delay:0.0
+//                            options:UIViewAnimationOptionCurveEaseIn
+//                         animations:^{_errorMessage.alpha = 1;}
+//                         completion:^(BOOL finished) {
+//                             [UIView animateWithDuration:duration
+//                                                   delay:2.0
+//                                                 options:UIViewAnimationOptionCurveEaseOut
+//                                              animations:^{_errorMessage.alpha = 0;}
+//                                              completion:^(BOOL finished) {
+//                                                  _errorMessage.hidden = YES;
+//                                              }
+//                              ];
+//                         }];
+//    });
+//    
+//}
 - (void)displayErrorMessage:(NSString *)message {
+    NSLog(@"%@", @"Displaying Error message");
     // Accessibility announcement
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
     
+    PDXMessageView __block *messageView = [[PDXMessageView alloc] initWithMessage:message];
+    messageView.hidden = YES;
+    messageView.alpha = 0;
+    [self.view addSubview:messageView];
+    
     // Animation
     dispatch_async(dispatch_get_main_queue(), ^{
-        _errorMessage.text = message;
-        _errorMessage.alpha = 0;
-        _errorMessage.hidden = NO;
         CGFloat duration = 0.8f;
         
         [UIView animateWithDuration:duration
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{_errorMessage.alpha = 1;}
+                         animations:^{messageView.alpha = 1;}
                          completion:^(BOOL finished) {
                              [UIView animateWithDuration:duration
                                                    delay:2.0
                                                  options:UIViewAnimationOptionCurveEaseOut
-                                              animations:^{_errorMessage.alpha = 0;}
+                                              animations:^{messageView.alpha = 0;}
                                               completion:^(BOOL finished) {
-                                                  _errorMessage.hidden = YES;
+                                                  messageView.hidden = YES;
+                                                  [messageView removeFromSuperview];
+                                                  messageView = nil;
                                               }
                               ];
                          }];
