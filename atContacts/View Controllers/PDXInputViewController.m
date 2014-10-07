@@ -270,14 +270,12 @@
  *  @since 1.0
  */
 - (void)displayInfo:(NSDictionary *)data {    
-    // Initialise Results screen
-
+    // Save data. It will be used in prepareForSegue
     _data = data;
     
     // Display view
     dispatch_async(dispatch_get_main_queue(), ^{
         [self performSegueWithIdentifier:@"showResults" sender:self];
-        // [self presentViewController:resultsViewController animated:YES completion:nil];
     });
 }
 
@@ -342,7 +340,6 @@
 
 # pragma mark - Segues
 
-// TODO: add documentation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue isKindOfClass:[PDXPushSegue class]]) {
         
@@ -360,15 +357,20 @@
 
 // An unwind segue requires that you provide an IBAction method in the View Controller that you want to unwind to.
 - (IBAction)unwindFromViewController:(UIStoryboardSegue *)sender {
+
 }
 
 // We need to over-ride this method from UIViewController to provide a custom segue for unwinding
 - (UIStoryboardSegue *)segueForUnwindingToViewController:(UIViewController *)toViewController fromViewController:(UIViewController *)fromViewController identifier:(NSString *)identifier {
-    // Instantiate a new CustomUnwindSegue
-    PDXUnwindPushSegue *segue = [[PDXUnwindPushSegue alloc] initWithIdentifier:identifier source:fromViewController destination:toViewController];
-    // TODO: Do any setup necessary
-
-    return segue;
+    
+    if ([fromViewController isKindOfClass:[PDXResultsViewController class]]) {
+        // Instantiate a new CustomUnwindSegue
+        PDXUnwindPushSegue *segue = [[PDXUnwindPushSegue alloc] initWithIdentifier:identifier source:fromViewController destination:toViewController];
+        
+        return segue;
+    }
+    
+   return nil;
 }
 
 # pragma mark - Notification Center Notifications

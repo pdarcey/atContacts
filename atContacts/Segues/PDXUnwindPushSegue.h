@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PDXInputViewController;
+@class PDXResultsViewController;
 
 @interface PDXUnwindPushSegue : UIStoryboardSegue
+
+@property (weak, readonly, nonatomic) PDXResultsViewController *sourceViewController;
+@property (weak, readonly, nonatomic) PDXInputViewController *destinationViewController;
 
 @end
