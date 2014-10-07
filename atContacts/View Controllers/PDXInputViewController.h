@@ -9,6 +9,7 @@
 @import UIKit;
 #import "PDXTwitterCommunicator.h"
 #import "PDXPushSegue.h"
+#import "PDXUnwindPushSegue.h"
 
 # pragma mark - Constants
 
@@ -31,6 +32,7 @@ static NSString * const kStoryboardIdentifierInput = @"InputView";
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;
 @property (weak, nonatomic) IBOutlet UILabel *errorMessage;
 @property (weak, nonatomic) IBOutlet UILabel *atSymbol;
+@property (strong, nonatomic) NSDictionary *data;
 
 - (IBAction)findTwitterName;
 - (IBAction)endHashtagEditing;

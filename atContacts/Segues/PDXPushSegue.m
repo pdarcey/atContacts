@@ -7,21 +7,26 @@
 //
 
 #import "PDXPushSegue.h"
+#import "PDXInputViewController.h"
+#import "PDXResultsViewController.h"
 
 @implementation PDXPushSegue
 
 - (void)perform {
-    UIViewController *sourceViewController = (UIViewController *)[self sourceViewController];
-    UIViewController *destinationController = (UIViewController *)[self destinationViewController];
+    PDXInputViewController *source = [self sourceViewController];
+    PDXResultsViewController *destination = [self destinationViewController];
     
     CATransition *transition = [CATransition animation];
-    transition.duration = .25;
+    transition.duration = .75;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
+    transition.type = kCATransitionMoveIn;
     transition.subtype = kCATransitionFromRight;
-    [sourceViewController.view.layer addAnimation:transition forKey:kCATransition];
-    
-    [sourceViewController.navigationController pushViewController:destinationController animated:NO];
+    [source.view.layer addAnimation:transition forKey:kCATransition];
+
+    [source.view addSubview:destination.view];
+
+    [destination.view removeFromSuperview]; // remove from temp super view
+    [source presentViewController:destination animated:NO completion:NULL]; // present VC
 }
 
 @end

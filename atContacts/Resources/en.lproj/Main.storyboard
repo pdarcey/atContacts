@@ -100,7 +100,7 @@
                         <outlet property="errorMessage" destination="8c2-Tt-Kzl" id="xWf-Jh-V9h"/>
                         <outlet property="hashtag" destination="qfS-g8-B3B" id="tVq-Q2-PKD"/>
                         <outlet property="twitterName" destination="Ib1-pi-m32" id="PdN-4R-M85"/>
-                        <segue destination="a2f-bI-RVU" kind="custom" identifier="showResults" customClass="PDXPushSegue" id="i0y-ee-EF7"/>
+                        <segue destination="a2f-bI-RVU" kind="custom" identifier="showResults" customClass="PDXPushSegue" id="6gm-lN-9uB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -434,9 +434,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BbH-Hz-PIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ieR-RG-aPC" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer direction="right" id="Opm-xg-hbP">
                     <connections>
                         <action selector="swipeToDismiss" destination="a2f-bI-RVU" id="V2i-8M-aOb"/>
+                        <segue destination="ieR-RG-aPC" kind="unwind" unwindAction="unwindFromViewController:" id="kbf-4A-hkE"/>
                     </connections>
                 </swipeGestureRecognizer>
                 <tapGestureRecognizer id="QEU-bO-FK6">

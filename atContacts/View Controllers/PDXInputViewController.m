@@ -271,24 +271,11 @@
  */
 - (void)displayInfo:(NSDictionary *)data {    
     // Initialise Results screen
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:kStoryboardMain bundle:nil];
-    PDXResultsViewController *resultsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:kStoryboardIdentifierResults];
 
-    resultsViewController.data = data;
-    resultsViewController.parent = self;
-    resultsViewController.hashtag = _hashtag.text;
-    
-    // Set up push segue
-    PDXPushSegue *segue = (PDXPushSegue *)[[UIStoryboardSegue alloc] initWithIdentifier:@"showResults" source:self destination:resultsViewController];
-
-    // Accessibility announcement
-    NSString *message = NSLocalizedString(@"Presenting results", "Presenting results");
-    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+    _data = data;
     
     // Display view
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        [self prepareForSegue:segue sender:self];
         [self performSegueWithIdentifier:@"showResults" sender:self];
         // [self presentViewController:resultsViewController animated:YES completion:nil];
     });
@@ -351,6 +338,37 @@
         [self presentViewController:alert animated:YES completion:nil];
     });
     
+}
+
+# pragma mark - Segues
+
+// TODO: add documentation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue isKindOfClass:[PDXPushSegue class]]) {
+        
+        // Initialise Results screen
+        PDXResultsViewController *resultsViewController = ((PDXPushSegue *)segue).destinationViewController;
+        resultsViewController.data = _data;
+        resultsViewController.parent = self;
+        resultsViewController.hashtag = _hashtag.text;
+        
+        // Accessibility announcement
+        NSString *message = NSLocalizedString(@"Presenting results", "Presenting results");
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+    }
+}
+
+// An unwind segue requires that you provide an IBAction method in the View Controller that you want to unwind to.
+- (IBAction)unwindFromViewController:(UIStoryboardSegue *)sender {
+}
+
+// We need to over-ride this method from UIViewController to provide a custom segue for unwinding
+- (UIStoryboardSegue *)segueForUnwindingToViewController:(UIViewController *)toViewController fromViewController:(UIViewController *)fromViewController identifier:(NSString *)identifier {
+    // Instantiate a new CustomUnwindSegue
+    PDXUnwindPushSegue *segue = [[PDXUnwindPushSegue alloc] initWithIdentifier:identifier source:fromViewController destination:toViewController];
+    // TODO: Do any setup necessary
+
+    return segue;
 }
 
 # pragma mark - Notification Center Notifications
