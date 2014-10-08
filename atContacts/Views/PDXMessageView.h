@@ -12,6 +12,7 @@
 @interface PDXMessageView : UIView
 
 @property (strong, nonatomic) UILabel *message;
+@property (strong, nonatomic) UIView *background;
 
 - (instancetype)initWithMessage:(NSString *)message;
 

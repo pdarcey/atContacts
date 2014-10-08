@@ -320,11 +320,50 @@
     NSLog(@"%@", @"Displaying Error message");
     // Accessibility announcement
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+    [self.view setAutoresizesSubviews:NO];
     
     PDXMessageView __block *messageView = [[PDXMessageView alloc] initWithMessage:message];
     messageView.hidden = YES;
     messageView.alpha = 0;
     [self.view addSubview:messageView];
+    NSArray *constraints = @[
+                             // Align message horizontally
+                             [NSLayoutConstraint constraintWithItem:messageView
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1
+                                                           constant:0],
+                             // Align message vertically
+                             [NSLayoutConstraint constraintWithItem:messageView
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1
+                                                           constant:0]
+                             ];
+    [self.view addConstraints:constraints];
+    [self.view updateConstraints];
+    
+    // -- Debug ---
+    NSLog(@"MessageView.x = %f", messageView.frame.origin.x);
+    NSLog(@"MessageView.y = %f", messageView.bounds.origin.y);
+    NSLog(@"MessageView.width = %f", messageView.bounds.size.width);
+    NSLog(@"MessageView.height = %f", messageView.bounds.size.height);
+
+    NSLog(@"\nMessageView.background.x = %f", messageView.background.bounds.origin.x);
+    NSLog(@"MessageView.background.y = %f", messageView.background.bounds.origin.y);
+    NSLog(@"MessageView.background.width = %f", messageView.background.bounds.size.width);
+    NSLog(@"MessageView.background.height = %f", messageView.background.bounds.size.height);
+
+    NSLog(@"\nMessageView.message.x = %f", messageView.message.bounds.origin.x);
+    NSLog(@"MessageView.message.y = %f", messageView.message.bounds.origin.y);
+    NSLog(@"MessageView.message.width = %f", messageView.message.bounds.size.width);
+    NSLog(@"MessageView.message.height = %f", messageView.message.bounds.size.height);
+    
+    // -- End Debug ---
     
     // Animation
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -333,16 +372,23 @@
         [UIView animateWithDuration:duration
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{messageView.alpha = 1;}
+                         animations:^{
+                             messageView.alpha = 1;
+                             NSLog(@"%@", @"*** Displayed ***");
+                         }
                          completion:^(BOOL finished) {
                              [UIView animateWithDuration:duration
                                                    delay:2.0
                                                  options:UIViewAnimationOptionCurveEaseOut
-                                              animations:^{messageView.alpha = 0;}
+                                              animations:^{
+                                                  messageView.alpha = 0;
+                                                  NSLog(@"%@", @"*** Finished displaying ***");
+                                              }
                                               completion:^(BOOL finished) {
                                                   messageView.hidden = YES;
                                                   [messageView removeFromSuperview];
                                                   messageView = nil;
+                                                  NSLog(@"%@", @"*** Removed ***");
                                               }
                               ];
                          }];
