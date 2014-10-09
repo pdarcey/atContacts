@@ -288,80 +288,83 @@
  *
  *  @since 1.0
  */
-//- (void)displayErrorMessage:(NSString *)message {
-//    // Accessibility announcement
-//    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
-//    
-//    // Animation
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        _errorMessage.text = message;
-//        _errorMessage.alpha = 0;
-//        _errorMessage.hidden = NO;
-//        CGFloat duration = 0.8f;
-//        
-//        [UIView animateWithDuration:duration
-//                              delay:0.0
-//                            options:UIViewAnimationOptionCurveEaseIn
-//                         animations:^{_errorMessage.alpha = 1;}
-//                         completion:^(BOOL finished) {
-//                             [UIView animateWithDuration:duration
-//                                                   delay:2.0
-//                                                 options:UIViewAnimationOptionCurveEaseOut
-//                                              animations:^{_errorMessage.alpha = 0;}
-//                                              completion:^(BOOL finished) {
-//                                                  _errorMessage.hidden = YES;
-//                                              }
-//                              ];
-//                         }];
-//    });
-//    
-//}
 - (void)displayErrorMessage:(NSString *)message {
-    NSLog(@"%@", @"Displaying Error message");
     // Accessibility announcement
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
-    [self.view setAutoresizesSubviews:NO];
-    
-//    PDXMessageView __block *messageView = [[PDXMessageView alloc] initWithMessage:message];
-//    messageView.alpha = 0;
-//    messageView.hidden = NO;
-//    [self.view addSubview:messageView];
-//    messageView.center = self.view.center;
+    _errorMessage.layer.cornerRadius = 6;
+    _errorMessage.clipsToBounds = YES;
     
     // Animation
     dispatch_async(dispatch_get_main_queue(), ^{
-        PDXMessageView __block *messageView = [[PDXMessageView alloc] initWithMessage:message];
-        messageView.alpha = 1;
-        messageView.hidden = NO;
-        [self.view addSubview:messageView];
-        messageView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+        _errorMessage.text = message;
+        _errorMessage.alpha = 0;
+        _errorMessage.hidden = NO;
         
         CGFloat duration = 0.8f;
+        
         [UIView animateWithDuration:duration
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{
-                             NSLog(@"Display");
-                             messageView.alpha = 1;
-                         }
+                         animations:^{_errorMessage.alpha = 1;}
                          completion:^(BOOL finished) {
                              [UIView animateWithDuration:duration
                                                    delay:2.0
                                                  options:UIViewAnimationOptionCurveEaseOut
-                                              animations:^{
-                                                  NSLog(@"Finished displaying");
-                                                  messageView.alpha = 0;
-                                              }
+                                              animations:^{_errorMessage.alpha = 0;}
                                               completion:^(BOOL finished) {
-                                                  NSLog(@"Removed");
-                                                  [messageView removeFromSuperview];
-                                                  messageView = nil;
+                                                  _errorMessage.hidden = YES;
                                               }
                               ];
                          }];
     });
     
 }
+//- (void)displayErrorMessage:(NSString *)message {
+//    NSLog(@"%@", @"Displaying Error message");
+//    // Accessibility announcement
+//    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+//    [self.view setAutoresizesSubviews:NO];
+//    
+////    PDXMessageView __block *messageView = [[PDXMessageView alloc] initWithMessage:message];
+////    messageView.alpha = 0;
+////    messageView.hidden = NO;
+////    [self.view addSubview:messageView];
+////    messageView.center = self.view.center;
+//    
+//    // Animation
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        PDXMessageView __block *messageView = [[PDXMessageView alloc] initWithMessage:message];
+//        messageView.alpha = 1;
+//        messageView.hidden = NO;
+//        [self.view addSubview:messageView];
+//        messageView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+//        
+//        CGFloat duration = 0.8f;
+//        [UIView animateWithDuration:duration
+//                              delay:0.0
+//                            options:UIViewAnimationOptionCurveEaseIn
+//                         animations:^{
+//                             NSLog(@"Display");
+//                             messageView.alpha = 1;
+//                         }
+//                         completion:^(BOOL finished) {
+//                             [UIView animateWithDuration:duration
+//                                                   delay:2.0
+//                                                 options:UIViewAnimationOptionCurveEaseOut
+//                                              animations:^{
+//                                                  NSLog(@"Finished displaying");
+//                                                  messageView.alpha = 0;
+//                                              }
+//                                              completion:^(BOOL finished) {
+//                                                  NSLog(@"Removed");
+//                                                  [messageView removeFromSuperview];
+//                                                  messageView = nil;
+//                                              }
+//                              ];
+//                         }];
+//    });
+//    
+//}
 
 /**
  *  Required protocol method for PDXTwitterCommunicatorDelegate and PDXContactMakerDelegate

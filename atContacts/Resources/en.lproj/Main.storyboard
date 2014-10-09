@@ -25,7 +25,7 @@
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="@" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMZ-zf-l8P">
-                                <rect key="frame" x="150" y="220" width="13" height="19.5"/>
+                                <rect key="frame" x="150" y="219.5" width="13" height="19.5"/>
                                 <accessibility key="accessibilityConfiguration" hint="Don't enter the leading @">
                                     <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -58,20 +58,27 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="9MX-cG-8fq"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c2-Tt-Kzl">
-                                <rect key="frame" x="150" y="214" width="300" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" restorationIdentifier="errorMessage" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c2-Tt-Kzl">
+                                <rect key="frame" x="150" y="214" width="300" height="100"/>
                                 <color key="backgroundColor" red="0.038990393280982971" green="0.03900553286075592" blue="0.038989435881376266" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                <accessibility key="accessibilityConfiguration">
+                                <accessibility key="accessibilityConfiguration" label="Error message">
                                     <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="37N-Ee-BK9"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" red="0.96089571714401245" green="0.96106010675430298" blue="0.96088534593582153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="6"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="003-u9-0Xz" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="162-eZ-kLm"/>
+                            <constraint firstItem="Ib1-pi-m32" firstAttribute="top" secondItem="8c2-Tt-Kzl" secondAttribute="top" id="2PV-FU-7iF"/>
                             <constraint firstItem="8c2-Tt-Kzl" firstAttribute="top" secondItem="Ib1-pi-m32" secondAttribute="top" id="2Pb-WU-vgD"/>
                             <constraint firstItem="Ib1-pi-m32" firstAttribute="baseline" secondItem="mMZ-zf-l8P" secondAttribute="baseline" id="8xc-gQ-piL"/>
                             <constraint firstItem="8c2-Tt-Kzl" firstAttribute="width" secondItem="qfS-g8-B3B" secondAttribute="width" id="9Bw-vx-kt7"/>
@@ -82,16 +89,22 @@
                             <constraint firstAttribute="centerY" secondItem="003-u9-0Xz" secondAttribute="centerY" id="Ps1-2m-tWz"/>
                             <constraint firstAttribute="centerX" secondItem="qfS-g8-B3B" secondAttribute="centerX" id="Syp-l3-92f"/>
                             <constraint firstAttribute="centerY" secondItem="qfS-g8-B3B" secondAttribute="centerY" constant="38" id="TBd-wP-jlC"/>
+                            <constraint firstItem="Ib1-pi-m32" firstAttribute="centerY" secondItem="8c2-Tt-Kzl" secondAttribute="centerY" constant="-14" id="WbL-yW-eoP"/>
                             <constraint firstItem="mMZ-zf-l8P" firstAttribute="leading" secondItem="qfS-g8-B3B" secondAttribute="leading" id="YuZ-3V-uqA"/>
                             <constraint firstItem="8c2-Tt-Kzl" firstAttribute="bottom" secondItem="qfS-g8-B3B" secondAttribute="bottom" id="acg-8u-JnU"/>
                             <constraint firstAttribute="centerX" secondItem="Ib1-pi-m32" secondAttribute="centerX" constant="-9" id="cGU-9m-18b"/>
                             <constraint firstItem="Ib1-pi-m32" firstAttribute="leading" secondItem="mMZ-zf-l8P" secondAttribute="trailing" constant="4" id="gj8-bo-EeX"/>
                             <constraint firstItem="Ib1-pi-m32" firstAttribute="trailing" secondItem="qfS-g8-B3B" secondAttribute="trailing" id="nuk-Gf-SCM"/>
                             <constraint firstAttribute="centerX" secondItem="8c2-Tt-Kzl" secondAttribute="centerX" id="yts-fv-2Qf"/>
+                            <constraint firstAttribute="centerY" secondItem="8c2-Tt-Kzl" secondAttribute="centerY" id="zAh-pY-BQ0"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="WbL-yW-eoP"/>
                                 <exclude reference="cGU-9m-18b"/>
+                                <exclude reference="2Pb-WU-vgD"/>
+                                <exclude reference="acg-8u-JnU"/>
+                                <exclude reference="zAh-pY-BQ0"/>
                             </mask>
                         </variation>
                     </view>
@@ -166,9 +179,12 @@
                                     <constraint firstAttribute="width" constant="200" id="q6e-6m-ZVY"/>
                                     <constraint firstAttribute="height" constant="200" id="xyD-hu-KeP"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value="6"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="twitterName" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-zq-T26">
-                                <rect key="frame" x="200" y="301" width="200" height="19.5"/>
+                                <rect key="frame" x="200" y="301.5" width="200" height="19.5"/>
                                 <color key="backgroundColor" red="0.038990393280982971" green="0.03900553286075592" blue="0.038989435881376266" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="Twitter Name">
                                     <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
@@ -309,7 +325,7 @@
                                     <action selector="addToContacts" destination="a2f-bI-RVU" eventType="touchUpInside" id="x4x-IX-gOa"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcX-3U-RDU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcX-3U-RDU">
                                 <rect key="frame" x="200" y="121" width="200" height="200"/>
                                 <color key="backgroundColor" red="0.038990393280982971" green="0.03900553286075592" blue="0.038989435881376266" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="Message">
@@ -321,6 +337,11 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" red="0.96089571714401245" green="0.96106010675430298" blue="0.96088534593582153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="2" height="5"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="6"/>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="VML-p1-NeP"/>
