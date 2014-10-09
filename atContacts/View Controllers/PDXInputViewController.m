@@ -293,10 +293,14 @@
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
     _errorMessage.layer.cornerRadius = 6;
     _errorMessage.clipsToBounds = YES;
+    _errorMessage.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _errorMessage.layer.shadowOffset = CGSizeMake(0, 5);
+    _errorMessage.layer.shadowOpacity = 0.25;
     
     // Animation
     dispatch_async(dispatch_get_main_queue(), ^{
         _errorMessage.text = message;
+        [_errorMessage sizeToFit];
         _errorMessage.alpha = 0;
         _errorMessage.hidden = NO;
         
@@ -319,52 +323,6 @@
     });
     
 }
-//- (void)displayErrorMessage:(NSString *)message {
-//    NSLog(@"%@", @"Displaying Error message");
-//    // Accessibility announcement
-//    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
-//    [self.view setAutoresizesSubviews:NO];
-//    
-////    PDXMessageView __block *messageView = [[PDXMessageView alloc] initWithMessage:message];
-////    messageView.alpha = 0;
-////    messageView.hidden = NO;
-////    [self.view addSubview:messageView];
-////    messageView.center = self.view.center;
-//    
-//    // Animation
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        PDXMessageView __block *messageView = [[PDXMessageView alloc] initWithMessage:message];
-//        messageView.alpha = 1;
-//        messageView.hidden = NO;
-//        [self.view addSubview:messageView];
-//        messageView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
-//        
-//        CGFloat duration = 0.8f;
-//        [UIView animateWithDuration:duration
-//                              delay:0.0
-//                            options:UIViewAnimationOptionCurveEaseIn
-//                         animations:^{
-//                             NSLog(@"Display");
-//                             messageView.alpha = 1;
-//                         }
-//                         completion:^(BOOL finished) {
-//                             [UIView animateWithDuration:duration
-//                                                   delay:2.0
-//                                                 options:UIViewAnimationOptionCurveEaseOut
-//                                              animations:^{
-//                                                  NSLog(@"Finished displaying");
-//                                                  messageView.alpha = 0;
-//                                              }
-//                                              completion:^(BOOL finished) {
-//                                                  NSLog(@"Removed");
-//                                                  [messageView removeFromSuperview];
-//                                                  messageView = nil;
-//                                              }
-//                              ];
-//                         }];
-//    });
-//    
-//}
 
 /**
  *  Required protocol method for PDXTwitterCommunicatorDelegate and PDXContactMakerDelegate

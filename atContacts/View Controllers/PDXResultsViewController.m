@@ -56,6 +56,11 @@
     _webAddress.text = [data valueForKey:kPersonWebAddress];
     _idString = [data valueForKey:kPersonIDString];
 
+    // Round the corners on the user photo
+    _photo.layer.cornerRadius = 6;
+    _photo.clipsToBounds = YES;
+    [self roundTwitterHandle];
+    
     // Set user photo
     NSString *photoURL = [data valueForKey:kPersonPhotoURL];
     [self getPhoto:photoURL];
@@ -109,6 +114,23 @@
         twitter.delegate = self;
         [twitter getUserImage:largePhotoURL];
     }
+}
+
+// Round bottom corners on twitterHandle
+- (void)roundTwitterHandle {
+    CGRect defaultRect = CGRectMake(0, 0, 200, 20);
+    [_twitterHandle sizeToFit]; // Needed to get the appropriate height because the font size can be changed by user
+    CGRect requiredBounds = CGRectUnion(_twitterHandle.bounds, defaultRect);
+    _twitterHandle.frame = requiredBounds;
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:requiredBounds
+                                                   byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
+                                                         cornerRadii:CGSizeMake(6, 6)];
+    
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = _twitterHandle.frame;
+    maskLayer.path = maskPath.CGPath;
+    _twitterHandle.layer.mask = maskLayer;
+    [_twitterHandle setNeedsDisplay];
 }
 
 #pragma mark - Worker methods
@@ -230,10 +252,16 @@
 - (void)displayErrorMessage:(NSString *)message {    
     // Accessibility announcement
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+    _errorMessage.layer.cornerRadius = 6;
+    _errorMessage.clipsToBounds = YES;
+    _errorMessage.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _errorMessage.layer.shadowOffset = CGSizeMake(0, 5);
+    _errorMessage.layer.shadowOpacity = 0.25;
     
     // Animation
     dispatch_async(dispatch_get_main_queue(), ^{
         _errorMessage.text = message;
+        [_errorMessage sizeToFit];
         _errorMessage.alpha = 0;
         _errorMessage.hidden = NO;
         CGFloat duration = 0.8f;
@@ -624,6 +652,8 @@
  */
 - (void)preferredContentSizeChanged:(NSNotification *)notification {
     _twitterHandle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [_twitterHandle sizeToFit];
+    [self roundTwitterHandle];
     _email.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     _phone.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     _webAddress.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];

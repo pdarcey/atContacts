@@ -643,7 +643,7 @@ id removeNull(id rootObject) {
             break;
             
         case 403:
-            message = NSLocalizedString(@"There has been a problem connecting with Twitter", @"Forbidden");
+            message = NSLocalizedString(@"This user protects their Twitter account\n\nYou will have to request to follow them in Twitter; they may or may not approve your request", @"Forbidden");
             [_delegate displayErrorMessage:message];
             NSLog(@"Twitter Error:%@ %@", @"403", @"Forbidden");
             

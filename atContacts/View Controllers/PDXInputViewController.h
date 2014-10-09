@@ -10,7 +10,6 @@
 #import "PDXTwitterCommunicator.h"
 #import "PDXPushSegue.h"
 #import "PDXUnwindPushSegue.h"
-#import "PDXMessageView.h"
 
 # pragma mark - Constants
 
