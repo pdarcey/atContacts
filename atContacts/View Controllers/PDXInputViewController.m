@@ -291,19 +291,26 @@
 - (void)displayErrorMessage:(NSString *)message {
     // Accessibility announcement
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+    
+    // Set up embellishments to view that can't be set in Interface Builder
     _errorMessage.layer.cornerRadius = 6;
     _errorMessage.clipsToBounds = YES;
+    [_errorMessage textRectForBounds:CGRectInset(_errorMessage.bounds, 20, 20) limitedToNumberOfLines:_errorMessage.numberOfLines];
     _errorMessage.layer.shadowColor = [[UIColor blackColor] CGColor];
     _errorMessage.layer.shadowOffset = CGSizeMake(0, 5);
     _errorMessage.layer.shadowOpacity = 0.25;
     
     // Animation
     dispatch_async(dispatch_get_main_queue(), ^{
+        // Reset default size
         _errorMessage.text = message;
-        [_errorMessage sizeToFit];
+        [_errorMessage sizeToFit]; // Needed to get the appropriate height because the font size can be changed by user and by the message
+        CGRect defaultRect = CGRectMake(0, 0, 200, 200);
+        CGRect requiredBounds = CGRectUnion(_errorMessage.bounds, defaultRect);
+        _errorMessage.bounds = requiredBounds;
+        [_errorMessage setNeedsUpdateConstraints];
         _errorMessage.alpha = 0;
         _errorMessage.hidden = NO;
-        
         CGFloat duration = 0.8f;
         
         [UIView animateWithDuration:duration
@@ -321,7 +328,6 @@
                               ];
                          }];
     });
-    
 }
 
 /**

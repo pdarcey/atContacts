@@ -98,11 +98,11 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="WbL-yW-eoP"/>
-                                <exclude reference="cGU-9m-18b"/>
                                 <exclude reference="2Pb-WU-vgD"/>
                                 <exclude reference="acg-8u-JnU"/>
                                 <exclude reference="zAh-pY-BQ0"/>
+                                <exclude reference="WbL-yW-eoP"/>
+                                <exclude reference="cGU-9m-18b"/>
                             </mask>
                         </variation>
                     </view>
@@ -182,7 +182,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="twitterName" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-zq-T26">
-                                <rect key="frame" x="200" y="301.5" width="200" height="19.5"/>
+                                <rect key="frame" x="200" y="301" width="200" height="19.5"/>
                                 <color key="backgroundColor" red="0.038990393280982971" green="0.03900553286075592" blue="0.038989435881376266" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="Twitter Name">
                                     <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
@@ -235,7 +235,7 @@
                                 <color key="textColor" red="0.96089571714401245" green="0.96106010675430298" blue="0.96088534593582153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add email" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X7X-fj-m0i">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add email" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X7X-fj-m0i">
                                 <rect key="frame" x="222" y="328" width="77" height="20"/>
                                 <accessibility key="accessibilityConfiguration" label="Email address"/>
                                 <color key="textColor" red="0.96089571714401245" green="0.96106010675430298" blue="0.96088534593582153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -255,7 +255,7 @@
                                 <color key="textColor" red="0.96089571714401245" green="0.96106010675430298" blue="0.96088534593582153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add phone" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OWX-u5-Leo">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add phone" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OWX-u5-Leo">
                                 <rect key="frame" x="225" y="355" width="84" height="20"/>
                                 <accessibility key="accessibilityConfiguration" label="Phone number"/>
                                 <color key="textColor" red="0.96089571714401245" green="0.96106010675430298" blue="0.96088534593582153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -274,7 +274,7 @@
                                 <color key="textColor" red="0.96089571714401245" green="0.96106010675430298" blue="0.96088534593582153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add web address" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i1l-eD-iST">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add web address" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i1l-eD-iST">
                                 <rect key="frame" x="225" y="382" width="175" height="20"/>
                                 <accessibility key="accessibilityConfiguration" label="Web address"/>
                                 <color key="textColor" red="0.96089571714401245" green="0.96106010675430298" blue="0.96088534593582153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -391,6 +391,7 @@
                             <constraint firstItem="Ctm-pf-gHA" firstAttribute="height" secondItem="Ju2-0W-kr1" secondAttribute="height" id="Ij8-L2-14B"/>
                             <constraint firstItem="7db-G0-5GQ" firstAttribute="top" secondItem="Ctm-pf-gHA" secondAttribute="bottom" constant="21" id="Jyu-Q9-q9d"/>
                             <constraint firstItem="86e-dG-L1q" firstAttribute="trailing" secondItem="LFf-PF-jaK" secondAttribute="trailing" id="Qe9-wm-JDr"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="OWX-u5-Leo" secondAttribute="trailing" constant="6" id="R9Z-iP-CAA"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="i1l-eD-iST" secondAttribute="trailing" constant="6" id="RxP-OC-XeT"/>
                             <constraint firstAttribute="centerY" secondItem="iSE-R8-M22" secondAttribute="centerY" id="S9S-Re-pqH"/>
                             <constraint firstItem="86e-dG-L1q" firstAttribute="top" secondItem="i1l-eD-iST" secondAttribute="bottom" constant="7" id="SxG-oQ-Lx8"/>
