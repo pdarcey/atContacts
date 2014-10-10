@@ -8,6 +8,7 @@
 
 #import "PDXSegueNavigationDelegate.h"
 #import "PDXPushTransition.h"
+#import "PDXPopTransition.h"
 
 @implementation PDXSegueNavigationDelegate
 
@@ -20,7 +21,12 @@
         PDXPushTransition *transition = [PDXPushTransition new];
 
         return transition;
+    } else if (operation == UINavigationControllerOperationPop) {
+        PDXPopTransition *transition = [PDXPopTransition new];
+        
+        return transition;
     }
+
     
     return nil;
 }

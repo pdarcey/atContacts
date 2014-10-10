@@ -462,11 +462,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BbH-Hz-PIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="ieR-RG-aPC" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer direction="right" id="Opm-xg-hbP">
                     <connections>
                         <action selector="swipeToDismiss" destination="a2f-bI-RVU" id="V2i-8M-aOb"/>
-                        <segue destination="ieR-RG-aPC" kind="unwind" unwindAction="unwindFromViewController:" id="kbf-4A-hkE"/>
                     </connections>
                 </swipeGestureRecognizer>
                 <tapGestureRecognizer id="QEU-bO-FK6">

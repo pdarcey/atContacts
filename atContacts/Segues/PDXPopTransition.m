@@ -1,34 +1,34 @@
 //
-//  PDXPushTransition.m
+//  PDXPopTransition.m
 //  @Contacts
 //
 //  Created by Paul Darcey on 10/10/2014.
-//  Copyright © 2014 Paul Darcey. All rights reserved.
+//  Copyright (c) 2014 Paul Darcey. All rights reserved.
 //
 
-#import "PDXPushTransition.h"
+#import "PDXPopTransition.h"
 #import "PDXInputViewController.h"
 #import "PDXResultsViewController.h"
 
-@implementation PDXPushTransition
+@implementation PDXPopTransition
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     return 2.0;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    
     // Get the two view controllers
-    PDXInputViewController *source = (PDXInputViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    PDXResultsViewController *destination = (PDXResultsViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    PDXInputViewController *destination = (PDXInputViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    PDXResultsViewController *source = (PDXResultsViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
     // Set data to be displayed
-    destination.data = source.data;
+    [destination reset];
     
     // Get the container view - where the animation has to happen
     UIView *containerView = [transitionContext containerView];
     
     // Add the two VC views to the container. Hide the destination
+    [containerView addSubview:destination.view];
     [containerView addSubview:source.view];
     
     // Perform the animation
@@ -36,11 +36,9 @@
                           delay:0
                         options:0
                      animations:^{
-                         [containerView addSubview:destination.view];
+                         [source.view removeFromSuperview];
                      }
                      completion:^(BOOL finished) {
-                         // Let's get rid of the old VC view
-                         [source.view removeFromSuperview];
                          // And then we need to tell the context that we're done
                          [transitionContext completeTransition:YES];
                      }];

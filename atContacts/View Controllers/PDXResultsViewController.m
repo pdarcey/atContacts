@@ -7,6 +7,7 @@
 //
 
 #import "PDXResultsViewController.h"
+#import "PDXNavigationControllerViewController.h"
 
 @interface PDXResultsViewController ()
 
@@ -233,84 +234,6 @@
     }
 }
 
-#pragma mark - Protocol methods for both PDXTwitterCommunicatorDelegate and PDXContactMakerDelegate
-
-/**
- *  Display a message to the user. Animates a fade in/fade out effect
- *
- *  Required by PDXTwitterCommunicatorDelegate protocol
- *
- *  Fade in & fade out time are each set as animationDuration
- *  Display time is set as displayTime
- *  (i.e. total animation time = 2 x animationDuration + displayDuration)
- *
- *  @param message The message to be displayed
- *
- *  @since 1.0
- */
-- (void)displayErrorMessage:(NSString *)message {    
-    // Accessibility announcement
-    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
-    
-    // Set up embellishments to view that can't be set in Interface Builder
-    _errorMessage.layer.cornerRadius = 6;
-    _errorMessage.clipsToBounds = YES;
-    [_errorMessage textRectForBounds:CGRectInset(_errorMessage.bounds, 20, 20) limitedToNumberOfLines:_errorMessage.numberOfLines];
-    _errorMessage.layer.shadowColor = [[UIColor blackColor] CGColor];
-    _errorMessage.layer.shadowOffset = CGSizeMake(0, 5);
-    _errorMessage.layer.shadowOpacity = 0.25;
-    
-    // Animation
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // Reset default size
-        _errorMessage.text = message;
-        [_errorMessage sizeToFit]; // Needed to get the appropriate height because the font size can be changed by user and by the message
-        CGRect defaultRect = CGRectMake(0, 0, 200, 200);
-        CGRect requiredBounds = CGRectUnion(_errorMessage.bounds, defaultRect);
-        _errorMessage.bounds = requiredBounds;
-        [_errorMessage setNeedsUpdateConstraints];
-        _errorMessage.alpha = 0;
-        _errorMessage.hidden = NO;
-        CGFloat duration = 0.8f;
-
-        [UIView animateWithDuration:duration
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{_errorMessage.alpha = 1;}
-                         completion:^(BOOL finished) {
-                             [UIView animateWithDuration:duration
-                                                   delay:2.0
-                                                 options:UIViewAnimationOptionCurveEaseOut
-                                              animations:^{_errorMessage.alpha = 0;}
-                                              completion:^(BOOL finished) {
-                                                  _errorMessage.hidden = YES;
-                                              }
-                              ];
-                         }];
-    });
-}
-
-/**
- *  Required protocol method for PDXTwitterCommunicatorDelegate and PDXContactMakerDelegate
- *
- *  Displays a UIAlertController alert which is already configured
- *
- *  @param alert Pre-configured alert
- *
- *  @since 1.0
- */
-- (void)displayAlert:(UIAlertController *)alert {
-    // Accessibility announcement
-    NSString *message = alert.message;
-    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
-    
-    // Animation
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self presentViewController:alert animated:YES completion:nil];
-    });
-    
-}
-
 #pragma mark - Button actions
 
 /**
@@ -322,14 +245,14 @@
  */
 - (IBAction)followOnTwitter:(UIButton *)sender {
     PDXTwitterCommunicator *twitter = [PDXTwitterCommunicator new];
-    twitter.delegate = self;
+    twitter.delegate = (id<PDXTwitterCommunicatorDelegate>)self.parentViewController;
     
     if (!_following) {
         [twitter follow:[_data valueForKey:kPersonFollowing]];
     } else {
         // This should never be displayed as the button should not be enabled
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Already following %@ on Twitter", @"Trying to follow someone we already follow"), _twitterHandle];
-        [self displayErrorMessage:message];
+        [(id<PDXTwitterCommunicatorDelegate>)self.parentViewController displayErrorMessage:message];
     }
 }
 
@@ -343,7 +266,7 @@
 - (void)setContactState {
     // Set Contacts status
     PDXContactMaker *contacts = [PDXContactMaker new];
-    contacts.delegate = self;
+    contacts.delegate = (id<PDXContactMakerDelegate>)self.parentViewController;
 
     if ([contacts isInContacts:[self personData]]) {
         NSString *message = NSLocalizedString(@"Person is in Contacts", @"Display contact state");
@@ -359,7 +282,7 @@
  */
 - (IBAction)addToContacts {
     PDXContactMaker *contactMaker = [PDXContactMaker new];
-    contactMaker.delegate = self;
+    contactMaker.delegate = (id<PDXContactMakerDelegate>)self.parentViewController;
     NSDictionary *personData = [self personData];
     
     [contactMaker addToContacts:personData];
@@ -411,8 +334,8 @@
  *
  *  @since 1.0
  */
-- (IBAction)swipeToDismiss {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)swipeToDismiss {    
+    [(PDXNavigationControllerViewController *)self.parentViewController popViewControllerAnimated:YES];
 }
 
 /**

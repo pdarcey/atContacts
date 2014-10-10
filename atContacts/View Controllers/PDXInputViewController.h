@@ -25,7 +25,7 @@ static NSString * const kStoryboardIdentifierInput = @"InputView";
 
 # pragma mark - Interface
 
-@interface PDXInputViewController : UIViewController <PDXTwitterCommunicatorDelegate, UIViewControllerTransitioningDelegate>
+@interface PDXInputViewController : UIViewController <UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *twitterName;
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;

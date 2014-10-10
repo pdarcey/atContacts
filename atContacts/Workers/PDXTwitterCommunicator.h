@@ -15,12 +15,9 @@
 
 @protocol PDXTwitterCommunicatorDelegate <NSObject>
 
-@required
-
+@optional
 - (void)displayErrorMessage:(NSString *)message;
 - (void)displayAlert:(UIAlertController *)alert;
-
-@optional
 - (void)followedOnTwitter:(BOOL)success;
 - (void)displayInfo:(NSDictionary *)data;
 - (void)displayUserImage:(UIImage *)image;

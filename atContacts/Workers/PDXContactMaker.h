@@ -17,6 +17,8 @@
 
 @required
 - (void)newContactMade:(BOOL)success;
+
+@optional
 - (void)displayErrorMessage:(NSString *)message;
 - (void)displayAlert:(UIAlertController *)alert;
 
