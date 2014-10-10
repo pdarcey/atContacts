@@ -17,8 +17,6 @@
 
 @required
 
-@property (weak, nonatomic) UILabel *errorMessage;
-
 - (void)displayErrorMessage:(NSString *)message;
 - (void)displayAlert:(UIAlertController *)alert;
 

@@ -8,8 +8,7 @@
 
 @import UIKit;
 #import "PDXTwitterCommunicator.h"
-#import "PDXPushSegue.h"
-#import "PDXUnwindPushSegue.h"
+#import "PDXSegueNavigationDelegate.h"
 
 # pragma mark - Constants
 
@@ -26,7 +25,7 @@ static NSString * const kStoryboardIdentifierInput = @"InputView";
 
 # pragma mark - Interface
 
-@interface PDXInputViewController : UIViewController <PDXTwitterCommunicatorDelegate>
+@interface PDXInputViewController : UIViewController <PDXTwitterCommunicatorDelegate, UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *twitterName;
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;

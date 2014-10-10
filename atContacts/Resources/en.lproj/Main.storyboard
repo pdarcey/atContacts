@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="atp-zq-VU3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
+        <!--NavigationController-->
+        <scene sceneID="uDF-xj-Z4v">
+            <objects>
+                <navigationController storyboardIdentifier="Navigation" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" navigationBarHidden="YES" id="atp-zq-VU3" userLabel="NavigationController" customClass="PDXNavigationControllerViewController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IpY-9T-qIu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="IdG-bZ-b5Y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b9f-N7-W0J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-27" y="567"/>
+        </scene>
         <!--InputView-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -59,7 +75,7 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="9MX-cG-8fq"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" restorationIdentifier="errorMessage" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c2-Tt-Kzl">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" restorationIdentifier="errorMessage" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c2-Tt-Kzl">
                                 <rect key="frame" x="150" y="214" width="300" height="100"/>
                                 <color key="backgroundColor" red="0.038990393280982971" green="0.03900553286075592" blue="0.038989435881376266" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="Error message">
@@ -106,12 +122,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="DsS-jZ-dhF"/>
                     <connections>
                         <outlet property="atSymbol" destination="mMZ-zf-l8P" id="9zJ-NW-T7v"/>
                         <outlet property="errorMessage" destination="8c2-Tt-Kzl" id="xWf-Jh-V9h"/>
                         <outlet property="hashtag" destination="qfS-g8-B3B" id="tVq-Q2-PKD"/>
                         <outlet property="twitterName" destination="Ib1-pi-m32" id="PdN-4R-M85"/>
-                        <segue destination="a2f-bI-RVU" kind="custom" identifier="showResults" customClass="PDXPushSegue" id="6gm-lN-9uB"/>
+                        <segue destination="a2f-bI-RVU" kind="show" identifier="showResults" id="6gm-lN-9uB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -427,6 +444,7 @@
                             <constraint firstAttribute="centerX" secondItem="lxn-3I-Z47" secondAttribute="centerX" id="ywD-2O-avD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="IYn-Dj-cju"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>

@@ -1,0 +1,27 @@
+//
+//  PDXSegueNavigationDelegate.m
+//  @Contacts
+//
+//  Created by Paul Darcey on 10/10/2014.
+//  Copyright (c) 2014 Paul Darcey. All rights reserved.
+//
+
+#import "PDXSegueNavigationDelegate.h"
+#import "PDXPushTransition.h"
+
+@implementation PDXSegueNavigationDelegate
+
+- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC {
+    
+    if (operation == UINavigationControllerOperationPush) {
+        
+        return [PDXPushTransition new];
+    }
+    
+    return nil;
+}
+
+@end

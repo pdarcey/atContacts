@@ -16,7 +16,7 @@
 // Constants
 static NSString * const kFakeTextField = @"fakeTextField";
 
-@interface PDXResultsViewController : UIViewController <UITextFieldDelegate, PDXTwitterCommunicatorDelegate, PDXContactMakerDelegate>
+@interface PDXResultsViewController : UIViewController <UITextFieldDelegate, PDXTwitterCommunicatorDelegate, PDXContactMakerDelegate, UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UILabel *lastName;
