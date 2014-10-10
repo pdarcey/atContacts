@@ -194,9 +194,6 @@
                                     <constraint firstAttribute="width" constant="200" id="q6e-6m-ZVY"/>
                                     <constraint firstAttribute="height" constant="200" id="xyD-hu-KeP"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value="6"/>
-                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="twitterName" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-zq-T26">
                                 <rect key="frame" x="200" y="301" width="200" height="19.5"/>

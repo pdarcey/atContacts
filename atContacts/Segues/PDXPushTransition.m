@@ -3,7 +3,7 @@
 //  @Contacts
 //
 //  Created by Paul Darcey on 10/10/2014.
-//  Copyright (c) 2014 Paul Darcey. All rights reserved.
+//  Copyright © 2014 Paul Darcey. All rights reserved.
 //
 
 #import "PDXPushTransition.h"
@@ -30,6 +30,8 @@
     
     // Add the two VC views to the container. Hide the destination
     [containerView addSubview:source.view];
+    [containerView addSubview:destination.view];
+    destination.view.alpha = 0;
     
     // Perform the animation
     

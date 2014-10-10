@@ -3,13 +3,14 @@
 //  @Contacts
 //
 //  Created by Paul Darcey on 10/10/2014.
-//  Copyright (c) 2014 Paul Darcey. All rights reserved.
+//  Copyright © 2014 Paul Darcey. All rights reserved.
 //
 
 #import "PDXNavigationControllerViewController.h"
 #import "PDXSegueNavigationDelegate.h"
 #import "PDXInputViewController.h"
 #import "PDXResultsViewController.h"
+#import "PDXPushTransition.h"
 
 @interface PDXNavigationControllerViewController () {
 
@@ -46,13 +47,12 @@
 
 - (void)displayInfo:(NSDictionary *)data {
     // Display view
-    PDXResultsViewController *destination = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Results"];
-    destination.data = data;
-    
-    if (!_segueDelegate) {
-        _segueDelegate = [PDXSegueNavigationDelegate new];
-    }
-    [_segueDelegate navigationController:self animationControllerForOperation:UINavigationControllerOperationPush fromViewController:[self topViewController] toViewController:destination];
+    PDXResultsViewController *results = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Results"];
+    results.data = data;
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self pushViewController:results animated:YES];
+    });
 }
 
 /**
