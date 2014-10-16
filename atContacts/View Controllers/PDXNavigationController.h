@@ -10,7 +10,7 @@
 #import "PDXTwitterCommunicator.h"
 #import "PDXContactMaker.h"
 
-@interface PDXNavigationControllerViewController : UINavigationController <PDXTwitterCommunicatorDelegate, PDXContactMakerDelegate>
+@interface PDXNavigationController : UINavigationController <PDXTwitterCommunicatorDelegate, PDXContactMakerDelegate>
 
 @property (strong, nonatomic) id <UINavigationControllerDelegate> segueDelegate;
 

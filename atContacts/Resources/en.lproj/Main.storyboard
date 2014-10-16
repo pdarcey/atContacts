@@ -9,7 +9,7 @@
         <!--NavigationController-->
         <scene sceneID="uDF-xj-Z4v">
             <objects>
-                <navigationController storyboardIdentifier="Navigation" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" navigationBarHidden="YES" id="atp-zq-VU3" userLabel="NavigationController" customClass="PDXNavigationControllerViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Navigation" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" navigationBarHidden="YES" id="atp-zq-VU3" userLabel="NavigationController" customClass="PDXNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IpY-9T-qIu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

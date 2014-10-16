@@ -9,6 +9,7 @@
 #import "PDXPushTransition.h"
 #import "PDXInputViewController.h"
 #import "PDXResultsViewController.h"
+#import "PDXNavigationController.h"
 
 @implementation PDXPushTransition
 
@@ -35,7 +36,7 @@
     [UIView animateWithDuration:[self transitionDuration:transitionContext]
                           delay:0
                         options:0
-                     animations:^{
+                     animations:^{                         
                          [containerView addSubview:destination.view];
                      }
                      completion:^(BOOL finished) {

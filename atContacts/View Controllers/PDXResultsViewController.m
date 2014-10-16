@@ -7,7 +7,7 @@
 //
 
 #import "PDXResultsViewController.h"
-#import "PDXNavigationControllerViewController.h"
+#import "PDXNavigationController.h"
 
 @interface PDXResultsViewController ()
 
@@ -335,7 +335,7 @@
  *  @since 1.0
  */
 - (IBAction)swipeToDismiss {    
-    [(PDXNavigationControllerViewController *)self.parentViewController popViewControllerAnimated:YES];
+    [(PDXNavigationController *)self.parentViewController popViewControllerAnimated:YES];
 }
 
 /**

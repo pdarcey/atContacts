@@ -6,13 +6,13 @@
 //  Copyright © 2014 Paul Darcey. All rights reserved.
 //
 
-#import "PDXNavigationControllerViewController.h"
+#import "PDXNavigationController.h"
 #import "PDXSegueNavigationDelegate.h"
 #import "PDXInputViewController.h"
 #import "PDXResultsViewController.h"
 #import "PDXPushTransition.h"
 
-@interface PDXNavigationControllerViewController () {
+@interface PDXNavigationController () {
 
     id <UINavigationControllerDelegate> _navDelegate;
     
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation PDXNavigationControllerViewController
+@implementation PDXNavigationController
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -46,13 +46,37 @@
 # pragma mark - Twitter Protocol
 
 - (void)displayInfo:(NSDictionary *)data {
+    // Prepare Results view
+    PDXResultsViewController *results = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Results"];
+    results.data = data;
+    
+    // Set up animation
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CATransition *animation = [CATransition animation];
+        [animation setDelegate:self];
+        [animation setType:kCATransitionPush];
+        [animation setSubtype:kCATransitionFromRight];
+        [animation setDuration:2];
+        [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+        [[self.navigationController.view layer] addAnimation:animation forKey:@"AnimationFromRight"];
+        [self pushViewController:results animated:YES];
+    });
+}
+
+- (void)test:(NSDictionary *)data {
     // Display view
     PDXResultsViewController *results = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Results"];
     results.data = data;
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self pushViewController:results animated:YES];
-    });
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setType:kCATransitionPush];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setDuration:0.65f];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [[self.navigationController.view layer] addAnimation:animation forKey:@"AnimationFromRight"];
+
 }
 
 /**
@@ -67,7 +91,34 @@
 - (void)displayErrorMessage:(NSString *)message {
     // Accessibility announcement
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
+
+    UILabel *errorMessage = [self makeErrorMessage:message];
+    // Set alpha to 0 to start the fade-in transition
+    errorMessage.alpha = 0;
+    [self.topViewController.view addSubview:errorMessage];
     
+    // Animation
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CGFloat duration = 0.8f;
+        
+        [UIView animateWithDuration:duration
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{errorMessage.alpha = 1;}
+                         completion:^(BOOL finished) {
+                             [UIView animateWithDuration:duration
+                                                   delay:2.0
+                                                 options:UIViewAnimationOptionCurveEaseOut
+                                              animations:^{errorMessage.alpha = 0;}
+                                              completion:^(BOOL finished) {
+                                                  [errorMessage removeFromSuperview];
+                                              }
+                              ];
+                         }];
+    });
+}
+
+- (UILabel *)makeErrorMessage:(NSString *)message {
     // Set up error message label
     CGRect defaultRect = CGRectMake(0, 0, 200, 200);
     UILabel *errorMessage = [[UILabel alloc] initWithFrame:defaultRect];
@@ -95,29 +146,7 @@
     }
     errorMessage.frame = CGRectMake(x, y, requiredBounds.size.width, requiredBounds.size.height);
 
-    // Set alpha to 0 to start the fade-in transition
-    errorMessage.alpha = 0;
-    [self.topViewController.view addSubview:errorMessage];
-    
-    // Animation
-    dispatch_async(dispatch_get_main_queue(), ^{
-        CGFloat duration = 0.8f;
-        
-        [UIView animateWithDuration:duration
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{errorMessage.alpha = 1;}
-                         completion:^(BOOL finished) {
-                             [UIView animateWithDuration:duration
-                                                   delay:2.0
-                                                 options:UIViewAnimationOptionCurveEaseOut
-                                              animations:^{errorMessage.alpha = 0;}
-                                              completion:^(BOOL finished) {
-                                                  [errorMessage removeFromSuperview];
-                                              }
-                              ];
-                         }];
-    });
+    return errorMessage;
 }
 
 /**
