@@ -89,64 +89,85 @@
  *  @since 1.0
  */
 - (void)displayErrorMessage:(NSString *)message {
-    // Accessibility announcement
-    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
-
-    UILabel *errorMessage = [self makeErrorMessage:message];
-    // Set alpha to 0 to start the fade-in transition
-    errorMessage.alpha = 0;
-    [self.topViewController.view addSubview:errorMessage];
-    
-    // Animation
-    dispatch_async(dispatch_get_main_queue(), ^{
-        CGFloat duration = 0.8f;
+    if (message) {
+        // Accessibility announcement
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
         
-        [UIView animateWithDuration:duration
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{errorMessage.alpha = 1;}
-                         completion:^(BOOL finished) {
-                             [UIView animateWithDuration:duration
-                                                   delay:2.0
-                                                 options:UIViewAnimationOptionCurveEaseOut
-                                              animations:^{errorMessage.alpha = 0;}
-                                              completion:^(BOOL finished) {
-                                                  [errorMessage removeFromSuperview];
-                                              }
-                              ];
-                         }];
-    });
+        UIView *errorMessage = [self makeErrorMessage:message];
+        // Set alpha to 0 to start the fade-in transition
+        errorMessage.alpha = 0;
+        [self.topViewController.view addSubview:errorMessage];
+        
+        // Animation
+        dispatch_async(dispatch_get_main_queue(), ^{
+            CGFloat duration = 0.8f;
+            
+            [UIView animateWithDuration:duration
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{errorMessage.alpha = 1;}
+                             completion:^(BOOL finished) {
+                                 [UIView animateWithDuration:duration
+                                                       delay:2.0
+                                                     options:UIViewAnimationOptionCurveEaseOut
+                                                  animations:^{errorMessage.alpha = 0;}
+                                                  completion:^(BOOL finished) {
+                                                      [errorMessage removeFromSuperview];
+                                                  }
+                                  ];
+                             }];
+        });
+    }
 }
 
-- (UILabel *)makeErrorMessage:(NSString *)message {
-    // Set up error message label
-    CGRect defaultRect = CGRectMake(0, 0, 200, 200);
-    UILabel *errorMessage = [[UILabel alloc] initWithFrame:defaultRect];
-    errorMessage.backgroundColor = [[UIColor kAppBlackColor] colorWithAlphaComponent:0.7];
-    errorMessage.textColor = [UIColor kAppWhiteColor];
-    errorMessage.textAlignment = NSTextAlignmentCenter;
-    errorMessage.numberOfLines = 0;
-    errorMessage.layer.cornerRadius = 6;
-    errorMessage.clipsToBounds = YES;
-    [errorMessage textRectForBounds:CGRectInset(errorMessage.bounds, 20, 20) limitedToNumberOfLines:errorMessage.numberOfLines];
-    errorMessage.layer.shadowColor = [[UIColor blackColor] CGColor];
-    errorMessage.layer.shadowOffset = CGSizeMake(0, 5);
-    errorMessage.layer.shadowOpacity = 0.25;
-    // Reset default size
-    errorMessage.text = message;
-    [errorMessage sizeToFit]; // Needed to get the appropriate height because the font size can be changed by user and by the message
-    CGRect requiredBounds = CGRectUnion(errorMessage.bounds, defaultRect);
+- (UIView *)makeErrorMessage:(NSString *)message {
+    // Add Rounded Rect
+    CGRect defaultBackgroundSize = CGRectMake(0, 0, 200, 200);
+    UIView *blackBackground = [[UIView alloc] initWithFrame:defaultBackgroundSize];
+    blackBackground.backgroundColor = [[UIColor kAppBlackColor] colorWithAlphaComponent:0.7];
+    blackBackground.layer.cornerRadius = 6;
+    blackBackground.layer.masksToBounds = NO;
+    blackBackground.translatesAutoresizingMaskIntoConstraints = NO;
+
+    // Add shadow
+    blackBackground.layer.shadowColor = [[UIColor blackColor] CGColor];
+    blackBackground.layer.shadowOffset = CGSizeMake(0, 5);
+    blackBackground.layer.shadowOpacity = 0.25;
+    
+    // Add label, format it, and set its contents
+    CGFloat margin = 12;
+    CGRect defaultMessageSize = CGRectInset(defaultBackgroundSize, margin, margin);
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:defaultMessageSize];
+    messageLabel.layer.masksToBounds = YES;
+    messageLabel.backgroundColor = [UIColor clearColor];
+    messageLabel.textColor = [UIColor kAppWhiteColor];
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    messageLabel.text = message;
+    messageLabel.adjustsFontSizeToFitWidth = NO;
+    messageLabel.numberOfLines = 0;
+    messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    messageLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [messageLabel sizeToFit];
+    
+    CGRect requiredBackgroundSize = CGRectOffset(messageLabel.bounds, margin * 2, margin * 2);
+    blackBackground.frame = CGRectUnion(defaultBackgroundSize, requiredBackgroundSize);
+    
+    // Position message on the background
+    [blackBackground addSubview:messageLabel];
+    CGFloat messageX = (blackBackground.bounds.size.width - messageLabel.bounds.size.width) / 2;
+    CGFloat messageY = (blackBackground.bounds.size.height - messageLabel.bounds.size.height) / 2;
+    messageLabel.frame = CGRectMake(messageX, messageY, messageLabel.bounds.size.width, messageLabel.bounds.size.height);
     
     // Position it on the screen
-    CGFloat x = (self.topViewController.view.frame.size.width - requiredBounds.size.width) / 2;
-    CGFloat y = ((self.topViewController.view.frame.size.height * 3 / 4) - requiredBounds.size.height) / 2;
+    CGFloat x = (self.topViewController.view.frame.size.width - blackBackground.bounds.size.width) / 2;
+    CGFloat y = ((self.topViewController.view.frame.size.height * 3 / 4) - blackBackground.bounds.size.height) / 2;
     
     if (y < 0) {
         y = 0;
     }
-    errorMessage.frame = CGRectMake(x, y, requiredBounds.size.width, requiredBounds.size.height);
+    blackBackground.frame = CGRectMake(x, y, blackBackground.bounds.size.width, blackBackground.bounds.size.height);
 
-    return errorMessage;
+    return blackBackground;
 }
 
 /**

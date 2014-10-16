@@ -46,6 +46,7 @@
 }
 
 - (void)testNilMessage {
+    // A nil message should never be sent to the makeErrorMessage method, but we test it anyway 
     PDXNavigationController *navigationController = [PDXNavigationController new];
     UILabel *messageView = [navigationController makeErrorMessage:nil];
     FBSnapshotVerifyView(messageView, nil);
