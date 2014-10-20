@@ -86,6 +86,17 @@
     }
 }
 
+#pragma mark - Segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [super prepareForSegue:segue sender:sender];
+    
+    UIViewController *detailViewController = segue.destinationViewController;
+    
+    detailViewController.transitioningDelegate = self;
+    detailViewController.modalPresentationStyle = UIModalPresentationCustom;
+}
+
 #pragma mark - Hashtag editing
 
 /**
