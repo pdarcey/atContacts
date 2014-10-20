@@ -26,25 +26,43 @@
     // Set data to be displayed
     destination.data = source.data;
     
-    // Get the container view - where the animation has to happen
-    UIView *containerView = [transitionContext containerView];
+    // Set our ending frame. We'll modify this later if we have to
+    CGRect endFrame = source.view.frame;
     
-    // Add the two VC views to the container. Hide the destination
-    [containerView addSubview:source.view];
-    
-    // Perform the animation
-    [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                          delay:0
-                        options:0
-                     animations:^{                         
-                         [containerView addSubview:destination.view];
-                     }
-                     completion:^(BOOL finished) {
-                         // Let's get rid of the old VC view
-                         [source.view removeFromSuperview];
-                         // And then we need to tell the context that we're done
-                         [transitionContext completeTransition:YES];
-                     }];
+    if (self.presenting) {
+        source.view.userInteractionEnabled = NO;
+        
+        [transitionContext.containerView addSubview:source.view];
+        [transitionContext.containerView addSubview:destination.view];
+        
+        CGRect startFrame = endFrame;
+        startFrame.origin.x += source.view.frame.size.width;
+        
+        destination.view.frame = startFrame;
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            source.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+            destination.view.frame = endFrame;
+        } completion:^(BOOL finished) {
+            [source removeFromParentViewController];
+            [transitionContext completeTransition:YES];
+        }];
+    } else {
+        destination.view.userInteractionEnabled = YES;
+        
+        [transitionContext.containerView addSubview:destination.view];
+        [transitionContext.containerView addSubview:source.view];
+        
+        endFrame.origin.x += source.view.frame.size.width;
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            destination.view.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
+            source.view.frame = endFrame;
+        } completion:^(BOOL finished) {
+            [source removeFromParentViewController];
+            [transitionContext completeTransition:YES];
+        }];
+    }
 }
 
 - (void)animationEnded:(BOOL)transitionCompleted {

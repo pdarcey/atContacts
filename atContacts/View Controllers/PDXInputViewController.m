@@ -9,6 +9,7 @@
 #import "PDXInputViewController.h"
 #import "PDXTwitterCommunicator.h"
 #import "PDXResultsViewController.h"
+#import "PDXPushTransition.h"
 
 @interface PDXInputViewController ()
 
@@ -88,13 +89,29 @@
 
 #pragma mark - Segue
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [super prepareForSegue:segue sender:sender];
     
     UIViewController *detailViewController = segue.destinationViewController;
     
     detailViewController.transitioningDelegate = self;
     detailViewController.modalPresentationStyle = UIModalPresentationCustom;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source {
+    
+    PDXPushTransition *animator = [PDXPushTransition new];
+    animator.presenting = YES;
+    
+    return animator;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    PDXPushTransition *animator = [PDXPushTransition new];
+    
+    return animator;
 }
 
 #pragma mark - Hashtag editing
