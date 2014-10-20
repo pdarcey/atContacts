@@ -128,7 +128,7 @@
                         <outlet property="errorMessage" destination="8c2-Tt-Kzl" id="xWf-Jh-V9h"/>
                         <outlet property="hashtag" destination="qfS-g8-B3B" id="tVq-Q2-PKD"/>
                         <outlet property="twitterName" destination="Ib1-pi-m32" id="PdN-4R-M85"/>
-                        <segue destination="a2f-bI-RVU" kind="show" identifier="showResults" id="6gm-lN-9uB"/>
+                        <segue destination="a2f-bI-RVU" kind="presentation" identifier="showResults" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="6gm-lN-9uB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
