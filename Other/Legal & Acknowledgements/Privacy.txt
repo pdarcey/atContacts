@@ -1,0 +1,43 @@
+Tapbots Privacy Policy.
+
+We don’t sell your data to anyone. We don’t even want any data from you but we need to store some of it in order to enable certain features.
+
+Twitter.
+
+Tweetbot is a Twitter client and as such it needs to make many requests to Twitter’s service. Please read Twitter’s privacy policy for more details on what they may do with that data.
+
+Configuration Info.
+
+Twitter is a network service and as such things can and will change. Because of this we retrieve certain configuration settings from our servers on a timed basis. As part of this request your IP and user agent info will be logged to a standard web log file which is rotated daily.
+
+Account Information (iOS only).
+
+If you add an account to Tweetbot the below information is sent securely to our servers. This information is used to send push notifications to you and may be used in the future to improve your Tweetbot experience in other ways. This data is automatically deleted if you don't actively use an account in Tweetbot or you revoke Tweetbot’s access to your account on Twitter’s website. Furthermore this data is backed up and may be kept in an offline form.
+
+Device Token:
+Apple requires this unique identifier in order to send notifications
+Twitter Account Details:
+Twitter requires certain informations so we can send notifications
+Application Identifier:
+To tell if you are running iPhone or iPad versions of Tweetbot
+Device Model:
+To tell the version of iOS device you are using
+OS Version:
+To tell what version of iOS you are running
+Time Zone:
+To support sleep settings
+Language:
+To properly localize push messages
+Push Settings:
+To configure which notifications you want to receive
+IP Address:
+We log file this to a standard web log which gets rotated daily
+User Agent Info:
+We log file this to a standard web log which gets rotated daily
+About and Support Screen (iOS only).
+
+If you go to our About or Support screen we will query and get the latest versions of our FAQs and available apps and possibly icons for those apps. As part of this request your IP and user agent info will be logged to a standard web log file which is rotated daily.
+
+Receive Email from Tapbots (iOS only).
+
+If you tap on “Receive Email from Tapbots” and submit your email address, we store that email address in a database. If we ever use this email address it’ll come with a simple way to unsubscribe. As part of this request your IP and user agent info will be logged to a standard web log file which is rotated daily.
