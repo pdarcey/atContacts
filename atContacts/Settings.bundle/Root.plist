@@ -46,11 +46,13 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>DefaultValue</key>
-			<string>© 2014 Paul Darcey  All rights reserved</string>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>© 2014 Paul Darcey, all rights reserved</string>
 			<key>Key</key>
 			<string>copyright</string>
+			<key>DefaultValue</key>
+			<string> </string>
 		</dict>
 	</array>
 </dict>
