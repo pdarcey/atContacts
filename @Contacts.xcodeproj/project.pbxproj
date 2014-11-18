@@ -595,7 +595,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [[ -z ${SKIP_OBJCLEAN} || ${SKIP_OBJCLEAN} != 1 ]]; then\nif [[ -d \"${LOCAL_APPS_DIR}/Objective-Clean.app\" ]]; then \n\"${LOCAL_APPS_DIR}\"/Objective-Clean.app/Contents/Resources/ObjClean.app/Contents/MacOS/ObjClean \"${SRCROOT}\"?PDX \nelse\necho \"warning: You have to install and set up Objective-Clean to use its features!\" \nfi\nfi";
+			shellScript = "if [ \"the$XCS_INTEGRATION_NUMBER\" == \"the\" ]; then\necho \"Not an integration build, run Obj-Clean script…\"\nif [[ -z ${SKIP_OBJCLEAN} || ${SKIP_OBJCLEAN} != 1 ]]; then\nif [[ -d \"${LOCAL_APPS_DIR}/Objective-Clean.app\" ]]; then\n\"${LOCAL_APPS_DIR}\"/Objective-Clean.app/Contents/Resources/ObjClean.app/Contents/MacOS/ObjClean \"${SRCROOT}\"?PDX\nelse\necho \"warning: You have to install and set up Objective-Clean to use its features!\"\nfi\nfi\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
