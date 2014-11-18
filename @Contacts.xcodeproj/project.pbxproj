@@ -104,6 +104,7 @@
 		C92B6BC119D0E2D7009E14AB /* testUsersLookup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testUsersLookup.json; sourceTree = "<group>"; };
 		C92B6BC219D0E2D7009E14AB /* testUsersSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testUsersSearch.json; sourceTree = "<group>"; };
 		C93E2D3719ADD51200B06809 /* @Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "@Contacts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C950363B1A1AE2C70050BD18 /* @Contacts Tests copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "@Contacts Tests copy-Info.plist"; path = "/Users/pdarcey/Developer/Repos/atContacts/@Contacts Tests copy-Info.plist"; sourceTree = "<absolute>"; };
 		C95C667019EF67530071DB49 /* PDXNavigationControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDXNavigationControllerTests.m; path = atContactsTests/PDXNavigationViewController/PDXNavigationControllerTests.m; sourceTree = SOURCE_ROOT; };
 		C95C667319EF68E60071DB49 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = "Snapshot Test Case/FBSnapshotTestCase.h"; sourceTree = "<group>"; };
 		C95C667419EF68E60071DB49 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = "Snapshot Test Case/FBSnapshotTestCase.m"; sourceTree = "<group>"; };
@@ -281,6 +282,7 @@
 				C93E2D3919ADD51200B06809 /* atContacts */,
 				C92B6BA919D0E255009E14AB /* @Contacts Tests */,
 				C93E2D3819ADD51200B06809 /* Products */,
+				C950363B1A1AE2C70050BD18 /* @Contacts Tests copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -428,9 +430,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C92B6BA719D0E255009E14AB /* @Contacts Tests */ = {
+		C92B6BA719D0E255009E14AB /* Contacts Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C92B6BB019D0E255009E14AB /* Build configuration list for PBXNativeTarget "@Contacts Tests" */;
+			buildConfigurationList = C92B6BB019D0E255009E14AB /* Build configuration list for PBXNativeTarget "Contacts Tests" */;
 			buildPhases = (
 				C92B6BA419D0E255009E14AB /* Sources */,
 				C92B6BA519D0E255009E14AB /* Frameworks */,
@@ -442,7 +444,7 @@
 				C92B6BAF19D0E255009E14AB /* PBXTargetDependency */,
 				C9995B2D19D0F01B005C8792 /* PBXTargetDependency */,
 			);
-			name = "@Contacts Tests";
+			name = "Contacts Tests";
 			productName = "@Contacts Tests";
 			productReference = C92B6BA819D0E255009E14AB /* @Contacts Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -517,7 +519,7 @@
 			projectRoot = "";
 			targets = (
 				C93E2D3619ADD51200B06809 /* @Contacts */,
-				C92B6BA719D0E255009E14AB /* @Contacts Tests */,
+				C92B6BA719D0E255009E14AB /* Contacts Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -868,7 +870,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C92B6BB019D0E255009E14AB /* Build configuration list for PBXNativeTarget "@Contacts Tests" */ = {
+		C92B6BB019D0E255009E14AB /* Build configuration list for PBXNativeTarget "Contacts Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C92B6BB119D0E255009E14AB /* Debug */,
