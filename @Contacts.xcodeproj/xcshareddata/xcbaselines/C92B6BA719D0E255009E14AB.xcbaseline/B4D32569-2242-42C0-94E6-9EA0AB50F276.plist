@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>classNames</key>
+	<dict>
+		<key>PDXContactMakerTests</key>
+		<dict>
+			<key>testAddToContactsSpeed</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.0014248</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>18 Nov 2014 3:56:19 pm</string>
+				</dict>
+			</dict>
+		</dict>
+		<key>PDXTwitterCommunicatorTests</key>
+		<dict>
+			<key>testParseFriendshipsCreateSpeed</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>1.9577e-06</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>18 Nov 2014 3:56:19 pm</string>
+				</dict>
+			</dict>
+		</dict>
+		<key>_Contacts_Tests</key>
+		<dict>
+			<key>testPerformanceExample</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>9.232e-07</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>18 Nov 2014 3:56:19 pm</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>
