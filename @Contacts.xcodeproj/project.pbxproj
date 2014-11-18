@@ -30,6 +30,20 @@
 		C950364D1A1AEC2B0050BD18 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C667619EF68E60071DB49 /* FBSnapshotTestController.m */; };
 		C950364E1A1AEC300050BD18 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C667E19EF749C0071DB49 /* UIImage+Compare.m */; };
 		C950364F1A1AEC350050BD18 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C668019EF749C0071DB49 /* UIImage+Diff.m */; };
+		C95036501A1B05E80050BD18 /* PDXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C995048519E8457700201A5F /* PDXNavigationController.m */; };
+		C95036511A1B05EE0050BD18 /* PDXInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997AD19CB49E1007A033E /* PDXInputViewController.m */; };
+		C95036521A1B05F30050BD18 /* PDXResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B119CB49E1007A033E /* PDXResultsViewController.m */; };
+		C95036531A1B06410050BD18 /* PDXContactMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B419CB49E1007A033E /* PDXContactMaker.m */; };
+		C95036541A1B06460050BD18 /* PDXTwitterCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B619CB49E1007A033E /* PDXTwitterCommunicator.m */; };
+		C95036551A1B064C0050BD18 /* PDXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A9976A19CB33EF007A033E /* PDXAppDelegate.m */; };
+		C95036561A1B06500050BD18 /* UIColor+ColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9995B2F19D46CA7005C8792 /* UIColor+ColorAdditions.m */; };
+		C95036571A1B06610050BD18 /* PDXSegueNavigationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C995047F19E834CC00201A5F /* PDXSegueNavigationDelegate.m */; };
+		C95036581A1B06640050BD18 /* PDXPushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = C995048219E83E7E00201A5F /* PDXPushTransition.m */; };
+		C95036591A1B066E0050BD18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977219CB3425007A033E /* LaunchScreen.storyboard */; };
+		C950365A1A1B06740050BD18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977419CB3425007A033E /* Main.storyboard */; };
+		C950365B1A1B067E0050BD18 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977819CB3425007A033E /* Images.xcassets */; };
+		C950365C1A1B067F0050BD18 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9A9977819CB3425007A033E /* Images.xcassets */; };
+		C950365D1A1B06A30050BD18 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C924976819D9BB4C008A7699 /* HockeySDK.framework */; };
 		C9720B9019D0826300F11BB0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9720B8F19D0826300F11BB0 /* Settings.bundle */; };
 		C97D5C351A12C18E009AB606 /* PDXResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B119CB49E1007A033E /* PDXResultsViewController.m */; };
 		C97D5C361A12C192009AB606 /* PDXInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997AD19CB49E1007A033E /* PDXInputViewController.m */; };
@@ -96,7 +110,7 @@
 		C924976819D9BB4C008A7699 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 		C924976A19D9BB4C008A7699 /* HockeySDK.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = HockeySDK.xcconfig; sourceTree = "<group>"; };
 		C924976B19D9BB4C008A7699 /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
-		C92B6BA819D0E255009E14AB /* @Contacts Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "@Contacts Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C92B6BA819D0E255009E14AB /* Contacts Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Contacts Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C92B6BAB19D0E255009E14AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C92B6BAC19D0E255009E14AB /* _Contacts_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _Contacts_Tests.m; sourceTree = "<group>"; };
 		C92B6BB419D0E2D7009E14AB /* PDXContactMaker+TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDXContactMaker+TestExtensions.h"; sourceTree = "<group>"; };
@@ -205,6 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C950365D1A1B06A30050BD18 /* HockeySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				C93E2D3719ADD51200B06809 /* @Contacts.app */,
-				C92B6BA819D0E255009E14AB /* @Contacts Tests.xctest */,
+				C92B6BA819D0E255009E14AB /* Contacts Tests.xctest */,
 				C95036401A1AEB610050BD18 /* Contacts SnapshotTests.xctest */,
 			);
 			name = Products;
@@ -485,7 +500,7 @@
 			);
 			name = "Contacts Tests";
 			productName = "@Contacts Tests";
-			productReference = C92B6BA819D0E255009E14AB /* @Contacts Tests.xctest */;
+			productReference = C92B6BA819D0E255009E14AB /* Contacts Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		C93E2D3619ADD51200B06809 /* @Contacts */ = {
@@ -592,6 +607,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C97D5C3C1A12C1EB009AB606 /* Main.storyboard in Resources */,
+				C950365B1A1B067E0050BD18 /* Images.xcassets in Resources */,
 				C97D5C3D1A12C1F0009AB606 /* LaunchScreen.storyboard in Resources */,
 				C92B6BCA19D0E2D7009E14AB /* testUsersLookup.json in Resources */,
 				C92B6BC619D0E2D7009E14AB /* testFriendshipsCreateNO.json in Resources */,
@@ -620,6 +636,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C950365C1A1B067F0050BD18 /* Images.xcassets in Resources */,
+				C95036591A1B066E0050BD18 /* LaunchScreen.storyboard in Resources */,
+				C950365A1A1B06740050BD18 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,12 +731,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C95036531A1B06410050BD18 /* PDXContactMaker.m in Sources */,
+				C95036521A1B05F30050BD18 /* PDXResultsViewController.m in Sources */,
+				C95036541A1B06460050BD18 /* PDXTwitterCommunicator.m in Sources */,
+				C95036581A1B06640050BD18 /* PDXPushTransition.m in Sources */,
 				C950364E1A1AEC300050BD18 /* UIImage+Compare.m in Sources */,
 				C950364B1A1AEC190050BD18 /* PDXNavigationControllerTests.m in Sources */,
 				C950364F1A1AEC350050BD18 /* UIImage+Diff.m in Sources */,
+				C95036561A1B06500050BD18 /* UIColor+ColorAdditions.m in Sources */,
 				C950364D1A1AEC2B0050BD18 /* FBSnapshotTestController.m in Sources */,
+				C95036551A1B064C0050BD18 /* PDXAppDelegate.m in Sources */,
 				C950364C1A1AEC250050BD18 /* FBSnapshotTestCase.m in Sources */,
 				C95036451A1AEB610050BD18 /* Contacts_SnapshotTests.m in Sources */,
+				C95036571A1B06610050BD18 /* PDXSegueNavigationDelegate.m in Sources */,
+				C95036511A1B05EE0050BD18 /* PDXInputViewController.m in Sources */,
+				C95036501A1B05E80050BD18 /* PDXNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -956,6 +984,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -976,6 +1005,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
 				);
 				INFOPLIST_FILE = "Contacts SnapshotTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -1022,6 +1052,7 @@
 				C950364A1A1AEB610050BD18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

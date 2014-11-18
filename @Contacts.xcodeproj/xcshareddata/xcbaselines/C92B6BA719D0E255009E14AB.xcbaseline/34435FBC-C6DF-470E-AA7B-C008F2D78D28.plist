@@ -11,7 +11,7 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.0029297</real>
+					<real>0.0025016</real>
 					<key>baselineIntegrationDisplayName</key>
 					<string>ContactsBot – Integration 9</string>
 				</dict>
@@ -24,7 +24,7 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>3.1016e-06</real>
+					<real>2.8497e-06</real>
 					<key>baselineIntegrationDisplayName</key>
 					<string>ContactsBot – Integration 9</string>
 				</dict>
@@ -37,7 +37,7 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>1.1815e-06</real>
+					<real>1.1234e-06</real>
 					<key>baselineIntegrationDisplayName</key>
 					<string>ContactsBot – Integration 9</string>
 				</dict>

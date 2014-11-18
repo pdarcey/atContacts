@@ -62,12 +62,12 @@
                                   kPersonTwitterDescription : @"Test description"
                                   };
     
-    [contactMaker addToContacts:personData];
+    [contactMaker makeContact:personData];
     
     CFIndex endPersonCount = ABAddressBookGetPersonCount(addressBook);
     
     XCTAssertEqual(endPersonCount, startPersonCount + 1, @"\nStarted with %li entries, ended with %li (expected %li)\n", startPersonCount, endPersonCount, startPersonCount + 1);
-
+    
 }
 
 /**
