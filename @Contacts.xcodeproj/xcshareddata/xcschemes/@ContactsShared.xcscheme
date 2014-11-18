@@ -42,6 +42,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C92B6BA719D0E255009E14AB"
+               BuildableName = "@Contacts Tests.xctest"
+               BlueprintName = "@Contacts Tests"
+               ReferencedContainer = "container:@Contacts.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
