@@ -24,11 +24,12 @@
 		C92B6BC919D0E2D7009E14AB /* testFriendshipsLookupNotFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = C92B6BC019D0E2D7009E14AB /* testFriendshipsLookupNotFollowing.json */; };
 		C92B6BCA19D0E2D7009E14AB /* testUsersLookup.json in Resources */ = {isa = PBXBuildFile; fileRef = C92B6BC119D0E2D7009E14AB /* testUsersLookup.json */; };
 		C92B6BCB19D0E2D7009E14AB /* testUsersSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C92B6BC219D0E2D7009E14AB /* testUsersSearch.json */; };
-		C95C667119EF67530071DB49 /* PDXNavigationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C667019EF67530071DB49 /* PDXNavigationControllerTests.m */; };
-		C95C667719EF68E60071DB49 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C667419EF68E60071DB49 /* FBSnapshotTestCase.m */; };
-		C95C667819EF68E60071DB49 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C667619EF68E60071DB49 /* FBSnapshotTestController.m */; };
-		C95C668119EF749C0071DB49 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C667E19EF749C0071DB49 /* UIImage+Compare.m */; };
-		C95C668219EF749C0071DB49 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C668019EF749C0071DB49 /* UIImage+Diff.m */; };
+		C95036451A1AEB610050BD18 /* Contacts_SnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C95036441A1AEB610050BD18 /* Contacts_SnapshotTests.m */; };
+		C950364B1A1AEC190050BD18 /* PDXNavigationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C667019EF67530071DB49 /* PDXNavigationControllerTests.m */; };
+		C950364C1A1AEC250050BD18 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C667419EF68E60071DB49 /* FBSnapshotTestCase.m */; };
+		C950364D1A1AEC2B0050BD18 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C667619EF68E60071DB49 /* FBSnapshotTestController.m */; };
+		C950364E1A1AEC300050BD18 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C667E19EF749C0071DB49 /* UIImage+Compare.m */; };
+		C950364F1A1AEC350050BD18 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C668019EF749C0071DB49 /* UIImage+Diff.m */; };
 		C9720B9019D0826300F11BB0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9720B8F19D0826300F11BB0 /* Settings.bundle */; };
 		C97D5C351A12C18E009AB606 /* PDXResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997B119CB49E1007A033E /* PDXResultsViewController.m */; };
 		C97D5C361A12C192009AB606 /* PDXInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A997AD19CB49E1007A033E /* PDXInputViewController.m */; };
@@ -72,6 +73,13 @@
 			remoteGlobalIDString = C93E2D3619ADD51200B06809;
 			remoteInfo = "@Contacts";
 		};
+		C95036461A1AEB610050BD18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C93E2D2F19ADD51200B06809 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C93E2D3619ADD51200B06809;
+			remoteInfo = "@Contacts";
+		};
 		C9995B2C19D0F01B005C8792 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C93E2D2F19ADD51200B06809 /* Project object */;
@@ -105,6 +113,9 @@
 		C92B6BC219D0E2D7009E14AB /* testUsersSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testUsersSearch.json; sourceTree = "<group>"; };
 		C93E2D3719ADD51200B06809 /* @Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "@Contacts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C950363B1A1AE2C70050BD18 /* @Contacts Tests copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "@Contacts Tests copy-Info.plist"; path = "/Users/pdarcey/Developer/Repos/atContacts/@Contacts Tests copy-Info.plist"; sourceTree = "<absolute>"; };
+		C95036401A1AEB610050BD18 /* Contacts SnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Contacts SnapshotTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95036431A1AEB610050BD18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C95036441A1AEB610050BD18 /* Contacts_SnapshotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Contacts_SnapshotTests.m; sourceTree = "<group>"; };
 		C95C667019EF67530071DB49 /* PDXNavigationControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDXNavigationControllerTests.m; path = atContactsTests/PDXNavigationViewController/PDXNavigationControllerTests.m; sourceTree = SOURCE_ROOT; };
 		C95C667319EF68E60071DB49 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = "Snapshot Test Case/FBSnapshotTestCase.h"; sourceTree = "<group>"; };
 		C95C667419EF68E60071DB49 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = "Snapshot Test Case/FBSnapshotTestCase.m"; sourceTree = "<group>"; };
@@ -190,6 +201,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C950363D1A1AEB610050BD18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -215,9 +233,7 @@
 		C92B6BA919D0E255009E14AB /* @Contacts Tests */ = {
 			isa = PBXGroup;
 			children = (
-				C95C667919EF68F00071DB49 /* FBSnapshot */,
 				C92B6BAC19D0E255009E14AB /* _Contacts_Tests.m */,
-				C95C667219EF67640071DB49 /* PDXNavigationController */,
 				C92B6BB319D0E2D7009E14AB /* PDXContactMaker */,
 				C92B6BB619D0E2D7009E14AB /* PDXInputViewController */,
 				C92B6BB919D0E2D7009E14AB /* PDXTwitterCommunicator */,
@@ -281,6 +297,7 @@
 				C9A997C619CC3B2B007A033E /* Info.plist */,
 				C93E2D3919ADD51200B06809 /* atContacts */,
 				C92B6BA919D0E255009E14AB /* @Contacts Tests */,
+				C95036411A1AEB610050BD18 /* Contacts SnapshotTests */,
 				C93E2D3819ADD51200B06809 /* Products */,
 				C950363B1A1AE2C70050BD18 /* @Contacts Tests copy-Info.plist */,
 			);
@@ -291,6 +308,7 @@
 			children = (
 				C93E2D3719ADD51200B06809 /* @Contacts.app */,
 				C92B6BA819D0E255009E14AB /* @Contacts Tests.xctest */,
+				C95036401A1AEB610050BD18 /* Contacts SnapshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -311,6 +329,25 @@
 			path = atContacts;
 			sourceTree = "<group>";
 		};
+		C95036411A1AEB610050BD18 /* Contacts SnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				C95036441A1AEB610050BD18 /* Contacts_SnapshotTests.m */,
+				C95C667919EF68F00071DB49 /* FBSnapshot */,
+				C95C667219EF67640071DB49 /* PDXNavigationController */,
+				C95036421A1AEB610050BD18 /* Supporting Files */,
+			);
+			path = "Contacts SnapshotTests";
+			sourceTree = "<group>";
+		};
+		C95036421A1AEB610050BD18 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C95036431A1AEB610050BD18 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		C95C667219EF67640071DB49 /* PDXNavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +355,7 @@
 				C95C667A19EF69FC0071DB49 /* PDXNavigationController+TestExtensions.h */,
 			);
 			name = PDXNavigationController;
+			path = "../@Contacts Tests";
 			sourceTree = "<group>";
 		};
 		C95C667919EF68F00071DB49 /* FBSnapshot */ = {
@@ -333,6 +371,7 @@
 				C95C668019EF749C0071DB49 /* UIImage+Diff.m */,
 			);
 			name = FBSnapshot;
+			path = "../@Contacts Tests";
 			sourceTree = "<group>";
 		};
 		C9A0A01919E41EE300D1FDA2 /* Segues */ = {
@@ -469,6 +508,24 @@
 			productReference = C93E2D3719ADD51200B06809 /* @Contacts.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C950363F1A1AEB610050BD18 /* Contacts SnapshotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95036481A1AEB610050BD18 /* Build configuration list for PBXNativeTarget "Contacts SnapshotTests" */;
+			buildPhases = (
+				C950363C1A1AEB610050BD18 /* Sources */,
+				C950363D1A1AEB610050BD18 /* Frameworks */,
+				C950363E1A1AEB610050BD18 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C95036471A1AEB610050BD18 /* PBXTargetDependency */,
+			);
+			name = "Contacts SnapshotTests";
+			productName = "Contacts SnapshotTests";
+			productReference = C95036401A1AEB610050BD18 /* Contacts SnapshotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -490,6 +547,10 @@
 								enabled = 0;
 							};
 						};
+					};
+					C950363F1A1AEB610050BD18 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = C93E2D3619ADD51200B06809;
 					};
 				};
 			};
@@ -520,6 +581,7 @@
 			targets = (
 				C93E2D3619ADD51200B06809 /* @Contacts */,
 				C92B6BA719D0E255009E14AB /* Contacts Tests */,
+				C950363F1A1AEB610050BD18 /* Contacts SnapshotTests */,
 			);
 		};
 /* End PBXProject section */
@@ -551,6 +613,13 @@
 				C9A9978319CB3425007A033E /* LaunchScreen.storyboard in Resources */,
 				C9720B9019D0826300F11BB0 /* Settings.bundle in Resources */,
 				C924976E19D9BB4C008A7699 /* HockeySDKResources.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C950363E1A1AEB610050BD18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,11 +677,8 @@
 			files = (
 				C92B6BC419D0E2D7009E14AB /* PDXInputVCTests.m in Sources */,
 				C92B6BC319D0E2D7009E14AB /* PDXContactMakerTests.m in Sources */,
-				C95C667119EF67530071DB49 /* PDXNavigationControllerTests.m in Sources */,
 				C97D5C381A12C1B2009AB606 /* PDXPushTransition.m in Sources */,
-				C95C667719EF68E60071DB49 /* FBSnapshotTestCase.m in Sources */,
 				C92B6BAD19D0E255009E14AB /* _Contacts_Tests.m in Sources */,
-				C95C668119EF749C0071DB49 /* UIImage+Compare.m in Sources */,
 				C97D5C391A12C1B6009AB606 /* PDXSegueNavigationDelegate.m in Sources */,
 				C97D5C371A12C195009AB606 /* PDXNavigationController.m in Sources */,
 				C97D5C351A12C18E009AB606 /* PDXResultsViewController.m in Sources */,
@@ -620,10 +686,8 @@
 				C924977019DAE877008A7699 /* PDXTwitterCommunicator.m in Sources */,
 				C924977119DAE87B008A7699 /* PDXContactMaker.m in Sources */,
 				C97D5C3B1A12C1C9009AB606 /* UIColor+ColorAdditions.m in Sources */,
-				C95C668219EF749C0071DB49 /* UIImage+Diff.m in Sources */,
 				C92B6BC519D0E2D7009E14AB /* PDXTwitterCommunicatorTests.m in Sources */,
 				C97D5C3A1A12C1C1009AB606 /* PDXAppDelegate.m in Sources */,
-				C95C667819EF68E60071DB49 /* FBSnapshotTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +708,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C950363C1A1AEB610050BD18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C950364E1A1AEC300050BD18 /* UIImage+Compare.m in Sources */,
+				C950364B1A1AEC190050BD18 /* PDXNavigationControllerTests.m in Sources */,
+				C950364F1A1AEC350050BD18 /* UIImage+Diff.m in Sources */,
+				C950364D1A1AEC2B0050BD18 /* FBSnapshotTestController.m in Sources */,
+				C950364C1A1AEC250050BD18 /* FBSnapshotTestCase.m in Sources */,
+				C95036451A1AEB610050BD18 /* Contacts_SnapshotTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -651,6 +728,11 @@
 			isa = PBXTargetDependency;
 			target = C93E2D3619ADD51200B06809 /* @Contacts */;
 			targetProxy = C92B6BAE19D0E255009E14AB /* PBXContainerItemProxy */;
+		};
+		C95036471A1AEB610050BD18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C93E2D3619ADD51200B06809 /* @Contacts */;
+			targetProxy = C95036461A1AEB610050BD18 /* PBXContainerItemProxy */;
 		};
 		C9995B2D19D0F01B005C8792 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -867,6 +949,42 @@
 			};
 			name = Release;
 		};
+		C95036491A1AEB610050BD18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Contacts SnapshotTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/@Contacts.app/@Contacts";
+			};
+			name = Debug;
+		};
+		C950364A1A1AEB610050BD18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Contacts SnapshotTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/@Contacts.app/@Contacts";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -896,6 +1014,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C95036481A1AEB610050BD18 /* Build configuration list for PBXNativeTarget "Contacts SnapshotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C95036491A1AEB610050BD18 /* Debug */,
+				C950364A1A1AEB610050BD18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -48,6 +48,20 @@
                ReferencedContainer = "container:@Contacts.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C950363F1A1AEB610050BD18"
+               BuildableName = "Contacts SnapshotTests.xctest"
+               BlueprintName = "Contacts SnapshotTests"
+               ReferencedContainer = "container:@Contacts.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -63,6 +77,16 @@
                BlueprintIdentifier = "C92B6BA719D0E255009E14AB"
                BuildableName = "Contacts Tests.xctest"
                BlueprintName = "Contacts Tests"
+               ReferencedContainer = "container:@Contacts.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C950363F1A1AEB610050BD18"
+               BuildableName = "Contacts SnapshotTests.xctest"
+               BlueprintName = "Contacts SnapshotTests"
                ReferencedContainer = "container:@Contacts.xcodeproj">
             </BuildableReference>
          </TestableReference>
