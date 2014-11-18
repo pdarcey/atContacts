@@ -20,6 +20,20 @@
                ReferencedContainer = "container:@Contacts.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C92B6BA719D0E255009E14AB"
+               BuildableName = "@Contacts Tests.xctest"
+               BlueprintName = "@Contacts Tests"
+               ReferencedContainer = "container:@Contacts.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
