@@ -42,20 +42,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C95036131A1AE2C70050BD18"
-               BuildableName = "@Contacts Tests copy.xctest"
-               BlueprintName = "@Contacts Tests copy"
-               ReferencedContainer = "container:@Contacts.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "C950363F1A1AEB610050BD18"
                BuildableName = "Contacts SnapshotTests.xctest"
                BlueprintName = "Contacts SnapshotTests"
