@@ -155,8 +155,6 @@
  *  Resets hashtag to look like a label, rather than an input field, and adds the leading "#" if necessary
  *  Called by tap outside the UITextFields, or when editing in the hashtag field ends
  *
- *  @param sender Not used; irrelevent
- *
  *  @since 1.0
  */
 - (IBAction)endHashtagEditing {
